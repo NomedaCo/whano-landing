@@ -1,0 +1,52 @@
+---
+---
+
+<section class="py-16 md:py-24 border-t border-border">
+  <div class="mx-auto max-w-[1120px] px-6">
+    <div class="grid md:grid-cols-2 gap-6">
+      <!-- Old way -->
+      <div class="reveal p-7 rounded-lg border border-border bg-surface">
+        <div class="flex items-center gap-2.5 mb-5">
+          <div class="w-8 h-8 rounded-md bg-error/10 flex items-center justify-center">
+            <svg class="w-4 h-4 text-error" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </div>
+          <h3 class="font-heading text-base font-bold text-text">Without Whano</h3>
+        </div>
+        <ul class="space-y-2.5">
+          {["You reply to every order manually",
+            "Customers wait hours for confirmation",
+            "You forget to ask for reviews",
+            "Upsell opportunities disappear",
+            "Order changes need phone calls"].map((item) => (
+            <li class="flex items-start gap-2.5 text-sm text-muted">
+              <span class="text-error mt-0.5 shrink-0">—</span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Whano way -->
+      <div class="reveal p-7 rounded-lg border border-accent/20 bg-accent/5">
+        <div class="flex items-center gap-2.5 mb-5">
+          <div class="w-8 h-8 rounded-md bg-accent/15 flex items-center justify-center">
+            <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          </div>
+          <h3 class="font-heading text-base font-bold text-text">With Whano</h3>
+        </div>
+        <ul class="space-y-2.5">
+          {["Orders confirmed instantly on WhatsApp",
+            "Customers get replies in their language",
+            "Reviews collected after every delivery",
+            "AI suggests products they'll actually buy",
+            "Customers modify orders by texting back"].map((item) => (
+            <li class="flex items-start gap-2.5 text-sm text-body">
+              <span class="text-accent mt-0.5 shrink-0">—</span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

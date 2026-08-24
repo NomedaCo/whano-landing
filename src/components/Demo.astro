@@ -1,0 +1,78 @@
+---
+const conversations = [
+  {
+    title: "Order Confirmation",
+    desc: "Customer texts to confirm. Whano replies instantly.",
+    messages: [
+      { dir: "in", text: "بتأكيد الطلب #1042" },
+      { dir: "out", text: "أهلاً أحمد! تم تأكيد طلبك #1042\n\n2x تيشيرت قطن — 360 ج.م\nالشحن — 50 ج.م\nالإجمالي — 410 ج.م\n\nهيوصلك خلال 2-3 أيام عمل." },
+    ],
+  },
+  {
+    title: "Product Recommendation",
+    desc: "After confirmation, Whano suggests related products.",
+    messages: [
+      { dir: "out", text: "تم تأكيد طلبك! بtwisted╌حب نقولك إن عندنا تيشيرت قطن كمان — بيتباع أكتر مع اللي اخترته. مهتم؟" },
+      { dir: "in", text: "اه كم سعره" },
+      { dir: "out", text: "180 ج.م بس. نضيفه على طلبك؟" },
+      { dir: "in", text: "اه ياريت" },
+      { dir: "out", text: "تم! طلبك #1042 اتحدث\nالإجمالي الجديد — 540 ج.م" },
+    ],
+  },
+  {
+    title: "Shipping Update",
+    desc: "Whano sends tracking info automatically when you fulfill.",
+    messages: [
+      { dir: "out", text: "طلبك #1042 ات shipped!\n\nCarrier: Bosta\nرقم التتبع: 12345\nالموعد المتوقع: الثلاثاء 26 أغسطس\n\nتتبع: bosta.com/track/12345" },
+      { dir: "in", text: "شكراً!" },
+    ],
+  },
+  {
+    title: "Review Collection",
+    desc: "After delivery, Whano asks for a review automatically.",
+    messages: [
+      { dir: "out", text: "أهلاً أحمد! طلبك #1042 وصل\n\nازاي كانت تجربتك؟ ممكن تقيّمنا من 1 لـ 5?" },
+      { dir: "in", text: "5! المنتجات ممتازة" },
+      { dir: "out", text: "شكراً ليك! تقييمك يفرق معانا" },
+    ],
+  },
+];
+---
+
+<section class="py-16 md:py-24 border-t border-border">
+  <div class="mx-auto max-w-[1120px] px-6">
+    <div class="reveal mb-12">
+      <h2 class="font-heading text-2xl md:text-3xl font-bold text-text tracking-tight mb-3">See it in action</h2>
+      <p class="text-body max-w-lg">Real conversations. Real Arabic. What your customers will actually see.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      {conversations.map((conv, i) => (
+        <div class="reveal">
+          <div class="mb-3">
+            <h3 class="font-heading text-base font-bold text-text mb-1">{conv.title}</h3>
+            <p class="text-sm text-muted">{conv.desc}</p>
+          </div>
+          <div class="wa-mockup shadow-lg shadow-black/20">
+            <div class="wa-header">
+              <div class="wa-avatar">W</div>
+              <div>
+                <p class="text-[13px] font-medium text-[#E9EDEF]">Whano</p>
+                <p class="text-[11px] text-[#8696A0]">online</p>
+              </div>
+            </div>
+            <div class="wa-body">
+              {conv.messages.map((msg, j) => (
+                <div class={`wa-msg wa-msg-${msg.dir === "in" ? "in" : "out"} wa-animate wa-d${j + 1}`}>
+                  {msg.text.split("\n").map((line) => (
+                    <Fragment>{line}<br/></Fragment>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
