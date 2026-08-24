@@ -1,0 +1,110 @@
+---
+const features = [
+  {
+    title: "Order Confirmation",
+    description: "Every order gets a WhatsApp confirmation in seconds. Customer replies with a checkmark or text — order confirmed. No app to install, no link to click.",
+    messages: [
+      { type: "customer", text: "بتأكيد الطلب #1042" },
+      { type: "bot", text: "أهلاً! تم تأكيد طلبك #1042 ✅\n\n2x تيشيرت قطن — 360 ج.م\nالشحن — 50 ج.م\nالإجمالي — 410 ج.م\n\nهيوصلك خلال 2-3 أيام عمل." },
+    ],
+    color: "accent",
+  },
+  {
+    title: "Smart Recommendations",
+    description: "After confirmation, Whano suggests related products based on what other customers actually bought together. Customer says \"add the blue one\" — Whano updates the real Shopify order.",
+    messages: [
+      { type: "customer", text: "ممكن اضيف تيشيرت تاني؟" },
+      { type: "bot", text: "أكيد! تيشيرت قطن إضافي — 180 ج.م\n\nهتبقى معاك:\n- 2x تيشيرت قطن — 360 ج.م\n- 1x تيشيرت قطن (إضافي) — 180 ج.م\n\nنضيفه على طلبك؟" },
+      { type: "customer", text: "اه ياريت" },
+      { type: "bot", text: "تم! طلبك #1042 اتحدث\nالإجمالي الجديد — 540 ج.م 🎉" },
+    ],
+    color: "accent",
+  },
+  {
+    title: "Shipping Updates",
+    description: "When you fulfill an order, Whano sends the tracking info automatically. Customer gets a message with delivery window and tracking link. No \"where is my order?\" messages.",
+    messages: [
+      { type: "bot", text: "طلبك #1042 ات shipped! 📦\n\nCarrier: Bosta\nرقم التتبع: 12345\nالموعد المتوقع: الثلاثاء 26 أغسطس\n\nتتبع الشحنة: bosta.com/track/12345" },
+      { type: "customer", text: "شكراً!" },
+    ],
+    color: "accent",
+  },
+  {
+    title: "Review Collection",
+    description: "24-48 hours after delivery, Whano asks for a review. One message, one reply. Reviews stored in your dashboard. No third-party review app needed.",
+    messages: [
+      { type: "bot", text: "أهلاً أحمد! طلبك #1042 وصل ✅\n\nازاي كانت تجربتك مع المنتجات؟\nممكن تقيّمنا من 1 لـ 5؟ ⭐" },
+      { type: "customer", text: "5! المنتجات ممتازة" },
+      { type: "bot", text: "شكراً ليك! تقييمك يفرق معانا ❤️" },
+    ],
+    color: "accent",
+  },
+  {
+    title: "Bilingual Support",
+    description: "Speaks Egyptian Arabic and English. Detects customer language from their Shopify profile. Responds naturally in the right dialect — not generic MSA, not robotic English.",
+    messages: [
+      { type: "customer", text: "Confirm order #1042" },
+      { type: "bot", text: "Hi Ahmed! Order #1042 confirmed ✅\n\n2x Cotton T-shirt — 360 EGP\nShipping — 50 EGP\nTotal — 410 EGP\n\nArriving in 2-3 business days." },
+      { type: "customer", text: "Can I add another item?" },
+      { type: "bot", text: "Sure! Additional cotton t-shirt — 180 EGP\n\nNew total — 540 EGP 🎉\nAdded to your order!" },
+    ],
+    color: "accent",
+  },
+];
+---
+
+<section id="features" class="py-20 md:py-28 border-t border-border">
+  <div class="mx-auto max-w-6xl px-6">
+    <div class="text-center mb-16 reveal">
+      <h2 class="font-heading text-3xl md:text-4xl font-bold text-text-primary mb-4 tracking-tight">
+        See it in action
+      </h2>
+      <p class="text-lg text-text-secondary max-w-2xl mx-auto">
+        Every feature shows the actual WhatsApp conversation it produces. No abstract icons, no vague promises.
+      </p>
+    </div>
+
+    <div class="space-y-24">
+      {features.map((feature, i) => (
+        <div class={`grid lg:grid-cols-2 gap-12 items-center reveal ${i % 2 === 1 ? "lg:direction-rtl" : ""}`}>
+          <!-- Text -->
+          <div class={i % 2 === 1 ? "lg:order-2" : ""}>
+            <div class="inline-flex items-center gap-2 px-3 py-1 bg-accent/10 border border-accent/20 rounded-full mb-4">
+              <span class="text-xs font-medium text-accent tracking-wide uppercase">0{i + 1}</span>
+            </div>
+            <h3 class="font-heading text-2xl md:text-3xl font-bold text-text-primary mb-4 tracking-tight">
+              {feature.title}
+            </h3>
+            <p class="text-text-secondary leading-relaxed">
+              {feature.description}
+            </p>
+          </div>
+
+          <!-- Mockup -->
+          <div class={i % 2 === 1 ? "lg:order-1" : ""}>
+            <div class="whatsapp-mockup max-w-sm mx-auto shadow-lg shadow-black/20">
+              <div class="whatsapp-header">
+                <div class="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center">
+                  <span class="text-accent font-heading font-bold text-xs">W</span>
+                </div>
+                <div>
+                  <p class="text-sm font-medium text-[#E9EDEF]">Whano</p>
+                  <p class="text-xs text-[#8696A0]">online</p>
+                </div>
+              </div>
+              <div class="whatsapp-body">
+                {feature.messages.map((msg, j) => (
+                  <div class={`msg-${msg.type === "customer" ? "customer" : "bot"} msg-animate msg-delay-${j + 1}`}>
+                    {msg.text.split("\n").map((line) => (
+                      <Fragment>{line}<br /></Fragment>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

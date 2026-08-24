@@ -1,0 +1,255 @@
+@import "tailwindcss";
+
+/* ── Font Faces ─────────────────────────────────────────────── */
+
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/fonts/satoshi-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/fonts/satoshi-medium.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/fonts/satoshi-bold.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/fonts/satoshi-black.woff2') format('woff2');
+  font-weight: 900;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter/Inter-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter/Inter-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter/Inter-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter/Inter-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
+
+/* ── Design Tokens ──────────────────────────────────────────── */
+
+@theme {
+  --color-bg-base: #0A0A0B;
+  --color-bg-surface: #141416;
+  --color-bg-surface-2: #1C1C1F;
+  --color-border: #27272A;
+  --color-border-hover: #3F3F46;
+  --color-text-primary: #FAFAFA;
+  --color-text-secondary: #A1A1AA;
+  --color-text-muted: #71717A;
+  --color-accent: #F97316;
+  --color-accent-hover: #EA580C;
+  --color-success: #22C55E;
+  --color-error: #EF4444;
+  --font-heading: 'Satoshi', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+}
+
+/* ── Base Styles ────────────────────────────────────────────── */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg-base);
+  color: var(--color-text-secondary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--color-text-primary);
+}
+
+/* ── WhatsApp Mockup Styles ─────────────────────────────────── */
+
+.whatsapp-mockup {
+  background: #0B1A14;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  border: 1px solid #1E3A2A;
+}
+
+.whatsapp-header {
+  background: #1F2C33;
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.whatsapp-body {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-height: 280px;
+}
+
+.msg-customer {
+  background: #1F2C33;
+  color: #E9EDEF;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.75rem;
+  border-top-right-radius: 0;
+  max-width: 80%;
+  align-self: flex-end;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.msg-bot {
+  background: #005C4B;
+  color: #E9EDEF;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.75rem;
+  border-top-left-radius: 0;
+  max-width: 80%;
+  align-self: flex-start;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+/* ── Typing Indicator ───────────────────────────────────────── */
+
+.typing-indicator {
+  display: flex;
+  gap: 4px;
+  padding: 0.75rem 1rem;
+  background: #005C4B;
+  border-radius: 0.75rem;
+  border-top-left-radius: 0;
+  width: fit-content;
+  align-self: flex-start;
+}
+
+.typing-dot {
+  width: 6px;
+  height: 6px;
+  background: #8696A0;
+  border-radius: 50%;
+  animation: typing 1.4s infinite ease-in-out;
+}
+
+.typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typing {
+  0%, 60%, 100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  30% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
+}
+
+/* ── Message Animations ─────────────────────────────────────── */
+
+.msg-animate {
+  opacity: 0;
+  transform: translateY(8px);
+  animation: msgAppear 0.3s ease forwards;
+}
+
+@keyframes msgAppear {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.msg-delay-1 { animation-delay: 0.5s; }
+.msg-delay-2 { animation-delay: 1.2s; }
+.msg-delay-3 { animation-delay: 2.0s; }
+.msg-delay-4 { animation-delay: 2.8s; }
+.msg-delay-5 { animation-delay: 3.6s; }
+.msg-delay-6 { animation-delay: 4.4s; }
+
+/* ── Scroll Animations ──────────────────────────────────────── */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Selection ──────────────────────────────────────────────── */
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-bg-base);
+}
+
+/* ── Scrollbar ──────────────────────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-base);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-border-hover);
+}

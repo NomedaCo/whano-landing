@@ -1,0 +1,107 @@
+---
+const plans = [
+  {
+    name: "Starter",
+    points: "500",
+    price: "500",
+    period: "month",
+    description: "For small stores getting started.",
+    features: [
+      "500 message points",
+      "All automation features",
+      "Email support",
+      "Up to ~120 orders/month",
+    ],
+    cta: "Start Free",
+    popular: false,
+  },
+  {
+    name: "Growth",
+    points: "2,000",
+    price: "1,800",
+    period: "month",
+    description: "For growing stores with steady orders.",
+    features: [
+      "2,000 message points",
+      "All automation features",
+      "Priority support",
+      "Up to ~480 orders/month",
+    ],
+    cta: "Start Free",
+    popular: true,
+  },
+  {
+    name: "Scale",
+    points: "5,000",
+    price: "4,000",
+    period: "month",
+    description: "For established stores with high volume.",
+    features: [
+      "5,000 message points",
+      "All automation features",
+      "Dedicated support",
+      "Up to ~1,200 orders/month",
+    ],
+    cta: "Start Free",
+    popular: false,
+  },
+];
+---
+
+<section id="pricing" class="py-20 md:py-28 border-t border-border">
+  <div class="mx-auto max-w-6xl px-6">
+    <div class="text-center mb-16 reveal">
+      <h2 class="font-heading text-3xl md:text-4xl font-bold text-text-primary mb-4 tracking-tight">
+        Simple, honest pricing
+      </h2>
+      <p class="text-lg text-text-secondary max-w-2xl mx-auto">
+        Pay for what you use. No hidden fees. No contracts. All prices in EGP.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+      {plans.map((plan) => (
+        <div class={`reveal relative p-6 rounded-xl border ${plan.popular ? "border-accent/40 bg-accent/5" : "border-border bg-bg-surface"}`}>
+          {plan.popular && (
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-accent text-bg-base text-xs font-semibold rounded-full">
+              Most Popular
+            </div>
+          )}
+
+          <div class="mb-6">
+            <h3 class="font-heading text-lg font-semibold text-text-primary mb-1">{plan.name}</h3>
+            <p class="text-sm text-text-muted mb-4">{plan.description}</p>
+            <div class="flex items-baseline gap-1">
+              <span class="font-heading text-4xl font-bold text-text-primary">{plan.price}</span>
+              <span class="text-text-muted text-sm">EGP/mo</span>
+            </div>
+          </div>
+
+          <ul class="space-y-3 mb-8">
+            {plan.features.map((feature) => (
+              <li class="flex items-start gap-2.5 text-sm text-text-secondary">
+                <svg class="w-4 h-4 text-accent shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                {feature}
+              </li>
+            ))}
+          </ul>
+
+          <a
+            href="https://apps.shopify.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class={`block w-full text-center py-2.5 rounded-lg text-sm font-semibold transition-colors duration-200 ${
+              plan.popular
+                ? "bg-accent text-bg-base hover:bg-accent-hover"
+                : "bg-bg-surface-2 text-text-primary hover:bg-border border border-border"
+            }`}
+          >
+            {plan.cta}
+          </a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,36 @@
+---
+const footerLinks = [
+  { label: "Features", href: "#features" },
+  { label: "Pricing", href: "#pricing" },
+  { label: "Privacy Policy", href: "/privacy" },
+  { label: "Terms of Service", href: "/terms" },
+];
+---
+
+<footer class="border-t border-border">
+  <div class="mx-auto max-w-6xl px-6 py-12">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+      <!-- Logo -->
+      <a href="/" class="font-heading text-lg font-bold text-text-primary tracking-tight">
+        whano
+      </a>
+
+      <!-- Links -->
+      <div class="flex items-center gap-6">
+        {footerLinks.map((link) => (
+          <a
+            href={link.href}
+            class="text-sm text-text-muted hover:text-text-primary transition-colors duration-200"
+          >
+            {link.label}
+          </a>
+        ))}
+      </div>
+
+      <!-- Copyright -->
+      <p class="text-sm text-text-muted">
+        &copy; 2026 Whano
+      </p>
+    </div>
+  </div>
+</footer>

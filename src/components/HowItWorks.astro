@@ -1,0 +1,47 @@
+---
+const steps = [
+  {
+    number: "01",
+    title: "Install",
+    description: "Install Whano from the Shopify App Store with one click.",
+  },
+  {
+    number: "02",
+    title: "Link",
+    description: "Scan a QR code to connect your WhatsApp number.",
+  },
+  {
+    number: "03",
+    title: "Automate",
+    description: "Whano handles every order automatically.",
+  },
+];
+---
+
+<section class="py-20 md:py-28 border-t border-border">
+  <div class="mx-auto max-w-6xl px-6">
+    <div class="text-center mb-16 reveal">
+      <h2 class="font-heading text-3xl md:text-4xl font-bold text-text-primary mb-4 tracking-tight">
+        Three steps. That's it.
+      </h2>
+      <p class="text-lg text-text-secondary max-w-2xl mx-auto">
+        No complex setup. No technical knowledge required.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8 relative">
+      <!-- Connecting line -->
+      <div class="hidden md:block absolute top-12 left-[20%] right-[20%] h-px bg-border"></div>
+
+      {steps.map((step, i) => (
+        <div class="relative text-center reveal">
+          <div class="w-24 h-24 mx-auto mb-6 rounded-2xl bg-bg-surface border border-border flex items-center justify-center relative z-10">
+            <span class="font-heading text-2xl font-bold text-accent">{step.number}</span>
+          </div>
+          <h3 class="font-heading text-xl font-semibold text-text-primary mb-2">{step.title}</h3>
+          <p class="text-text-secondary text-sm max-w-xs mx-auto">{step.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
