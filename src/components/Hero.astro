@@ -54,37 +54,29 @@ import { heroConversation, site } from "../data/content";
       </div>
 
       <div class="hero-visual reveal">
-        <div class="order-sheet">
-          <div class="sheet-header">
-            <div>
-              <div class="sheet-label">Whano / 1042</div>
-              <div class="sheet-title">
-                <span data-copy="en">Order conversation</span>
-                <span data-copy="ar" lang="ar">محادثة الطلب</span>
-              </div>
-            </div>
-              <div class="sheet-status">
-              <span data-copy="en">{site.thread.orderStatus.en}</span>
-              <span data-copy="ar" lang="ar">{site.thread.orderStatus.ar}</span>
-            </div>
+        <div class="phone-frame">
+          <div class="phone-statusbar">
+            <span class="phone-statusbar__time">9:41</span>
+            <span class="phone-statusbar__icons">
+              <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M1 10h2v4H1zm4-3h2v7H5zm4-3h2v10H9zm4-4h2v14h-2z"/></svg>
+              <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 3a9 9 0 019 9h-2a7 7 0 00-7-7V3zm0-3a12 12 0 0112 12h-2a10 10 0 00-10-10V0z"/></svg>
+              <svg viewBox="0 0 24 12" fill="currentColor" aria-hidden="true"><rect x="0" y="1" width="20" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="2" y="3" width="14" height="6" rx="1" /><path d="M22 5v2a1 1 0 001-1 1 1 0 00-1-1z"/></svg>
+            </span>
           </div>
 
-          <div class="sheet-body">
-            <div class="sheet-caption">
-              <span class="sheet-caption__side">Shopify → WhatsApp</span>
-              <span class="sheet-caption__side">
-                <span data-copy="en">{site.thread.label.en}</span>
-                <span data-copy="ar" lang="ar">{site.thread.label.ar}</span>
-              </span>
+          <div class="order-sheet">
+            <div class="sheet-body">
+              <ChatThread messages={heroConversation} />
             </div>
-            <ChatThread messages={heroConversation} />
           </div>
+        </div>
 
-          <div class="sheet-footer">
-            <span>Shopify</span>
-            <span>WhatsApp</span>
-            <span>EGP</span>
-          </div>
+        <div class="sheet-meta">
+          <span>Shopify → WhatsApp</span>
+          <span>
+            <span data-copy="en">{site.thread.label.en}</span>
+            <span data-copy="ar" lang="ar">{site.thread.label.ar}</span>
+          </span>
         </div>
       </div>
     </div>

@@ -17,23 +17,23 @@ const {
 ---
 
 <!doctype html>
-<html lang="en" dir="ltr" data-language="en" data-title-en={title} data-title-ar={titleArabic} data-description-en={description} data-description-ar={descriptionArabic}>
+<html lang="ar" dir="rtl" data-language="ar" data-title-en={title} data-title-ar={titleArabic} data-description-en={description} data-description-ar={descriptionArabic}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta id="meta-description" name="description" content={description} />
+    <meta id="meta-description" name="description" content={descriptionArabic} />
     <meta name="theme-color" content="#f4f1e9" />
     <meta property="og:type" content="website" />
-    <meta id="meta-og-title" property="og:title" content={title} />
-    <meta id="meta-og-description" property="og:description" content={description} />
+    <meta id="meta-og-title" property="og:title" content={titleArabic} />
+    <meta id="meta-og-description" property="og:description" content={descriptionArabic} />
     <meta property="og:site_name" content="Whano" />
     <meta property="og:locale" content="en_EG" />
     <meta property="og:locale:alternate" content="ar_EG" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta id="meta-twitter-title" name="twitter:title" content={title} />
-    <meta id="meta-twitter-description" name="twitter:description" content={description} />
+    <meta id="meta-twitter-title" name="twitter:title" content={titleArabic} />
+    <meta id="meta-twitter-description" name="twitter:description" content={descriptionArabic} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>{title}</title>
+    <title>{titleArabic}</title>
     <script is:inline type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
@@ -48,7 +48,7 @@ const {
         root.classList.add("js");
         try {
           const saved = window.localStorage.getItem("whano-language");
-          const language = saved === "ar" ? "ar" : "en";
+          const language = saved === "en" ? "en" : "ar";
           root.dataset.language = language;
           root.lang = language;
           root.dir = language === "ar" ? "rtl" : "ltr";

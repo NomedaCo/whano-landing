@@ -417,7 +417,7 @@ html.js .reveal.is-visible {
   margin: 24px 0 26px;
   color: var(--ink);
   font-family: var(--font-heading);
-  font-size: clamp(3.3rem, 6.8vw, 6.65rem);
+  font-size: clamp(2rem, 4.5vw, 4rem);
   font-weight: 900;
   letter-spacing: -0.075em;
   line-height: 0.91;
@@ -480,27 +480,71 @@ html.js .reveal.is-visible {
   background: var(--green);
 }
 
-/* ── Order sheet and thread ────────────────────────────────── */
+/* ── Phone frame and thread ─────────────────────────────────── */
+
+.phone-frame {
+  position: relative;
+  width: 100%;
+  max-width: 340px;
+  margin: 0 auto;
+  border-radius: 2.5rem;
+  border: 2px solid #2A2A2D;
+  background: #0B1A14;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.18), 0 8px 20px rgba(0, 0, 0, 0.10);
+  overflow: hidden;
+}
+
+.phone-frame::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90px;
+  height: 22px;
+  background: #2A2A2D;
+  border-radius: 12px;
+  z-index: 2;
+}
+
+.phone-statusbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px 6px;
+  color: #E9EDEF;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.phone-statusbar__time {
+  min-width: 40px;
+}
+
+.phone-statusbar__icons {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #E9EDEF;
+  font-size: 10px;
+}
+
+.phone-statusbar__icons svg {
+  width: 14px;
+  height: 14px;
+}
 
 .order-sheet {
-  border: 1px solid var(--ink);
   background: #fbfaf5;
 }
 
-.sheet-header,
-.sheet-footer {
+.sheet-meta {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 13px 16px;
-}
-
-.sheet-header {
-  border-bottom: 1px solid var(--ink);
-}
-
-.sheet-footer {
+  padding: 10px 16px;
   border-top: 1px solid var(--rule);
   color: var(--ink-muted);
   font-size: 10px;
@@ -1376,8 +1420,8 @@ html[data-language="ar"] .button-light svg {
     max-width: 760px;
   }
 
-  .order-sheet {
-    max-width: 620px;
+  .phone-frame {
+    max-width: 300px;
   }
 
   .section-heading,
@@ -1458,7 +1502,7 @@ html[data-language="ar"] .button-light svg {
   }
 
   .hero-title {
-    font-size: clamp(3.05rem, 14vw, 5rem);
+    font-size: clamp(1.75rem, 8vw, 3rem);
   }
 
   .hero-body {
@@ -1495,7 +1539,22 @@ html[data-language="ar"] .button-light svg {
   }
 
   .sheet-body {
-    padding: 12px;
+    padding: 10px;
+  }
+
+  .phone-frame {
+    border-radius: 2rem;
+  }
+
+  .phone-frame::before {
+    width: 70px;
+    height: 18px;
+    top: 6px;
+  }
+
+  .phone-statusbar {
+    padding: 10px 16px 4px;
+    font-size: 10px;
   }
 
   .thread-bubble {
