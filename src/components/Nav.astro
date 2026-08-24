@@ -85,9 +85,9 @@ const navLinks = [
   // Scroll effect
   window.addEventListener("scroll", () => {
     if (window.scrollY > 20) {
-      nav?.classList.add("bg-bg-base/80", "backdrop-blur-xl", "border-b", "border-border");
+      nav?.classList.add("nav-scrolled");
     } else {
-      nav?.classList.remove("bg-bg-base/80", "backdrop-blur-xl", "border-b", "border-border");
+      nav?.classList.remove("nav-scrolled");
     }
   });
 
