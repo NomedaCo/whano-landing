@@ -1,0 +1,50 @@
+---
+import { site } from "../data/content";
+---
+
+<section class="section section--compact">
+  <div class="site-frame control-layout">
+    <div class="reveal">
+      <p class="eyebrow">
+        <span data-copy="en">{site.control.eyebrow.en}</span>
+        <span data-copy="ar" lang="ar">{site.control.eyebrow.ar}</span>
+      </p>
+    </div>
+
+    <div class="reveal">
+      <h2 class="section-title">
+        <span data-copy="en">{site.control.title.en}</span>
+        <span data-copy="ar" lang="ar">{site.control.title.ar}</span>
+      </h2>
+
+      <div class="control-points" style="margin-top: 48px">
+        {site.control.points.map((point) => (
+          <div class="control-point">
+            <h3>
+              <span data-copy="en">{point.title.en}</span>
+              <span data-copy="ar" lang="ar">{point.title.ar}</span>
+            </h3>
+            <p>
+              <span data-copy="en">{point.body.en}</span>
+              <span data-copy="ar" lang="ar">{point.body.ar}</span>
+            </p>
+          </div>
+        ))}
+      </div>
+
+      <div class="language-strip">
+        <span class="language-strip__label">
+          <span data-copy="en">The customer speaks naturally</span>
+          <span data-copy="ar" lang="ar">العميل بيتكلم بطبيعته</span>
+        </span>
+        <div class="language-strip__line">
+          <span data-copy="en">“Can you add one more?”</span>
+          <span data-copy="ar" lang="ar">«ممكن تزود واحد كمان؟»</span>
+          <span class="language-strip__arrow" aria-hidden="true">→</span>
+          <span data-copy="en">“Sure. Should I add it to your order?”</span>
+          <span data-copy="ar" lang="ar">«طبعًا، أضيفه للطلب؟»</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

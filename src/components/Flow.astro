@@ -1,0 +1,42 @@
+---
+import { orderFlow, site } from "../data/content";
+---
+
+<section id="flow" class="section">
+  <div class="site-frame">
+    <div class="section-heading reveal">
+      <div>
+        <p class="eyebrow">
+          <span data-copy="en">{site.flow.eyebrow.en}</span>
+          <span data-copy="ar" lang="ar">{site.flow.eyebrow.ar}</span>
+        </p>
+      </div>
+      <div>
+        <h2 class="section-title">
+          <span data-copy="en">{site.flow.title.en}</span>
+          <span data-copy="ar" lang="ar">{site.flow.title.ar}</span>
+        </h2>
+        <p class="section-copy">
+          <span data-copy="en">{site.flow.body.en}</span>
+          <span data-copy="ar" lang="ar">{site.flow.body.ar}</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="flow-grid">
+      {orderFlow.map((step) => (
+        <div class="flow-item reveal">
+          <span class="flow-number">{step.number}</span>
+          <h3 class="flow-title">
+            <span data-copy="en">{step.title.en}</span>
+            <span data-copy="ar" lang="ar">{step.title.ar}</span>
+          </h3>
+          <p class="flow-body">
+            <span data-copy="en">{step.body.en}</span>
+            <span data-copy="ar" lang="ar">{step.body.ar}</span>
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

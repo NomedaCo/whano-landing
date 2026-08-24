@@ -1,41 +1,91 @@
 ---
+import ChatThread from "./ChatThread.astro";
+import { heroConversation, site } from "../data/content";
 ---
 
-<section class="pt-28 pb-16 md:pt-36 md:pb-24">
-  <div class="mx-auto max-w-[1120px] px-6">
-    <div class="max-w-2xl">
-      <p class="text-sm font-medium text-accent mb-4 tracking-wide uppercase">For Shopify merchants in Egypt</p>
+<section id="top" class="hero">
+  <div class="site-frame">
+    <div class="hero-grid">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">
+          <span data-copy="en">{site.hero.eyebrow.en}</span>
+          <span data-copy="ar" lang="ar">{site.hero.eyebrow.ar}</span>
+        </p>
 
-      <h1 class="font-heading text-[2.75rem] md:text-[3.5rem] font-black text-text leading-[1.08] tracking-tight mb-5">
-        Your customers text WhatsApp.<br/>
-        <span class="text-accent">Whano replies.</span>
-      </h1>
+        <h1 class="hero-title">
+          <span data-copy="en">
+            {site.hero.titleLead.en}<br />
+            <span class="hero-title__accent">{site.hero.titleAccent.en}</span>
+          </span>
+          <span data-copy="ar" lang="ar">
+            {site.hero.titleLead.ar}<br />
+            <span class="hero-title__accent">{site.hero.titleAccent.ar}</span>
+          </span>
+        </h1>
 
-      <p class="text-lg text-body leading-relaxed mb-7 max-w-lg">
-        Order confirmations, shipping updates, review collection, and product recommendations — all automated through WhatsApp. Speaks Arabic and English.
-      </p>
+        <p class="hero-body">
+          <span data-copy="en">{site.hero.body.en}</span>
+          <span data-copy="ar" lang="ar">{site.hero.body.ar}</span>
+        </p>
 
-      <div class="flex flex-col sm:flex-row gap-3 mb-7">
-        <a href="https://apps.shopify.com/" target="_blank" rel="noopener noreferrer"
-           class="h-11 px-6 inline-flex items-center justify-center gap-2 bg-accent text-bg font-semibold rounded-lg hover:bg-accent-hover transition-colors text-sm">
-          Install on Shopify — Free
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-        </a>
+        <div class="hero-actions">
+          <a href={site.accessUrl.en} data-access-link class="button-primary">
+            <span data-copy="en">{site.hero.cta.en}</span>
+            <span data-copy="ar" lang="ar">{site.hero.cta.ar}</span>
+            <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+              <path d="M2.5 7.5h9M8 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
+          <span class="hero-note">
+            <span data-copy="en">{site.hero.ctaNote.en}</span>
+            <span data-copy="ar" lang="ar">{site.hero.ctaNote.ar}</span>
+          </span>
+        </div>
+
+        <ul class="proof-list">
+          {site.hero.proofs.map((proof) => (
+            <li class="proof-item">
+              <span class="proof-mark" aria-hidden="true"></span>
+              <span data-copy="en">{proof.en}</span>
+              <span data-copy="ar" lang="ar">{proof.ar}</span>
+            </li>
+          ))}
+        </ul>
       </div>
 
-      <div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-muted">
-        <span class="flex items-center gap-1.5">
-          <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-          No credit card
-        </span>
-        <span class="flex items-center gap-1.5">
-          <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-          50 free messages
-        </span>
-        <span class="flex items-center gap-1.5">
-          <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-          Setup in 5 minutes
-        </span>
+      <div class="hero-visual reveal">
+        <div class="order-sheet">
+          <div class="sheet-header">
+            <div>
+              <div class="sheet-label">Whano / 1042</div>
+              <div class="sheet-title">
+                <span data-copy="en">Order conversation</span>
+                <span data-copy="ar" lang="ar">محادثة الطلب</span>
+              </div>
+            </div>
+              <div class="sheet-status">
+              <span data-copy="en">{site.thread.orderStatus.en}</span>
+              <span data-copy="ar" lang="ar">{site.thread.orderStatus.ar}</span>
+            </div>
+          </div>
+
+          <div class="sheet-body">
+            <div class="sheet-caption">
+              <span class="sheet-caption__side">Shopify → WhatsApp</span>
+              <span class="sheet-caption__side">
+                <span data-copy="en">{site.thread.label.en}</span>
+                <span data-copy="ar" lang="ar">{site.thread.label.ar}</span>
+              </span>
+            </div>
+            <ChatThread messages={heroConversation} />
+          </div>
+
+          <div class="sheet-footer">
+            <span>Shopify</span>
+            <span>WhatsApp</span>
+            <span>EGP</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>

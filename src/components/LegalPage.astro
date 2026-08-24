@@ -1,0 +1,79 @@
+---
+import type { LegalSection } from "../data/legal";
+import Nav from "./Nav.astro";
+import Footer from "./Footer.astro";
+
+interface Props {
+  title: { en: string; ar: string };
+  updated: { en: string; ar: string };
+  indexText: { en: string; ar: string };
+  sections: LegalSection[];
+}
+
+const { title, updated, indexText, sections } = Astro.props;
+---
+
+<Nav />
+<main id="main-content" class="legal-page">
+  <div class="site-frame">
+    <header class="legal-header reveal">
+      <p class="eyebrow">
+        <span data-copy="en">Whano / legal</span>
+        <span data-copy="ar" lang="ar">Whano / قانوني</span>
+      </p>
+      <h1 class="legal-title">
+        <span data-copy="en">{title.en}</span>
+        <span data-copy="ar" lang="ar">{title.ar}</span>
+      </h1>
+      <p class="legal-meta">
+        <span data-copy="en">{updated.en}</span>
+        <span data-copy="ar" lang="ar">{updated.ar}</span>
+      </p>
+    </header>
+
+    <div class="legal-layout">
+      <p class="legal-index reveal">
+        <span data-copy="en">{indexText.en}</span>
+        <span data-copy="ar" lang="ar">{indexText.ar}</span>
+      </p>
+
+      <div class="legal-content">
+        {sections.map((section) => (
+          <section class="legal-section reveal">
+            <h2 class="legal-heading">
+              <span data-copy="en">{section.heading.en}</span>
+              <span data-copy="ar" lang="ar">{section.heading.ar}</span>
+            </h2>
+            {section.paragraphs?.map((paragraph) => (
+              <p class="legal-copy">
+                <span data-copy="en">{paragraph.en}</span>
+                <span data-copy="ar" lang="ar">{paragraph.ar}</span>
+              </p>
+            ))}
+            {section.bullets && (
+              <ul class="legal-list">
+                {section.bullets.map((bullet) => (
+                  <li>
+                    <span data-copy="en">{bullet.en}</span>
+                    <span data-copy="ar" lang="ar">{bullet.ar}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+            {section.links && (
+              <div class="legal-links">
+                {section.links.map((link) => (
+                  <a href={link.href} class="legal-link">
+                    <span data-copy="en">{link.label.en}</span>
+                    <span data-copy="ar" lang="ar">{link.label.ar}</span>
+                  </a>
+                ))}
+              </div>
+            )}
+          </section>
+        ))}
+      </div>
+    </div>
+  </div>
+</main>
+<Footer />

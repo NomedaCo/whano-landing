@@ -1,43 +1,26 @@
-# Whano Landing Page — Design & Architecture Plan
+# Whano Website Plan
 
-## Product
+## Goal
 
-**Whano** automates WhatsApp customer communication for Shopify merchants in Egypt.
-Customer places order → bot confirms in their language → customer can confirm, cancel, modify, or ask questions — all via WhatsApp text.
+Present Whano as a focused post-purchase WhatsApp workflow for Shopify merchants, with enough product detail to build trust and one clear next action.
 
-## Tech Stack
+## Decisions
 
-| Layer | Choice | Reason |
-|---|---|---|
-| Framework | Astro 5 | Zero JS by default, fastest Core Web Vitals, islands for interactivity |
-| Styling | Tailwind CSS 4 | Utility-first, no CSS bloat |
-| Typography | Satoshi (headings) + Inter (body) | Distinctive geometric sans + readable body |
-| Icons | Phosphor Icons | Consistent, not the usual Heroicons |
-| Animations | CSS-only | Scroll-driven animations, `@keyframes`, 60fps |
-| Hosting | Cloudflare Pages | Free, fast global CDN |
-| Analytics | Plausible or Umami | Privacy-first, no cookie banners |
+- Use Astro static output because this site is content-led and does not need a React runtime.
+- Keep dependencies small: Astro and the official Astro type-check tooling.
+- Use an editorial grid and product-specific order thread instead of a generic SaaS hero and dashboard card grid.
+- Default to English and offer Egyptian Arabic through an in-page language switcher with RTL support.
+- Do not publish unverified testimonials, metrics, customer logos, or App Store URLs.
+- Use `contact@nomeda.tech` for access requests until the Shopify App Store listing is live.
 
-## Design Direction
+## Content architecture
 
-**Dark & premium** — near-black backgrounds, warm orange accent.
-NOT the usual blue/purple SaaS gradient. Distinctive, memorable, technical.
+Marketing and legal copy is centralized in `src/data/content.ts` and `src/data/legal.ts`. Components render both language variants, while the language controller chooses the visible copy, document direction, metadata, and access-link subject.
 
-## Page Sections
+## Quality bar
 
-1. **Nav** — Fixed, translucent, clean
-2. **Hero** — Bold headline + animated WhatsApp conversation mockup
-3. **Problem/Solution** — Old way vs Whano way comparison
-4. **Features** — Full-width alternating showcase with live mockups
-5. **How It Works** — 3-step visual flow
-6. **Metrics** — Concrete numbers, social proof
-7. **Pricing** — 3 transparent tiers
-8. **CTA** — Final conversion push
-9. **Footer** — Minimal, clean
-
-## Principles
-
-- Show, don't tell — every feature shows the actual WhatsApp conversation
-- Honest copy — no "revolutionize", "supercharge", or fake metrics
-- Egyptian context — EGP pricing, Arabic phrases, real Shopify workflows
-- Zero emojis in marketing copy
-- Performance first — target 100 Lighthouse score
+- A visitor understands the product in the first screen.
+- Every section explains a real point in the Shopify order lifecycle or resolves a conversion objection.
+- Arabic product copy is Egyptian colloquial; legal copy is formal Arabic.
+- The page remains understandable without motion or decorative effects.
+- `npm run check` and `npm run build` pass before release.

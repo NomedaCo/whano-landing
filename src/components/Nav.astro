@@ -1,45 +1,174 @@
 ---
+import { site } from "../data/content";
 ---
 
-<nav id="nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
-  <div class="mx-auto max-w-[1120px] px-6 h-16 flex items-center justify-between">
-    <a href="/" class="font-heading text-lg font-bold text-text tracking-tight">whano</a>
+<header
+  id="site-header"
+  class="site-header"
+  data-access-url-en={site.accessUrl.en}
+  data-access-url-ar={site.accessUrl.ar}
+  data-switch-ar-en={site.nav.switchToArabic.en}
+  data-switch-en-ar={site.nav.switchToEnglish.ar}
+  data-menu-open-en={site.nav.menuOpen.en}
+  data-menu-open-ar={site.nav.menuOpen.ar}
+  data-menu-close-en={site.nav.menuClose.en}
+  data-menu-close-ar={site.nav.menuClose.ar}
+>
+  <div class="site-frame site-header__inner">
+    <div class="site-header__brand">
+      <a href="/#top" class="wordmark">
+        <span class="wordmark__mark" aria-hidden="true"></span>
+        whano
+      </a>
+      <span class="header-context">
+        <span data-copy="en">Shopify × WhatsApp</span>
+        <span data-copy="ar" lang="ar">Shopify × واتساب</span>
+      </span>
+    </div>
 
-    <div class="hidden md:flex items-center gap-7">
-      <a href="#features" class="text-sm text-muted hover:text-text transition-colors">Features</a>
-      <a href="#pricing" class="text-sm text-muted hover:text-text transition-colors">Pricing</a>
-      <a href="#faq" class="text-sm text-muted hover:text-text transition-colors">FAQ</a>
-      <a href="https://apps.shopify.com/" target="_blank" rel="noopener noreferrer"
-         class="h-9 px-5 inline-flex items-center gap-1.5 bg-accent text-bg text-sm font-semibold rounded-lg hover:bg-accent-hover transition-colors">
-        Install on Shopify
-        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+    <nav class="nav-links" data-primary-nav aria-label="Primary navigation">
+      {site.nav.links.map((link) => (
+        <a href={`/${link.href}`} class="nav-link">
+          <span data-copy="en">{link.label.en}</span>
+          <span data-copy="ar" lang="ar">{link.label.ar}</span>
+        </a>
+      ))}
+    </nav>
+
+    <div class="header-actions">
+      <button id="language-toggle" class="language-toggle" type="button" aria-label="Switch to Arabic" aria-pressed="false">
+        <span data-copy="en">{site.nav.language.en}</span>
+        <span data-copy="ar" lang="ar">{site.nav.language.ar}</span>
+      </button>
+      <a href={site.accessUrl.en} data-access-link class="header-cta">
+        <span data-copy="en">{site.nav.cta.en}</span>
+        <span data-copy="ar" lang="ar">{site.nav.cta.ar}</span>
       </a>
     </div>
 
-    <button id="menu-btn" class="md:hidden text-muted hover:text-text transition-colors" aria-label="Menu">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    <button id="menu-button" class="menu-button" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+      </svg>
     </button>
   </div>
 
-  <div id="mobile-menu" class="hidden md:hidden border-t border-border px-6 pb-4">
-    <div class="flex flex-col gap-3 pt-3">
-      <a href="#features" class="text-sm text-muted hover:text-text transition-colors">Features</a>
-      <a href="#pricing" class="text-sm text-muted hover:text-text transition-colors">Pricing</a>
-      <a href="#faq" class="text-sm text-muted hover:text-text transition-colors">FAQ</a>
-      <a href="https://apps.shopify.com/" target="_blank" rel="noopener noreferrer"
-         class="h-9 px-5 inline-flex items-center justify-center gap-1.5 bg-accent text-bg text-sm font-semibold rounded-lg hover:bg-accent-hover transition-colors mt-1">
-        Install on Shopify
+  <nav id="mobile-nav" class="mobile-nav site-frame" data-primary-nav aria-label="Mobile navigation">
+    {site.nav.links.map((link) => (
+      <a href={`/${link.href}`} class="nav-link">
+        <span data-copy="en">{link.label.en}</span>
+        <span data-copy="ar" lang="ar">{link.label.ar}</span>
       </a>
-    </div>
-  </div>
-</nav>
+    ))}
+    <a href={site.accessUrl.en} data-access-link class="header-cta">
+      <span data-copy="en">{site.nav.cta.en}</span>
+      <span data-copy="ar" lang="ar">{site.nav.cta.ar}</span>
+    </a>
+  </nav>
+</header>
+
+<span id="language-status" class="sr-only" aria-live="polite"></span>
 
 <script>
-  const nav = document.getElementById("nav");
-  const btn = document.getElementById("menu-btn");
-  const menu = document.getElementById("mobile-menu");
-  window.addEventListener("scroll", () => {
-    nav?.classList.toggle("nav-scrolled", window.scrollY > 20);
+  const header = document.getElementById("site-header");
+  const languageToggle = document.getElementById("language-toggle");
+  const menuButton = document.getElementById("menu-button");
+  const mobileNav = document.getElementById("mobile-nav");
+  const ui = {
+    accessUrlEn: header?.dataset.accessUrlEn || "",
+    accessUrlAr: header?.dataset.accessUrlAr || "",
+    switchToArabic: header?.dataset.switchArEn || "Switch to Arabic",
+    switchToEnglish: header?.dataset.switchEnAr || "التبديل إلى الإنجليزية",
+    menuOpenEn: header?.dataset.menuOpenEn || "Open menu",
+    menuOpenAr: header?.dataset.menuOpenAr || "افتح القائمة",
+    menuCloseEn: header?.dataset.menuCloseEn || "Close menu",
+    menuCloseAr: header?.dataset.menuCloseAr || "اقفل القائمة",
+  };
+
+  let mobileMenuOpen = false;
+
+  function setLanguage(language: "en" | "ar", announce = true) {
+    document.documentElement.dataset.language = language;
+    document.documentElement.lang = language;
+    document.documentElement.dir = language === "ar" ? "rtl" : "ltr";
+    languageToggle?.setAttribute("aria-pressed", String(language === "ar"));
+    languageToggle?.setAttribute("aria-label", language === "en" ? ui.switchToArabic : ui.switchToEnglish);
+    const title = language === "ar"
+      ? document.documentElement.dataset.titleAr
+      : document.documentElement.dataset.titleEn;
+    const description = language === "ar"
+      ? document.documentElement.dataset.descriptionAr
+      : document.documentElement.dataset.descriptionEn;
+    if (title) {
+      document.title = title;
+      document.getElementById("meta-og-title")?.setAttribute("content", title);
+      document.getElementById("meta-twitter-title")?.setAttribute("content", title);
+    }
+    if (description) {
+      document.getElementById("meta-description")?.setAttribute("content", description);
+      document.getElementById("meta-og-description")?.setAttribute("content", description);
+      document.getElementById("meta-twitter-description")?.setAttribute("content", description);
+    }
+
+    document.querySelectorAll("[data-access-link]").forEach((link) => {
+      link.setAttribute("href", language === "ar" ? ui.accessUrlAr : ui.accessUrlEn);
+    });
+
+    document.querySelectorAll("[data-primary-nav]").forEach((nav) => {
+      nav.setAttribute("aria-label", language === "ar" ? "التنقل الرئيسي" : "Primary navigation");
+    });
+    document.querySelector("[data-footer-nav]")?.setAttribute("aria-label", language === "ar" ? "تنقل التذييل" : "Footer navigation");
+
+    const menuLabel = mobileMenuOpen
+      ? (language === "ar" ? ui.menuCloseAr : ui.menuCloseEn)
+      : (language === "ar" ? ui.menuOpenAr : ui.menuOpenEn);
+    menuButton?.setAttribute("aria-label", menuLabel);
+
+    if (announce) {
+      const status = document.getElementById("language-status");
+      if (status) status.textContent = language === "ar" ? "تم التبديل إلى العربية" : "Switched to English";
+    }
+
+    try {
+      window.localStorage.setItem("whano-language", language);
+    } catch {
+      // Language still changes for this visit when storage is unavailable.
+    }
+  }
+
+  languageToggle?.addEventListener("click", () => {
+    const current = document.documentElement.dataset.language === "ar" ? "ar" : "en";
+    setLanguage(current === "en" ? "ar" : "en");
   });
-  btn?.addEventListener("click", () => menu?.classList.toggle("hidden"));
+
+  menuButton?.addEventListener("click", () => {
+    mobileMenuOpen = mobileNav?.classList.toggle("is-open") ?? false;
+    menuButton.setAttribute("aria-expanded", String(mobileMenuOpen));
+    setLanguage(document.documentElement.dataset.language === "ar" ? "ar" : "en", false);
+  });
+
+  mobileNav?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      mobileNav.classList.remove("is-open");
+      mobileMenuOpen = false;
+      menuButton?.setAttribute("aria-expanded", "false");
+      setLanguage(document.documentElement.dataset.language === "ar" ? "ar" : "en", false);
+    });
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && mobileMenuOpen) {
+      mobileNav?.classList.remove("is-open");
+      mobileMenuOpen = false;
+      menuButton?.setAttribute("aria-expanded", "false");
+      setLanguage(document.documentElement.dataset.language === "ar" ? "ar" : "en", false);
+      menuButton?.focus();
+    }
+  });
+
+  window.addEventListener("scroll", () => {
+    header?.classList.toggle("is-scrolled", window.scrollY > 12);
+  }, { passive: true });
+
+  setLanguage(document.documentElement.dataset.language === "ar" ? "ar" : "en", false);
 </script>

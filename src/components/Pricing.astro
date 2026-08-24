@@ -1,67 +1,85 @@
 ---
-const plans = [
-  {
-    name: "Starter",
-    price: "500",
-    points: "500",
-    desc: "For small stores getting started.",
-    features: ["500 message points", "All automations", "Email support"],
-    popular: false,
-  },
-  {
-    name: "Growth",
-    price: "1,800",
-    points: "2,000",
-    desc: "For growing stores with steady orders.",
-    features: ["2,000 message points", "All automations", "Priority support"],
-    popular: true,
-  },
-  {
-    name: "Scale",
-    price: "4,000",
-    points: "5,000",
-    desc: "For established stores with high volume.",
-    features: ["5,000 message points", "All automations", "Dedicated support"],
-    popular: false,
-  },
-];
+import { plans, site } from "../data/content";
 ---
 
-<section id="pricing" class="py-16 md:py-24 border-t border-border">
-  <div class="mx-auto max-w-[1120px] px-6">
-    <div class="reveal mb-12">
-      <h2 class="font-heading text-2xl md:text-3xl font-bold text-text tracking-tight mb-3">Simple pricing</h2>
-      <p class="text-body max-w-lg">Pay for what you use. No hidden fees. All prices in EGP.</p>
+<section id="pricing" class="section">
+  <div class="site-frame">
+    <div class="section-heading reveal">
+      <div>
+        <p class="eyebrow">
+          <span data-copy="en">{site.pricing.eyebrow.en}</span>
+          <span data-copy="ar" lang="ar">{site.pricing.eyebrow.ar}</span>
+        </p>
+      </div>
+      <div>
+        <h2 class="section-title">
+          <span data-copy="en">{site.pricing.title.en}</span>
+          <span data-copy="ar" lang="ar">{site.pricing.title.ar}</span>
+        </h2>
+        <p class="section-copy">
+          <span data-copy="en">{site.pricing.body.en}</span>
+          <span data-copy="ar" lang="ar">{site.pricing.body.ar}</span>
+        </p>
+      </div>
     </div>
 
-    <div class="grid md:grid-cols-3 gap-5 max-w-3xl">
-      {plans.map((p) => (
-        <div class={`reveal p-6 rounded-lg border ${p.popular ? "border-accent/30 bg-accent/5" : "border-border bg-surface"}`}>
-          {p.popular && (
-            <span class="inline-block px-2.5 py-0.5 bg-accent text-bg text-[11px] font-semibold rounded-full mb-3 uppercase tracking-wider">Popular</span>
-          )}
-          <h3 class="font-heading text-base font-bold text-text mb-1">{p.name}</h3>
-          <p class="text-xs text-muted mb-4">{p.desc}</p>
-          <div class="flex items-baseline gap-1 mb-5">
-            <span class="font-heading text-3xl font-black text-text">{p.price}</span>
-            <span class="text-xs text-muted">EGP/mo</span>
-          </div>
-          <ul class="space-y-2 mb-5">
-            {p.features.map((f) => (
-              <li class="flex items-center gap-2 text-sm text-body">
-                <svg class="w-3.5 h-3.5 text-accent shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-                {f}
-              </li>
-            ))}
-          </ul>
-          <a href="https://apps.shopify.com/" target="_blank" rel="noopener noreferrer"
-             class={`block w-full h-9 flex items-center justify-center text-sm font-semibold rounded-lg transition-colors ${p.popular ? "bg-accent text-bg hover:bg-accent-hover" : "bg-surface-2 text-text border border-border hover:bg-border"}`}>
-            Start Free
-          </a>
+    <div class="price-table reveal" role="region" aria-label="Pricing plans" tabindex="0">
+      <div class="price-head">
+        <span class="price-head-label">
+          <span data-copy="en">Choose a pack</span>
+          <span data-copy="ar" lang="ar">اختار الباقة</span>
+        </span>
+        {plans.map((plan) => (
+          <span class:list={["price-head-label", plan.popular && "price-head-label--featured"]}>
+            <span data-copy="en">{plan.name.en}</span>
+            <span data-copy="ar" lang="ar">{plan.name.ar}</span>
+          </span>
+        ))}
+      </div>
+
+      <div class="price-grid">
+        <div class="price-grid__label">
+          <span data-copy="en">What’s included</span>
+          <span data-copy="ar" lang="ar">الباقة فيها إيه</span>
         </div>
-      ))}
+        {plans.map((plan) => (
+          <div class:list={["price-plan", plan.popular && "price-plan--featured"]}>
+            <h3 class="price-name">
+              <span data-copy="en">{plan.name.en}</span>
+              <span data-copy="ar" lang="ar">{plan.name.ar}</span>
+            </h3>
+            <p class="price-description">
+              <span data-copy="en">{plan.description.en}</span>
+              <span data-copy="ar" lang="ar">{plan.description.ar}</span>
+            </p>
+            <p class="price-amount">
+              <span data-copy="en">{plan.price.en}</span>
+              <span data-copy="ar" lang="ar">{plan.price.ar}</span>
+            </p>
+            <p class="price-points">
+              <span data-copy="en">{plan.points.en}</span>
+              <span data-copy="ar" lang="ar">{plan.points.ar}</span>
+            </p>
+            <ul class="price-list">
+              {plan.features.map((feature) => (
+                <li>
+                  <span data-copy="en">{feature.en}</span>
+                  <span data-copy="ar" lang="ar">{feature.ar}</span>
+                </li>
+              ))}
+            </ul>
+            <a href={site.accessUrl.en} data-access-link class="price-link">
+              <span data-copy="en">Request access</span>
+              <span data-copy="ar" lang="ar">اطلب الوصول</span>
+            </a>
+          </div>
+        ))}
+      </div>
     </div>
 
-    <p class="reveal text-xs text-muted mt-5 text-center">50 free messages included. No credit card required.</p>
+    <p class="price-note reveal">
+      <span data-copy="en">{site.pricing.note.en}</span>
+      <span data-copy="ar" lang="ar">{site.pricing.note.ar}</span>
+    </p>
   </div>
 </section>

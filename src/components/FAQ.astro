@@ -1,47 +1,39 @@
 ---
-const faqs = [
-  {
-    q: "Will it get my WhatsApp number banned?",
-    a: "No. Whano uses a warm-up system that gradually increases message volume over 30 days. It sends with human-like delays, typing indicators, and stays within WhatsApp's guidelines. Your number stays safe.",
-  },
-  {
-    q: "Does it speak real Arabic or robotic translation?",
-    a: "Real Egyptian Arabic. Whano detects your customer's language from their Shopify profile and responds in the right dialect — not generic MSA, not translated English.",
-  },
-  {
-    q: "What if a customer asks something the bot can't handle?",
-    a: "Whano hands off to you automatically. When a conversation needs a human, you get notified and can take over. The customer never hits a dead end.",
-  },
-  {
-    q: "How does it connect to my WhatsApp?",
-    a: "You scan a QR code from the Whano dashboard — the same way you link WhatsApp Web. Your customers message your existing number. No new number needed.",
-  },
-  {
-    q: "Can I customize the messages?",
-    a: "Yes. Every message template is customizable. You control the tone, the details shown, and the flow. Whano comes with sensible defaults you can change anytime.",
-  },
-  {
-    q: "What does \"message points\" mean?",
-    a: "Each automation uses points based on its cost. A confirmation uses 1 point, a review request uses 2. You buy points in packs and use them as needed. No monthly commitment.",
-  },
-];
+import { faqs, site } from "../data/content";
 ---
 
-<section id="faq" class="py-16 md:py-24 border-t border-border">
-  <div class="mx-auto max-w-[1120px] px-6">
-    <div class="reveal mb-12">
-      <h2 class="font-heading text-2xl md:text-3xl font-bold text-text tracking-tight mb-3">Common questions</h2>
-      <p class="text-body max-w-lg">Everything you need to know before installing.</p>
+<section id="faq" class="section section--compact">
+  <div class="site-frame">
+    <div class="section-heading reveal">
+      <div>
+        <p class="eyebrow">
+          <span data-copy="en">{site.faq.eyebrow.en}</span>
+          <span data-copy="ar" lang="ar">{site.faq.eyebrow.ar}</span>
+        </p>
+      </div>
+      <div>
+        <h2 class="section-title">
+          <span data-copy="en">{site.faq.title.en}</span>
+          <span data-copy="ar" lang="ar">{site.faq.title.ar}</span>
+        </h2>
+        <p class="section-copy">
+          <span data-copy="en">{site.faq.body.en}</span>
+          <span data-copy="ar" lang="ar">{site.faq.body.ar}</span>
+        </p>
+      </div>
     </div>
 
-    <div class="max-w-2xl space-y-0">
+    <div class="faq-list reveal">
       {faqs.map((faq) => (
-        <details class="reveal group border-b border-border">
-          <summary class="flex items-center justify-between py-4 cursor-pointer text-sm font-semibold text-text hover:text-accent transition-colors list-none">
-            {faq.q}
-            <svg class="w-4 h-4 text-muted group-open:rotate-180 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        <details class="faq-item">
+          <summary class="faq-summary">
+            <span data-copy="en">{faq.question.en}</span>
+            <span data-copy="ar" lang="ar">{faq.question.ar}</span>
           </summary>
-          <p class="text-sm text-body pb-4 leading-relaxed">{faq.a}</p>
+          <p class="faq-answer">
+            <span data-copy="en">{faq.answer.en}</span>
+            <span data-copy="ar" lang="ar">{faq.answer.ar}</span>
+          </p>
         </details>
       ))}
     </div>

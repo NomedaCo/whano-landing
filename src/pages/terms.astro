@@ -1,68 +1,14 @@
 ---
 import Base from "../layouts/Base.astro";
-import Nav from "../components/Nav.astro";
-import Footer from "../components/Footer.astro";
+import LegalPage from "../components/LegalPage.astro";
+import { termsSections } from "../data/legal";
 ---
 
-<Base title="Terms of Service — Whano">
-  <Nav />
-  <main class="pt-24 pb-16">
-    <div class="mx-auto max-w-[720px] px-6">
-      <h1 class="font-heading text-3xl font-bold text-text mb-2">Terms of Service</h1>
-      <p class="text-sm text-muted mb-8">Last updated: August 24, 2026</p>
-
-      <div class="space-y-6 text-sm text-body leading-relaxed">
-        <section>
-          <h2 class="font-heading text-lg font-bold text-text mb-2">1. Acceptance of Terms</h2>
-          <p>By installing or using Whano ("the Service"), you agree to these Terms of Service. If you do not agree, do not use the Service.</p>
-        </section>
-
-        <section>
-          <h2 class="font-heading text-lg font-bold text-text mb-2">2. Description of Service</h2>
-          <p>Whano is a Shopify application that automates WhatsApp communication with your customers. It sends order confirmations, shipping updates, review requests, and product recommendations through WhatsApp on your behalf.</p>
-        </section>
-
-        <section>
-          <h2 class="font-heading text-lg font-bold text-text mb-2">3. Account and Eligibility</h2>
-          <p>You must have an active Shopify store to use Whano. You are responsible for maintaining the security of your WhatsApp number and Shopify account. You must be at least 18 years old to use the Service.</p>
-        </section>
-
-        <section>
-          <h2 class="font-heading text-lg font-bold text-text mb-2">4. Billing</h2>
-          <p>Whano uses a credit-based pricing model. You purchase "message points" which are consumed as automations are triggered. Pricing is displayed in Egyptian Pounds (EGP). All sales are final. Refunds are handled on a case-by-case basis within 14 days of purchase.</p>
-        </section>
-
-        <section>
-          <h2 class="font-heading text-lg font-bold text-text mb-2">5. WhatsApp Usage</h2>
-          <p>Whano connects to your WhatsApp number using an approved integration method. You are responsible for complying with WhatsApp's Terms of Service and Business Policy. Whano implements rate limiting and anti-ban measures, but we cannot guarantee uninterrupted service if WhatsApp changes their policies.</p>
-        </section>
-
-        <section>
-          <h2 class="font-heading text-lg font-bold text-text mb-2">6. Data and Privacy</h2>
-          <p>Whano processes customer data (names, phone numbers, order information) solely to provide the Service. We do not sell or share your data with third parties except as necessary to operate the Service (e.g., WhatsApp for message delivery, Shopify for order data). See our <a href="/privacy" class="text-accent hover:underline">Privacy Policy</a> for details.</p>
-        </section>
-
-        <section>
-          <h2 class="font-heading text-lg font-bold text-text mb-2">7. Limitation of Liability</h2>
-          <p>Whano is provided "as is" without warranties of any kind. We are not liable for any damages arising from the use of the Service, including but not limited to loss of profits, data, or business opportunities. Our total liability shall not exceed the amount you paid for the Service in the preceding 12 months.</p>
-        </section>
-
-        <section>
-          <h2 class="font-heading text-lg font-bold text-text mb-2">8. Termination</h2>
-          <p>You may cancel your Whano account at any time from the Shopify admin. Upon termination, your data will be deleted within 30 days. Unused message points are not refundable upon voluntary termination.</p>
-        </section>
-
-        <section>
-          <h2 class="font-heading text-lg font-bold text-text mb-2">9. Changes to Terms</h2>
-          <p>We may update these terms from time to time. Continued use of the Service after changes constitutes acceptance of the new terms. We will notify you of material changes via email or through the Service.</p>
-        </section>
-
-        <section>
-          <h2 class="font-heading text-lg font-bold text-text mb-2">10. Contact</h2>
-          <p>Questions about these terms? Email us at <a href="mailto:support@whano.app" class="text-accent hover:underline">support@whano.app</a></p>
-        </section>
-      </div>
-    </div>
-  </main>
-  <Footer />
+<Base title="Terms of Service — Whano" titleArabic="شروط الخدمة — Whano" description="Terms of Service for Whano, a WhatsApp automation service for Shopify merchants." descriptionArabic="شروط خدمة Whano، خدمة أتمتة التواصل على واتساب لمتاجر Shopify.">
+  <LegalPage
+    title={{ en: "Terms of Service", ar: "شروط الخدمة" }}
+    updated={{ en: "Last updated: August 24, 2026", ar: "آخر تحديث: 24 أغسطس 2026" }}
+    indexText={{ en: "Please read before using the service.", ar: "يرجى قراءة الشروط قبل استخدام الخدمة." }}
+    sections={termsSections}
+  />
 </Base>

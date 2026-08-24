@@ -1,15 +1,38 @@
 ---
+import { site } from "../data/content";
 ---
 
-<footer class="border-t border-border">
-  <div class="mx-auto max-w-[1120px] px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-5">
-    <span class="font-heading text-base font-bold text-text tracking-tight">whano</span>
-    <div class="flex items-center gap-5 text-sm text-muted">
-      <a href="#features" class="hover:text-text transition-colors">Features</a>
-      <a href="#pricing" class="hover:text-text transition-colors">Pricing</a>
-      <a href="/privacy" class="hover:text-text transition-colors">Privacy</a>
-      <a href="/terms" class="hover:text-text transition-colors">Terms</a>
+<footer class="site-footer">
+  <div class="site-frame site-footer__inner">
+    <div>
+      <a href="/#top" class="wordmark">
+        <span class="wordmark__mark" aria-hidden="true"></span>
+        whano
+      </a>
+      <p class="footer-descriptor">
+        <span data-copy="en">{site.footer.descriptor.en}</span>
+        <span data-copy="ar" lang="ar">{site.footer.descriptor.ar}</span>
+      </p>
     </div>
-    <span class="text-xs text-muted">&copy; 2026 Whano</span>
+
+    <div>
+      <p class="footer-contact"><a href={`mailto:${site.contactEmail}`}>{site.footer.contact.en}</a></p>
+    </div>
+
+    <nav class="footer-links" data-footer-nav aria-label="Footer navigation">
+      {site.nav.links.map((link) => (
+        <a href={`/${link.href}`}>
+          <span data-copy="en">{link.label.en}</span>
+          <span data-copy="ar" lang="ar">{link.label.ar}</span>
+        </a>
+      ))}
+      <a href="/privacy"><span data-copy="en">{site.footer.legal.privacy.en}</span><span data-copy="ar" lang="ar">{site.footer.legal.privacy.ar}</span></a>
+      <a href="/terms"><span data-copy="en">{site.footer.legal.terms.en}</span><span data-copy="ar" lang="ar">{site.footer.legal.terms.ar}</span></a>
+    </nav>
+
+    <p class="footer-copyright">
+      <span data-copy="en">{site.footer.copyright.en}</span>
+      <span data-copy="ar" lang="ar">{site.footer.copyright.ar}</span>
+    </p>
   </div>
 </footer>

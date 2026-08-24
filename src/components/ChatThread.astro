@@ -1,0 +1,46 @@
+---
+import type { ChatMessage } from "../data/content";
+import { site } from "../data/content";
+
+interface Props {
+  messages: ChatMessage[];
+  compact?: boolean;
+}
+
+const { messages, compact = false } = Astro.props;
+---
+
+<figure class:list={["thread", compact && "thread--compact"]}>
+  <div class="thread__header">
+    <span class="thread__avatar" aria-hidden="true">W</span>
+    <div>
+      <div class="thread__name">Whano</div>
+      <div class="thread__status">
+        <span data-copy="en">{site.thread.status.en}</span>
+        <span data-copy="ar" lang="ar">{site.thread.status.ar}</span>
+      </div>
+    </div>
+  </div>
+  <div class="thread__body">
+    <figcaption class="thread__note">
+      <span data-copy="en">{site.thread.label.en}</span>
+      <span data-copy="ar" lang="ar">{site.thread.label.ar}</span>
+    </figcaption>
+    <div class="thread__messages">
+      {messages.map((message, index) => (
+        <div class:list={["thread-bubble", message.direction === "in" ? "thread-bubble--in" : "thread-bubble--out", `thread-delay-${Math.min(index + 1, 6)}`]}>
+          <span class="thread-bubble__copy" data-copy="en">
+            {message.en.split("\n").map((line, lineIndex) => (
+              <Fragment>{lineIndex > 0 && <br />}{line}</Fragment>
+            ))}
+          </span>
+          <span class="thread-bubble__copy" data-copy="ar" lang="ar" dir="rtl">
+            {message.ar.split("\n").map((line, lineIndex) => (
+              <Fragment>{lineIndex > 0 && <br />}{line}</Fragment>
+            ))}
+          </span>
+        </div>
+      ))}
+    </div>
+  </div>
+</figure>
