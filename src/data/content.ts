@@ -290,9 +290,14 @@ export const faqs = [
 
 export const heroConversation: ChatMessage[] = [
   {
+    direction: "out",
+    en: "We’re checking your order #1042 to confirm the details.\n\nReply YES if everything looks right.",
+    ar: "بنراجع تفاصيل طلبك رقم 1042 علشان نأكده.\n\nاكتب «تأكيد» لو كل حاجة تمام.",
+  },
+  {
     direction: "in",
-    en: "Yes, confirm order #1042 please",
-    ar: "أيوه، أكد الطلب رقم 1042 لو سمحت",
+    en: "Yes, everything looks right.",
+    ar: "أيوه، كل حاجة تمام.",
   },
   {
     direction: "out",
