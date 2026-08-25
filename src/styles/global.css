@@ -1225,9 +1225,9 @@ html[data-language="ar"] .thread-bubble__copy[data-copy="ar"] {
 
 .site-footer__inner {
   display: grid;
-  grid-template-columns: minmax(180px, 0.8fr) minmax(0, 1fr) auto;
-  gap: 30px;
-  padding-block: 27px 30px;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  gap: 40px;
+  padding-block: 40px 32px;
   border-top: 1px solid rgba(238, 244, 237, 0.18);
 }
 
@@ -1239,35 +1239,70 @@ html[data-language="ar"] .thread-bubble__copy[data-copy="ar"] {
   background: #a8d5af;
 }
 
-.footer-descriptor,
-.footer-contact,
-.footer-copyright {
-  margin: 0;
-  font-size: 11px;
+.footer-descriptor {
+  margin: 8px 0 0;
+  font-size: 12px;
   line-height: 1.6;
+  color: #9fb5a5;
+}
+
+.footer-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.footer-nav__heading {
+  margin: 0 0 6px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #7a9b82;
+}
+
+.footer-nav a,
+.footer-legal a,
+.footer-contact a {
+  display: block;
+  font-size: 12px;
+  color: #b5c9bb;
+  text-decoration: none;
+  transition: color 160ms ease;
+}
+
+.footer-nav a:hover,
+.footer-legal a:hover,
+.footer-contact a:hover {
+  color: #ffffff;
+}
+
+.footer-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.footer-legal {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .footer-contact {
-  color: #e1ede1;
-}
-
-.footer-links {
   display: flex;
-  flex-wrap: wrap;
-  gap: 17px;
-  justify-content: flex-end;
-  font-size: 11px;
-}
-
-.footer-links a:hover {
-  color: #ffffff;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .footer-copyright {
   grid-column: 1 / -1;
-  padding-top: 15px;
+  padding-top: 18px;
+  margin: 0;
   border-top: 1px solid rgba(238, 244, 237, 0.12);
-  color: #9fb5a5;
+  font-size: 11px;
+  line-height: 1.6;
+  color: #7a9b82;
 }
 
 /* ── Legal pages ────────────────────────────────────────────── */
@@ -1440,10 +1475,7 @@ html[data-language="ar"] .button-light svg {
 
   .site-footer__inner {
     grid-template-columns: 1fr 1fr;
-  }
-
-  .footer-links {
-    justify-content: flex-start;
+    gap: 32px;
   }
 
   .footer-copyright {
@@ -1627,7 +1659,8 @@ html[data-language="ar"] .button-light svg {
 
   .site-footer__inner {
     grid-template-columns: 1fr;
-    gap: 19px;
+    gap: 24px;
+    padding-block: 32px 28px;
   }
 
   .footer-copyright {

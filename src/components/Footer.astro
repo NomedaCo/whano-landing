@@ -4,7 +4,7 @@ import { site } from "../data/content";
 
 <footer class="site-footer">
   <div class="site-frame site-footer__inner">
-    <div>
+    <div class="footer-brand">
       <a href="/#top" class="wordmark">
         <span class="wordmark__mark" aria-hidden="true"></span>
         whano
@@ -15,20 +15,39 @@ import { site } from "../data/content";
       </p>
     </div>
 
-    <div>
-      <p class="footer-contact"><a href={`mailto:${site.contactEmail}`}>{site.footer.contact.en}</a></p>
-    </div>
-
-    <nav class="footer-links" data-footer-nav aria-label="Footer navigation">
+    <nav class="footer-nav" data-footer-nav aria-label="Footer navigation">
+      <p class="footer-nav__heading">Product</p>
       {site.nav.links.map((link) => (
         <a href={`/${link.href}`}>
           <span data-copy="en">{link.label.en}</span>
           <span data-copy="ar" lang="ar">{link.label.ar}</span>
         </a>
       ))}
-      <a href="/privacy"><span data-copy="en">{site.footer.legal.privacy.en}</span><span data-copy="ar" lang="ar">{site.footer.legal.privacy.ar}</span></a>
-      <a href="/terms"><span data-copy="en">{site.footer.legal.terms.en}</span><span data-copy="ar" lang="ar">{site.footer.legal.terms.ar}</span></a>
     </nav>
+
+    <div class="footer-meta">
+      <div class="footer-legal">
+        <p class="footer-nav__heading">
+          <span data-copy="en">{site.footer.legal.label.en}</span>
+          <span data-copy="ar" lang="ar">{site.footer.legal.label.ar}</span>
+        </p>
+        <a href="/privacy">
+          <span data-copy="en">{site.footer.legal.privacy.en}</span>
+          <span data-copy="ar" lang="ar">{site.footer.legal.privacy.ar}</span>
+        </a>
+        <a href="/terms">
+          <span data-copy="en">{site.footer.legal.terms.en}</span>
+          <span data-copy="ar" lang="ar">{site.footer.legal.terms.ar}</span>
+        </a>
+      </div>
+      <div class="footer-contact">
+        <p class="footer-nav__heading">
+          <span data-copy="en">{site.footer.contactLabel.en}</span>
+          <span data-copy="ar" lang="ar">{site.footer.contactLabel.ar}</span>
+        </p>
+        <a href={`mailto:${site.contactEmail}`}>{site.footer.contact.en}</a>
+      </div>
+    </div>
 
     <p class="footer-copyright">
       <span data-copy="en">{site.footer.copyright.en}</span>

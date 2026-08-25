@@ -12,8 +12,8 @@ export interface ChatMessage {
 export const site = {
   contactEmail: "contact@nomeda.tech",
   accessUrl: {
-    en: "mailto:contact@nomeda.tech?subject=Whano%20for%20my%20Shopify%20store",
-    ar: "mailto:contact@nomeda.tech?subject=%D8%B7%D9%84%D8%A8%20%D8%A7%D9%84%D9%88%D8%B5%D9%88%D9%84%20%D8%A5%D9%84%D9%89%20Whano%20%D9%84%D9%85%D8%AA%D8%AC%D8%B1%20Shopify",
+    en: "https://admin.shopify.com/?organization_id=228117107&no_redirect=true&redirect=/oauth/redirect_from_developer_dashboard?client_id%3D8b2f666fa314f81b17097c93d5c18afd",
+    ar: "https://admin.shopify.com/?organization_id=228117107&no_redirect=true&redirect=/oauth/redirect_from_developer_dashboard?client_id%3D8b2f666fa314f81b17097c93d5c18afd",
   },
   nav: {
     links: [
@@ -23,7 +23,7 @@ export const site = {
       { href: "#faq", label: { en: "Questions", ar: "الأسئلة" } },
     ],
     language: { en: "العربية", ar: "English" },
-    cta: { en: "Request access", ar: "اطلب الوصول" },
+    cta: { en: "Install on Shopify", ar: "ثبّت على Shopify" },
     menuOpen: { en: "Open menu", ar: "افتح القائمة" },
     menuClose: { en: "Close menu", ar: "اقفل القائمة" },
     switchToArabic: { en: "Switch to Arabic", ar: "التبديل إلى العربية" },
@@ -37,10 +37,10 @@ export const site = {
       en: "Whano connects your Shopify store to the WhatsApp number you already use. It confirms orders, handles changes, sends delivery updates, and asks for the review.",
       ar: "Whano بيوصل متجرك على Shopify برقم واتساب اللي بتستخدمه أصلًا. بيأكد الطلبات، يتعامل مع التعديلات، يبعت تحديثات التوصيل، ويطلب التقييم.",
     },
-    cta: { en: "Request access", ar: "اطلب الوصول" },
+    cta: { en: "Install on Shopify", ar: "ثبّت على Shopify" },
     ctaNote: {
-      en: "We'll help you connect your store and WhatsApp number.",
-      ar: "هنساعدك توصل متجرك برقم واتساب.",
+      en: "Free to install. 50 messages included.",
+      ar: "الثبّت مجاني. 50 رسالة مجانية متضمنة.",
     },
     proofs: [
       { en: "Your existing WhatsApp number", ar: "برقم واتسابك الحالي" },
@@ -129,16 +129,18 @@ export const site = {
   cta: {
     title: { en: "Keep the next order moving after checkout.", ar: "خلّي متابعة الطلب الجاي تكمّل للآخر." },
     body: {
-      en: "Tell us about your store. We will help you connect Shopify and WhatsApp without changing how your customers buy.",
-      ar: "احكيلنا عن متجرك. هنساعدك توصل Shopify بواتساب من غير ما تغيّر طريقة شراء عملاءك.",
+      en: "Install Whano on your Shopify store and start automating post-purchase conversations today.",
+      ar: "ثبّت Whano على متجرك على Shopify وابدأ أتمتة محادثات ما بعد الشراء النهارده.",
     },
-    button: { en: "Request access", ar: "اطلب الوصول" },
+    button: { en: "Install on Shopify", ar: "ثبّت على Shopify" },
   },
   footer: {
     descriptor: { en: "Post-purchase WhatsApp automation for Shopify.", ar: "أتمتة التواصل بعد الشراء لمتاجر Shopify." },
     contact: { en: "contact@nomeda.tech", ar: "contact@nomeda.tech" },
+    contactLabel: { en: "Email", ar: "البريد الإلكتروني" },
     copyright: { en: "© 2026 Whano, a NomedaCo product.", ar: "© 2026 Whano، أحد منتجات NomedaCo." },
     legal: {
+      label: { en: "Legal", ar: "قانوني" },
       privacy: { en: "Privacy", ar: "الخصوصية" },
       terms: { en: "Terms", ar: "الشروط" },
     },
