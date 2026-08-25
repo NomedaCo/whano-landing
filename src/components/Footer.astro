@@ -4,6 +4,7 @@ import { site } from "../data/content";
 
 <footer class="site-footer">
   <div class="site-frame site-footer__inner">
+
     <div class="footer-brand">
       <a href="/#top" class="wordmark">
         <span class="wordmark__mark" aria-hidden="true"></span>
@@ -13,19 +14,29 @@ import { site } from "../data/content";
         <span data-copy="en">{site.footer.descriptor.en}</span>
         <span data-copy="ar" lang="ar">{site.footer.descriptor.ar}</span>
       </p>
+      <a href={site.accessUrl.en} data-access-link class="footer-cta">
+        <span data-copy="en">{site.nav.cta.en}</span>
+        <span data-copy="ar" lang="ar">{site.nav.cta.ar}</span>
+        <svg width="12" height="12" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+          <path d="M2.5 7.5h9M8 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
     </div>
 
-    <nav class="footer-nav" data-footer-nav aria-label="Footer navigation">
-      <p class="footer-nav__heading">Product</p>
-      {site.nav.links.map((link) => (
-        <a href={`/${link.href}`}>
-          <span data-copy="en">{link.label.en}</span>
-          <span data-copy="ar" lang="ar">{link.label.ar}</span>
-        </a>
-      ))}
-    </nav>
+    <div class="footer-columns">
+      <nav class="footer-nav" data-footer-nav aria-label="Footer navigation">
+        <p class="footer-nav__heading">
+          <span data-copy="en">{site.footer.productLabel.en}</span>
+          <span data-copy="ar" lang="ar">{site.footer.productLabel.ar}</span>
+        </p>
+        {site.nav.links.map((link) => (
+          <a href={`/${link.href}`}>
+            <span data-copy="en">{link.label.en}</span>
+            <span data-copy="ar" lang="ar">{link.label.ar}</span>
+          </a>
+        ))}
+      </nav>
 
-    <div class="footer-meta">
       <div class="footer-legal">
         <p class="footer-nav__heading">
           <span data-copy="en">{site.footer.legal.label.en}</span>
@@ -40,18 +51,54 @@ import { site } from "../data/content";
           <span data-copy="ar" lang="ar">{site.footer.legal.terms.ar}</span>
         </a>
       </div>
+    </div>
+
+    <div class="footer-meta">
       <div class="footer-contact">
         <p class="footer-nav__heading">
           <span data-copy="en">{site.footer.contactLabel.en}</span>
           <span data-copy="ar" lang="ar">{site.footer.contactLabel.ar}</span>
         </p>
         <a href={`mailto:${site.contactEmail}`}>{site.footer.contact.en}</a>
+        <a href="https://wa.me/201001580461" target="_blank" rel="noopener noreferrer">
+          <span data-copy="en">WhatsApp</span>
+          <span data-copy="ar" lang="ar">واتساب</span>
+        </a>
+      </div>
+
+      <div class="footer-social">
+        <p class="footer-nav__heading">
+          <span data-copy="en">{site.footer.socialLabel.en}</span>
+          <span data-copy="ar" lang="ar">{site.footer.socialLabel.ar}</span>
+        </p>
+        <div class="footer-social__links">
+          <a href="https://x.com/CoNomeda56945" target="_blank" rel="noopener noreferrer" aria-label="Follow us on X (Twitter)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="https://instagram.com/nomeda.tech" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+        </div>
       </div>
     </div>
 
-    <p class="footer-copyright">
-      <span data-copy="en">{site.footer.copyright.en}</span>
-      <span data-copy="ar" lang="ar">{site.footer.copyright.ar}</span>
-    </p>
+    <div class="footer-bottom">
+      <p class="footer-copyright">
+        <span data-copy="en">{site.footer.copyright.en}</span>
+        <span data-copy="ar" lang="ar">{site.footer.copyright.ar}</span>
+      </p>
+      <a href="https://apps.shopify.com" target="_blank" rel="noopener noreferrer" class="footer-shopify-badge">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15.34 2.61c-.04-.21-.2-.36-.41-.36h-1.27l-.12-.61c-.04-.21-.2-.36-.41-.36H9.87c-.21 0-.37.15-.41.36l-.12.61H8.07c-.21 0-.37.15-.41.36L5.5 14.39c-.03.15.08.29.23.29h2.56l-.57 3.03c-.04.21.11.39.32.39h1.13c.21 0 .37-.15.41-.36l.57-3.06h3.3l-.57 3.06c-.04.21.11.39.32.39h1.13c.21 0 .37-.18.32-.39l-.57-3.03h2.56c.15 0 .26-.14.23-.29L15.34 2.61zM10.3 13.38l-.43-2.59h.86l.43 2.59h-.86zm3.17 0l-.43-2.59h.86l.43 2.59h-.86z"/></svg>
+        <span data-copy="en">{site.footer.shopifyBadge.en}</span>
+        <span data-copy="ar" lang="ar">{site.footer.shopifyBadge.ar}</span>
+      </a>
+      <a href="/#top" class="footer-back-to-top">
+        <span data-copy="en">{site.footer.backToTop.en}</span>
+        <span data-copy="ar" lang="ar">{site.footer.backToTop.ar}</span>
+        <svg width="12" height="12" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+          <path d="M7.5 12.5V2.5M3.5 6.5l4-4 4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
+    </div>
   </div>
 </footer>

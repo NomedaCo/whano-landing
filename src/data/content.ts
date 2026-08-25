@@ -21,6 +21,7 @@ export const site = {
       { href: "#features", label: { en: "Features", ar: "المميزات" } },
       { href: "#pricing", label: { en: "Pricing", ar: "الأسعار" } },
       { href: "#faq", label: { en: "Questions", ar: "الأسئلة" } },
+      { href: "about", label: { en: "About", ar: "عنّا" } },
     ],
     language: { en: "العربية", ar: "English" },
     cta: { en: "Install on Shopify", ar: "ثبّت على Shopify" },
@@ -138,12 +139,16 @@ export const site = {
     descriptor: { en: "Post-purchase WhatsApp automation for Shopify.", ar: "أتمتة التواصل بعد الشراء لمتاجر Shopify." },
     contact: { en: "contact@nomeda.tech", ar: "contact@nomeda.tech" },
     contactLabel: { en: "Email", ar: "البريد الإلكتروني" },
-    copyright: { en: "© 2026 Whano, a NomedaCo product.", ar: "© 2026 Whano، أحد منتجات NomedaCo." },
+    copyright: { en: "© 2026 Whano, a NomedaCo product.", ar: "© 2026 Whano، منتج من NomedaCo." },
+    shopifyBadge: { en: "Available on the Shopify App Store", ar: "متوفر على متجر تطبيقات Shopify" },
     legal: {
       label: { en: "Legal", ar: "قانوني" },
-      privacy: { en: "Privacy", ar: "الخصوصية" },
-      terms: { en: "Terms", ar: "الشروط" },
+      privacy: { en: "Privacy Policy", ar: "سياسة الخصوصية" },
+      terms: { en: "Terms of Service", ar: "شروط الخدمة" },
     },
+    productLabel: { en: "Product", ar: "المنتج" },
+    socialLabel: { en: "Follow us", ar: "تابعنا" },
+    backToTop: { en: "Back to top", ar: "الرجوع للأعلى" },
   },
 } as const;
 

@@ -1,0 +1,98 @@
+---
+import { aboutPage } from "../data/about";
+import { site } from "../data/content";
+import Nav from "./Nav.astro";
+import Footer from "./Footer.astro";
+
+const { title, subtitle, intro, sections, values, cta } = aboutPage;
+---
+
+<Nav />
+<main id="main-content" class="about-page">
+  <div class="site-frame">
+    <header class="about-header reveal">
+      <p class="eyebrow">
+        <span data-copy="en">Whano / about</span>
+        <span data-copy="ar" lang="ar">Whano / عنّا</span>
+      </p>
+      <h1 class="about-title">
+        <span data-copy="en">{title.en}</span>
+        <span data-copy="ar" lang="ar">{title.ar}</span>
+      </h1>
+      <p class="about-subtitle">
+        <span data-copy="en">{subtitle.en}</span>
+        <span data-copy="ar" lang="ar">{subtitle.ar}</span>
+      </p>
+    </header>
+
+    <p class="about-intro reveal">
+      <span data-copy="en">{intro.en}</span>
+      <span data-copy="ar" lang="ar">{intro.ar}</span>
+    </p>
+
+    {sections.map((section) => (
+      <section class="about-section reveal">
+        <h2 class="about-section__heading">
+          <span data-copy="en">{section.heading.en}</span>
+          <span data-copy="ar" lang="ar">{section.heading.ar}</span>
+        </h2>
+        {section.body.map((paragraph) => (
+          <p class="about-section__body">
+            <span data-copy="en">{paragraph.en}</span>
+            <span data-copy="ar" lang="ar">{paragraph.ar}</span>
+          </p>
+        ))}
+        {section.list && (
+          <ul class="about-section__list">
+            {section.list.map((item) => (
+              <li>
+                <span data-copy="en">{item.en}</span>
+                <span data-copy="ar" lang="ar">{item.ar}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
+    ))}
+
+    <section class="about-values reveal">
+      <h2 class="about-section__heading">
+        <span data-copy="en">{values.heading.en}</span>
+        <span data-copy="ar" lang="ar">{values.heading.ar}</span>
+      </h2>
+      <div class="about-values__grid">
+        {values.items.map((item) => (
+          <div class="about-value">
+            <h3 class="about-value__title">
+              <span data-copy="en">{item.title.en}</span>
+              <span data-copy="ar" lang="ar">{item.title.ar}</span>
+            </h3>
+            <p class="about-value__body">
+              <span data-copy="en">{item.body.en}</span>
+              <span data-copy="ar" lang="ar">{item.body.ar}</span>
+            </p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="about-cta reveal">
+      <h2 class="about-cta__title">
+        <span data-copy="en">{cta.title.en}</span>
+        <span data-copy="ar" lang="ar">{cta.title.ar}</span>
+      </h2>
+      <p class="about-cta__body">
+        <span data-copy="en">{cta.body.en}</span>
+        <span data-copy="ar" lang="ar">{cta.body.ar}</span>
+      </p>
+      <a href={site.accessUrl.en} data-access-link class="button-primary">
+        <span data-copy="en">{cta.button.en}</span>
+        <span data-copy="ar" lang="ar">{cta.button.ar}</span>
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+          <path d="M2.5 7.5h9M8 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
+    </section>
+  </div>
+</main>
+<Footer />
