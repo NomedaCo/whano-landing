@@ -111,13 +111,13 @@ export const site = {
     ],
   },
   pricing: {
-    eyebrow: { en: "Message points", ar: "نقاط الرسائل" },
+    eyebrow: { en: "Points", ar: "النقاط" },
     title: { en: "Pricing that shows its work.", ar: "أسعار واضحة، وكل نقطة محسوبة." },
     body: {
-      en: "Buy a pack, use points as conversations happen, and move up only when your store needs more.",
-      ar: "اشتري باقة، والنقاط بتتخصم مع تشغيل الأتمتة، وزوّد الباقة بس لما متجرك يحتاج.",
+      en: "Optional automations use points; order confirmation and cancellation never do.",
+      ar: "الأتمتة الاختيارية بتستخدم النقاط؛ تأكيد الطلب والإلغاء مجانًا دائمًا.",
     },
-    note: { en: "All prices are in Egyptian pounds. No contract.", ar: "كل الأسعار بالجنيه المصري. من غير عقد." },
+    note: { en: "Billed through Shopify, on the same invoice as the rest of your store.", ar: "الفاتورة عن طريق Shopify، على نفس فاتورة متجرك." },
   },
   faq: {
     eyebrow: { en: "Before you start", ar: "قبل ما تبدأ" },
@@ -214,39 +214,60 @@ export const features = [
   },
 ] as const;
 
+export const pricingFeatures = [
+  { en: "Order confirmation & cancellation always included, at no extra cost", ar: "تأكيد الطلب والإلغاء دائمًا متضمنين، من غير تكلفة إضافية" },
+  { en: "Every optional automation — shipping, ratings, edits, support — draws from the same balance", ar: "كل أتمتة اختيارية — الشحن، التقييمات، التعديلات، الدعم — بتاخد من نفس الرصيد" },
+  { en: "Not a subscription: buy points once, and they stay until you spend them", ar: "مش اشتراك: اشتري النقاط مرة واحدة، وتفضل لحد ما تستخدمها" },
+  { en: "Billed through Shopify, on the same invoice as the rest of your store", ar: "الفاتورة عن طريق Shopify، على نفس فاتورة متجرك" },
+  { en: "When the points run out, optional automations pause until you top up", ar: "لما النقاط تخلص، الأتمتة الاختيارية بتوقف لحد ما تزوّد" },
+] as const;
+
 export const plans = [
   {
     name: { en: "Starter", ar: "البداية" },
     points: { en: "500 points", ar: "500 نقطة" },
-    price: { en: "500 EGP", ar: "500 جنيه" },
-    description: { en: "For a small store getting its first flow in place.", ar: "لمتجر صغير بيبدأ ينظّم متابعة طلباته." },
-    features: [
-      { en: "All core automations", ar: "كل الأتمتة الأساسية" },
-      { en: "Email support", ar: "دعم عبر البريد" },
-    ],
+    price: { en: "$10", ar: "$10" },
+    originalPrice: { en: "$15", ar: "$15" },
+    priceUsd: 10,
+    description: { en: "For a store just getting started with WhatsApp automations.", ar: "لمتجر بيبدأ يجرّب أتمتة واتساب." },
+    popular: false,
+  },
+  {
+    name: { en: "Plus", ar: "بلس" },
+    points: { en: "1,000 points", ar: "1,000 نقطة" },
+    price: { en: "$19", ar: "$19" },
+    originalPrice: { en: "$35", ar: "$35" },
+    priceUsd: 19,
+    description: { en: "For a store past its first month and ordering regularly.", ar: "لمتجر عدى أول شهر وطلباته منتظمة." },
     popular: false,
   },
   {
     name: { en: "Growth", ar: "النمو" },
     points: { en: "2,000 points", ar: "2,000 نقطة" },
-    price: { en: "1,800 EGP", ar: "1,800 جنيه" },
-    description: { en: "For a store with a steady stream of orders.", ar: "لمتجر طلباته ماشية وبتزيد." },
-    features: [
-      { en: "All core automations", ar: "كل الأتمتة الأساسية" },
-      { en: "Priority support", ar: "دعم بأولوية" },
-    ],
+    price: { en: "$36", ar: "$36" },
+    originalPrice: { en: "$70", ar: "$70" },
+    priceUsd: 36,
+    description: { en: "For a growing store running automations on most orders.", ar: "لمتجر كبر وبيشغّل الأتمتة على أغلب الطلبات." },
     popular: true,
   },
   {
-    name: { en: "Scale", ar: "التوسّع" },
-    points: { en: "5,000 points", ar: "5,000 نقطة" },
-    price: { en: "4,000 EGP", ar: "4,000 جنيه" },
-    description: { en: "For a busy store that needs more room to move.", ar: "لمتجر عنده عدد طلبات كبير." },
-    features: [
-      { en: "All core automations", ar: "كل الأتمتة الأساسية" },
-      { en: "Dedicated support", ar: "دعم مخصص" },
-    ],
+    name: { en: "Pro", ar: "برو" },
+    points: { en: "3,500 points", ar: "3,500 نقطة" },
+    price: { en: "$59", ar: "$59" },
+    originalPrice: { en: "$105", ar: "$105" },
+    priceUsd: 59,
+    description: { en: "For a busy store that tops up every couple of months.", ar: "لمتجر مزدحم بيزوّد كل شوية." },
     popular: false,
+  },
+  {
+    name: { en: "Enterprise", ar: "الشركات" },
+    points: { en: "Custom", ar: "مخصص" },
+    price: { en: "Talk to us", ar: "كلمنا" },
+    originalPrice: null,
+    priceUsd: null,
+    description: { en: "Need a custom volume or a higher point bundle?", ar: "محتاج كمية مخصصة أو باقة نقاط أكبر؟" },
+    popular: false,
+    isEnterprise: true,
   },
 ] as const;
 

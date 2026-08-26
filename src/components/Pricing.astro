@@ -1,5 +1,5 @@
 ---
-import { plans, site } from "../data/content";
+import { plans, pricingFeatures, site } from "../data/content";
 ---
 
 <section id="pricing" class="section">
@@ -23,58 +23,73 @@ import { plans, site } from "../data/content";
       </div>
     </div>
 
-    <div class="price-table reveal" role="region" aria-label="Pricing plans" tabindex="0">
-      <div class="price-head">
-        <span class="price-head-label">
-          <span data-copy="en">Choose a pack</span>
-          <span data-copy="ar" lang="ar">اختار الباقة</span>
-        </span>
-        {plans.map((plan) => (
-          <span class:list={["price-head-label", plan.popular && "price-head-label--featured"]}>
-            <span data-copy="en">{plan.name.en}</span>
-            <span data-copy="ar" lang="ar">{plan.name.ar}</span>
-          </span>
-        ))}
-      </div>
-
-      <div class="price-grid">
-        <div class="price-grid__label">
-          <span data-copy="en">What’s included</span>
-          <span data-copy="ar" lang="ar">الباقة فيها إيه</span>
-        </div>
-        {plans.map((plan) => (
-          <div class:list={["price-plan", plan.popular && "price-plan--featured"]}>
-            <h3 class="price-name">
+    <div class="pricing-grid reveal">
+      {plans.map((plan) => (
+        <div
+          class:list={["pricing-card", plan.popular && "pricing-card--featured", (plan as any).isEnterprise && "pricing-card--enterprise"]}
+          data-price-usd={(plan as any).priceUsd ?? ""}
+        >
+          {plan.popular && (
+            <span class="pricing-badge">
+              <span data-copy="en">Most popular</span>
+              <span data-copy="ar" lang="ar">الأكثر شيوعًا</span>
+            </span>
+          )}
+          <div class="pricing-card__header">
+            <h3 class="pricing-card__name">
               <span data-copy="en">{plan.name.en}</span>
               <span data-copy="ar" lang="ar">{plan.name.ar}</span>
             </h3>
-            <p class="price-description">
+            <p class="pricing-card__description">
               <span data-copy="en">{plan.description.en}</span>
               <span data-copy="ar" lang="ar">{plan.description.ar}</span>
             </p>
-            <p class="price-amount">
+          </div>
+
+          <div class="pricing-card__price">
+            {plan.originalPrice && (
+              <span class="pricing-card__original">
+                <span data-copy="en">{plan.originalPrice.en}</span>
+                <span data-copy="ar" lang="ar">{plan.originalPrice.ar}</span>
+              </span>
+            )}
+            <span class="pricing-card__current">
               <span data-copy="en">{plan.price.en}</span>
               <span data-copy="ar" lang="ar">{plan.price.ar}</span>
-            </p>
-            <p class="price-points">
-              <span data-copy="en">{plan.points.en}</span>
-              <span data-copy="ar" lang="ar">{plan.points.ar}</span>
-            </p>
-            <ul class="price-list">
-              {plan.features.map((feature) => (
-                <li>
-                  <span data-copy="en">{feature.en}</span>
-                  <span data-copy="ar" lang="ar">{feature.ar}</span>
-                </li>
-              ))}
-            </ul>
-            <a href={site.accessUrl.en} data-access-link class="price-link">
+            </span>
+          </div>
+
+          <span class="pricing-card__egp" aria-live="polite"></span>
+
+          <p class="pricing-card__points">
+            <span data-copy="en">{plan.points.en}</span>
+            <span data-copy="ar" lang="ar">{plan.points.ar}</span>
+          </p>
+
+          {(plan as any).isEnterprise ? (
+            <a href={site.accessUrl.en} data-access-link class="pricing-card__cta pricing-card__cta--enterprise">
+              <span data-copy="en">Contact us</span>
+              <span data-copy="ar" lang="ar">كلمنا</span>
+            </a>
+          ) : (
+            <a href={site.accessUrl.en} data-access-link class:list={["pricing-card__cta", plan.popular && "pricing-card__cta--featured"]}>
               <span data-copy="en">Install on Shopify</span>
               <span data-copy="ar" lang="ar">ثبّت على Shopify</span>
             </a>
-          </div>
+          )}
+        </div>
+      ))}
+    </div>
+
+    <div class="pricing-features reveal">
+      <ul class="pricing-features__list">
+        {pricingFeatures.map((feature) => (
+          <li>
+            <span data-copy="en">{feature.en}</span>
+            <span data-copy="ar" lang="ar">{feature.ar}</span>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
 
     <p class="price-note reveal">
@@ -83,3 +98,67 @@ import { plans, site } from "../data/content";
     </p>
   </div>
 </section>
+
+<script>
+  const RATE_KEY = "whano-usd-egp-rate";
+  const RATE_TTL = 60 * 60 * 1000; // 1 hour
+
+  async function fetchRate(): Promise<number | null> {
+    try {
+      const res = await fetch("https://api.frankfurter.app/latest?from=USD&to=EGP");
+      if (!res.ok) return null;
+      const data = await res.json();
+      const rate = data?.rates?.EGP;
+      if (typeof rate !== "number") return null;
+      try {
+        localStorage.setItem(RATE_KEY, JSON.stringify({ rate, ts: Date.now() }));
+      } catch {}
+      return rate;
+    } catch {
+      return null;
+    }
+  }
+
+  function getCachedRate(): number | null {
+    try {
+      const raw = localStorage.getItem(RATE_KEY);
+      if (!raw) return null;
+      const { rate, ts } = JSON.parse(raw);
+      if (Date.now() - ts > RATE_TTL) return null;
+      return typeof rate === "number" ? rate : null;
+    } catch {
+      return null;
+    }
+  }
+
+  function formatEgp(usd: number, rate: number): string {
+    const egp = Math.round(usd * rate);
+    return egp.toLocaleString("en");
+  }
+
+  async function updateEgpLabels() {
+    const cards = document.querySelectorAll<HTMLElement>("[data-price-usd]");
+    if (!cards.length) return;
+
+    const rate = getCachedRate() || (await fetchRate());
+    if (!rate) return;
+
+    cards.forEach((card) => {
+      const usdStr = card.dataset.priceUsd;
+      if (!usdStr) return;
+      const usd = parseFloat(usdStr);
+      if (isNaN(usd)) return;
+
+      const egpEl = card.querySelector<HTMLElement>(".pricing-card__egp");
+      if (!egpEl) return;
+
+      const egpFormatted = formatEgp(usd, rate);
+      egpEl.innerHTML = `
+        <span data-copy="en">≈ ${egpFormatted} EGP</span>
+        <span data-copy="ar" lang="ar">≈ ${egpFormatted} جنيه</span>
+      `;
+    });
+  }
+
+  updateEgpLabels();
+</script>
