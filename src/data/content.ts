@@ -228,7 +228,6 @@ export const plans = [
     points: { en: "500 points", ar: "500 نقطة" },
     price: { en: "$10", ar: "$10" },
     originalPrice: { en: "$15", ar: "$15" },
-    priceUsd: 10,
     description: { en: "For a store just getting started with WhatsApp automations.", ar: "لمتجر بيبدأ يجرّب أتمتة واتساب." },
     popular: false,
   },
@@ -237,7 +236,6 @@ export const plans = [
     points: { en: "1,000 points", ar: "1,000 نقطة" },
     price: { en: "$19", ar: "$19" },
     originalPrice: { en: "$35", ar: "$35" },
-    priceUsd: 19,
     description: { en: "For a store past its first month and ordering regularly.", ar: "لمتجر عدى أول شهر وطلباته منتظمة." },
     popular: false,
   },
@@ -246,7 +244,6 @@ export const plans = [
     points: { en: "2,000 points", ar: "2,000 نقطة" },
     price: { en: "$36", ar: "$36" },
     originalPrice: { en: "$70", ar: "$70" },
-    priceUsd: 36,
     description: { en: "For a growing store running automations on most orders.", ar: "لمتجر كبر وبيشغّل الأتمتة على أغلب الطلبات." },
     popular: true,
   },
@@ -255,7 +252,6 @@ export const plans = [
     points: { en: "3,500 points", ar: "3,500 نقطة" },
     price: { en: "$59", ar: "$59" },
     originalPrice: { en: "$105", ar: "$105" },
-    priceUsd: 59,
     description: { en: "For a busy store that tops up every couple of months.", ar: "لمتجر مزدحم بيزوّد كل شوية." },
     popular: false,
   },
@@ -264,12 +260,13 @@ export const plans = [
     points: { en: "Custom", ar: "مخصص" },
     price: { en: "Talk to us", ar: "كلمنا" },
     originalPrice: null,
-    priceUsd: null,
     description: { en: "Need a custom volume or a higher point bundle?", ar: "محتاج كمية مخصصة أو باقة نقاط أكبر؟" },
     popular: false,
     isEnterprise: true,
   },
 ] as const;
+
+export const planPricesUsd = [10, 19, 36, 59, null] as const;
 
 export const faqs = [
   {

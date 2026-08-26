@@ -1,5 +1,5 @@
 ---
-import { plans, pricingFeatures, site } from "../data/content";
+import { plans, planPricesUsd, pricingFeatures, site } from "../data/content";
 ---
 
 <section id="pricing" class="section">
@@ -24,10 +24,10 @@ import { plans, pricingFeatures, site } from "../data/content";
     </div>
 
     <div class="pricing-grid reveal">
-      {plans.map((plan) => (
+      {plans.map((plan, i) => (
         <div
           class:list={["pricing-card", plan.popular && "pricing-card--featured", (plan as any).isEnterprise && "pricing-card--enterprise"]}
-          data-price-usd={(plan as any).priceUsd ?? ""}
+          data-price-usd={planPricesUsd[i] ?? ""}
         >
           {plan.popular && (
             <span class="pricing-badge">
@@ -101,7 +101,7 @@ import { plans, pricingFeatures, site } from "../data/content";
 
 <script>
   const RATE_KEY = "whano-usd-egp-rate";
-  const RATE_TTL = 60 * 60 * 1000; // 1 hour
+  const RATE_TTL = 60 * 60 * 1000;
 
   async function fetchRate(): Promise<number | null> {
     try {
@@ -144,7 +144,7 @@ import { plans, pricingFeatures, site } from "../data/content";
     if (!rate) return;
 
     cards.forEach((card) => {
-      const usdStr = card.dataset.priceUsd;
+      const usdStr = card.getAttribute("data-price-usd");
       if (!usdStr) return;
       const usd = parseFloat(usdStr);
       if (isNaN(usd)) return;
@@ -154,8 +154,8 @@ import { plans, pricingFeatures, site } from "../data/content";
 
       const egpFormatted = formatEgp(usd, rate);
       egpEl.innerHTML = `
-        <span data-copy="en">≈ ${egpFormatted} EGP</span>
-        <span data-copy="ar" lang="ar">≈ ${egpFormatted} جنيه</span>
+        <span data-copy="en">\u2248 ${egpFormatted} EGP</span>
+        <span data-copy="ar" lang="ar">\u2248 ${egpFormatted} \u062c\u0646\u064a\u0647</span>
       `;
     });
   }

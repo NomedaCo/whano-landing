@@ -1075,11 +1075,12 @@ html[data-language="ar"] .thread-bubble__copy[data-copy="ar"] {
   align-items: center;
   justify-content: center;
   margin-top: auto;
-  padding-top: 20px;
+  padding: 9px 16px;
   border: 1px solid var(--green);
   color: var(--green);
   font-size: 12px;
   font-weight: 600;
+  text-align: center;
   text-decoration: none;
   transition: background-color 160ms ease, color 160ms ease;
 }
