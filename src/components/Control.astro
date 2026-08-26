@@ -3,21 +3,19 @@ import { site } from "../data/content";
 ---
 
 <section class="section section--compact">
-  <div class="site-frame control-layout">
-    <div class="reveal">
+  <div class="site-frame">
+    <div class="control-container reveal">
       <p class="eyebrow">
         <span data-copy="en">{site.control.eyebrow.en}</span>
         <span data-copy="ar" lang="ar">{site.control.eyebrow.ar}</span>
       </p>
-    </div>
 
-    <div class="reveal">
       <h2 class="section-title">
         <span data-copy="en">{site.control.title.en}</span>
         <span data-copy="ar" lang="ar">{site.control.title.ar}</span>
       </h2>
 
-      <div class="control-points" style="margin-top: 48px">
+      <div class="control-points" style="margin-top: 36px">
         {site.control.points.map((point) => (
           <div class="control-point">
             <h3>

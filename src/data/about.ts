@@ -27,24 +27,24 @@ export const aboutPage: {
     ar: "إحنا كنّا تجار أولًا.",
   },
   intro: {
-    en: "Whano is built by Nomeda, a software and AI company based in Egypt. We build digital solutions for the MENA region — from Nezam, our modular ERP, to custom Shopify stores, to Whano.",
-    ar: "Whano من إنتاج Nomeda، شركة برمجيات وذكاء اصطناعي مقرها مصر. بناء حلول رقمية لمنطقة الشرق الأوسط وشمال أفريقيا — من Nezam، نظام ERP المرن، لمتاجر Shopify المخصصة، لحد Whano.",
+    en: "Whano is built by Nomeda, a software and AI company based in Egypt. We build digital solutions for the MENA region, including Nezam (our modular ERP), custom Shopify stores, and Whano.",
+    ar: "Whano من إنتاج Nomeda، شركة برمجيات وذكاء اصطناعي مقرها مصر. نبني حلولاً رقمية لمنطقة الشرق الأوسط وشمال أفريقيا، تشمل Nezam (نظام ERP المرن)، ومتاجر Shopify المخصصة، وWhano.",
   },
   sections: [
     {
       heading: { en: "Why we built Whano", ar: "ليه بنّا Whano" },
       body: [
         {
-          en: "We run our own Shopify stores. We know what happens after checkout — the WhatsApp messages that pile up, the order changes that come through chat, the delivery questions that pull you away from growing the business.",
-          ar: "بنشغّل متاجر Shopify riêngّنا. عارفين اللي بيحصل بعد الدفع — رسائل الواتساب اللي بتتراكم، وتعديلات الطلب اللي بتيجي في الشات، وأسئلة التوصيل اللي بتشغلك عن تطوير الشغل.",
+          en: "We run our own Shopify stores. We know what happens after checkout: the WhatsApp messages that pile up, the order changes that come through chat, and the delivery questions that pull you away from growing the business.",
+          ar: "بنشغّل متاجر Shopify بأنفسنا. عارفين اللي بيحصل بعد الدفع: رسائل الواتساب اللي بتتراكم، وتعديلات الطلب في الشات، وأسئلة التوصيل اللي بتشغلك عن تطوير الشغل.",
         },
         {
-          en: "We tried other solutions. They either required a new number customers didn't know, or they sounded like a bot reading a script. Neither works when you need a real conversation.",
-          ar: "جرّبنا حلول تانية. إما بتطلب رقم جديد عملاءك مش عارفينه، أو بتبان زى بوت بيقرا سكريبت. أيهم ما بيشتغلش لما تكون محتاج محادثة حقيقية.",
+          en: "We tried other solutions. They either required tedious WhatsApp API verification that took weeks, or they sounded like a stiff robot reading a script. Neither works when you need fast, natural conversations.",
+          ar: "جرّبنا حلول تانية. إما بتطلب إجراءات توثيق معقدة من Meta بتاخد أسابيع، أو بتبان زي روبوت جامد بيقرا سكريبت محفوظ. الطريقتين مابيشتغلوش لما تكون محتاج سرعة ومحادثة طبيعية.",
         },
         {
-          en: "So we built Whano to connect Shopify to the WhatsApp number you already use. The automation handles the repetitive work. You step in when it matters.",
-          ar: "فلذلك بنّينا Whano يوصل Shopify برقم الواتساب اللي بتستخدمه أصلًا. الأتمتة بتتعامل مع الشغل المتكرر. وإنت بتدخل لما الموقف يحتاجك.",
+          en: "So we built Whano to connect Shopify to instant WhatsApp automation. The system handles the repetitive order flows under your store's brand. You get seamless delivery without the operational headache.",
+          ar: "فلذلك بنّينا Whano عشان يربط Shopify بأتمتة واتساب فورية باسم متجرك. النظام بيتعامل مع تأكيد وتعديل ومتابعة الطلبات، وإنت بتركز في نمو مبيعاتك من غير وجع دماغ الإعدادات.",
         },
       ],
     },
@@ -52,8 +52,8 @@ export const aboutPage: {
       heading: { en: "About Nomeda", ar: "عن Nomeda" },
       body: [
         {
-          en: "Nomeda is a bootstrapped software and AI company building for the MENA region. We believe software should be built for the people who use it — not translated from another market and labeled 'local.'",
-          ar: "Nomeda شركة برمجيات وذكاء اصطناعي مستقلة بتبني للمنطقة. بنؤمن إن البرمجيات لازم تتبنى للناس اللي بتستخدمها — مش تترجم من سوق تاني وتتلقب بـ'محلية'.",
+          en: "Nomeda is a bootstrapped software and AI company building for the MENA region. We believe software should be built for the people who use it, not translated from another market and labeled 'local.'",
+          ar: "Nomeda شركة برمجيات وذكاء اصطناعي مستقلة بتبني للمنطقة. بنؤمن إن البرمجيات لازم تتبنى للناس اللي بتستخدمها، مش تترجم من سوق تاني وتتلقب بـ'محلية'.",
         },
         {
           en: "Our products: Nezam (modular ERP with AI), Whano (WhatsApp automation for Shopify), and custom Shopify store development.",

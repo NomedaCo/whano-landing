@@ -7,40 +7,83 @@ interface Props {
   compact?: boolean;
 }
 
-const { messages, compact = false } = Astro.props;
+const { messages } = Astro.props;
 ---
 
-<figure class:list={["thread", compact && "thread--compact"]}>
-  <div class="thread__header">
-    <span class="thread__avatar" aria-hidden="true">W</span>
-    <div>
-      <div class="thread__name">Whano</div>
-      <div class="thread__status">
+<div class="wa-thread-wrapper">
+  <!-- WhatsApp Business Header -->
+  <div class="wa-app-header">
+    <div class="wa-app-header__back" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15 19l-7-7 7-7" />
+      </svg>
+    </div>
+    <div class="wa-app-header__avatar" aria-hidden="true">
+      <span>W</span>
+    </div>
+    <div class="wa-app-header__meta">
+      <div class="wa-app-header__name-row">
+        <span class="wa-app-header__name">Whano</span>
+        <svg class="wa-app-header__verified" viewBox="0 0 16 16" fill="#25D366" aria-label="Verified Business">
+          <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zm3.2 5.2L7 9.4 4.8 7.2a.8.8 0 0 0-1.1 1.1l2.8 2.8c.3.3.8.3 1.1 0l4.8-4.8a.8.8 0 1 0-1.2-1.1z"/>
+        </svg>
+      </div>
+      <span class="wa-app-header__status">
         <span data-copy="en">{site.thread.status.en}</span>
         <span data-copy="ar" lang="ar">{site.thread.status.ar}</span>
-      </div>
+      </span>
     </div>
   </div>
-  <div class="thread__body">
-    <figcaption class="thread__note">
-      <span data-copy="en">{site.thread.label.en}</span>
-      <span data-copy="ar" lang="ar">{site.thread.label.ar}</span>
-    </figcaption>
-    <div class="thread__messages">
-      {messages.map((message, index) => (
-        <div class:list={["thread-bubble", message.direction === "in" ? "thread-bubble--in" : "thread-bubble--out", `thread-delay-${Math.min(index + 1, 6)}`]}>
-          <span class="thread-bubble__copy" data-copy="en">
-            {message.en.split("\n").map((line, lineIndex) => (
-              <Fragment>{lineIndex > 0 && <br />}{line}</Fragment>
-            ))}
-          </span>
-          <span class="thread-bubble__copy" data-copy="ar" lang="ar" dir="rtl">
-            {message.ar.split("\n").map((line, lineIndex) => (
-              <Fragment>{lineIndex > 0 && <br />}{line}</Fragment>
-            ))}
-          </span>
-        </div>
-      ))}
+
+  <!-- WhatsApp Chat Canvas -->
+  <div class="wa-chat-canvas">
+    <div class="wa-date-pill">
+      <span data-copy="en">TODAY</span>
+      <span data-copy="ar" lang="ar">اليوم</span>
+    </div>
+
+    <div class="wa-stream">
+      {messages.map((message, index) => {
+        const isWhano = message.direction === "out";
+        return (
+          <div class:list={["wa-row", isWhano ? "wa-row--in" : "wa-row--out", `thread-delay-${Math.min(index + 1, 6)}`]}>
+            <div class="wa-bubble">
+              <p class="wa-bubble__text wa-bubble__copy" data-copy="en">
+                {message.en.split("\n").map((line, lineIndex) => (
+                  <Fragment>{lineIndex > 0 && <br />}{line}</Fragment>
+                ))}
+              </p>
+              <p class="wa-bubble__text wa-bubble__copy" data-copy="ar" lang="ar" dir="rtl">
+                {message.ar.split("\n").map((line, lineIndex) => (
+                  <Fragment>{lineIndex > 0 && <br />}{line}</Fragment>
+                ))}
+              </p>
+              <span class="wa-bubble__meta">
+                <span>9:41</span>
+                {!isWhano && (
+                  <svg class="wa-bubble__check" viewBox="0 0 16 11" fill="none">
+                    <path d="M11.07.66L5.4 7.09 2.74 4.43l-1.4 1.41L5.4 9.91l7.08-7.84z" fill="currentColor"/>
+                    <path d="M7.07.66L1.4 7.09l1.41 1.41L7.07 3.5l.7.7L9.18.66z" fill="currentColor" opacity="0.6"/>
+                  </svg>
+                )}
+              </span>
+            </div>
+          </div>
+        );
+      })}
     </div>
   </div>
-</figure>
+
+  <!-- WhatsApp Bottom Bar -->
+  <div class="wa-bottom-bar">
+    <div class="wa-bottom-bar__input" dir="rtl" lang="ar">
+      <span>اكتب رسالة...</span>
+    </div>
+    <div class="wa-bottom-bar__mic" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm-1-9c0-.55.45-1 1-1s1 .45 1 1v6c0 .55-.45 1-1 1s-1-.45-1-1V5z"/>
+        <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+      </svg>
+    </div>
+  </div>
+</div>

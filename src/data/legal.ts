@@ -21,8 +21,8 @@ export const termsSections: LegalSection[] = [
     heading: { en: "2. What Whano provides", ar: "2. الخدمة التي يقدّمها Whano" },
     paragraphs: [
       {
-        en: "Whano connects a Shopify store with a WhatsApp number and helps automate order confirmations, order changes, shipping updates, review requests, and related customer conversations. The exact features available to you depend on your configuration and plan.",
-        ar: "يربط Whano متجر Shopify برقم واتساب ويساعد في أتمتة تأكيد الطلبات وتعديلاتها وتحديثات الشحن وطلبات التقييم والمحادثات المرتبطة بالعملاء. وتعتمد الميزات المتاحة لك على إعداداتك وباقتك.",
+        en: "Whano connects with a Shopify store to automate WhatsApp order confirmations, order changes, shipping updates, review requests, and related customer conversations on behalf of the store. The exact features available to you depend on your configuration and plan.",
+        ar: "يربط Whano متجر Shopify بخدمة أتمتة رسائل واتساب لتأكيد الطلبات وتعديلاتها وتحديثات الشحن وطلبات التقييم والمحادثات المرتبطة بالعملاء نيابة عن المتجر. وتعتمد الميزات المتاحة لك على إعداداتك وباقتك.",
       },
     ],
   },
@@ -30,8 +30,8 @@ export const termsSections: LegalSection[] = [
     heading: { en: "3. Your account and responsibilities", ar: "3. حسابك ومسؤولياتك" },
     bullets: [
       {
-        en: "You must have permission to operate the Shopify store and the WhatsApp number connected to Whano.",
-        ar: "يجب أن تكون مخولًا بإدارة متجر Shopify ورقم واتساب المرتبط بـ Whano.",
+        en: "You must have authorization and permission to operate the Shopify store connected to Whano.",
+        ar: "يجب أن تكون مخولًا بإدارة متجر Shopify المرتبط بـ Whano ولتوجيه الرسائل لعملائه.",
       },
       {
         en: "You are responsible for your account credentials, store configuration, message templates, and the accuracy of information supplied to the service.",
@@ -114,8 +114,8 @@ export const privacySections: LegalSection[] = [
     heading: { en: "1. Overview", ar: "1. نظرة عامة" },
     paragraphs: [
       {
-        en: "This Privacy Policy explains how Whano, operated by NomedaCo, collects and uses information when a Shopify merchant connects a store and WhatsApp number to the service.",
-        ar: "توضح سياسة الخصوصية هذه كيفية جمع Whano، الذي تديره NomedaCo، للمعلومات واستخدامها عندما يربط تاجر Shopify متجره ورقم واتساب بالخدمة.",
+        en: "This Privacy Policy explains how Whano, operated by NomedaCo, collects and uses information when a Shopify merchant connects a store to the service.",
+        ar: "توضح سياسة الخصوصية هذه كيفية جمع Whano، الذي تديره NomedaCo، للمعلومات واستخدامها عندما يربط تاجر Shopify متجره بالخدمة.",
       },
     ],
   },
@@ -131,8 +131,8 @@ export const privacySections: LegalSection[] = [
         ar: "معلومات الطلبات والمنتجات والتنفيذ والعملاء اللازمة لتشغيل الأتمتة التي فعّلتها، ومنها الأسماء وأرقام الهاتف والمنتجات والإجماليات وحالة الشحن.",
       },
       {
-        en: "The WhatsApp number you link, connection state, and messages sent or received through Whano.",
-        ar: "رقم واتساب الذي تربطه بالخدمة، وحالة الاتصال، والرسائل المرسلة أو المستلمة من خلال Whano.",
+        en: "Store branding settings, connection state, and messages sent or received through Whano.",
+        ar: "إعدادات هوية المتجر، وحالة الاتصال، والرسائل المرسلة أو المستلمة من خلال Whano.",
       },
       {
         en: "Account, billing, support, and usage information.",

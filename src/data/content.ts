@@ -35,17 +35,17 @@ export const site = {
     titleLead: { en: "The order doesn't end at checkout.", ar: "الطلب مش بيخلص عند إتمام الشراء." },
     titleAccent: { en: "Whano takes it from here.", ar: "Whano بيكمّل الباقي." },
     body: {
-      en: "Whano connects your Shopify store to the WhatsApp number you already use. It confirms orders, handles changes, sends delivery updates, and asks for the review.",
-      ar: "Whano بيوصل متجرك على Shopify برقم واتساب اللي بتستخدمه أصلًا. بيأكد الطلبات، يتعامل مع التعديلات، يبعت تحديثات التوصيل، ويطلب التقييم.",
+      en: "Whano connects your Shopify store to automated WhatsApp messaging. It confirms orders, handles changes, sends delivery updates, and asks for the review with zero setup.",
+      ar: "Whano بيوصل متجرك على Shopify بأتمتة واتساب فورية. بيأكد الطلبات، يتعامل مع التعديلات، يبعت تحديثات التوصيل، ويطلب التقييم فوراً ومن غير أي تعقيدات.",
     },
     cta: { en: "Install on Shopify", ar: "ثبّت على Shopify" },
     ctaNote: {
-      en: "Free to install. 50 messages included.",
-      ar: "الثبّت مجاني. 50 رسالة مجانية متضمنة.",
+      en: "Free to install. 100 points included.",
+      ar: "التثبيت مجاني. 100 نقطة متضمنة للتجربة.",
     },
     proofs: [
-      { en: "Your existing WhatsApp number", ar: "برقم واتسابك الحالي" },
-      { en: "50 free messages to test it", ar: "50 رسالة مجانية للتجربة" },
+      { en: "Instant setup with no number hassle", ar: "جاهز فوراً بدون إعداد أرقام" },
+      { en: "100 free points to test it", ar: "100 نقطة مجانية للتجربة" },
       { en: "Connected to Shopify", ar: "متصل بمتجرك على Shopify" },
     ],
   },
@@ -88,17 +88,17 @@ export const site = {
     title: { en: "Automation without handing over the keys.", ar: "أتمتة وإنت لسه المتحكم." },
     points: [
       {
-        title: { en: "Use the number customers know", ar: "استخدم الرقم اللي عملاءك عارفينه" },
+        title: { en: "Zero number setup or API hassle", ar: "بدون إعداد أرقام أو تعقيدات API" },
         body: {
-          en: "Connect the WhatsApp number you already use for your business. No new inbox for customers to discover.",
-          ar: "وصّل رقم الواتساب اللي بتستخدمه في شغلك. مش محتاج تعمل صندوق رسائل جديد وتعرّف الناس بيه.",
+          en: "Whano sends verified WhatsApp messages on behalf of your store right away. No phone linking, no Meta Cloud approval delays, and zero risk to your personal number.",
+          ar: "Whano بيبعت رسائل موثقة باسم متجرك فوراً. من غير ربط أجهزة، ولا انتظار موافقات Meta المعقدة، وبدون أي مخاطرة بحظر رقمك الشخصي.",
         },
       },
       {
         title: { en: "Let Shopify keep the facts", ar: "خلّي Shopify يحتفظ بالبيانات" },
         body: {
           en: "Order totals, items, and shipping details come from your store. Whano does not invent an answer when the data is not there.",
-          ar: "بيانات الطلب — الإجمالي والمنتجات وتفاصيل الشحن — جاية من متجرك. Whano ما بيخمنش لما المعلومة مش موجودة.",
+          ar: "بيانات الطلب، مثل الإجمالي والمنتجات وتفاصيل الشحن، جاية من متجرك مباشرة. Whano ما بيخمنش لما المعلومة مش موجودة.",
         },
       },
       {
@@ -114,10 +114,10 @@ export const site = {
     eyebrow: { en: "Points", ar: "النقاط" },
     title: { en: "Pricing that shows its work.", ar: "أسعار واضحة، وكل نقطة محسوبة." },
     body: {
-      en: "Optional automations use points; order confirmation and cancellation never do.",
-      ar: "الأتمتة الاختيارية بتستخدم النقاط؛ تأكيد الطلب والإلغاء مجانًا دائمًا.",
+      en: "Every automation draws from the same points pack. Clear, predictable cost per interaction with no monthly lock-in.",
+      ar: "كل أتمتة بتسحب من نفس باقة النقاط. تكلفة واضحة ومحددة لكل تفاعل من غير اشتراك شهري إجباري.",
     },
-    note: { en: "Billed through Shopify, on the same invoice as the rest of your store.", ar: "الفاتورة عن طريق Shopify، على نفس فاتورة متجرك." },
+    note: { en: "Prices in USD. Billed through Shopify.", ar: "الأسعار بالدولار. الفاتورة عن طريق Shopify." },
   },
   faq: {
     eyebrow: { en: "Before you start", ar: "قبل ما تبدأ" },
@@ -183,7 +183,7 @@ export const features = [
       en: "A new order starts a clear WhatsApp conversation. The customer sees the items, total, and next step before you have to ask for anything.",
       ar: "الطلب الجديد بيبدأ محادثة واضحة على واتساب. العميل بيشوف المنتجات والإجمالي والخطوة اللي بعدها من غير ما تستنى ردّ أو تسأل.",
     },
-    detail: { en: "Order confirmation", ar: "تأكيد الطلب" },
+    detail: { en: "Order confirmation (~1 point)", ar: "تأكيد الطلب (~1 نقطة)" },
   },
   {
     number: "02",
@@ -192,7 +192,7 @@ export const features = [
       en: "Whano can suggest products customers often buy together, then handle adding an item, changing its quantity, or cancelling the order before fulfillment. The Shopify order stays current.",
       ar: "Whano بيقترح منتجات غالبًا العملاء بيشتروها مع بعض، وبعدها يتعامل مع الإضافة أو تغيير الكمية أو الإلغاء قبل تجهيز الطلب. وطلب Shopify يفضل متحدّث.",
     },
-    detail: { en: "Natural-language order edits", ar: "تعديلات الطلب بالكلام العادي" },
+    detail: { en: "Natural-language order edits (~1 pt/msg)", ar: "تعديلات الطلب بالكلام العادي (~1 نقطة/رسالة)" },
   },
   {
     number: "03",
@@ -201,7 +201,7 @@ export const features = [
       en: "When the order is fulfilled, send the tracking number and the delivery window automatically. The customer knows the order status and expected arrival.",
       ar: "لما الطلب يتشحن، ابعت رقم التتبع وموعد التوصيل تلقائي. العميل يبقى عارف حالة طلبه وميعاد وصوله.",
     },
-    detail: { en: "Shipping notification", ar: "تحديث الشحن" },
+    detail: { en: "Shipping notification (~1 point)", ar: "تحديث الشحن (~1 نقطة)" },
   },
   {
     number: "04",
@@ -210,16 +210,27 @@ export const features = [
       en: "After delivery, Whano follows up with a simple question. Customers can reply in Arabic or English, and the response is saved for you.",
       ar: "بعد التوصيل، Whano بيسأل سؤال بسيط. العميل يرد بالعربي أو بالإنجليزي، والرد بيتحفظ عندك.",
     },
-    detail: { en: "Post-delivery review", ar: "تقييم بعد التوصيل" },
+    detail: { en: "Post-delivery review (~2 points)", ar: "تقييم بعد التوصيل (~2 نقطة)" },
+  },
+  {
+    number: "05",
+    title: { en: "Handle returns with your store policy", ar: "إدارة الاستبدال والاسترجاع بشروط متجرك" },
+    body: {
+      en: "When a customer requests an exchange or refund, Whano opens a support ticket #W-1005, shares your return policy and contact number, and notifies your team immediately.",
+      ar: "لو العميل طلب استبدال أو استرجاع، Whano بيفتح تذكرة دعم برقم محدد، يوضح شروط وسياسة المتجر ورقم خدمة العملاء، ويبعت إشعار فوري لفريقك.",
+    },
+    detail: { en: "Support & returns (~2 points)", ar: "تذاكر الدعم والاسترجاع (~2 نقطة)" },
   },
 ] as const;
 
 export const pricingFeatures = [
-  { en: "Order confirmation & cancellation always included, at no extra cost", ar: "تأكيد الطلب والإلغاء دائمًا متضمنين، من غير تكلفة إضافية" },
-  { en: "Every optional automation — shipping, ratings, edits, support — draws from the same balance", ar: "كل أتمتة اختيارية — الشحن، التقييمات، التعديلات، الدعم — بتاخد من نفس الرصيد" },
-  { en: "Not a subscription: buy points once, and they stay until you spend them", ar: "مش اشتراك: اشتري النقاط مرة واحدة، وتفضل لحد ما تستخدمها" },
-  { en: "Billed through Shopify, on the same invoice as the rest of your store", ar: "الفاتورة عن طريق Shopify، على نفس فاتورة متجرك" },
-  { en: "When the points run out, optional automations pause until you top up", ar: "لما النقاط تخلص، الأتمتة الاختيارية بتوقف لحد ما تزوّد" },
+  { en: "~1 point per confirmation or cancellation", ar: "~1 نقطة لكل تأكيد طلب أو إلغاء" },
+  { en: "~1 point per shipping notification", ar: "~1 نقطة لكل إشعار شحن" },
+  { en: "~2 points per delivery & rating follow-up", ar: "~2 نقطة لكل طلب تقييم ومتابعة" },
+  { en: "~1 point per order edit message", ar: "~1 نقطة لكل رسالة تعديل طلب" },
+  { en: "~2 points per support & returns interaction", ar: "~2 نقطة لخدمات الدعم والاسترجاع" },
+  { en: "No monthly subscription, points never expire", ar: "بدون اشتراك شهري، والنقاط لا تنتهي" },
+  { en: "Billed directly on your Shopify invoice", ar: "الفاتورة على حساب Shopify بتاعك" },
 ] as const;
 
 export const plans = [
@@ -270,10 +281,10 @@ export const planPricesUsd = [10, 19, 36, 59, null] as const;
 
 export const faqs = [
   {
-    question: { en: "Do I need a new WhatsApp number?", ar: "هل لازم أعمل رقم واتساب جديد؟" },
+    question: { en: "Do I need my own WhatsApp Business number?", ar: "هل محتاج رقم واتساب خاص بيا أو إعدادات معقدة؟" },
     answer: {
-      en: "No. Whano connects to the number you already use for your business through device linking. Your customers do not have to use a new number.",
-      ar: "لأ. Whano بيتوصل بالرقم اللي بتستخدمه في شغلك عن طريق ربط الجهاز. عملاءك مش محتاجين يتعاملوا مع رقم جديد.",
+      en: "No. Whano uses a unified, verified WhatsApp infrastructure for all merchants. Your messages are sent instantly with your store name and order details, with no QR code scanning, no Meta API accounts, and zero number maintenance.",
+      ar: "لأ. Whano بيستخدم بنية واتساب موحدة وموثقة لكل المتاجر. رسائلك بتتبعت فوراً باسم متجرك وتفاصيل الطلب، من غير مسح QR Code، ولا حسابات Meta API، وبدون أي صيانة للأرقام.",
     },
   },
   {
@@ -326,8 +337,8 @@ export const heroConversation: ChatMessage[] = [
   },
   {
     direction: "out",
-    en: "Done, Ahmed. Order #1042 is confirmed.\n\n2 × Cotton T-shirt — 360 EGP\nShipping — 50 EGP\nTotal — 410 EGP\n\nEstimated delivery: 2–3 business days.",
-    ar: "تمام يا أحمد، أكدنا طلبك رقم 1042.\n\n2 × تيشيرت قطن — 360 جنيه\nالشحن — 50 جنيه\nالإجمالي — 410 جنيه\n\nمتوقع يوصلك خلال 2–3 أيام عمل.",
+    en: "Done, Ahmed. Order #1042 is confirmed.\n\n2 × Cotton T-shirt (360 EGP)\nShipping: 50 EGP\nTotal: 410 EGP\n\nEstimated delivery: 2-3 business days.",
+    ar: "تمام يا أحمد، أكدنا طلبك رقم 1042.\n\n2 × تيشيرت قطن (360 جنيه)\nالشحن: 50 جنيه\nالإجمالي: 410 جنيه\n\nمتوقع يوصلك خلال 2-3 أيام عمل.",
   },
   {
     direction: "in",
@@ -336,7 +347,7 @@ export const heroConversation: ChatMessage[] = [
   },
   {
     direction: "out",
-    en: "Sure. Cotton T-shirt — 180 EGP.\nShould I add it to the order?",
+    en: "Sure. Cotton T-shirt (180 EGP).\nShould I add it to the order?",
     ar: "طبعًا. التيشيرت القطن بـ180 جنيه.\nأضيفه للطلب؟",
   },
   {
