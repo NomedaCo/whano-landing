@@ -1,5 +1,27 @@
 ---
 import { plans, planPricesUsd, pricingFeatures, site } from "../data/content";
+
+const FALLBACK_RATE = 50;
+
+async function fetchEgpRate(): Promise<number> {
+  try {
+    const res = await fetch("https://api.frankfurter.app/latest?from=USD&to=EGP", {
+      signal: AbortSignal.timeout(5000),
+    });
+    if (!res.ok) return FALLBACK_RATE;
+    const data = await res.json();
+    return data?.rates?.EGP ?? FALLBACK_RATE;
+  } catch {
+    return FALLBACK_RATE;
+  }
+}
+
+const rate = await fetchEgpRate();
+
+const egpValues = planPricesUsd.map((usd) => {
+  if (usd === null) return null;
+  return Math.round(usd * rate).toLocaleString("en");
+});
 ---
 
 <section id="pricing" class="section">
@@ -27,7 +49,6 @@ import { plans, planPricesUsd, pricingFeatures, site } from "../data/content";
       {plans.map((plan, i) => (
         <div
           class:list={["pricing-card", plan.popular && "pricing-card--featured", (plan as any).isEnterprise && "pricing-card--enterprise"]}
-          data-price-usd={planPricesUsd[i] ?? ""}
         >
           {plan.popular && (
             <span class="pricing-badge">
@@ -59,7 +80,12 @@ import { plans, planPricesUsd, pricingFeatures, site } from "../data/content";
             </span>
           </div>
 
-          <span class="pricing-card__egp" aria-live="polite"></span>
+          {egpValues[i] && (
+            <span class="pricing-card__egp">
+              <span data-copy="en">{`\u2248 ${egpValues[i]} EGP`}</span>
+              <span data-copy="ar" lang="ar">{`\u2248 ${egpValues[i]} \u062c\u0646\u064a\u0647`}</span>
+            </span>
+          )}
 
           <p class="pricing-card__points">
             <span data-copy="en">{plan.points.en}</span>
@@ -98,67 +124,3 @@ import { plans, planPricesUsd, pricingFeatures, site } from "../data/content";
     </p>
   </div>
 </section>
-
-<script>
-  const RATE_KEY = "whano-usd-egp-rate";
-  const RATE_TTL = 60 * 60 * 1000;
-
-  async function fetchRate(): Promise<number | null> {
-    try {
-      const res = await fetch("https://api.frankfurter.app/latest?from=USD&to=EGP");
-      if (!res.ok) return null;
-      const data = await res.json();
-      const rate = data?.rates?.EGP;
-      if (typeof rate !== "number") return null;
-      try {
-        localStorage.setItem(RATE_KEY, JSON.stringify({ rate, ts: Date.now() }));
-      } catch {}
-      return rate;
-    } catch {
-      return null;
-    }
-  }
-
-  function getCachedRate(): number | null {
-    try {
-      const raw = localStorage.getItem(RATE_KEY);
-      if (!raw) return null;
-      const { rate, ts } = JSON.parse(raw);
-      if (Date.now() - ts > RATE_TTL) return null;
-      return typeof rate === "number" ? rate : null;
-    } catch {
-      return null;
-    }
-  }
-
-  function formatEgp(usd: number, rate: number): string {
-    const egp = Math.round(usd * rate);
-    return egp.toLocaleString("en");
-  }
-
-  async function updateEgpLabels() {
-    const cards = document.querySelectorAll<HTMLElement>("[data-price-usd]");
-    if (!cards.length) return;
-
-    const rate = getCachedRate() || (await fetchRate());
-    if (!rate) return;
-
-    cards.forEach((card) => {
-      const usdStr = card.getAttribute("data-price-usd");
-      if (!usdStr) return;
-      const usd = parseFloat(usdStr);
-      if (isNaN(usd)) return;
-
-      const egpEl = card.querySelector<HTMLElement>(".pricing-card__egp");
-      if (!egpEl) return;
-
-      const egpFormatted = formatEgp(usd, rate);
-      egpEl.innerHTML = `
-        <span data-copy="en">\u2248 ${egpFormatted} EGP</span>
-        <span data-copy="ar" lang="ar">\u2248 ${egpFormatted} \u062c\u0646\u064a\u0647</span>
-      `;
-    });
-  }
-
-  updateEgpLabels();
-</script>
