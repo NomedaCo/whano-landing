@@ -2,6 +2,13 @@
 
 @font-face {
   font-family: "Satoshi";
+  src: url("/fonts/satoshi-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Satoshi";
   src: url("/fonts/satoshi-medium.woff2") format("woff2");
   font-weight: 500;
   font-display: swap;
@@ -21,27 +28,6 @@
   font-display: swap;
 }
 
-@font-face {
-  font-family: "Inter";
-  src: url("/fonts/inter/Inter-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Inter";
-  src: url("/fonts/inter/Inter-Medium.woff2") format("woff2");
-  font-weight: 500;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Inter";
-  src: url("/fonts/inter/Inter-SemiBold.woff2") format("woff2");
-  font-weight: 600;
-  font-display: swap;
-}
-
 :root {
   --paper: #f8faf9;
   --paper-deep: #f0f5f2;
@@ -54,7 +40,7 @@
   --green-dark: #084632;
   --green-pale: #e2eee6;
   --red: #a84e43;
-  --font-heading: "Alexandria", sans-serif;
+  --font-heading: "Satoshi", "Alexandria", sans-serif;
   --font-body: "Alexandria", sans-serif;
 }
 
@@ -540,7 +526,7 @@ html.js .reveal.is-visible {
 }
 
 .hero-phone-canvas {
-  background: #E4EFE7 !important;
+  background: #E4EFE7;
   border-radius: 29px;
   aspect-ratio: 9 / 18.5;
   display: flex;
@@ -569,148 +555,6 @@ html.js .reveal.is-visible {
   filter: drop-shadow(0 10px 24px rgba(18, 140, 126, 0.12));
 }
 
-/* Big Floating Labels with Distinct Angles */
-.hero-float-label {
-  position: absolute;
-  z-index: 3;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 7px 12px;
-  background: #ffffff;
-  border-radius: 9px;
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  box-shadow:
-    0 8px 18px rgba(13, 101, 74, 0.08),
-    0 2px 5px rgba(0, 0, 0, 0.03);
-  font-family: var(--font-heading);
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--ink);
-  white-space: nowrap;
-  user-select: none;
-  pointer-events: none;
-}
-
-.hero-float-label__icon {
-  font-size: 12px;
-  line-height: 1;
-}
-
-/* Floating Label 1: Top Left (-5deg) */
-.hero-float-label--1 {
-  top: 24px;
-  inset-inline-start: 10px;
-  transform: rotate(-5deg);
-  animation: smooth-float-1 7.2s ease-in-out infinite alternate;
-}
-
-/* Floating Label 2: Top Right (+4deg) */
-.hero-float-label--2 {
-  top: 66px;
-  inset-inline-end: 10px;
-  transform: rotate(4deg);
-  animation: smooth-float-2 8.4s ease-in-out infinite alternate;
-}
-
-/* Floating Label 3: Middle Right (-3.5deg) */
-.hero-float-label--3 {
-  top: 48%;
-  inset-inline-end: 10px;
-  transform: rotate(-3.5deg);
-  animation: smooth-float-3 6.8s ease-in-out infinite alternate;
-}
-
-/* Floating Label 4: Bottom Left (+5deg) */
-.hero-float-label--4 {
-  bottom: 60px;
-  inset-inline-start: 10px;
-  transform: rotate(5deg);
-  animation: smooth-float-4 7.8s ease-in-out infinite alternate;
-}
-
-/* Floating Label 5: Bottom Right (-2.5deg) */
-.hero-float-label--5 {
-  bottom: 18px;
-  inset-inline-end: 10px;
-  transform: rotate(-2.5deg);
-  animation: smooth-float-5 6.4s ease-in-out infinite alternate;
-}
-
-@keyframes smooth-float-1 {
-  0% {
-    transform: translate(0px, 0px) rotate(-5deg);
-  }
-  35% {
-    transform: translate(6px, -10px) rotate(-3.5deg);
-  }
-  70% {
-    transform: translate(-5px, -15px) rotate(-6deg);
-  }
-  100% {
-    transform: translate(0px, 0px) rotate(-5deg);
-  }
-}
-
-@keyframes smooth-float-2 {
-  0% {
-    transform: translate(0px, 0px) rotate(4deg);
-  }
-  30% {
-    transform: translate(-6px, 8px) rotate(6deg);
-  }
-  65% {
-    transform: translate(5px, 12px) rotate(2.5deg);
-  }
-  100% {
-    transform: translate(0px, 0px) rotate(4deg);
-  }
-}
-
-@keyframes smooth-float-3 {
-  0% {
-    transform: translate(0px, 0px) rotate(-3.5deg);
-  }
-  25% {
-    transform: translate(-8px, -10px) rotate(-1.5deg);
-  }
-  60% {
-    transform: translate(6px, -5px) rotate(-5deg);
-  }
-  100% {
-    transform: translate(0px, 0px) rotate(-3.5deg);
-  }
-}
-
-@keyframes smooth-float-4 {
-  0% {
-    transform: translate(0px, 0px) rotate(5deg);
-  }
-  35% {
-    transform: translate(8px, -8px) rotate(3deg);
-  }
-  70% {
-    transform: translate(-6px, 6px) rotate(6.5deg);
-  }
-  100% {
-    transform: translate(0px, 0px) rotate(5deg);
-  }
-}
-
-@keyframes smooth-float-5 {
-  0% {
-    transform: translate(0px, 0px) rotate(-2.5deg);
-  }
-  30% {
-    transform: translate(-7px, 7px) rotate(-0.5deg);
-  }
-  75% {
-    transform: translate(6px, -6px) rotate(-4deg);
-  }
-  100% {
-    transform: translate(0px, 0px) rotate(-2.5deg);
-  }
-}
 
 /* ── Shared Unified WhatsApp Phone Device ───────────────────── */
 
@@ -963,28 +807,6 @@ html.js .reveal.is-visible {
   flex-direction: column;
   align-items: center;
   width: 100%;
-}
-
-.wf-phone-device {
-  width: 100%;
-  max-width: 320px;
-  margin: 0 auto;
-  border-radius: 38px;
-  padding: 9px;
-  background: #151614;
-  box-shadow:
-    0 24px 60px rgba(0, 0, 0, 0.16),
-    0 6px 18px rgba(0, 0, 0, 0.08),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.08);
-}
-
-.wf-phone-device .phone-screen {
-  background: #075e54;
-  border-radius: 29px;
-  aspect-ratio: 9 / 18.5;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
 }
 
 /* WhatsApp App Header */
@@ -2760,17 +2582,6 @@ html[data-language="ar"] .button-light svg:not(.shopify-btn-icon) {
 
   .hero-phone-big-logo {
     max-width: 130px;
-  }
-
-  .hero-float-label {
-    padding: 5px 9px;
-    font-size: 9.5px;
-    gap: 5px;
-    border-radius: 7px;
-  }
-
-  .hero-float-label__icon {
-    font-size: 10.5px;
   }
 
   .hero-trust-bar {
