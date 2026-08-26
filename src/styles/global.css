@@ -433,10 +433,7 @@ html.js .reveal.is-visible {
 }
 
 .hero-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 0.93fr) minmax(320px, 0.77fr);
-  gap: clamp(36px, 5vw, 64px);
-  align-items: center;
+  max-width: 700px;
 }
 
 .hero-title {
@@ -510,51 +507,6 @@ html.js .reveal.is-visible {
   display: inline-flex;
   align-items: center;
 }
-
-/* ── Hero Phone Canvas (#E4EFE7 BG + Big Logo + Floating Labels) ─ */
-
-.hero-visual {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-}
-
-.hero-phone-wrapper {
-  max-width: 320px;
-}
-
-.hero-phone-canvas {
-  background: #E4EFE7;
-  border-radius: 29px;
-  aspect-ratio: 9 / 18.5;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  position: relative;
-}
-
-.hero-phone-logo-wrap {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  padding: 16px;
-}
-
-.hero-phone-big-logo {
-  width: 100%;
-  max-width: 175px;
-  height: auto;
-  object-fit: contain;
-  filter: drop-shadow(0 10px 24px rgba(18, 140, 126, 0.12));
-}
-
 
 /* ── Shared Unified WhatsApp Phone Device ───────────────────── */
 
@@ -2401,8 +2353,7 @@ html[data-language="ar"] .button-light svg:not(.shopify-btn-icon) {
   }
 
   .hero-grid {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 58px;
+    max-width: 100%;
   }
 
   .hero-copy {
@@ -2574,14 +2525,6 @@ html[data-language="ar"] .button-light svg:not(.shopify-btn-icon) {
     max-width: 280px;
     border-radius: 30px;
     padding: 8px;
-  }
-
-  .hero-phone-wrapper {
-    max-width: 275px;
-  }
-
-  .hero-phone-big-logo {
-    max-width: 130px;
   }
 
   .hero-trust-bar {
