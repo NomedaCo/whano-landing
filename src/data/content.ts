@@ -263,6 +263,7 @@ export const site = {
       label: { en: "Legal", ar: "قانوني" },
       privacy: { en: "Privacy Policy", ar: "سياسة الخصوصية" },
       terms: { en: "Terms of Service", ar: "شروط الخدمة" },
+      dpa: { en: "Data Processing Agreement", ar: "اتفاقية معالجة البيانات" },
     },
     productLabel: { en: "Product", ar: "المنتج" },
     socialLabel: { en: "Follow us", ar: "تابعنا" },

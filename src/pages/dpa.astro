@@ -1,0 +1,14 @@
+---
+import Base from "../layouts/Base.astro";
+import LegalPage from "../components/LegalPage.astro";
+import { dpaSections } from "../data/legal";
+---
+
+<Base title="Data Processing Agreement | Whano" titleArabic="اتفاقية معالجة البيانات | Whano" description="The data processing agreement between Whano and merchants, effective on install." descriptionArabic="اتفاقية معالجة البيانات بين Whano والتجار، وتسري عند تثبيت التطبيق.">
+  <LegalPage
+    title={{ en: "Data Processing Agreement", ar: "اتفاقية معالجة البيانات" }}
+    updated={{ en: "Last updated: August 27, 2026", ar: "آخر تحديث: 27 أغسطس 2026" }}
+    indexText={{ en: "Effective when you install Whano on your store.", ar: "تسري عند تثبيت Whano على متجرك." }}
+    sections={dpaSections}
+  />
+</Base>

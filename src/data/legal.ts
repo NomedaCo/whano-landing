@@ -15,7 +15,12 @@ export const termsSections: LegalSection[] = [
         en: "These Terms of Service govern your use of Whano, a WhatsApp automation service for Shopify merchants operated by NomedaCo (\"Whano\", \"we\", \"us\", or \"our\"). By requesting access to or using the service, you agree to these terms.",
         ar: "تحدد شروط الخدمة هذه قواعد استخدامك لخدمة Whano، وهي خدمة لأتمتة التواصل عبر واتساب لمتاجر Shopify وتديرها NomedaCo (ويُشار إليها بـ\"Whano\" أو \"نحن\"). بطلب الوصول إلى الخدمة أو استخدامها، فأنت توافق على هذه الشروط.",
       },
+      {
+        en: "Because Whano processes your customers' personal data on your behalf, our Data Processing Agreement forms part of these terms and takes effect at the same moment — when you install Whano on your store. You are the data controller and NomedaCo is the processor.",
+        ar: "ولأن Whano يعالج البيانات الشخصية لعملائك نيابةً عنك، فإن اتفاقية معالجة البيانات الخاصة بنا تُعد جزءًا من هذه الشروط وتسري في اللحظة نفسها — عند تثبيت Whano على متجرك. أنت المتحكم في البيانات وNomedaCo هي المعالج.",
+      },
     ],
+    links: [{ label: { en: "Read the Data Processing Agreement", ar: "اقرأ اتفاقية معالجة البيانات" }, href: "/dpa" }],
   },
   {
     heading: { en: "2. What Whano provides", ar: "2. الخدمة التي يقدّمها Whano" },
@@ -221,6 +226,176 @@ export const privacySections: LegalSection[] = [
       {
         en: "For privacy questions or requests, contact us at",
         ar: "لأسئلة أو طلبات الخصوصية، تواصل معنا عبر",
+      },
+    ],
+    links: [{ label: { en: "privacy@nomeda.tech", ar: "privacy@nomeda.tech" }, href: "mailto:privacy@nomeda.tech" }],
+  },
+];
+
+/**
+ * The data processing agreement between the merchant (controller) and NomedaCo
+ * (processor).
+ *
+ * Published rather than kept as an internal document because Shopify's
+ * protected customer data rules require a processor to have an agreement
+ * actually in place with each merchant — an agreement nobody can read is not
+ * one. It takes effect on install, and section 1 of the Terms is what makes
+ * that binding.
+ */
+export const dpaSections: LegalSection[] = [
+  {
+    heading: { en: "1. Parties and effect", ar: "1. الأطراف والسريان" },
+    paragraphs: [
+      {
+        en: "This Data Processing Agreement is between you, the merchant, as the data controller, and NomedaCo as the data processor. It takes effect when you install Whano on your Shopify store and forms part of the Terms of Service. It is the agreement Shopify's protected customer data requirements expect a processor to have in place with each merchant.",
+        ar: "اتفاقية معالجة البيانات هذه مبرمة بينك، التاجر، بصفتك المتحكم في البيانات، وبين NomedaCo بصفتها معالج البيانات. تسري الاتفاقية عند تثبيت Whano على متجر Shopify الخاص بك وتُعد جزءًا من شروط الخدمة، وهي الاتفاقية التي تتطلبها قواعد Shopify لحماية بيانات العملاء بين المعالج وكل تاجر.",
+      },
+    ],
+  },
+  {
+    heading: { en: "2. Subject matter and purpose", ar: "2. موضوع المعالجة والغرض منها" },
+    paragraphs: [
+      {
+        en: "NomedaCo processes personal data of your customers solely to provide Whano: order confirmation and cancellation over WhatsApp, shipping notifications, delivery ratings, order modification, and support ticketing. We do not process it for our own purposes, and we do not sell it.",
+        ar: "تعالج NomedaCo البيانات الشخصية لعملائك لغرض تقديم خدمة Whano فقط: تأكيد الطلبات وإلغاؤها عبر واتساب، وإشعارات الشحن، وتقييمات التوصيل، وتعديل الطلبات، وتذاكر الدعم. ولا نعالجها لأغراضنا الخاصة، ولا نبيعها.",
+      },
+    ],
+  },
+  {
+    heading: { en: "3. Data processed", ar: "3. البيانات التي تتم معالجتها" },
+    bullets: [
+      { en: "Customer name", ar: "اسم العميل" },
+      { en: "Phone number", ar: "رقم الهاتف" },
+      { en: "Shipping address and city", ar: "عنوان الشحن والمدينة" },
+      { en: "Order contents, totals and status", ar: "محتويات الطلب وإجمالياته وحالته" },
+      { en: "WhatsApp message history", ar: "سجل رسائل واتساب" },
+      { en: "Delivery ratings and any comment left", ar: "تقييمات التوصيل وأي تعليق مرفق" },
+    ],
+  },
+  {
+    heading: { en: "4. Duration", ar: "4. مدة المعالجة" },
+    paragraphs: [
+      {
+        en: "For as long as Whano is installed, plus the retention periods set out in our Privacy Policy. All merchant data is deleted 48 hours after uninstall, triggered by Shopify's shop/redact webhook.",
+        ar: "طوال مدة تثبيت Whano، بالإضافة إلى فترات الاحتفاظ الموضحة في سياسة الخصوصية. وتُحذف جميع بيانات التاجر بعد 48 ساعة من إلغاء التثبيت، استجابةً لإشعار shop/redact من Shopify.",
+      },
+    ],
+  },
+  {
+    heading: { en: "5. Our obligations as processor", ar: "5. التزاماتنا بصفتنا معالجًا" },
+    bullets: [
+      {
+        en: "Process personal data only on your documented instructions — installing and configuring the app is that instruction.",
+        ar: "معالجة البيانات الشخصية وفق تعليماتك الموثقة فقط — ويُعد تثبيت التطبيق وإعداده بمثابة تلك التعليمات.",
+      },
+      {
+        en: "Keep it confidential, and require the same of anyone with access.",
+        ar: "الحفاظ على سريتها، وإلزام كل من يملك حق الوصول إليها بالأمر نفسه.",
+      },
+      {
+        en: "Apply the security measures in section 7.",
+        ar: "تطبيق التدابير الأمنية الواردة في البند 7.",
+      },
+      {
+        en: "Engage sub-processors only under equivalent terms, and tell you before adding a new one.",
+        ar: "الاستعانة بمعالجين فرعيين بشروط مكافئة فقط، وإبلاغك قبل إضافة أي معالج جديد.",
+      },
+      {
+        en: "Assist you in answering shoppers' access and deletion requests — automated through Shopify's customers/data_request and customers/redact webhooks, and acted on immediately.",
+        ar: "مساعدتك في الرد على طلبات العملاء بالاطلاع على بياناتهم أو حذفها — وهي مؤتمتة عبر إشعارَي customers/data_request و customers/redact من Shopify، ويتم تنفيذها فورًا.",
+      },
+      {
+        en: "Report a personal data breach to you within 72 hours of confirming it.",
+        ar: "إبلاغك بأي اختراق للبيانات الشخصية خلال 72 ساعة من تأكيده.",
+      },
+      {
+        en: "Delete personal data on request and on uninstall, except where retention is legally required — in which case the data is severed from the identifiable person rather than kept linked.",
+        ar: "حذف البيانات الشخصية عند الطلب وعند إلغاء التثبيت، إلا حيث يوجب القانون الاحتفاظ بها — وعندها تُفصل البيانات عن الشخص الممكن تحديده بدلًا من إبقائها مرتبطة به.",
+      },
+      {
+        en: "Make available what you need to demonstrate compliance.",
+        ar: "إتاحة ما تحتاجه لإثبات الامتثال.",
+      },
+    ],
+  },
+  {
+    heading: { en: "6. Sub-processors", ar: "6. المعالجون الفرعيون" },
+    bullets: [
+      {
+        en: "Meta Platforms (WhatsApp) — message delivery: phone number and message content.",
+        ar: "Meta Platforms (واتساب) — تسليم الرسائل: رقم الهاتف ومحتوى الرسالة.",
+      },
+      {
+        en: "Shopify — source of order data and order write-back: customer and order data.",
+        ar: "Shopify — مصدر بيانات الطلبات وكتابة التعديلات عليها: بيانات العملاء والطلبات.",
+      },
+      {
+        en: "Bosta, only if you connect it — shipment creation and tracking: recipient name, phone and address.",
+        ar: "Bosta، فقط إذا قمت بربطها — إنشاء الشحنات وتتبعها: اسم المستلم وهاتفه وعنوانه.",
+      },
+      {
+        en: "AI model provider — composing replies: message text and order context. Not used to train third-party models.",
+        ar: "مزود نموذج الذكاء الاصطناعي — صياغة الردود: نص الرسالة وسياق الطلب. ولا تُستخدم لتدريب نماذج الأطراف الثالثة.",
+      },
+      {
+        en: "Resend — merchant email notifications: merchant email address only.",
+        ar: "Resend — إشعارات البريد الإلكتروني للتاجر: عنوان بريد التاجر فقط.",
+      },
+      {
+        en: "Railway — hosting and database: all of the above, at rest.",
+        ar: "Railway — الاستضافة وقاعدة البيانات: كل ما سبق، أثناء التخزين.",
+      },
+    ],
+  },
+  {
+    heading: { en: "7. Security measures", ar: "7. التدابير الأمنية" },
+    bullets: [
+      {
+        en: "Encryption in transit, and encryption of stored credentials at rest with AES-256-GCM.",
+        ar: "التشفير أثناء النقل، وتشفير بيانات الاعتماد المخزّنة أثناء التخزين باستخدام AES-256-GCM.",
+      },
+      {
+        en: "Encrypted backups, and separated test and production data.",
+        ar: "نسخ احتياطية مشفّرة، وفصل بيانات الاختبار عن بيانات الإنتاج.",
+      },
+      {
+        en: "Access to production personal data is limited, and every read of it is logged.",
+        ar: "الوصول إلى البيانات الشخصية في بيئة الإنتاج محدود، وكل اطلاع عليها يُسجَّل.",
+      },
+      {
+        en: "Personal data is automatically redacted from application logs.",
+        ar: "تُحجب البيانات الشخصية تلقائيًا من سجلات التطبيق.",
+      },
+      {
+        en: "Strong credential requirements for staff accounts, a documented incident response process, and enforced retention limits.",
+        ar: "اشتراطات قوية لبيانات اعتماد حسابات الموظفين، وإجراء موثق للاستجابة للحوادث، وحدود احتفاظ مُطبَّقة فعليًا.",
+      },
+    ],
+  },
+  {
+    heading: { en: "8. International transfers", ar: "8. عمليات النقل الدولية" },
+    paragraphs: [
+      {
+        en: "Sub-processors may process data outside your country. Transfers rely on the sub-processor's own standard contractual clauses or equivalent safeguards.",
+        ar: "قد يعالج المعالجون الفرعيون البيانات خارج بلدك. وتعتمد عمليات النقل على البنود التعاقدية القياسية الخاصة بالمعالج الفرعي أو ضمانات مكافئة لها.",
+      },
+    ],
+  },
+  {
+    heading: { en: "9. Your obligations as controller", ar: "9. التزاماتك بصفتك المتحكم" },
+    paragraphs: [
+      {
+        en: "You are the controller. You are responsible for having a lawful basis for the messages Whano sends on your behalf, for your own privacy notice to your customers, and for honouring shoppers' rights — which Whano supports as described above.",
+        ar: "أنت المتحكم في البيانات. وأنت المسؤول عن وجود أساس قانوني للرسائل التي يرسلها Whano نيابة عنك، وعن إشعار الخصوصية الخاص بك تجاه عملائك، وعن احترام حقوق المتسوقين — وهو ما يدعمه Whano على النحو الموضح أعلاه.",
+      },
+    ],
+  },
+  {
+    heading: { en: "10. Contact", ar: "10. التواصل معنا" },
+    paragraphs: [
+      {
+        en: "For questions about this agreement or to request our compliance documentation, contact us at",
+        ar: "للاستفسار عن هذه الاتفاقية أو لطلب مستندات الامتثال الخاصة بنا، تواصل معنا عبر",
       },
     ],
     links: [{ label: { en: "privacy@nomeda.tech", ar: "privacy@nomeda.tech" }, href: "mailto:privacy@nomeda.tech" }],
