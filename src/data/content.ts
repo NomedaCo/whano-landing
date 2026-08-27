@@ -67,6 +67,125 @@ export const site = {
     without: { en: "Without Whano", ar: "من غير Whano" },
     with: { en: "With Whano", ar: "مع Whano" },
   },
+  operations: {
+    eyebrow: { en: "After checkout", ar: "بعد الدفع" },
+    title: {
+      en: "Payment is done. The order still needs follow-up.",
+      ar: "الطلب اتدفع. ولسه محتاج متابعة.",
+    },
+    body: {
+      en: "Whano handles the repeatable WhatsApp work from the first confirmation to the delivery follow-up.",
+      ar: "Whano بيتولى رسائل واتساب المتكررة من أول تأكيد الطلب لحد متابعة التوصيل.",
+    },
+    problem: {
+      label: { en: "Without Whano", ar: "من غير Whano" },
+      title: { en: "Every order adds manual work.", ar: "كل طلب بيضيف شغل يدوي." },
+      items: [
+        {
+          title: { en: "New order", ar: "طلب جديد" },
+          body: {
+            en: "You open WhatsApp, check Shopify, and send the confirmation yourself.",
+            ar: "تفتح واتساب، تراجع Shopify، وتبعت التأكيد بنفسك.",
+          },
+        },
+        {
+          title: { en: "Order change", ar: "تعديل الطلب" },
+          body: {
+            en: "You go back to the order when a customer wants to add or change something.",
+            ar: "ترجع للطلب لما العميل يطلب إضافة أو تعديل.",
+          },
+        },
+        {
+          title: { en: "After delivery", ar: "بعد التوصيل" },
+          body: {
+            en: "Tracking and review messages depend on someone remembering to send them.",
+            ar: "تحديث الشحن وطلب التقييم معتمدين على إن حد يفتكر يبعتهم.",
+          },
+        },
+      ],
+    },
+    solution: {
+      label: { en: "With Whano", ar: "مع Whano" },
+      title: { en: "Each step follows the order.", ar: "كل خطوة بتمشي مع الطلب." },
+      items: [
+        {
+          title: { en: "Confirmation", ar: "التأكيد" },
+          body: {
+            en: "Whano sends the order details with Confirm, Cancel, or Edit buttons.",
+            ar: "Whano بيبعت تفاصيل الطلب ومعاها أزرار التأكيد أو الإلغاء أو التعديل.",
+          },
+        },
+        {
+          title: { en: "Customer reply", ar: "رد العميل" },
+          body: {
+            en: "The customer replies, and Shopify stays current before fulfillment.",
+            ar: "العميل بيرد، وShopify بيفضل محدث قبل التجهيز.",
+          },
+        },
+        {
+          title: { en: "Follow-up", ar: "المتابعة" },
+          body: {
+            en: "Tracking, ratings, and support follow the order automatically.",
+            ar: "تحديث الشحن والتقييم والدعم بيمشوا مع حالة الطلب تلقائي.",
+          },
+        },
+      ],
+    },
+    flow: {
+      eyebrow: { en: "What Whano actually does", ar: "Whano بيعمل إيه بالضبط" },
+      title: { en: "One order. Four clear handoffs.", ar: "طلب واحد. أربع خطوات واضحة." },
+      steps: [
+        {
+          number: "01",
+          trigger: { en: "New order in Shopify", ar: "طلب جديد على Shopify" },
+          title: { en: "Send the order details", ar: "يبعت تفاصيل الطلب" },
+          body: {
+            en: "Order number, products, total, shipping details, and Confirm / Cancel / Edit buttons.",
+            ar: "رقم الطلب، المنتجات، الإجمالي، تفاصيل الشحن، وأزرار التأكيد أو الإلغاء أو التعديل.",
+          },
+          result: { en: "The customer knows what to do next.", ar: "العميل عارف يعمل إيه بعد كده." },
+        },
+        {
+          number: "02",
+          trigger: { en: "Customer replies", ar: "العميل بيرد" },
+          title: { en: "Handle the reply", ar: "يتعامل مع الرد" },
+          body: {
+            en: "A button tap or a plain-language message can confirm, cancel, add an item, or change quantity before fulfillment.",
+            ar: "ضغطة زرار أو رسالة عادية تقدر تأكد أو تلغي أو تضيف منتج أو تغير الكمية قبل التجهيز.",
+          },
+          result: { en: "The Shopify order stays current.", ar: "طلب Shopify بيفضل محدث." },
+        },
+        {
+          number: "03",
+          trigger: { en: "Fulfillment in Shopify", ar: "تجهيز الطلب على Shopify" },
+          title: { en: "Send tracking", ar: "يبعت التتبع" },
+          body: {
+            en: "When tracking is added in Shopify, Whano sends the tracking number and estimated arrival on WhatsApp.",
+            ar: "لما تضيف رقم التتبع على Shopify، Whano بيبعته مع موعد الوصول المتوقع على واتساب.",
+          },
+          result: { en: "Fewer 'where is my order?' messages.", ar: "رسائل أقل من نوع: طلبي وصل فين؟" },
+        },
+        {
+          number: "04",
+          trigger: { en: "After delivery", ar: "بعد التوصيل" },
+          title: { en: "Ask for feedback", ar: "يطلب التقييم" },
+          body: {
+            en: "Whano asks for a rating. If the experience is bad, it opens the support and return path.",
+            ar: "Whano بيطلب التقييم. ولو التجربة مش كويسة، بيفتح طريق الدعم والاستبدال أو الاسترجاع.",
+          },
+          result: { en: "Your team sees the problem while it can still be fixed.", ar: "فريقك بيشوف المشكلة وهي لسه قابلة للحل." },
+        },
+      ],
+    },
+    controls: {
+      label: { en: "What you still control", ar: "إنت لسه المتحكم في إيه" },
+      items: [
+        { en: "Shopify holds the order data", ar: "Shopify هو مصدر بيانات الطلب" },
+        { en: "No phone linking or personal-number risk", ar: "من غير ربط أجهزة أو مخاطرة برقمك الشخصي" },
+        { en: "You take over when support needs a human", ar: "إنت بتستلم لما الدعم يحتاج شخص حقيقي" },
+      ],
+    },
+  },
   flow: {
     eyebrow: { en: "One order, end to end", ar: "طلب واحد من أوله لآخره" },
     title: { en: "The whole handoff stays in one thread.", ar: "كل حاجة بتفضل في نفس المحادثة." },

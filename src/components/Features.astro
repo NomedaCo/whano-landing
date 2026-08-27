@@ -1,104 +1,156 @@
 ---
-import { features, orderFlow, site } from "../data/content";
+import { site } from "../data/content";
+
+const { operations } = site;
 ---
 
-<section id="features" class="section">
+<section id="flow" class="section operations-section">
+  <span id="features" class="section-anchor" aria-hidden="true"></span>
   <div class="site-frame">
-    <div class="section-heading reveal">
+    <div class="section-heading operations-heading reveal">
       <div>
         <p class="eyebrow">
-          <span data-copy="en">{site.problem.eyebrow.en}</span>
-          <span data-copy="ar" lang="ar">{site.problem.eyebrow.ar}</span>
+          <span data-copy="en">{operations.eyebrow.en}</span>
+          <span data-copy="ar" lang="ar">{operations.eyebrow.ar}</span>
         </p>
       </div>
       <div>
         <h2 class="section-title">
-          <span data-copy="en">{site.problem.title.en}</span>
-          <span data-copy="ar" lang="ar">{site.problem.title.ar}</span>
+          <span data-copy="en">{operations.title.en}</span>
+          <span data-copy="ar" lang="ar">{operations.title.ar}</span>
         </h2>
+        <p class="section-copy">
+          <span data-copy="en">{operations.body.en}</span>
+          <span data-copy="ar" lang="ar">{operations.body.ar}</span>
+        </p>
       </div>
     </div>
 
-    <div class="problem-compare reveal">
-      <div class="problem-column">
-        <span class="problem-column__label">
-          <span data-copy="en">{site.problem.without.en}</span>
-          <span data-copy="ar" lang="ar">{site.problem.without.ar}</span>
-        </span>
-        <ul class="problem-list">
-          <li>
-            <span data-copy="en">New orders sit unread until you check WhatsApp</span>
-            <span data-copy="ar" lang="ar">الطلبات الجديدة مستنية لحد ما تفتح واتساب</span>
-          </li>
-          <li>
-            <span data-copy="en">Customers ask the same questions you already answered</span>
-            <span data-copy="ar" lang="ar">العملاء بيسألوا نفس الأسئلة اللي جاوبت عليها قبل كده</span>
-          </li>
-          <li>
-            <span data-copy="en">You forget to ask for a review after delivery</span>
-            <span data-copy="ar" lang="ar">تنسى تطلب تقييم بعد ما يوصّل</span>
-          </li>
-        </ul>
-      </div>
-      <div class="problem-column problem-column--good">
-        <span class="problem-column__label">
-          <span data-copy="en">{site.problem.with.en}</span>
-          <span data-copy="ar" lang="ar">{site.problem.with.ar}</span>
-        </span>
-        <ul class="problem-list">
-          <li>
-            <span data-copy="en">Every new order gets a WhatsApp confirmation instantly</span>
-            <span data-copy="ar" lang="ar">كل طلب جديد بياخد تأكيد واتساب فورًا</span>
-          </li>
-          <li>
-            <span data-copy="en">The customer sees order details without asking you</span>
-            <span data-copy="ar" lang="ar">العميل بيشوف تفاصيل الطلب من غير ما يسألك</span>
-          </li>
-          <li>
-            <span data-copy="en">Shipping updates and review requests go out automatically</span>
-            <span data-copy="ar" lang="ar">تحديثات الشحن وطلب التقييم بتتبعت تلقائي</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="flow-grid reveal">
-      {orderFlow.map((step) => (
-        <div class="flow-item">
-          <span class="flow-number">{step.number}</span>
-          <h3 class="flow-title">
-            <span data-copy="en">{step.title.en}</span>
-            <span data-copy="ar" lang="ar">{step.title.ar}</span>
-          </h3>
+    <div class="operations-compare reveal">
+      <article class="operations-panel operations-panel--problem">
+        <div class="operations-panel__topline">
+          <span class="operations-panel__marker" aria-hidden="true">01</span>
+          <span class="operations-panel__label">
+            <span data-copy="en">{operations.problem.label.en}</span>
+            <span data-copy="ar" lang="ar">{operations.problem.label.ar}</span>
+          </span>
         </div>
-      ))}
+        <h3 class="operations-panel__title">
+          <span data-copy="en">{operations.problem.title.en}</span>
+          <span data-copy="ar" lang="ar">{operations.problem.title.ar}</span>
+        </h3>
+        <ul class="operations-list">
+          {operations.problem.items.map((item) => (
+            <li>
+              <span class="operations-list__icon" aria-hidden="true">-</span>
+              <span>
+                <strong>
+                  <span data-copy="en">{item.title.en}</span>
+                  <span data-copy="ar" lang="ar">{item.title.ar}</span>
+                </strong>
+                <span class="operations-list__body">
+                  <span data-copy="en">{item.body.en}</span>
+                  <span data-copy="ar" lang="ar">{item.body.ar}</span>
+                </span>
+              </span>
+            </li>
+          ))}
+        </ul>
+      </article>
+
+      <div class="operations-compare__connector" aria-hidden="true">
+        <span>→</span>
+      </div>
+
+      <article class="operations-panel operations-panel--solution">
+        <div class="operations-panel__topline">
+          <span class="operations-panel__marker" aria-hidden="true">02</span>
+          <span class="operations-panel__label">
+            <span data-copy="en">{operations.solution.label.en}</span>
+            <span data-copy="ar" lang="ar">{operations.solution.label.ar}</span>
+          </span>
+        </div>
+        <h3 class="operations-panel__title">
+          <span data-copy="en">{operations.solution.title.en}</span>
+          <span data-copy="ar" lang="ar">{operations.solution.title.ar}</span>
+        </h3>
+        <ul class="operations-list">
+          {operations.solution.items.map((item) => (
+            <li>
+              <span class="operations-list__icon" aria-hidden="true">+</span>
+              <span>
+                <strong>
+                  <span data-copy="en">{item.title.en}</span>
+                  <span data-copy="ar" lang="ar">{item.title.ar}</span>
+                </strong>
+                <span class="operations-list__body">
+                  <span data-copy="en">{item.body.en}</span>
+                  <span data-copy="ar" lang="ar">{item.body.ar}</span>
+                </span>
+              </span>
+            </li>
+          ))}
+        </ul>
+      </article>
     </div>
 
-    <div class="feature-list">
-      {features.slice(0, 2).map((feature) => (
-        <article class="feature-row reveal">
-          <span class="feature-number">{feature.number}</span>
-          <div>
-            <h3 class="feature-title">
-              <span data-copy="en">{feature.title.en}</span>
-              <span data-copy="ar" lang="ar">{feature.title.ar}</span>
-            </h3>
-            <p class="feature-body">
-              <span data-copy="en">{feature.body.en}</span>
-              <span data-copy="ar" lang="ar">{feature.body.ar}</span>
-            </p>
-          </div>
-        </article>
-      ))}
+    <div class="operations-flow">
+      <div class="operations-flow__heading reveal">
+        <p class="eyebrow">
+          <span data-copy="en">{operations.flow.eyebrow.en}</span>
+          <span data-copy="ar" lang="ar">{operations.flow.eyebrow.ar}</span>
+        </p>
+        <h3>
+          <span data-copy="en">{operations.flow.title.en}</span>
+          <span data-copy="ar" lang="ar">{operations.flow.title.ar}</span>
+        </h3>
+      </div>
+
+      <ol class="operations-timeline">
+        {operations.flow.steps.map((step) => (
+          <li class="operations-step reveal">
+            <div class="operations-step__number">{step.number}</div>
+            <div class="operations-step__content">
+              <p class="operations-step__trigger">
+                <span data-copy="en">{step.trigger.en}</span>
+                <span data-copy="ar" lang="ar">{step.trigger.ar}</span>
+              </p>
+              <h4>
+                <span data-copy="en">{step.title.en}</span>
+                <span data-copy="ar" lang="ar">{step.title.ar}</span>
+              </h4>
+              <p class="operations-step__body">
+                <span data-copy="en">{step.body.en}</span>
+                <span data-copy="ar" lang="ar">{step.body.ar}</span>
+              </p>
+              <p class="operations-step__result">
+                <span class="operations-step__result-label">
+                  <span data-copy="en">Result</span>
+                  <span data-copy="ar" lang="ar">النتيجة</span>
+                </span>
+                <span data-copy="en">{step.result.en}</span>
+                <span data-copy="ar" lang="ar">{step.result.ar}</span>
+              </p>
+            </div>
+          </li>
+        ))}
+      </ol>
     </div>
 
-    <ul class="control-bullets reveal">
-      {site.control.points.map((point) => (
-        <li>
-          <span data-copy="en">{point.title.en}</span>
-          <span data-copy="ar" lang="ar">{point.title.ar}</span>
-        </li>
-      ))}
-    </ul>
+    <div class="operations-controls reveal">
+      <p class="operations-controls__label">
+        <span data-copy="en">{operations.controls.label.en}</span>
+        <span data-copy="ar" lang="ar">{operations.controls.label.ar}</span>
+      </p>
+      <ul>
+        {operations.controls.items.map((item) => (
+          <li>
+            <span aria-hidden="true">+</span>
+            <span data-copy="en">{item.en}</span>
+            <span data-copy="ar" lang="ar">{item.ar}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
   </div>
 </section>
