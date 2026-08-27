@@ -20,7 +20,7 @@ export const site = {
       { href: "#flow", label: { en: "How it works", ar: "إزاي بيشتغل" } },
       { href: "#features", label: { en: "Features", ar: "المميزات" } },
       { href: "#pricing", label: { en: "Pricing", ar: "الأسعار" } },
-      { href: "#faq", label: { en: "Questions", ar: "الأسئلة" } },
+      { href: "faq", label: { en: "Questions", ar: "الأسئلة" } },
       { href: "about", label: { en: "About", ar: "عنّا" } },
     ],
     language: { en: "العربية", ar: "English" },

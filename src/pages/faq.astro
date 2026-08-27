@@ -1,0 +1,49 @@
+---
+import Base from "../layouts/Base.astro";
+import { faqs, site } from "../data/content";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Base
+  title="Questions — Whano"
+  titleArabic="الأسئلة — Whano"
+  description="Frequently asked questions about Whano, WhatsApp automation for Shopify."
+  descriptionArabic="الأسئلة الشائعة عن Whano، أتمتة واتساب لـ Shopify."
+>
+  <Nav />
+  <main id="main-content" class="legal-page">
+    <div class="site-frame">
+      <header class="legal-header reveal">
+        <p class="eyebrow">
+          <span data-copy="en">Whano / questions</span>
+          <span data-copy="ar" lang="ar">Whano / أسئلة</span>
+        </p>
+        <h1 class="legal-title">
+          <span data-copy="en">{site.faq.title.en}</span>
+          <span data-copy="ar" lang="ar">{site.faq.title.ar}</span>
+        </h1>
+        <p class="legal-meta">
+          <span data-copy="en">{site.faq.body.en}</span>
+          <span data-copy="ar" lang="ar">{site.faq.body.ar}</span>
+        </p>
+      </header>
+
+      <div class="faq-list reveal" style="max-width: 740px;">
+        {faqs.map((faq) => (
+          <details class="faq-item" open>
+            <summary class="faq-summary">
+              <span data-copy="en">{faq.question.en}</span>
+              <span data-copy="ar" lang="ar">{faq.question.ar}</span>
+            </summary>
+            <p class="faq-answer">
+              <span data-copy="en">{faq.answer.en}</span>
+              <span data-copy="ar" lang="ar">{faq.answer.ar}</span>
+            </p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Base>

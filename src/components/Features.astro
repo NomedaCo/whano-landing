@@ -1,5 +1,5 @@
 ---
-import { features, site } from "../data/content";
+import { features, orderFlow, site } from "../data/content";
 ---
 
 <section id="features" class="section">
@@ -7,24 +7,83 @@ import { features, site } from "../data/content";
     <div class="section-heading reveal">
       <div>
         <p class="eyebrow">
-          <span data-copy="en">{site.features.eyebrow.en}</span>
-          <span data-copy="ar" lang="ar">{site.features.eyebrow.ar}</span>
+          <span data-copy="en">{site.problem.eyebrow.en}</span>
+          <span data-copy="ar" lang="ar">{site.problem.eyebrow.ar}</span>
         </p>
       </div>
       <div>
         <h2 class="section-title">
-          <span data-copy="en">{site.features.title.en}</span>
-          <span data-copy="ar" lang="ar">{site.features.title.ar}</span>
+          <span data-copy="en">{site.problem.title.en}</span>
+          <span data-copy="ar" lang="ar">{site.problem.title.ar}</span>
         </h2>
         <p class="section-copy">
-          <span data-copy="en">{site.features.body.en}</span>
-          <span data-copy="ar" lang="ar">{site.features.body.ar}</span>
+          <span data-copy="en">{site.problem.body.en}</span>
+          <span data-copy="ar" lang="ar">{site.problem.body.ar}</span>
         </p>
       </div>
     </div>
 
+    <div class="problem-compare reveal">
+      <div class="problem-column">
+        <span class="problem-column__label">
+          <span data-copy="en">{site.problem.without.en}</span>
+          <span data-copy="ar" lang="ar">{site.problem.without.ar}</span>
+        </span>
+        <ul class="problem-list">
+          <li>
+            <span data-copy="en">New orders wait for a reply</span>
+            <span data-copy="ar" lang="ar">الطلبات الجديدة مستنية رد</span>
+          </li>
+          <li>
+            <span data-copy="en">The same questions arrive again</span>
+            <span data-copy="ar" lang="ar">نفس الأسئلة بتتكرر كل يوم</span>
+          </li>
+          <li>
+            <span data-copy="en">Follow-up depends on your memory</span>
+            <span data-copy="ar" lang="ar">المتابعة معتمدة على إنك تفتكر</span>
+          </li>
+        </ul>
+      </div>
+      <div class="problem-column problem-column--good">
+        <span class="problem-column__label">
+          <span data-copy="en">{site.problem.with.en}</span>
+          <span data-copy="ar" lang="ar">{site.problem.with.ar}</span>
+        </span>
+        <ul class="problem-list">
+          <li>
+            <span data-copy="en">Each order has a next step</span>
+            <span data-copy="ar" lang="ar">كل طلب ليه خطوة واضحة بعدها</span>
+          </li>
+          <li>
+            <span data-copy="en">The customer can reply in context</span>
+            <span data-copy="ar" lang="ar">العميل بيرد في نفس المحادثة</span>
+          </li>
+          <li>
+            <span data-copy="en">You step in when it matters</span>
+            <span data-copy="ar" lang="ar">إنت بتتدخل وقت ما تحتاج</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="flow-grid reveal">
+      {orderFlow.map((step) => (
+        <div class="flow-item">
+          <span class="flow-number">{step.number}</span>
+          <h3 class="flow-title">
+            <span data-copy="en">{step.title.en}</span>
+            <span data-copy="ar" lang="ar">{step.title.ar}</span>
+          </h3>
+          <p class="flow-body">
+            <span data-copy="en">{step.body.en}</span>
+            <span data-copy="ar" lang="ar">{step.body.ar}</span>
+          </p>
+        </div>
+      ))}
+    </div>
+
     <div class="feature-list">
-      {features.map((feature) => (
+      {features.slice(0, 2).map((feature) => (
         <article class="feature-row reveal">
           <span class="feature-number">{feature.number}</span>
           <div>
@@ -48,6 +107,21 @@ import { features, site } from "../data/content";
             </span>
           </div>
         </article>
+      ))}
+    </div>
+
+    <div class="control-points reveal">
+      {site.control.points.map((point) => (
+        <div class="control-point">
+          <h3>
+            <span data-copy="en">{point.title.en}</span>
+            <span data-copy="ar" lang="ar">{point.title.ar}</span>
+          </h3>
+          <p>
+            <span data-copy="en">{point.body.en}</span>
+            <span data-copy="ar" lang="ar">{point.body.ar}</span>
+          </p>
+        </div>
       ))}
     </div>
   </div>

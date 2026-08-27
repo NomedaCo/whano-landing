@@ -2600,8 +2600,17 @@ html[data-language="ar"] .button-light svg:not(.shopify-btn-icon) {
   }
 
   .pricing-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
+    grid-template-columns: repeat(5, minmax(200px, 1fr));
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 8px;
+  }
+
+  .pricing-card {
+    scroll-snap-align: start;
+    min-width: 200px;
   }
 
   .pricing-card--enterprise {
