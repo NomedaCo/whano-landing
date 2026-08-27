@@ -64,8 +64,8 @@ export const site = {
       en: "The work continues after payment: confirm the order, answer follow-up questions, update the customer, and remember to ask how it went. Whano keeps that conversation moving without turning your phone into a second storefront.",
       ar: "الشغل بيكمّل بعد الدفع: أكّد الطلب، رد على الأسئلة، طمّن العميل على الشحنة، وافتكر تطلب تقييمه. Whano بيخلّي المحادثة ماشية من غير ما موبايلك يتحوّل لمتجر تاني.",
     },
-    without: { en: "Manual follow-up", ar: "المتابعة اليدوية" },
-    with: { en: "A clear order thread", ar: "محادثة واضحة لكل طلب" },
+    without: { en: "Without Whano", ar: "من غير Whano" },
+    with: { en: "With Whano", ar: "مع Whano" },
   },
   flow: {
     eyebrow: { en: "One order, end to end", ar: "طلب واحد من أوله لآخره" },
