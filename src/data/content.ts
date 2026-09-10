@@ -12,8 +12,8 @@ export interface ChatMessage {
 export const site = {
   contactEmail: "contact@nomeda.tech",
   accessUrl: {
-    en: "https://admin.shopify.com/?organization_id=228117107&no_redirect=true&redirect=/oauth/redirect_from_developer_dashboard?client_id%3D8b2f666fa314f81b17097c93d5c18afd",
-    ar: "https://admin.shopify.com/?organization_id=228117107&no_redirect=true&redirect=/oauth/redirect_from_developer_dashboard?client_id%3D8b2f666fa314f81b17097c93d5c18afd",
+    en: "https://apps.shopify.com/whano",
+    ar: "https://apps.shopify.com/whano",
   },
   nav: {
     links: [
