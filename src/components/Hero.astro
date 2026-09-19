@@ -1,5 +1,10 @@
 ---
 import { site } from "../data/content";
+import { workflows } from "../data/workflows";
+import CyclePhone from "./CyclePhone.astro";
+import PhoneMock from "./PhoneMock.astro";
+
+const total = String(workflows.length).padStart(2, "0");
 ---
 
 <section id="top" class="hero">
@@ -45,9 +50,7 @@ import { site } from "../data/content";
           </span>
         </div>
 
-        <!-- Clean Inline Trust Items: No BG, No Borders -->
         <div class="hero-trust-bar">
-          <!-- 1: Instant Setup / Zap -->
           <div class="hero-trust-item">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="hero-trust-icon" aria-hidden="true">
               <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
@@ -58,7 +61,6 @@ import { site } from "../data/content";
             </span>
           </div>
 
-          <!-- 2: 100 Free Points / Gift -->
           <div class="hero-trust-item">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="hero-trust-icon" aria-hidden="true">
               <polyline points="20 12 20 22 4 22 4 12"></polyline>
@@ -73,7 +75,6 @@ import { site } from "../data/content";
             </span>
           </div>
 
-          <!-- 3: Shopify Connected / Store Bag -->
           <div class="hero-trust-item">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="hero-trust-icon" aria-hidden="true">
               <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
@@ -87,6 +88,553 @@ import { site } from "../data/content";
           </div>
         </div>
       </div>
+
+      <div class="hero-cycle reveal">
+        <CyclePhone />
+      </div>
     </div>
   </div>
 </section>
+
+<section id="demo" class="demo-band">
+  <div class="site-frame">
+    <div class="section-heading reveal">
+      <div>
+        <p class="eyebrow">
+          <span data-copy="en">Real conversations</span>
+          <span data-copy="ar" lang="ar">محادثات حقيقية</span>
+        </p>
+      </div>
+      <div>
+        <h2 class="section-title">
+          <span data-copy="en">See exact production messages in action.</span>
+          <span data-copy="ar" lang="ar">شاهد الرسائل الحقيقية وهي بتتبعت لعملاءك.</span>
+        </h2>
+        <p class="section-copy">
+          <span data-copy="en">Verbatim Arabic messages from Whano's live app. Swipe the middle phone, or tap any quick-reply button inside it to test live automated replies.</span>
+          <span data-copy="ar" lang="ar">رسائل حقيقية بالعامية المصرية من تطبيق Whano. اسحب الموبايل اللي في النص، أو اضغط على أي زرار جوة الشات لتجربة الردود التلقائية لحظياً.</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="hero-demo reveal">
+      <div class="hero-demo__deck">
+        <div class="hero-demo__item hero-demo__item--side" aria-hidden="true">
+          <PhoneMock streamId="wa-stream-prev" />
+          <p class="hero-demo__caption">
+            <span class="hero-demo__caption-num" id="wf-prev-num">06</span>
+            <span id="wf-prev-label-en" data-copy="en">{workflows[workflows.length - 1].tabLabel.en}</span>
+            <span id="wf-prev-label-ar" data-copy="ar" lang="ar">{workflows[workflows.length - 1].tabLabel.ar}</span>
+          </p>
+        </div>
+
+        <div class="hero-demo__item hero-demo__item--active" id="wf-swipe-surface">
+          <PhoneMock
+            streamId="wa-messages-stream"
+            statusId="wa-header-status"
+            typingId="wa-typing-indicator"
+            replay
+          />
+
+          <button type="button" class="hero-demo__arrow hero-demo__arrow--prev" id="wf-prev-btn" aria-label="Previous conversation">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <button type="button" class="hero-demo__arrow hero-demo__arrow--next" id="wf-next-btn" aria-label="Next conversation">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="hero-demo__item hero-demo__item--side" aria-hidden="true">
+          <PhoneMock streamId="wa-stream-next" />
+          <p class="hero-demo__caption">
+            <span class="hero-demo__caption-num" id="wf-next-num">02</span>
+            <span id="wf-next-label-en" data-copy="en">{workflows[1].tabLabel.en}</span>
+            <span id="wf-next-label-ar" data-copy="ar" lang="ar">{workflows[1].tabLabel.ar}</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="hero-demo__dots" role="tablist" aria-label="Conversations">
+        {workflows.map((wf, idx) => (
+          <button
+            type="button"
+            class:list={["hero-demo__dot", idx === 0 && "is-active"]}
+            data-wf-dot={idx}
+            aria-label={`${wf.number} — ${wf.tabLabel.en}`}
+          ></button>
+        ))}
+      </div>
+
+      <div class="hero-demo__text">
+        <p class="hero-demo__label">
+          <span class="hero-demo__count"><span id="wf-scenario-num">01</span> / {total}</span>
+          <span class="hero-demo__title" id="wf-scenario-title">
+            <span id="wf-title-en" data-copy="en">{workflows[0].tabLabel.en}</span>
+            <span id="wf-title-ar" data-copy="ar" lang="ar">{workflows[0].tabLabel.ar}</span>
+          </span>
+        </p>
+        <p class="hero-demo__desc">
+          <span id="wf-desc-en" data-copy="en">{workflows[0].description.en}</span>
+          <span id="wf-desc-ar" data-copy="ar" lang="ar">{workflows[0].description.ar}</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { workflows } from "../data/workflows";
+
+  let activeIndex = 0;
+  let activeTimers: number[] = [];
+  let userInteracted = false;
+
+  const prevBtn = document.getElementById("wf-prev-btn");
+  const nextBtn = document.getElementById("wf-next-btn");
+  const replayBtn = document.getElementById("wf-replay-btn");
+  const swipeSurface = document.getElementById("wf-swipe-surface");
+
+  const activeStream = document.getElementById("wa-messages-stream");
+  const prevStream = document.getElementById("wa-stream-prev");
+  const nextStream = document.getElementById("wa-stream-next");
+
+  const scenarioNum = document.getElementById("wf-scenario-num");
+  const titleEn = document.getElementById("wf-title-en");
+  const titleAr = document.getElementById("wf-title-ar");
+  const descEn = document.getElementById("wf-desc-en");
+  const descAr = document.getElementById("wf-desc-ar");
+  const dots = document.querySelectorAll<HTMLButtonElement>("[data-wf-dot]");
+
+  const prevNum = document.getElementById("wf-prev-num");
+  const nextNum = document.getElementById("wf-next-num");
+  const prevLabelEn = document.getElementById("wf-prev-label-en");
+  const prevLabelAr = document.getElementById("wf-prev-label-ar");
+  const nextLabelEn = document.getElementById("wf-next-label-en");
+  const nextLabelAr = document.getElementById("wf-next-label-ar");
+
+  const typingIndicator = document.getElementById("wa-typing-indicator");
+  const headerStatus = document.getElementById("wa-header-status");
+
+  function clearTimers() {
+    activeTimers.forEach((t) => clearTimeout(t));
+    activeTimers = [];
+  }
+
+  function setHeaderTyping(isTyping: boolean) {
+    if (!headerStatus) return;
+    headerStatus.innerHTML = isTyping
+      ? `<span data-copy="en">typing...</span><span data-copy="ar" lang="ar">يكتب الآن...</span>`
+      : `<span data-copy="en">online</span><span data-copy="ar" lang="ar">متصل الآن</span>`;
+  }
+
+  function scrollStream(stream: HTMLElement, behavior: ScrollBehavior = "auto") {
+    const canvas = stream.closest(".wa-chat-canvas");
+    if (!canvas) return;
+    canvas.scrollTo({ top: canvas.scrollHeight, behavior });
+  }
+
+  function renderBubble(
+    msg: {
+      sender: "whano" | "customer";
+      text: string;
+      buttons?: string[];
+      success?: boolean;
+      badge?: string;
+    },
+    interactive = true
+  ): HTMLElement {
+    const row = document.createElement("div");
+    row.className = `wa-row ${msg.sender === "whano" ? "wa-row--in" : "wa-row--out"}`;
+
+    const bubble = document.createElement("div");
+    bubble.className = `wa-bubble ${msg.success ? "wa-bubble--success" : ""}`;
+
+    const text = document.createElement("div");
+    text.className = "wa-bubble__text";
+    text.setAttribute("dir", "rtl");
+    text.setAttribute("lang", "ar");
+    text.textContent = msg.text;
+
+    const meta = document.createElement("span");
+    meta.className = "wa-bubble__meta";
+    meta.textContent = msg.sender === "whano" ? "9:41" : "9:42";
+
+    if (msg.sender === "customer") {
+      const check = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      check.setAttribute("class", "wa-bubble__check");
+      check.setAttribute("viewBox", "0 0 16 11");
+      check.innerHTML = `
+        <path d="M11.07.66L5.4 7.09 2.74 4.43l-1.4 1.41L5.4 9.91l7.08-7.84z" fill="currentColor"/>
+        <path d="M7.07.66L1.4 7.09l1.41 1.41L7.07 3.5l.7.7L9.18.66z" fill="currentColor" opacity="0.6"/>
+      `;
+      meta.appendChild(check);
+    }
+
+    bubble.appendChild(text);
+    bubble.appendChild(meta);
+    row.appendChild(bubble);
+
+    if (msg.buttons && msg.buttons.length > 0) {
+      const btnGroup = document.createElement("div");
+      btnGroup.className = "wa-chip-group";
+      btnGroup.setAttribute("dir", "rtl");
+
+      msg.buttons.forEach((label) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "wa-chip-btn";
+        btn.innerHTML = `
+          <svg class="wa-chip-btn__icon" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M2.5 7h9M7.5 3l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>${label}</span>
+        `;
+
+        if (interactive) {
+          btn.addEventListener("click", () => handleButtonTap(label, btnGroup));
+        } else {
+          btn.disabled = true;
+          btn.tabIndex = -1;
+        }
+
+        btnGroup.appendChild(btn);
+      });
+
+      row.appendChild(btnGroup);
+    }
+
+    if (msg.badge) {
+      const badgeEl = document.createElement("div");
+      badgeEl.className = "wa-sync-pill";
+      badgeEl.setAttribute("dir", "rtl");
+      badgeEl.setAttribute("lang", "ar");
+      badgeEl.innerHTML = `
+        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M1 8a7 7 0 0113.5-2.5M15 8a7 7 0 01-13.5 2.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+          <path d="M14 2v4h-4M2 14v-4h4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>${msg.badge}</span>
+      `;
+      row.appendChild(badgeEl);
+    }
+
+    return row;
+  }
+
+  function handleButtonTap(buttonText: string, groupEl?: HTMLElement) {
+    userInteracted = true;
+    clearTimers();
+
+    if (groupEl) {
+      groupEl.querySelectorAll<HTMLButtonElement>("button").forEach((b) => {
+        b.disabled = true;
+        if (b.textContent?.includes(buttonText)) {
+          b.classList.add("is-selected");
+        } else {
+          b.classList.add("is-faded");
+        }
+      });
+    }
+
+    const userMsg = renderBubble({
+      sender: "customer",
+      text: buttonText,
+    });
+    activeStream?.appendChild(userMsg);
+    if (activeStream) scrollStream(activeStream, "smooth");
+
+    showTyping(450, () => {
+      let reply: { text: string; success?: boolean; buttons?: string[]; badge?: string } | null = null;
+
+      if (buttonText === "تأكيد الطلب") {
+        reply = { text: "تم تأكيد طلبك #1056!", success: true };
+      } else if (buttonText === "إلغاء الطلب") {
+        reply = {
+          text: "تم إلغاء طلبك #1056.\n\nممكن نعرف السبب؟",
+          buttons: ["السعر مرتفع", "غيرت رأيي", "سبب آخر"],
+        };
+      } else if (buttonText === "عايز أعدل") {
+        const editReq = renderBubble({
+          sender: "customer",
+          text: "عايز أزود واحد من نفس المنتج",
+        });
+        activeStream?.appendChild(editReq);
+        if (activeStream) scrollStream(activeStream, "smooth");
+
+        showTyping(650, () => {
+          const editConfirm = renderBubble({
+            sender: "whano",
+            text: "تم تعديل الطلب ✅\n\nThe Collection Snowboard: Hydrogen × 2\nالإجمالي الجديد: USD 1,200",
+            badge: "← متزامن مع Shopify وشركة الشحن",
+          });
+          activeStream?.appendChild(editConfirm);
+          if (activeStream) scrollStream(activeStream, "smooth");
+        });
+        return;
+      } else if (buttonText === "السعر مرتفع" || buttonText === "غيرت رأيي" || buttonText === "سبب آخر") {
+        reply = {
+          text: "شكراً لتوضيحك. تم إلغاء الطلب بالكامل ونتمنى نخدمك في المرة القادمة 🙏",
+        };
+      } else if (buttonText === "ممتاز" || buttonText === "جيد") {
+        reply = {
+          text: "شكراً لتقييمك! سعداء جداً بتجربتك معنا وبطلبك القادم 🎉",
+          success: true,
+        };
+      } else if (buttonText === "سيء") {
+        reply = {
+          text: "أنا أسف إن التجربة ما كانتش كويسة. إيه المشكلة اللي حصلت؟",
+          buttons: ["استبدال", "استرجاع", "مشكلة أخرى"],
+        };
+      } else if (buttonText === "استبدال" || buttonText === "استرجاع") {
+        reply = {
+          text: "تم فتح تذكرة الدعم #W-1005.\nاتواصل مع خدمة العملاء على الرقم ده:\n+20 1001580461\n• يمكن للعميل طلب استبدال المنتج خلال 14 يومًا من تاريخ استلامه.\n• عند طلب الاستبدال، يتم فتح تذكرة دعم تلقائيًا وإخطار التاجر.\n• قبول أو رفض طلب الاستبدال يخضع لسياسة المتجر وشروط المنتج.\n• يجب أن يكون المنتج في حالته الأصلية وبالتغليف الأصلي.\nبعد مرور 14 يومًا من تاريخ الاستلام، لا يمكن للعميل تقديم طلب استبدال من خلال Whano.\n• سيتواصل فريق خدمة العملاء مع العميل من رقم الدعم المسجل لدى المتجر.",
+          badge: "← تم فتح تذكرة الدعم #W-1005 وإخطار التاجر",
+        };
+      } else if (buttonText === "مشكلة أخرى") {
+        reply = {
+          text: "تم فتح تذكرة الدعم #W-1005.\nاتواصل مع خدمة العملاء على الرقم ده:\n+20 1001580461",
+          badge: "← تم فتح تذكرة الدعم #W-1005 وإخطار التاجر",
+        };
+      }
+
+      if (reply) {
+        const replyEl = renderBubble({ sender: "whano", ...reply });
+        activeStream?.appendChild(replyEl);
+        if (activeStream) scrollStream(activeStream, "smooth");
+      }
+    });
+  }
+
+  function showTyping(duration: number, callback: () => void) {
+    if (typingIndicator) {
+      typingIndicator.classList.add("is-visible");
+      setHeaderTyping(true);
+      if (activeStream) scrollStream(activeStream, "smooth");
+    }
+
+    const timer = window.setTimeout(() => {
+      if (typingIndicator) {
+        typingIndicator.classList.remove("is-visible");
+        setHeaderTyping(false);
+      }
+      callback();
+    }, duration);
+
+    activeTimers.push(timer);
+  }
+
+  function renderStatic(stream: HTMLElement, messages: typeof workflows[number]["messages"]) {
+    stream.innerHTML = "";
+    messages.forEach((msg) => stream.appendChild(renderBubble(msg, false)));
+    requestAnimationFrame(() => scrollStream(stream));
+  }
+
+  function playWorkflow(index: number) {
+    clearTimers();
+    if (!activeStream) return;
+
+    activeStream.innerHTML = "";
+    if (typingIndicator) typingIndicator.classList.remove("is-visible");
+    setHeaderTyping(false);
+
+    const wf = workflows[index];
+    if (!wf || !wf.messages) return;
+
+    userInteracted = false;
+    let delay = 200;
+
+    wf.messages.forEach((msg, msgIdx) => {
+      const isIncoming = msg.sender === "whano";
+
+      if (isIncoming && msgIdx > 0) {
+        const tTyping = window.setTimeout(() => {
+          if (userInteracted) return;
+          showTyping(550, () => {
+            if (userInteracted) return;
+            const el = renderBubble(msg);
+            activeStream.appendChild(el);
+            scrollStream(activeStream, "smooth");
+          });
+        }, delay);
+        activeTimers.push(tTyping);
+        delay += 1050;
+      } else {
+        const tMsg = window.setTimeout(() => {
+          if (userInteracted) return;
+          const el = renderBubble(msg);
+          activeStream.appendChild(el);
+          scrollStream(activeStream, "smooth");
+        }, delay);
+        activeTimers.push(tMsg);
+        delay += msg.buttons ? 950 : 750;
+      }
+    });
+  }
+
+  function selectWorkflow(index: number) {
+    if (index < 0) index = workflows.length - 1;
+    if (index >= workflows.length) index = 0;
+
+    activeIndex = index;
+    const wf = workflows[index];
+    const prevWf = workflows[(index - 1 + workflows.length) % workflows.length];
+    const nextWf = workflows[(index + 1) % workflows.length];
+
+    if (scenarioNum) scenarioNum.textContent = wf.number;
+    if (titleEn) titleEn.textContent = wf.tabLabel.en;
+    if (titleAr) titleAr.textContent = wf.tabLabel.ar;
+    if (descEn) descEn.textContent = wf.description.en;
+    if (descAr) descAr.textContent = wf.description.ar;
+
+    if (prevNum) prevNum.textContent = prevWf.number;
+    if (nextNum) nextNum.textContent = nextWf.number;
+    if (prevLabelEn) prevLabelEn.textContent = prevWf.tabLabel.en;
+    if (prevLabelAr) prevLabelAr.textContent = prevWf.tabLabel.ar;
+    if (nextLabelEn) nextLabelEn.textContent = nextWf.tabLabel.en;
+    if (nextLabelAr) nextLabelAr.textContent = nextWf.tabLabel.ar;
+
+    dots.forEach((dot, i) => {
+      dot.classList.toggle("is-active", i === index);
+    });
+
+    if (prevStream) renderStatic(prevStream, prevWf.messages);
+    if (nextStream) renderStatic(nextStream, nextWf.messages);
+
+    playWorkflow(index);
+  }
+
+  dots.forEach((dot) => {
+    dot.addEventListener("click", () => {
+      selectWorkflow(Number(dot.dataset.wfDot));
+    });
+  });
+
+  prevBtn?.addEventListener("click", () => selectWorkflow(activeIndex - 1));
+  nextBtn?.addEventListener("click", () => selectWorkflow(activeIndex + 1));
+
+  replayBtn?.addEventListener("click", () => {
+    replayBtn.classList.add("is-spinning");
+    setTimeout(() => replayBtn.classList.remove("is-spinning"), 500);
+    playWorkflow(activeIndex);
+  });
+
+  const surface = swipeSurface;
+
+  function resetSurface() {
+    if (!surface) return;
+    surface.style.transition = "";
+    surface.style.transform = "";
+  }
+
+  let startX = 0;
+  let startY = 0;
+  let tracking = false;
+  let horizontal = false;
+  let suppressClick = false;
+
+  surface?.addEventListener("pointerdown", (event) => {
+    if ((event.target as HTMLElement).closest(".hero-demo__arrow")) return;
+    if (event.pointerType === "mouse" && event.button !== 0) return;
+    tracking = true;
+    horizontal = false;
+    startX = event.clientX;
+    startY = event.clientY;
+  });
+
+  surface?.addEventListener("pointermove", (event) => {
+    if (!tracking || !surface) return;
+
+    const dx = event.clientX - startX;
+    const dy = event.clientY - startY;
+
+    if (!horizontal) {
+      if (Math.abs(dx) < 8 && Math.abs(dy) < 8) return;
+      if (Math.abs(dx) <= Math.abs(dy) * 1.2) {
+        tracking = false;
+        return;
+      }
+      horizontal = true;
+      surface.style.transition = "none";
+      surface.setPointerCapture(event.pointerId);
+    }
+
+    surface.style.transform = `translateX(${dx * 0.28}px)`;
+  });
+
+  function endDrag(event: PointerEvent) {
+    if (!tracking) return;
+    tracking = false;
+
+    if (!horizontal) return;
+    horizontal = false;
+
+    const dx = event.clientX - startX;
+    resetSurface();
+
+    suppressClick = true;
+    window.setTimeout(() => {
+      suppressClick = false;
+    }, 80);
+
+    const rtl = document.documentElement.dir === "rtl";
+    const advance = rtl ? dx : -dx;
+
+    if (advance > 60) {
+      selectWorkflow(activeIndex + 1);
+    } else if (advance < -60) {
+      selectWorkflow(activeIndex - 1);
+    }
+  }
+
+  surface?.addEventListener("pointerup", endDrag);
+  surface?.addEventListener("pointercancel", () => {
+    tracking = false;
+    horizontal = false;
+    resetSurface();
+  });
+
+  surface?.addEventListener(
+    "click",
+    (event) => {
+      if (!suppressClick) return;
+      event.preventDefault();
+      event.stopPropagation();
+    },
+    true
+  );
+
+  function setupAutoTrigger() {
+    const demo = document.querySelector(".hero-demo");
+    if (!demo || !("IntersectionObserver" in window)) return;
+
+    let hasStarted = false;
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasStarted) {
+            hasStarted = true;
+            obs.unobserve(demo);
+            selectWorkflow(0);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    obs.observe(demo);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => {
+      selectWorkflow(0);
+      setupAutoTrigger();
+    });
+  } else {
+    selectWorkflow(0);
+    setupAutoTrigger();
+  }
+</script>
