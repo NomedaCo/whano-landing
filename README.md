@@ -8,7 +8,7 @@ The page is intentionally editorial rather than a conventional SaaS template: a 
 
 - Astro 7 with static output
 - Custom CSS for the visual system and responsive layout
-- Self-hosted Satoshi and Inter fonts
+- Self-hosted Satoshi and Alexandria fonts (no third-party font host)
 - No React runtime and no animation or icon library
 - Deployed to Cloudflare Workers (`whano-landing`) on `whano.nomeda.tech`
 
