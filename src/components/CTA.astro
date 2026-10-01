@@ -15,6 +15,10 @@ import { site } from "../data/content";
             <span data-copy="en">{site.cta.body.en}</span>
             <span data-copy="ar" lang="ar">{site.cta.body.ar}</span>
           </p>
+          <a href={site.consoleUrl.en} data-console-link class="cta-band__login">
+            <span data-copy="en">{site.cta.login.en}</span>
+            <span data-copy="ar" lang="ar">{site.cta.login.ar}</span>
+          </a>
         </div>
         <div class="cta-band__action">
           <a href={site.accessUrl.en} data-access-link class="button-light">

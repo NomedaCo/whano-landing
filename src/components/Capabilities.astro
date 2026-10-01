@@ -1,0 +1,56 @@
+---
+import { features, site } from "../data/content";
+
+// The homepage shows the first six capabilities; the features page carries
+// the full list.
+const teaser = features.slice(0, 6);
+---
+
+<section class="section section--compact">
+  <div class="site-frame">
+    <div class="section-heading reveal">
+      <div>
+        <p class="eyebrow">
+          <span data-copy="en">{site.features.eyebrow.en}</span>
+          <span data-copy="ar" lang="ar">{site.features.eyebrow.ar}</span>
+        </p>
+      </div>
+      <div>
+        <h2 class="section-title">
+          <span data-copy="en">{site.features.title.en}</span>
+          <span data-copy="ar" lang="ar">{site.features.title.ar}</span>
+        </h2>
+        <p class="section-copy">
+          <span data-copy="en">{site.features.body.en}</span>
+          <span data-copy="ar" lang="ar">{site.features.body.ar}</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="capability-grid reveal">
+      {teaser.map((item) => (
+        <article class="capability-card">
+          <span class="capability-card__number">{item.number}</span>
+          <h3 class="capability-card__title">
+            <span data-copy="en">{item.title.en}</span>
+            <span data-copy="ar" lang="ar">{item.title.ar}</span>
+          </h3>
+          <p class="capability-card__body">
+            <span data-copy="en">{item.body.en}</span>
+            <span data-copy="ar" lang="ar">{item.body.ar}</span>
+          </p>
+        </article>
+      ))}
+    </div>
+
+    <p class="capabilities-more reveal">
+      <a href="/features" class="section-link">
+        <span data-copy="en">{site.features.all.en}</span>
+        <span data-copy="ar" lang="ar">{site.features.all.ar}</span>
+        <svg width="14" height="14" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+          <path d="M2.5 7.5h9M8 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
+    </p>
+  </div>
+</section>

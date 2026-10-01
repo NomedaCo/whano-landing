@@ -1,6 +1,10 @@
 /**
- * Interactive workflow conversations: exact production messages from Whano.
- * Arabic text is verbatim from the live app; do not paraphrase.
+ * Interactive workflow conversations.
+ *
+ * The message bubbles are the exact Arabic templates the live app sends, kept
+ * verbatim from production. The surrounding marketing copy (tabs, titles,
+ * descriptions, costs) is MSA, like the rest of the site; the bubbles show
+ * what a customer actually receives.
  */
 
 export interface WorkflowMessage {
@@ -41,15 +45,15 @@ export const workflows: Workflow[] = [
     tabLabel: { en: "Confirmation", ar: "تأكيد الطلب" },
     title: {
       en: "The customer confirms in one tap.",
-      ar: "العميل بيأكد في ضغطة واحدة.",
+      ar: "يؤكّد العميل في ضغطة واحدة.",
     },
     description: {
       en: "A new Shopify order automatically triggers an order confirmation on WhatsApp. The customer taps one button and the order is locked in.",
-      ar: "أي طلب جديد على Shopify بيشغل رسالة تأكيد فورية على واتساب. العميل بيضغط زرار واحد والطلب بيتأكد.",
+      ar: "أي طلب جديد على Shopify يُشغّل رسالة تأكيد فورية على واتساب. يضغط العميل زرًا واحدًا فيتأكد الطلب.",
     },
     shopifyAction: {
       en: "Order #1056 tagged as 'WhatsApp Confirmed'",
-      ar: "تحديث حالة الطلب #1056 على Shopify إلى 'مؤكد'",
+      ar: "وسم الطلب #1056 في Shopify بأنه مؤكد",
     },
     pointsCost: {
       en: "~1 Point per confirmation",
@@ -76,11 +80,11 @@ export const workflows: Workflow[] = [
     tabLabel: { en: "Cancellation", ar: "إلغاء الطلب" },
     title: {
       en: "Cancellation with a reason, not a dead end.",
-      ar: "إلغاء بسبب واضح، مش طريق مسدود.",
+      ar: "إلغاء بسبب واضح، لا طريق مسدود.",
     },
     description: {
       en: "If the customer wants to cancel before fulfillment, Whano captures the exact reason and updates Shopify inventory immediately.",
-      ar: "لو العميل قرر يلغي قبل التجهيز، Whano بيسجل السبب الحقيقي ويلغي الطلب ويرجع المخزون على Shopify تلقائياً.",
+      ar: "إذا قرر العميل الإلغاء قبل التجهيز، يسجّل Whano السبب الفعلي، ويلغي الطلب، ويعيد المخزون في Shopify تلقائيًا.",
     },
     shopifyAction: {
       en: "Order #1056 cancelled & inventory restored",
@@ -116,11 +120,11 @@ export const workflows: Workflow[] = [
     tabLabel: { en: "Order Edits", ar: "تعديل الطلب" },
     title: {
       en: "The customer edits in natural language.",
-      ar: "العميل بيعدّل بالكلام العادي.",
+      ar: "يعدّل العميل طلبه بعباراته الطبيعية.",
     },
     description: {
       en: "Customers speak naturally to add items or adjust quantities. Whano recalculates line items and keeps Shopify in perfect sync.",
-      ar: "العميل بيطلب التعديل بطبيعته. Whano بيفهم الطلب، يحدث المنتجات والإجمالي، ويتزامن مباشرة مع Shopify وشركة الشحن.",
+      ar: "يطلب العميل التعديل بعباراته الطبيعية. يفهمه Whano، ويحدّث المنتجات والإجمالي، ويتزامن مباشرة مع Shopify وشركة الشحن.",
     },
     shopifyAction: {
       en: "Order line items updated & new total calculated",
@@ -155,15 +159,15 @@ export const workflows: Workflow[] = [
     tabLabel: { en: "Shipping", ar: "تحديث الشحن" },
     title: {
       en: "Shipping updates without manual messages.",
-      ar: "تحديث الشحن تلقائي من غير ما تبعت يدوي.",
+      ar: "تحديث الشحن تلقائيًا من دون إرسال يدوي.",
     },
     description: {
       en: "When you fulfill the order on Shopify, Whano dispatches the tracking link and estimated arrival date right to their WhatsApp.",
-      ar: "بمجرد تجهيز الشحنة وإدخال التتبع على Shopify، Whano بيبعت إشعار الشحن وموعد الوصول المتوقع للعميل.",
+      ar: "بمجرد تجهيز الشحنة وإدخال رقم التتبع في Shopify، يرسل Whano إشعار الشحن وموعد الوصول المتوقع إلى العميل.",
     },
     shopifyAction: {
       en: "Fulfillment webhook dispatched tracking info",
-      ar: "إرسال رقم التتبع وموعد التوصيل تلقائياً",
+      ar: "إرسال رقم التتبع وموعد التوصيل تلقائيًا",
     },
     pointsCost: {
       en: "~1 Point per interaction",
@@ -183,11 +187,11 @@ export const workflows: Workflow[] = [
     tabLabel: { en: "Reviews & Rating", ar: "التقييم والمراجعة" },
     title: {
       en: "The review request with smart follow-up.",
-      ar: "طلب التقييم والمتابعة الذكية لو التجربة سيئة.",
+      ar: "طلب التقييم، ومتابعة ذكية إذا كانت التجربة سيئة.",
     },
     description: {
       en: "Collect real feedback after delivery. If a customer is unhappy, Whano routes them to support options before a negative public review happens.",
-      ar: "اطلب تقييم العميل بعد استلام الشحنة. لو التجربة سلبية، Whano بيعرض عليه الاستبدال أو الاسترجاع فوراً لتفادي غضب العميل.",
+      ar: "اطلب تقييم العميل بعد استلام الشحنة. وإذا كانت التجربة سيئة، يعرض Whano الاستبدال أو الاسترجاع فورًا قبل أن يتصاعد الموقف.",
     },
     shopifyAction: {
       en: "Customer review recorded & satisfaction score logged",
@@ -195,7 +199,7 @@ export const workflows: Workflow[] = [
     },
     pointsCost: {
       en: "~2 Points per interaction",
-      ar: "~2 نقطة لكل تقييم ومتابعة",
+      ar: "~2 نقطتان لكل تقييم ومتابعة",
     },
     icon: "star",
     messages: [
@@ -222,11 +226,11 @@ export const workflows: Workflow[] = [
     tabLabel: { en: "Support & Returns", ar: "تذاكر الدعم" },
     title: {
       en: "Automated support tickets with your exact return policy.",
-      ar: "تذاكر دعم فورية بشروط وسياسة استرجاع متجرك.",
+      ar: "تذاكر دعم فورية بسياسة الاسترجاع الخاصة بمتجرك.",
     },
     description: {
       en: "When a customer requests an exchange or return, Whano creates a support ticket, explains the policy terms, and shares the store support contact.",
-      ar: "لو العميل طلب استبدال أو استرجاع، Whano بيفتح تذكرة دعم فورية برقم محدد، يوضح شروط وسياسة المتجر، ويوصل العميل بخدمة العملاء.",
+      ar: "إذا طلب العميل استبدالًا أو استرجاعًا، يفتح Whano تذكرة دعم فورية برقم محدد، ويوضح سياسة المتجر، ويصل العميل بخدمة العملاء.",
     },
     shopifyAction: {
       en: "Support ticket #W-1005 opened & merchant notified",
@@ -234,7 +238,7 @@ export const workflows: Workflow[] = [
     },
     pointsCost: {
       en: "~2 Points per interaction",
-      ar: "~2 نقطة لكل تذكرة دعم",
+      ar: "~2 نقطتان لكل تذكرة دعم",
     },
     icon: "life-buoy",
     messages: [

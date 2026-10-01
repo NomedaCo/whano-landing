@@ -10,12 +10,23 @@ The page is intentionally editorial rather than a conventional SaaS template: a 
 - Custom CSS for the visual system and responsive layout
 - Self-hosted Satoshi and Inter fonts
 - No React runtime and no animation or icon library
+- Deployed to Cloudflare Workers (`whano-landing`) on `whano.nomeda.tech`
 
 ## Routes
 
-- `/` — bilingual product landing page
-- `/terms` — bilingual Terms of Service
-- `/privacy` — bilingual Privacy Policy
+- `/` — bilingual product landing page (story, how it works, capability teaser, pricing teaser)
+- `/features` — every capability the console ships, grouped
+- `/pricing` — points packs, per-interaction costs, custom volume
+- `/login` — sends the visitor to the console at `whano.nomeda.tech/dashboard`
+- `/faq` — bilingual questions and answers
+- `/about` — the team behind Whano
+- `/terms`, `/privacy`, `/dpa` — bilingual legal pages
+
+## The console
+
+The product itself lives on the same domain under `/dashboard` (a Next.js
+app on Cloudflare Workers). A signed-in visitor sees the overview; anyone
+else lands on the login page. Every "Log in" link on this site points there.
 
 ## Development
 
@@ -23,22 +34,29 @@ The page is intentionally editorial rather than a conventional SaaS template: a 
 npm install
 npm run dev
 npm run build
-npm run preview
+npm run check
+npm run deploy   # build + wrangler deploy
 ```
 
 ## Bilingual behavior
 
-English is the default. The language control switches the rendered copy to Egyptian Arabic, changes the document language and direction to RTL, and remembers the choice in local storage. Product copy uses Egyptian colloquial Arabic; legal copy uses formal Arabic.
+The site opens in Arabic by default and the language control switches to
+English, flips the document direction, and remembers the choice in local
+storage.
 
-The access links currently use `contact@nomeda.tech` because the Shopify App Store listing is not live yet. Update `src/data/content.ts` when the listing URL is available.
+Product copy is **Modern Standard Arabic** (فصحى), matching the console and
+the help articles. One deliberate exception: the message bubbles inside the
+hero phones are the exact Arabic templates the live product sends, kept
+verbatim so the demo shows what a customer actually receives. Legal copy is
+formal Arabic as well.
 
 ## Project shape
 
 ```text
 src/
-├── components/       Page sections, chat thread, navigation, legal renderer
-├── data/             Centralized bilingual marketing and legal copy
+├── components/       Page sections, phones, chat thread, navigation, legal renderer
+├── data/             Centralized bilingual marketing, workflow, about, and legal copy
 ├── layouts/          HTML shell, metadata, language bootstrap
-├── pages/            Landing, terms, and privacy routes
+├── pages/            Landing, features, pricing, login, faq, about, and legal routes
 └── styles/           Design tokens, responsive layout, and motion
 ```

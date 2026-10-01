@@ -1,24 +1,26 @@
 ---
 import Base from "../layouts/Base.astro";
+import Capabilities from "../components/Capabilities.astro";
 import CTA from "../components/CTA.astro";
 import Features from "../components/Features.astro";
 import Footer from "../components/Footer.astro";
 import Hero from "../components/Hero.astro";
 import Nav from "../components/Nav.astro";
-import Pricing from "../components/Pricing.astro";
+import PricingTeaser from "../components/PricingTeaser.astro";
 ---
 
 <Base
   title="Whano | WhatsApp operations for Shopify"
-  titleArabic="Whano | إدارة طلبات Shopify على واتساب"
-  description="Whano keeps Shopify orders moving on WhatsApp with clear confirmations, updates, and follow-up for Egyptian merchants."
-  descriptionArabic="Whano بيساعد التجار على Shopify يتابعوا الطلبات على واتساب بالتأكيدات والتحديثات والمتابعة."
+  titleArabic="Whano | عمليات واتساب لمتاجر Shopify"
+  description="Whano keeps Shopify orders moving on WhatsApp with clear confirmations, updates, and follow-up for merchants."
+  descriptionArabic="Whano يبقي طلبات Shopify متحركة على واتساب بتأكيدات وتحديثات ومتابعة واضحة."
 >
   <Nav />
   <main id="main-content">
     <Hero />
     <Features />
-    <Pricing />
+    <Capabilities />
+    <PricingTeaser />
     <CTA />
   </main>
   <Footer />

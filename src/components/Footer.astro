@@ -39,6 +39,14 @@ import { site } from "../data/content";
             <span data-copy="ar" lang="ar">{link.label.ar}</span>
           </a>
         ))}
+        <a href="/about">
+          <span data-copy="en">{site.footer.aboutLink.en}</span>
+          <span data-copy="ar" lang="ar">{site.footer.aboutLink.ar}</span>
+        </a>
+        <a href={site.consoleUrl.en} data-console-link>
+          <span data-copy="en">{site.footer.login.en}</span>
+          <span data-copy="ar" lang="ar">{site.footer.login.ar}</span>
+        </a>
       </nav>
 
       <div class="footer-legal">

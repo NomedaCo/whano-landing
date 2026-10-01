@@ -1,0 +1,31 @@
+---
+import { site } from "../data/content";
+---
+
+<section class="section section--compact">
+  <div class="site-frame">
+    <div class="pricing-teaser reveal">
+      <div class="pricing-teaser__copy">
+        <p class="eyebrow">
+          <span data-copy="en">{site.pricingTeaser.eyebrow.en}</span>
+          <span data-copy="ar" lang="ar">{site.pricingTeaser.eyebrow.ar}</span>
+        </p>
+        <h2 class="pricing-teaser__title">
+          <span data-copy="en">{site.pricingTeaser.title.en}</span>
+          <span data-copy="ar" lang="ar">{site.pricingTeaser.title.ar}</span>
+        </h2>
+        <p class="pricing-teaser__body">
+          <span data-copy="en">{site.pricingTeaser.body.en}</span>
+          <span data-copy="ar" lang="ar">{site.pricingTeaser.body.ar}</span>
+        </p>
+      </div>
+      <a href="/pricing" class="button-primary pricing-teaser__cta">
+        <span data-copy="en">{site.pricingTeaser.cta.en}</span>
+        <span data-copy="ar" lang="ar">{site.pricingTeaser.cta.ar}</span>
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true" class="button-arrow-icon">
+          <path d="M2.5 7.5h9M8 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

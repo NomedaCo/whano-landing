@@ -3583,3 +3583,234 @@ html[data-language="ar"] .button-light svg:not(.shopify-btn-icon) {
     display: none;
   }
 }
+
+/* ── Console login links ────────────────────────────────────── */
+
+.nav-login {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 8px;
+  color: var(--green);
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.nav-login:hover {
+  background: var(--green-pale);
+  color: var(--green-dark);
+}
+
+.hero-login {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  border: 1px solid rgba(13, 101, 74, 0.25);
+  border-radius: 10px;
+  color: var(--green);
+  font-size: 14px;
+  font-weight: 600;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.hero-login:hover {
+  background: var(--green-pale);
+  border-color: rgba(13, 101, 74, 0.4);
+}
+
+.cta-band__login {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 14px;
+  color: #cce3d2;
+  font-size: 13px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.cta-band__login:hover {
+  color: #ffffff;
+}
+
+/* ── Capability grid (homepage) ─────────────────────────────── */
+
+.capability-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 36px;
+}
+
+.capability-card {
+  padding: 22px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.015);
+}
+
+.capability-card__number,
+.feature-card__number {
+  display: block;
+  color: var(--green);
+  font-family: var(--font-heading);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+}
+
+.capability-card__title {
+  margin: 10px 0 8px;
+  color: var(--ink);
+  font-family: var(--font-heading);
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.capability-card__body {
+  color: var(--ink-soft);
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+
+.capabilities-more {
+  margin-top: 26px;
+}
+
+.section-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--green);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.section-link:hover {
+  color: var(--green-dark);
+}
+
+/* ── Pricing teaser ─────────────────────────────────────────── */
+
+.pricing-teaser {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  padding: 36px;
+  background: var(--paper-deep);
+  border-radius: 16px;
+}
+
+.pricing-teaser__title {
+  margin: 12px 0 8px;
+  color: var(--ink);
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.pricing-teaser__body {
+  max-width: 560px;
+  color: var(--ink-soft);
+}
+
+.pricing-teaser__cta {
+  flex-shrink: 0;
+}
+
+/* ── Features page ──────────────────────────────────────────── */
+
+.feature-group {
+  margin-top: 56px;
+}
+
+.feature-group__heading {
+  max-width: 720px;
+  margin-bottom: 22px;
+}
+
+.feature-group__title {
+  color: var(--ink);
+  font-family: var(--font-heading);
+  font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+
+.feature-group__body {
+  margin-top: 8px;
+  color: var(--ink-muted);
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.feature-card {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.015);
+}
+
+.feature-card__title {
+  margin: 10px 0 8px;
+  color: var(--ink);
+  font-family: var(--font-heading);
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.feature-card__body {
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+
+.feature-card__detail {
+  margin-top: auto;
+  padding-top: 14px;
+  color: var(--ink-muted);
+  font-size: 12px;
+}
+
+@media (max-width: 900px) {
+  .capability-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .pricing-teaser {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 22px;
+    padding: 28px;
+  }
+
+  .header-actions .nav-login {
+    display: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .capability-grid,
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-group {
+    margin-top: 40px;
+  }
+}
