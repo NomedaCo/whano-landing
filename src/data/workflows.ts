@@ -1,19 +1,27 @@
 /**
  * Interactive workflow conversations.
  *
- * The message bubbles are the exact Arabic templates the live app sends, kept
- * verbatim from production. The surrounding marketing copy (tabs, titles,
- * descriptions, costs) is MSA, like the rest of the site; the bubbles show
- * what a customer actually receives.
+ * The Arabic bubbles are the exact templates the live app sends, kept
+ * verbatim from production. The English strings are translations of those
+ * same bubbles, shown when the site is in English so an English visitor can
+ * read the demo; the Arabic remains the source of truth.
+ *
+ * The surrounding marketing copy (tabs, titles, descriptions, costs) is MSA,
+ * like the rest of the site.
  */
 
 export interface WorkflowMessage {
   sender: "whano" | "customer";
   text: string;
+  /** The same bubble in English, for the site's English mode. */
+  textEn?: string;
   buttons?: string[];
+  /** Parallel to `buttons`: the English labels, same order. */
+  buttonsEn?: string[];
   isButtonTap?: boolean;
   success?: boolean;
   badge?: string;
+  badgeEn?: string;
 }
 
 export interface Workflow {
@@ -28,12 +36,28 @@ export interface Workflow {
   messages: WorkflowMessage[];
 }
 
+/* ── Language picks, used by the phone scripts ───────────────── */
+
+export function msgText(message: WorkflowMessage, language: string): string {
+  return language === "en" && message.textEn ? message.textEn : message.text;
+}
+
+export function msgButtons(message: WorkflowMessage, language: string): string[] {
+  return language === "en" && message.buttonsEn ? message.buttonsEn : message.buttons ?? [];
+}
+
+export function msgBadge(message: WorkflowMessage, language: string): string | undefined {
+  return language === "en" && message.badgeEn ? message.badgeEn : message.badge;
+}
+
 /* ── Shared opening message (workflows 1–3) ────────────────── */
 
 const orderMessage: WorkflowMessage = {
   sender: "whano",
   text: "طلب جديد #1056\nThe Collection Snowboard: Hydrogen × 1\nالمبلغ الإجمالي: USD 600\nعنوان الشحن: Elbasha st, Kafr eldawar, Virginia, 1, 22101, United States\nموعد التوصيل: Standard\nشكراً لطلبك من nomeda!",
+  textEn: "New order #1056\nThe Collection Snowboard: Hydrogen × 1\nTotal: USD 600\nShipping to: Elbasha st, Kafr eldawar, Virginia, 1, 22101, United States\nEstimated delivery: Standard\nThanks for ordering from nomeda!",
   buttons: ["تأكيد الطلب", "إلغاء الطلب", "عايز أعدل"],
+  buttonsEn: ["Confirm order", "Cancel order", "I want to edit"],
 };
 
 /* ── Workflow definitions ──────────────────────────────────── */
@@ -65,11 +89,13 @@ export const workflows: Workflow[] = [
       {
         sender: "customer",
         text: "تأكيد الطلب",
+        textEn: "Confirm order",
         isButtonTap: true,
       },
       {
         sender: "whano",
         text: "تم تأكيد طلبك #1056!",
+        textEn: "Order #1056 is confirmed!",
         success: true,
       },
     ],
@@ -100,16 +126,20 @@ export const workflows: Workflow[] = [
       {
         sender: "customer",
         text: "إلغاء الطلب",
+        textEn: "Cancel order",
         isButtonTap: true,
       },
       {
         sender: "whano",
         text: "تم إلغاء طلبك #1056.\n\nممكن نعرف السبب؟",
+        textEn: "Order #1056 is cancelled.\n\nMay we know why?",
         buttons: ["السعر مرتفع", "غيرت رأيي", "سبب آخر"],
+        buttonsEn: ["Price is high", "Changed my mind", "Another reason"],
       },
       {
         sender: "customer",
         text: "غيرت رأيي",
+        textEn: "Changed my mind",
         isButtonTap: true,
       },
     ],
@@ -140,16 +170,20 @@ export const workflows: Workflow[] = [
       {
         sender: "customer",
         text: "عايز أعدل",
+        textEn: "I want to edit",
         isButtonTap: true,
       },
       {
         sender: "customer",
         text: "عايز أزود واحد من نفس المنتج",
+        textEn: "I want to add one more of the same item",
       },
       {
         sender: "whano",
         text: "تم تعديل الطلب ✅\n\nThe Collection Snowboard: Hydrogen × 2\nالإجمالي الجديد: USD 1,200",
+        textEn: "Order updated ✅\n\nThe Collection Snowboard: Hydrogen × 2\nNew total: USD 1,200",
         badge: "← متزامن مع Shopify وشركة الشحن",
+        badgeEn: "← Synced with Shopify and the carrier",
       },
     ],
   },
@@ -178,6 +212,7 @@ export const workflows: Workflow[] = [
       {
         sender: "whano",
         text: "#1056\nطلبك اتشحن 🚚\nرقم التتبع: هيتوفر قريب\nالمتوقع وصوله: 2-5 ايام عمل",
+        textEn: "#1056\nYour order has shipped 🚚\nTracking: available soon\nExpected delivery: 2-5 business days",
       },
     ],
   },
@@ -206,17 +241,22 @@ export const workflows: Workflow[] = [
       {
         sender: "whano",
         text: "طلبك 1057 وصل 🎉\nنتمنى تكون عجبك.\n\nإزاي كانت تجربتك؟",
+        textEn: "Order 1057 has arrived 🎉\nWe hope you liked it.\n\nHow was your experience?",
         buttons: ["ممتاز", "جيد", "سيء"],
+        buttonsEn: ["Excellent", "Good", "Bad"],
       },
       {
         sender: "customer",
         text: "سيء",
+        textEn: "Bad",
         isButtonTap: true,
       },
       {
         sender: "whano",
         text: "أنا آسف إن التجربة ما كانتش كويسة. إيه المشكلة اللي حصلت؟",
+        textEn: "Sorry the experience was not good. What went wrong?",
         buttons: ["استبدال", "استرجاع", "مشكلة أخرى"],
+        buttonsEn: ["Exchange", "Refund", "Another issue"],
       },
     ],
   },
@@ -245,17 +285,22 @@ export const workflows: Workflow[] = [
       {
         sender: "whano",
         text: "أنا آسف إن التجربة ما كانتش كويسة. إيه المشكلة اللي حصلت؟",
+        textEn: "Sorry the experience was not good. What went wrong?",
         buttons: ["استبدال", "استرجاع", "مشكلة أخرى"],
+        buttonsEn: ["Exchange", "Refund", "Another issue"],
       },
       {
         sender: "customer",
         text: "استبدال",
+        textEn: "Exchange",
         isButtonTap: true,
       },
       {
         sender: "whano",
         text: "تم فتح تذكرة الدعم #W-1005.\nاتواصل مع خدمة العملاء على الرقم ده:\n+20 1001580461\n• يمكن للعميل طلب استبدال المنتج خلال 14 يومًا من تاريخ استلامه.\n• عند طلب الاستبدال، يتم فتح تذكرة دعم تلقائيًا وإخطار التاجر.\n• قبول أو رفض طلب الاستبدال يخضع لسياسة المتجر وشروط المنتج.\n• يجب أن يكون المنتج في حالته الأصلية وبالتغليف الأصلي.\nبعد مرور 14 يومًا من تاريخ الاستلام، لا يمكن للعميل تقديم طلب استبدال من خلال Whano.\n• سيتواصل فريق خدمة العملاء مع العميل من رقم الدعم المسجل لدى المتجر.",
+        textEn: "Support ticket #W-1005 is open.\nReach customer service on this number:\n+20 1001580461\n• A customer may request an exchange within 14 days of receiving the item.\n• An exchange request opens a support ticket automatically and notifies the merchant.\n• Accepting or refusing the exchange follows the store's policy and the item's condition.\n• The item must be in its original condition and packaging.\nAfter 14 days from delivery, a customer cannot request an exchange through Whano.\n• Customer service will contact the customer from the store's registered support number.",
         badge: "← تم فتح تذكرة الدعم #W-1005 وإخطار التاجر",
+        badgeEn: "← Support ticket #W-1005 opened and the merchant notified",
       },
     ],
   },

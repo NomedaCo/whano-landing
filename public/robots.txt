@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://whano.nomeda.tech/sitemap.xml

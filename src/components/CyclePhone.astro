@@ -157,15 +157,30 @@
 </div>
 
 <script>
-  import { workflows } from "../data/workflows";
+  import { workflows, msgText, msgButtons, msgBadge } from "../data/workflows";
+
+  const currentLang = () => (document.documentElement.dataset.language === "en" ? "en" : "ar");
+  const L = (ar: string, en: string) => (currentLang() === "en" ? en : ar);
+
+  const BUTTON_KEYS: Record<string, string> = {
+    "تأكيد الطلب": "confirm", "Confirm order": "confirm",
+    "إلغاء الطلب": "cancel", "Cancel order": "cancel",
+    "عايز أعدل": "edit", "I want to edit": "edit",
+    "السعر مرتفع": "price", "Price is high": "price",
+    "غيرت رأيي": "mind", "Changed my mind": "mind",
+    "سبب آخر": "reason", "Another reason": "reason",
+  };
 
   const ORDER = workflows[0].messages[0];
   const CONFIRM_REPLY = workflows[0].messages[2];
   const CANCEL_REPLY = workflows[1].messages[2];
-  const EDIT_REQUEST = workflows[2].messages[2].text;
+  const EDIT_REQUEST = workflows[2].messages[2];
   const EDIT_REPLY = workflows[2].messages[3];
-  const CANCEL_DONE =
-    "شكراً لتوضيحك. تم إلغاء الطلب بالكامل ونتمنى نخدمك في المرة القادمة 🙏";
+  const cancelDone = () =>
+    L(
+      "شكراً لتوضيحك. تم إلغاء الطلب بالكامل ونتمنى نخدمك في المرة القادمة 🙏",
+      "Thanks for explaining. The order is fully cancelled — we hope to serve you again 🙏",
+    );
 
   const root = document.querySelector<HTMLElement>(".cycle-phone");
   const sendBtn = document.getElementById("cycle-send") as HTMLButtonElement | null;
@@ -212,10 +227,11 @@
     const bubble = document.createElement("div");
     bubble.className = `wa-bubble ${opts.success ? "wa-bubble--success" : ""}`;
 
+    const language = currentLang();
     const bubbleText = document.createElement("div");
     bubbleText.className = "wa-bubble__text";
-    bubbleText.setAttribute("dir", "rtl");
-    bubbleText.setAttribute("lang", "ar");
+    bubbleText.setAttribute("dir", language === "en" ? "ltr" : "rtl");
+    bubbleText.setAttribute("lang", language);
     bubbleText.textContent = text;
 
     const meta = document.createElement("span");
@@ -230,8 +246,8 @@
     if (opts.badge) {
       const badge = document.createElement("div");
       badge.className = "wa-sync-pill";
-      badge.setAttribute("dir", "rtl");
-      badge.setAttribute("lang", "ar");
+      badge.setAttribute("dir", currentLang() === "en" ? "ltr" : "rtl");
+      badge.setAttribute("lang", currentLang());
       badge.innerHTML = `
         <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
           <path d="M1 8a7 7 0 0113.5-2.5M15 8a7 7 0 01-13.5 2.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
@@ -329,32 +345,35 @@
     lockGroup(group, label);
 
     const id = runId;
+    const key = BUTTON_KEYS[label];
 
-    if (label === "عايز أعدل") {
-      const sent = await sendFromInput(EDIT_REQUEST, id);
+    if (key === "edit") {
+      const sent = await sendFromInput(msgText(EDIT_REQUEST, currentLang()), id);
       if (!sent) return;
       const ok = await wait(900, id);
       if (!ok) return;
-      appendRow(EDIT_REPLY.text, "in", { badge: "← متزامن مع Shopify وشركة الشحن" });
+      appendRow(msgText(EDIT_REPLY, currentLang()), "in", {
+        badge: msgBadge(EDIT_REPLY, currentLang()),
+      });
       return;
     }
 
-    if (label === "إلغاء الطلب") {
+    if (key === "cancel") {
       const sent = await sendDirect(label, id);
       if (!sent) return;
       const ok = await wait(600, id);
       if (!ok) return;
-      appendRow(CANCEL_REPLY.text, "in");
-      appendChoices(CANCEL_REPLY.buttons ?? []);
+      appendRow(msgText(CANCEL_REPLY, currentLang()), "in");
+      appendChoices(msgButtons(CANCEL_REPLY, currentLang()));
       return;
     }
 
-    if (label === "تأكيد الطلب") {
+    if (key === "confirm") {
       const sent = await sendDirect(label, id);
       if (!sent) return;
       const ok = await wait(700, id);
       if (!ok) return;
-      appendRow(CONFIRM_REPLY.text, "in", { success: true });
+      appendRow(msgText(CONFIRM_REPLY, currentLang()), "in", { success: true });
       return;
     }
 
@@ -362,7 +381,7 @@
     if (!sent) return;
     const ok = await wait(600, id);
     if (!ok) return;
-    appendRow(CANCEL_DONE, "in");
+    appendRow(cancelDone(), "in");
   }
 
   function openChat() {
@@ -376,8 +395,8 @@
     }
     placeholder?.classList.remove("is-hidden");
 
-    appendRow(ORDER.text, "in");
-    appendChoices(ORDER.buttons ?? []);
+    appendRow(msgText(ORDER, currentLang()), "in");
+    appendChoices(msgButtons(ORDER, currentLang()));
     setState("chat");
   }
 
@@ -391,7 +410,7 @@
 
   notif?.addEventListener("click", openChat);
 
-  replay?.addEventListener("click", () => {
+  function resetCycle() {
     runId += 1;
     if (stream) stream.innerHTML = "";
     if (input) {
@@ -408,5 +427,11 @@
     document.querySelector(".cycle-shopify__card")?.classList.remove("is-paid");
 
     setState("shopify");
-  });
+  }
+
+  replay?.addEventListener("click", resetCycle);
+
+  // The chat is built in JS, so the data-copy spans that switch the rest of
+  // the page do not reach it: restart the cycle in the chosen language.
+  window.addEventListener("whano:language", resetCycle);
 </script>

@@ -19,8 +19,21 @@ The page is intentionally editorial rather than a conventional SaaS template: a 
 - `/pricing` — points packs, per-interaction costs, custom volume
 - `/login` — sends the visitor to the console at `whano.nomeda.tech/dashboard`
 - `/faq` — bilingual questions and answers
+- `/whats-new` — real shipped changes, newest first
 - `/about` — the team behind Whano
 - `/terms`, `/privacy`, `/dpa` — bilingual legal pages
+
+## Analytics
+
+First-party and cookieless: the Worker counts one hit per page view and per
+install/login click in a KV namespace, and `GET /api/stats?key=…` reads the
+counters behind the `STATS_KEY` secret. No third party, no cookie, so there
+is nothing to consent to. The key lives with the team.
+
+## Sharing
+
+`og.png` (1200×630) is the link preview, `robots.txt` and `sitemap.xml` are
+generated from the route list, and every page carries a canonical URL.
 
 ## The console
 
@@ -45,9 +58,10 @@ English, flips the document direction, and remembers the choice in local
 storage.
 
 Product copy is **Modern Standard Arabic** (فصحى), matching the console and
-the help articles. One deliberate exception: the message bubbles inside the
-hero phones are the exact Arabic templates the live product sends, kept
-verbatim so the demo shows what a customer actually receives. Legal copy is
+the help articles. The message bubbles inside the hero phones are the exact
+Arabic templates the live product sends, kept verbatim so the demo shows what
+a customer actually receives; English translations of those bubbles are shown
+when the site is in English, with the Arabic as the source. Legal copy is
 formal Arabic as well.
 
 ## Project shape

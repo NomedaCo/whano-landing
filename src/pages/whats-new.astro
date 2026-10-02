@@ -1,0 +1,109 @@
+---
+import Base from "../layouts/Base.astro";
+import CTA from "../components/CTA.astro";
+import Footer from "../components/Footer.astro";
+import MobileCta from "../components/MobileCta.astro";
+import Nav from "../components/Nav.astro";
+
+// Real shipped changes, newest first. Nothing here is a roadmap: every entry
+// is something a merchant can open the console and use today.
+const UPDATES = [
+  {
+    when: { en: "This week", ar: "هذا الأسبوع" },
+    title: { en: "The whole console speaks formal Arabic", ar: "لوحة التحكم كلها بالفصحى" },
+    body: {
+      en: "Every screen, table, filter and exported file now reads in Modern Standard Arabic — not just the big headings. Exports carry Arabic headers, and the tables line up right-to-left.",
+      ar: "كل شاشة وجدول ومرشّح وملف مُصدَّر أصبح بالفصحى — لا العناوين فقط. الملفات المصدَّرة بعناوين عربية، والجداول مصفوفة من اليمين إلى اليسار.",
+    },
+  },
+  {
+    when: { en: "This week", ar: "هذا الأسبوع" },
+    title: { en: "Every shipment has a timeline", ar: "لكل شحنة خط زمني" },
+    body: {
+      en: "The shipments page now counts what needs attention, shows each shipment's state history, and lets you refresh, stop or remove tracking for a whole selection at once.",
+      ar: "صفحة الشحنات أصبحت تُحصي ما يحتاج انتباهك، وتعرض سجل حالة كل شحنة، وتتيح تحديث التتبع أو إيقافه أو إزالته لمجموعة كاملة دفعة واحدة.",
+    },
+  },
+  {
+    when: { en: "This week", ar: "هذا الأسبوع" },
+    title: { en: "A simpler way in", ar: "دخول أسهل" },
+    body: {
+      en: "Store owners sign in with their store's password, or ask for a single-use link to the store's own inbox. The link expires in 30 minutes and can only be used once.",
+      ar: "يدخل صاحب المتجر بكلمة مرور متجره، أو يطلب رابطًا لمرة واحدة يُرسل إلى بريد المتجر نفسه. ينتهي الرابط خلال 30 دقيقة ويُستخدم مرة واحدة فقط.",
+    },
+  },
+  {
+    when: { en: "Earlier", ar: "سابقًا" },
+    title: { en: "Discount codes and campaigns", ar: "أكواد الخصم والحملات" },
+    body: {
+      en: "Create a promo code in the console, then send it to the customers who agreed to receive offers. Campaigns respect quiet hours, and every message carries a way to unsubscribe.",
+      ar: "أنشئ كود خصم من لوحة التحكم، ثم أرسله إلى العملاء الذين وافقوا على استقبال العروض. تحترم الحملات ساعات الهدوء، وتتضمن كل رسالة طريقة لإلغاء الاشتراك.",
+    },
+  },
+  {
+    when: { en: "Earlier", ar: "سابقًا" },
+    title: { en: "Ratings that recover", ar: "تقييمات لا تضيع" },
+    body: {
+      en: "If a customer does not rate after delivery, Whano asks once more after a while. A low rating opens the exchange or refund path before it becomes a public review.",
+      ar: "إذا لم يقيّم العميل بعد التوصيل، يسأل Whano مرة أخرى بعد فترة. والتقييم المنخفض يفتح مسار الاستبدال أو الاسترجاع قبل أن يتحول إلى مراجعة علنية.",
+    },
+  },
+  {
+    when: { en: "Earlier", ar: "سابقًا" },
+    title: { en: "Controls you can prove", ar: "تحكم يمكنك إثباته" },
+    body: {
+      en: "Pause all sends, set business hours, choose how long to wait before each step, switch each automation on or off — and every change is logged with a one-tap revert.",
+      ar: "أوقف كل الإرسال، وحدد ساعات العمل، واختر مدة الانتظار قبل كل خطوة، وفعّل كل أتمتة أو أوقفها — وكل تغيير يُسجَّل مع إمكانية التراجع بضغطة.",
+    },
+  },
+];
+---
+
+<Base
+  title="What's new — Whano"
+  titleArabic="ما الجديد — Whano"
+  description="What recently changed in Whano: formal Arabic across the console, shipment timelines, simpler sign-in, discount codes and campaigns, rating recovery, and controls you can prove."
+  descriptionArabic="آخر ما تغيّر في Whano: الفصحى في كل اللوحة، وخط زمني للشحنات، ودخول أسهل، وأكواد خصم وحملات، واستعادة التقييمات، وتحكم موثّق."
+>
+  <Nav />
+  <main id="main-content" class="about-page">
+    <div class="site-frame">
+      <header class="about-header reveal">
+        <p class="eyebrow">
+          <span data-copy="en">Whano / what&apos;s new</span>
+          <span data-copy="ar" lang="ar">Whano / ما الجديد</span>
+        </p>
+        <h1 class="about-title">
+          <span data-copy="en">Shipped, not promised.</span>
+          <span data-copy="ar" lang="ar">ما تم إطلاقه فعلًا.</span>
+        </h1>
+        <p class="about-subtitle">
+          <span data-copy="en">Every entry here is live in the console today.</span>
+          <span data-copy="ar" lang="ar">كل ما في هذه الصفحة متاح في لوحة التحكم اليوم.</span>
+        </p>
+      </header>
+
+      <ol class="updates-list">
+        {UPDATES.map((update) => (
+          <li class="update-item reveal">
+            <span class="update-item__when">
+              <span data-copy="en">{update.when.en}</span>
+              <span data-copy="ar" lang="ar">{update.when.ar}</span>
+            </span>
+            <h2 class="update-item__title">
+              <span data-copy="en">{update.title.en}</span>
+              <span data-copy="ar" lang="ar">{update.title.ar}</span>
+            </h2>
+            <p class="update-item__body">
+              <span data-copy="en">{update.body.en}</span>
+              <span data-copy="ar" lang="ar">{update.body.ar}</span>
+            </p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </main>
+  <CTA />
+  <MobileCta />
+  <Footer />
+</Base>

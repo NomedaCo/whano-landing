@@ -3,6 +3,7 @@ import Base from "../layouts/Base.astro";
 import CTA from "../components/CTA.astro";
 import Footer from "../components/Footer.astro";
 import Nav from "../components/Nav.astro";
+import MobileCta from "../components/MobileCta.astro";
 import { featureGroups, site } from "../data/content";
 ---
 
@@ -29,6 +30,73 @@ import { featureGroups, site } from "../data/content";
           <span data-copy="ar" lang="ar">{site.featuresPage.body.ar}</span>
         </p>
       </header>
+
+      <section class="console-band reveal" aria-hidden="true">
+        <div class="console-preview">
+          <div class="console-preview__top">
+            <span class="console-preview__dot"></span>
+            <span class="console-preview__dot"></span>
+            <span class="console-preview__dot"></span>
+            <span class="console-preview__url">whano.nomeda.tech/dashboard</span>
+          </div>
+          <div class="console-preview__body">
+            <aside class="console-preview__side">
+              <span class="console-preview__nav-item is-active"><i></i>
+                <span data-copy="en">Overview</span><span data-copy="ar" lang="ar">نظرة عامة</span>
+              </span>
+              <span class="console-preview__nav-item"><i></i>
+                <span data-copy="en">Orders</span><span data-copy="ar" lang="ar">الطلبات</span>
+              </span>
+              <span class="console-preview__nav-item"><i></i>
+                <span data-copy="en">Shipments</span><span data-copy="ar" lang="ar">الشحنات</span>
+              </span>
+              <span class="console-preview__nav-item"><i></i>
+                <span data-copy="en">Chats</span><span data-copy="ar" lang="ar">المحادثات</span>
+              </span>
+              <span class="console-preview__nav-item"><i></i>
+                <span data-copy="en">Controls</span><span data-copy="ar" lang="ar">التحكم</span>
+              </span>
+              <span class="console-preview__nav-item"><i></i>
+                <span data-copy="en">Reports</span><span data-copy="ar" lang="ar">التقارير</span>
+              </span>
+            </aside>
+            <div class="console-preview__main">
+              <div class="console-preview__kpis">
+                <div class="console-preview__kpi">
+                  <span data-copy="en">Revenue</span><span data-copy="ar" lang="ar">الإيرادات</span>
+                  <b class="skeleton" style="width: 62%"></b>
+                </div>
+                <div class="console-preview__kpi">
+                  <span data-copy="en">Confirmed orders</span><span data-copy="ar" lang="ar">الطلبات المؤكدة</span>
+                  <b class="skeleton" style="width: 44%"></b>
+                </div>
+                <div class="console-preview__kpi">
+                  <span data-copy="en">Messages delivered</span><span data-copy="ar" lang="ar">الرسائل المُسلَّمة</span>
+                  <b class="skeleton" style="width: 74%"></b>
+                </div>
+              </div>
+              <div class="console-preview__rows">
+                <div class="console-preview__row">
+                  <span>#1056</span><b class="skeleton" style="width: 55%"></b>
+                  <em><span data-copy="en">Confirmed</span><span data-copy="ar" lang="ar">مؤكد</span></em>
+                </div>
+                <div class="console-preview__row">
+                  <span>#1057</span><b class="skeleton" style="width: 68%"></b>
+                  <em><span data-copy="en">In transit</span><span data-copy="ar" lang="ar">قيد النقل</span></em>
+                </div>
+                <div class="console-preview__row">
+                  <span>#1058</span><b class="skeleton" style="width: 47%"></b>
+                  <em><span data-copy="en">Delivered</span><span data-copy="ar" lang="ar">تم التوصيل</span></em>
+                </div>
+                <div class="console-preview__row">
+                  <span>#1059</span><b class="skeleton" style="width: 60%"></b>
+                  <em><span data-copy="en">Needs you</span><span data-copy="ar" lang="ar">يحتاجك</span></em>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {featureGroups.map((group) => (
         <section class="feature-group">
@@ -67,5 +135,6 @@ import { featureGroups, site } from "../data/content";
     </div>
   </main>
   <CTA />
+  <MobileCta />
   <Footer />
 </Base>

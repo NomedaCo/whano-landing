@@ -156,6 +156,10 @@ import { site } from "../data/content";
     } catch {
       // Language still changes for this visit when storage is unavailable.
     }
+
+    // The phones build their bubbles in JS; they listen for this on window
+    // (an event dispatched on document does not reach window listeners).
+    window.dispatchEvent(new CustomEvent("whano:language", { detail: { language } }));
   }
 
   languageToggle?.addEventListener("click", () => {

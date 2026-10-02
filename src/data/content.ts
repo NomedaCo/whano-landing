@@ -287,6 +287,7 @@ export const site = {
     },
     productLabel: { en: "Product", ar: "المنتج" },
     aboutLink: { en: "About", ar: "من نحن" },
+    whatsNew: { en: "What's new", ar: "ما الجديد" },
     socialLabel: { en: "Follow us", ar: "تابعنا" },
     backToTop: { en: "Back to top", ar: "العودة إلى الأعلى" },
   },

@@ -14,6 +14,9 @@ const {
   description = "Whano keeps Shopify orders moving on WhatsApp with clear confirmations, updates, and follow-up.",
   descriptionArabic = "Whano يساعد متاجر Shopify على متابعة الطلبات عبر واتساب بتأكيدات وتحديثات ومتابعة واضحة.",
 } = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL("/og.png", Astro.site);
 ---
 
 <!doctype html>
@@ -23,15 +26,23 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta id="meta-description" name="description" content={descriptionArabic} />
     <meta name="theme-color" content="#f8faf9" />
+    <link rel="canonical" href={canonical} />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
     <meta id="meta-og-title" property="og:title" content={titleArabic} />
     <meta id="meta-og-description" property="og:description" content={descriptionArabic} />
     <meta property="og:site_name" content="Whano" />
-    <meta property="og:locale" content="en_EG" />
-    <meta property="og:locale:alternate" content="ar_EG" />
+    <meta property="og:locale" content="ar_EG" />
+    <meta property="og:locale:alternate" content="en_EG" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={titleArabic} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta id="meta-twitter-title" name="twitter:title" content={titleArabic} />
     <meta id="meta-twitter-description" name="twitter:description" content={descriptionArabic} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={titleArabic} />
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" type="image/png" href="/icon-192.png" sizes="192x192" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -42,7 +53,19 @@ const {
       name: "Whano",
       applicationCategory: "BusinessApplication",
       operatingSystem: "Web",
+      url: new URL("/", Astro.site).href,
+      image: ogImage.href,
       description,
+      publisher: { "@type": "Organization", name: "Nomeda", url: "https://nomeda.tech" },
+      // The real packs, nothing more: four standard bundles, $10 to $59.
+      offers: {
+        "@type": "AggregateOffer",
+        priceCurrency: "USD",
+        lowPrice: 10,
+        highPrice: 59,
+        offerCount: 4,
+        url: new URL("/pricing/", Astro.site).href,
+      },
     })} />
     <script is:inline>
       (() => {
@@ -78,6 +101,32 @@ const {
       <span data-copy="ar" lang="ar">تجاوز إلى المحتوى</span>
     </a>
     <slot />
+    <script is:inline>
+      // First-party, cookieless analytics: one counter per page view and per
+      // install/login click. No third party, no cookie, nothing to consent to.
+      (() => {
+        const send = (event) => {
+          try {
+            const payload = JSON.stringify({ path: location.pathname, event });
+            if (navigator.sendBeacon) {
+              navigator.sendBeacon("/api/hit", new Blob([payload], { type: "application/json" }));
+            } else {
+              fetch("/api/hit", { method: "POST", body: payload, keepalive: true });
+            }
+          } catch {
+            // Analytics never breaks the page.
+          }
+        };
+        send("view");
+        document.addEventListener("click", (event) => {
+          const target = event.target;
+          const link =
+            target && target.closest ? target.closest("a[data-access-link], a[data-console-link]") : null;
+          if (!link) return;
+          send(link.hasAttribute("data-console-link") ? "click-login" : "click-install");
+        });
+      })();
+    </script>
     <script is:inline>
       if ("IntersectionObserver" in window) {
         const observer = new IntersectionObserver((entries) => {

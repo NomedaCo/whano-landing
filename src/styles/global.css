@@ -877,6 +877,8 @@ html[data-language="ar"] .hero-demo__arrow svg {
 }
 
 .hero-demo__dot {
+  /* A 7px dot is the look; a 44px hit area is the touch target. */
+  position: relative;
   width: 7px;
   height: 7px;
   padding: 0;
@@ -889,6 +891,13 @@ html[data-language="ar"] .hero-demo__arrow svg {
 
 .hero-demo__dot:hover {
   background: rgba(238, 244, 237, 0.6);
+}
+
+.hero-demo__dot::after {
+  content: "";
+  position: absolute;
+  inset: -18px;
+  border-radius: 50%;
 }
 
 .hero-demo__dot.is-active {
@@ -1396,6 +1405,7 @@ html[data-language="ar"] .hero-demo__arrow svg {
 }
 
 .wa-replay-btn {
+  position: relative;
   display: grid;
   place-items: center;
   width: 24px;
@@ -1411,6 +1421,13 @@ html[data-language="ar"] .hero-demo__arrow svg {
 
 .wa-replay-btn:hover {
   background: rgba(255, 255, 255, 0.3);
+}
+
+.wa-replay-btn::after {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
 }
 
 .wa-replay-btn.is-spinning {
@@ -1598,6 +1615,7 @@ html[data-language="ar"] .hero-demo__arrow svg {
   justify-content: center;
   gap: 6px;
   width: 100%;
+  min-height: 32px;
   padding: 6px 10px;
   background: #ffffff;
   color: #00a5cf;
@@ -3907,5 +3925,267 @@ html[data-language="ar"] .button-light svg:not(.shopify-btn-icon) {
 
   .feature-group {
     margin-top: 40px;
+  }
+}
+
+/* ── Phone conversion bar ───────────────────────────────────── */
+
+.mobile-cta {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .mobile-cta {
+    position: fixed;
+    inset-inline: 0;
+    bottom: 0;
+    z-index: 40;
+    display: flex;
+    gap: 8px;
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px));
+    background: rgba(248, 250, 249, 0.94);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    transform: translateY(110%);
+    transition: transform 0.25s ease;
+  }
+
+  .mobile-cta.is-visible {
+    transform: none;
+  }
+
+  body.has-mobile-cta {
+    padding-bottom: 84px;
+  }
+
+  .mobile-cta__login,
+  .mobile-cta__install {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .mobile-cta__login {
+    border: 1px solid rgba(13, 101, 74, 0.25);
+    color: var(--green);
+  }
+
+  .mobile-cta__install {
+    background: var(--green);
+    color: #f2f7f4;
+  }
+
+  .mobile-cta__install:active {
+    background: var(--green-dark);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-cta {
+    transition: none;
+  }
+}
+
+/* ── What's new ─────────────────────────────────────────────── */
+
+.updates-list {
+  display: grid;
+  gap: 0;
+  margin-top: 36px;
+  border-top: 1px solid rgba(0, 0, 0, 0.07);
+  list-style: none;
+  padding: 0;
+}
+
+.update-item {
+  padding: 26px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+  max-width: 760px;
+}
+
+.update-item__when {
+  display: inline-block;
+  margin-bottom: 8px;
+  color: var(--green);
+  font-family: var(--font-heading);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+}
+
+.update-item__title {
+  margin: 0 0 8px;
+  color: var(--ink);
+  font-family: var(--font-heading);
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.update-item__body {
+  color: var(--ink-soft);
+  font-size: 14.5px;
+  line-height: 1.75;
+}
+
+/* ── Console preview (features page) ────────────────────────── */
+
+.console-band {
+  margin-top: 44px;
+}
+
+.console-preview {
+  margin-top: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 14px;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(13, 101, 74, 0.06);
+}
+
+.console-preview__top {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  background: var(--paper-deep);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.console-preview__dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: rgba(13, 101, 74, 0.22);
+}
+
+.console-preview__url {
+  margin-inline-start: 10px;
+  color: var(--ink-muted);
+  font-family: var(--font-heading);
+  font-size: 11.5px;
+  direction: ltr;
+}
+
+.console-preview__body {
+  display: grid;
+  grid-template-columns: 170px 1fr;
+}
+
+.console-preview__side {
+  display: grid;
+  align-content: start;
+  gap: 4px;
+  padding: 14px 10px;
+  border-inline-end: 1px solid rgba(0, 0, 0, 0.05);
+  background: #fbfdfc;
+}
+
+.console-preview__nav-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  border-radius: 8px;
+  color: var(--ink-muted);
+  font-size: 12.5px;
+}
+
+.console-preview__nav-item i {
+  width: 12px;
+  height: 12px;
+  border-radius: 4px;
+  background: rgba(13, 101, 74, 0.18);
+}
+
+.console-preview__nav-item.is-active {
+  background: var(--green-pale);
+  color: var(--green);
+  font-weight: 600;
+}
+
+.console-preview__nav-item.is-active i {
+  background: var(--green);
+}
+
+.console-preview__main {
+  padding: 16px;
+  display: grid;
+  gap: 14px;
+}
+
+.console-preview__kpis {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.console-preview__kpi {
+  padding: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  display: grid;
+  gap: 10px;
+}
+
+.console-preview__kpi span {
+  color: var(--ink-muted);
+  font-size: 11.5px;
+}
+
+.console-preview__rows {
+  display: grid;
+  gap: 8px;
+}
+
+.console-preview__row {
+  display: grid;
+  grid-template-columns: 72px 1fr 96px;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 12px;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  border-radius: 9px;
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+
+.console-preview__row em {
+  justify-self: end;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: var(--green-pale);
+  color: var(--green);
+  font-size: 11px;
+  font-style: normal;
+}
+
+.skeleton {
+  display: block;
+  height: 10px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(13, 101, 74, 0.1), rgba(13, 101, 74, 0.05));
+}
+
+@media (max-width: 700px) {
+  .console-preview__body {
+    grid-template-columns: 1fr;
+  }
+
+  .console-preview__side {
+    display: none;
+  }
+
+  .console-preview__kpis {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .console-preview__row {
+    grid-template-columns: 56px 1fr 78px;
   }
 }
