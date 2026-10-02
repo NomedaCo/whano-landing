@@ -129,7 +129,7 @@
   --paper-warm: #f4f8f5;
   --ink: #141a16;
   --ink-soft: #4a544e;
-  --ink-muted: #6b7770;
+  --ink-muted: #647069; /* AA on every paper surface (4.7–5.2:1) */
   --rule: transparent;
   --green: #0d654a;
   --green-dark: #084632;
@@ -4188,4 +4188,95 @@ html[data-language="ar"] .button-light svg:not(.shopify-btn-icon) {
   .console-preview__row {
     grid-template-columns: 56px 1fr 78px;
   }
+}
+
+/* ── Real rating badge ──────────────────────────────────────── */
+
+.hero-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 4px;
+  color: var(--ink-soft);
+  font-size: 13px;
+}
+
+.hero-rating:hover {
+  color: var(--ink);
+}
+
+.hero-rating__stars {
+  color: var(--gold);
+  letter-spacing: 1px;
+  font-size: 13px;
+}
+
+.footer-rating {
+  margin-inline-end: 6px;
+  /* The gold is a decorative accent; at 11px it fails AA as text, so the
+     number reads in ink while the hero keeps the gold stars. */
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+
+.pricing-faqs {
+  margin-top: 44px;
+  max-width: 760px;
+}
+
+.pricing-faqs__title {
+  margin: 0 0 6px;
+  color: var(--ink);
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 600;
+}
+
+/* ── Guides ─────────────────────────────────────────────────── */
+
+.guide-list {
+  display: grid;
+  gap: 16px;
+  margin-top: 34px;
+}
+
+.guide-card {
+  display: block;
+  padding: 24px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.015);
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.guide-card:hover {
+  border-color: rgba(13, 101, 74, 0.25);
+  transform: translateY(-1px);
+}
+
+.guide-card__meta {
+  margin: 0 0 8px;
+  color: var(--ink-muted);
+  font-size: 12px;
+}
+
+.guide-card__title {
+  margin: 0 0 8px;
+  color: var(--ink);
+  font-family: var(--font-heading);
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.guide-card__body {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 14.5px;
+  line-height: 1.7;
+}
+
+.guide-reading {
+  color: var(--ink-muted);
 }

@@ -263,6 +263,12 @@ export const site = {
       ar: "إجابات مباشرة عن الرقم، والرسائل، والوقت الذي يتوقف فيه Whano ليترك لك المحادثة.",
     },
   },
+  // The live App Store rating, as a snapshot. Check the listing before editing.
+  rating: {
+    value: "5.0",
+    label: { en: "on the Shopify App Store", ar: "على متجر تطبيقات Shopify" },
+    url: "https://apps.shopify.com/whano",
+  },
   cta: {
     title: { en: "Keep the next order moving after checkout.", ar: "اجعل الطلب القادم يكمل رحلته حتى النهاية." },
     body: {
@@ -284,10 +290,12 @@ export const site = {
       privacy: { en: "Privacy Policy", ar: "سياسة الخصوصية" },
       terms: { en: "Terms of Service", ar: "شروط الخدمة" },
       dpa: { en: "Data Processing Agreement", ar: "اتفاقية معالجة البيانات" },
+      security: { en: "Security & data", ar: "الأمان والبيانات" },
     },
     productLabel: { en: "Product", ar: "المنتج" },
     aboutLink: { en: "About", ar: "من نحن" },
     whatsNew: { en: "What's new", ar: "ما الجديد" },
+    guides: { en: "Guides", ar: "أدلة" },
     socialLabel: { en: "Follow us", ar: "تابعنا" },
     backToTop: { en: "Back to top", ar: "العودة إلى الأعلى" },
   },
@@ -533,6 +541,37 @@ export const pricingFeatures = [
   { en: "Billed directly on your Shopify invoice", ar: "الفاتورة على حساب Shopify مباشرة" },
 ] as const;
 
+export const pricingFaqs = [
+  {
+    question: { en: "What happens when my points run out?", ar: "ماذا يحدث عندما تنفد نقاطي؟" },
+    answer: {
+      en: "Sending pauses; nothing else changes. Your orders, chats and settings stay exactly where they are, and everything resumes the moment you top up.",
+      ar: "يتوقف الإرسال، ولا يتغير شيء آخر. تبقى طلباتك ومحادثاتك وإعداداتك كما هي، ويعود كل شيء للعمل فور شحن الرصيد.",
+    },
+  },
+  {
+    question: { en: "How am I billed?", ar: "كيف تتم الفاتورة؟" },
+    answer: {
+      en: "Through your Shopify invoice, in USD. You buy a points pack once; there is no monthly subscription and no automatic renewal.",
+      ar: "عبر فاتورة Shopify بالدولار. تشتري باقة النقاط مرة واحدة، من دون اشتراك شهري ومن دون تجديد تلقائي.",
+    },
+  },
+  {
+    question: { en: "Do unused points expire?", ar: "هل تنتهي صلاحية النقاط غير المستخدمة؟" },
+    answer: {
+      en: "No. Points stay in your balance until an automation spends them, and the console shows what each automation costs and how many days the balance still covers.",
+      ar: "لا. تبقى النقاط في رصيدك حتى تستهلكها الأتمتات، وتوضح لوحة التحكم تكلفة كل أتمتة وكم يومًا يكفي الرصيد.",
+    },
+  },
+  {
+    question: { en: "What if I stop using Whano?", ar: "ماذا لو توقفت عن استخدام Whano؟" },
+    answer: {
+      en: "Nothing is charged again — there is no subscription to cancel. You can pause every send from the console, and uninstalling keeps your Shopify orders and history untouched.",
+      ar: "لن تُحصَّل أي مبالغ أخرى، فلا يوجد اشتراك لإلغائه. يمكنك إيقاف كل الإرسال من لوحة التحكم، وإلغاء التثبيت لا يمس طلباتك أو سجلك في Shopify.",
+    },
+  },
+] as const;
+
 export const plans = [
   {
     name: { en: "Starter", ar: "البداية" },
@@ -620,6 +659,34 @@ export const faqs = [
     answer: {
       en: "Yes. Create a promo code, then send a campaign to the customers who agreed to receive offers. Campaigns respect quiet hours, and every message includes a way to unsubscribe.",
       ar: "نعم. أنشئ كود خصم، ثم أرسل حملة إلى العملاء الذين وافقوا على استقبال العروض. تحترم الحملات ساعات الهدوء، وتتضمن كل رسالة طريقة لإلغاء الاشتراك.",
+    },
+  },
+  {
+    question: { en: "Does my customer need to install anything?", ar: "هل يحتاج عميلي إلى تثبيت أي شيء؟" },
+    answer: {
+      en: "No. The customer keeps using WhatsApp exactly as they do today; the conversation arrives from your store's name, and every message is a normal WhatsApp message with buttons.",
+      ar: "لا. يستخدم عميلك واتساب كما اعتاد تمامًا؛ تصل المحادثة باسم متجرك، وكل رسالة هي رسالة واتساب عادية بأزرار.",
+    },
+  },
+  {
+    question: { en: "Can I use my own WhatsApp number?", ar: "هل يمكنني استخدام رقم واتساب الخاص بي؟" },
+    answer: {
+      en: "You do not need one. Whano sends from a verified business number on its own infrastructure, so there is no device to link and no risk to your personal number. The store name and details on every message are yours.",
+      ar: "لا تحتاج إلى رقم خاص. يرسل Whano من رقم تجاري موثق على بنيته التحتية، فلا يوجد جهاز لربطه ولا خطر على رقمك الشخصي، واسم متجرك وتفاصيله على كل رسالة.",
+    },
+  },
+  {
+    question: { en: "I have more than one store. Does that work?", ar: "لديّ أكثر من متجر. هل هذا ممكن؟" },
+    answer: {
+      en: "Yes. Each store is its own workspace with its own orders, messages, points and settings, and the console switches between them without mixing anything.",
+      ar: "نعم. كل متجر مساحة مستقلة بطلباته ورسائله ونقاطه وإعداداته، ولوحة التحكم تتنقل بينها من دون أي خلط.",
+    },
+  },
+  {
+    question: { en: "What if I stop using it?", ar: "ماذا لو توقفت عن استخدامه؟" },
+    answer: {
+      en: "Pause every send from the console whenever you want, and uninstall from Shopify when you are done. Your orders and history stay in Shopify, and no subscription needs cancelling.",
+      ar: "أوقف كل الإرسال من لوحة التحكم وقتما تشاء، وألغِ التثبيت من Shopify عند الانتهاء. تبقى طلباتك وسجلك في Shopify، ولا يوجد اشتراك لإلغائه.",
     },
   },
   {

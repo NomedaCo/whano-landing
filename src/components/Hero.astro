@@ -55,6 +55,18 @@ const total = String(workflows.length).padStart(2, "0");
             <span data-copy="en">{site.hero.ctaNote.en}</span>
             <span data-copy="ar" lang="ar">{site.hero.ctaNote.ar}</span>
           </span>
+          <a
+            href={site.rating.url}
+            target="_blank"
+            rel="noreferrer"
+            class="hero-rating"
+            aria-label={`${site.rating.value} ${site.rating.label.en}`}
+          >
+            <span class="hero-rating__stars" aria-hidden="true">★★★★★</span>
+            <bdi dir="ltr">{site.rating.value}</bdi>
+            <span data-copy="en">{site.rating.label.en}</span>
+            <span data-copy="ar" lang="ar">{site.rating.label.ar}</span>
+          </a>
         </div>
 
         <div class="hero-trust-bar">
@@ -165,7 +177,7 @@ const total = String(workflows.length).padStart(2, "0");
         </div>
       </div>
 
-      <div class="hero-demo__dots" role="tablist" aria-label="Conversations">
+      <div class="hero-demo__dots" role="group" aria-label="Conversations">
         {workflows.map((wf, idx) => (
           <button
             type="button"

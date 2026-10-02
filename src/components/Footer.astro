@@ -39,6 +39,10 @@ import { site } from "../data/content";
             <span data-copy="ar" lang="ar">{link.label.ar}</span>
           </a>
         ))}
+        <a href="/guides">
+          <span data-copy="en">{site.footer.guides.en}</span>
+          <span data-copy="ar" lang="ar">{site.footer.guides.ar}</span>
+        </a>
         <a href="/whats-new">
           <span data-copy="en">{site.footer.whatsNew.en}</span>
           <span data-copy="ar" lang="ar">{site.footer.whatsNew.ar}</span>
@@ -69,6 +73,10 @@ import { site } from "../data/content";
         <a href="/dpa">
           <span data-copy="en">{site.footer.legal.dpa.en}</span>
           <span data-copy="ar" lang="ar">{site.footer.legal.dpa.ar}</span>
+        </a>
+        <a href="/security">
+          <span data-copy="en">{site.footer.legal.security.en}</span>
+          <span data-copy="ar" lang="ar">{site.footer.legal.security.ar}</span>
         </a>
       </div>
     </div>
@@ -109,6 +117,7 @@ import { site } from "../data/content";
       </p>
       <a href="https://apps.shopify.com" target="_blank" rel="noopener noreferrer" class="footer-shopify-badge">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15.34 2.61c-.04-.21-.2-.36-.41-.36h-1.27l-.12-.61c-.04-.21-.2-.36-.41-.36H9.87c-.21 0-.37.15-.41.36l-.12.61H8.07c-.21 0-.37.15-.41.36L5.5 14.39c-.03.15.08.29.23.29h2.56l-.57 3.03c-.04.21.11.39.32.39h1.13c.21 0 .37-.15.41-.36l.57-3.06h3.3l-.57 3.06c-.04.21.11.39.32.39h1.13c.21 0 .37-.18.32-.39l-.57-3.03h2.56c.15 0 .26-.14.23-.29L15.34 2.61zM10.3 13.38l-.43-2.59h.86l.43 2.59h-.86zm3.17 0l-.43-2.59h.86l.43 2.59h-.86z"/></svg>
+        <span class="footer-rating" aria-hidden="true">★ <bdi dir="ltr">{site.rating.value}</bdi></span>
         <span data-copy="en">{site.footer.shopifyBadge.en}</span>
         <span data-copy="ar" lang="ar">{site.footer.shopifyBadge.ar}</span>
       </a>

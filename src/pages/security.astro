@@ -1,0 +1,134 @@
+---
+import Base from "../layouts/Base.astro";
+import CTA from "../components/CTA.astro";
+import Footer from "../components/Footer.astro";
+import MobileCta from "../components/MobileCta.astro";
+import Nav from "../components/Nav.astro";
+
+// Every statement here is checked against the code that does it: the OAuth
+// scopes the app asks for, the webhook handlers, and the compliance service
+// that answers Shopify's mandatory privacy webhooks.
+const SECTIONS = [
+  {
+    heading: { en: "What Whano reads from your store", ar: "ما يقرأه Whano من متجرك" },
+    body: [
+      {
+        en: "Orders and their line items, so the confirmation and the tracking message can state the real order number, products, total and address. Customer names and phone numbers, so the message reaches the right person on WhatsApp. Products, so an edit can be priced correctly. Fulfillments, so the shipping notice fires when you actually ship.",
+        ar: "الطلبات وبنودها، ليذكر التأكيد ورسالة التتبع رقم الطلب الحقيقي والمنتجات والإجمالي والعنوان. وأسماء العملاء وأرقام هواتفهم، لتصل الرسالة إلى الشخص الصحيح على واتساب. والمنتجات، ليُحسب أي تعديل بشكل صحيح. وعمليات التجهيز، ليُرسل إشعار الشحن عند شحن الطلب فعلًا.",
+      },
+      {
+        en: "The app writes back to the same orders: the status it confirmed, the tags it adds, and the cancellation or edit the customer asked for. It never touches anything else in your store.",
+        ar: "ويكتب التطبيق على الطلبات نفسها: الحالة التي أكدها، والوسوم التي يضيفها، والإلغاء أو التعديل الذي طلبه العميل. ولا يمس أي شيء آخر في متجرك.",
+      },
+    ],
+  },
+  {
+    heading: { en: "What it never sees", ar: "ما لا يراه أبدًا" },
+    body: [
+      {
+        en: "No payment details, no card numbers, no customer passwords, and no Shopify admin password. The app never asks for billing scopes; charging runs through your Shopify invoice, handled by Shopify.",
+        ar: "لا تفاصيل دفع، ولا أرقام بطاقات، ولا كلمات مرور العملاء، ولا كلمة مرور مدير Shopify. لا يطلب التطبيق أي صلاحيات فوترة؛ فالتحصيل يتم عبر فاتورة Shopify وتتولاه Shopify.",
+      },
+    ],
+  },
+  {
+    heading: { en: "Where the messages live", ar: "أين تعيش الرسائل" },
+    body: [
+      {
+        en: "Messages go out from a verified WhatsApp business number on Whano's own infrastructure — not from your phone and not from a device linked to your personal number. The conversation, its content and its status are stored so the console can show you the log, and so a reply can be understood when the customer sends one.",
+        ar: "تُرسل الرسائل من رقم واتساب تجاري موثق على بنية Whano التحتية — لا من هاتفك ولا من جهاز مرتبط برقمك الشخصي. وتُحفظ المحادثة ومحتواها وحالتها لتُعرض لك في سجل لوحة التحكم، وليُفهم الرد عندما يرسل العميل واحدًا.",
+      },
+      {
+        en: "Every message is a normal WhatsApp message to the customer, and the store name and details on it are yours.",
+        ar: "كل رسالة هي رسالة واتساب عادية للعميل، واسم متجرك وتفاصيله عليها.",
+      },
+    ],
+  },
+  {
+    heading: { en: "Who can see your data", ar: "من يرى بياناتك" },
+    body: [
+      {
+        en: "You and the teammates you invite see your own store only. Whano's team can see a store's data when the session is opened for support, and every operator action is attributed in the audit log.",
+        ar: "ترى أنت وفريقك المدعو متجرك أنت فقط. ويمكن لفريق Whano الاطلاع على بيانات متجر عند فتح الجلسة للدعم، وكل إجراء من الفريق موثق باسمه في سجل التدقيق.",
+      },
+    ],
+  },
+  {
+    heading: { en: "When you leave", ar: "عندما ترحل" },
+    body: [
+      {
+        en: "Uninstalling stops the bot immediately: the store's sessions are invalidated the moment Shopify tells us. Forty-eight hours later Shopify sends its shop-redaction webhook, and the store's data is deleted from our database.",
+        ar: "إلغاء التثبيت يوقف البوت فورًا: تُبطَل جلسات المتجر لحظة إبلاغ Shopify لنا. وبعد 48 ساعة يرسل Shopify طلب حذف بيانات المتجر، فتُحذف بيانات المتجر من قاعدة بياناتنا.",
+      },
+      {
+        en: "A shopper can also ask for their own data at any time; Shopify forwards that request to us and we answer it through the same mandatory privacy webhooks.",
+        ar: "ويمكن لأي عميل طلب بياناته في أي وقت؛ يحوّل Shopify الطلب إلينا ونجيب عنه عبر طلبات الخصوصية الإلزامية نفسها.",
+      },
+    ],
+  },
+  {
+    heading: { en: "You are in control", ar: "القرار بيدك" },
+    body: [
+      {
+        en: "Pause every send from the console whenever you want, keep quiet hours, and switch each automation on or off. The change history records who changed what, and every change can be reverted in one tap.",
+        ar: "أوقف كل الإرسال من لوحة التحكم وقتما تشاء، وحدد ساعات الهدوء، وفعّل كل أتمتة أو أوقفها. ويسجّل سجل التغييرات من غيّر ماذا، ويمكن التراجع عن أي تغيير بضغطة.",
+      },
+    ],
+  },
+];
+---
+
+<Base
+  title="Security & data — Whano"
+  titleArabic="الأمان والبيانات — Whano"
+  description="What Whano reads from your Shopify store, what it never sees, where the messages live, and what happens to your data when you uninstall."
+  descriptionArabic="ما يقرأه Whano من متجرك على Shopify، وما لا يراه أبدًا، وأين تعيش الرسائل، وماذا يحدث لبياناتك عند إلغاء التثبيت."
+>
+  <Nav />
+  <main id="main-content" class="about-page">
+    <div class="site-frame">
+      <header class="about-header reveal">
+        <p class="eyebrow">
+          <span data-copy="en">Whano / security</span>
+          <span data-copy="ar" lang="ar">Whano / الأمان</span>
+        </p>
+        <h1 class="about-title">
+          <span data-copy="en">Plain answers about your data.</span>
+          <span data-copy="ar" lang="ar">إجابات واضحة عن بياناتك.</span>
+        </h1>
+        <p class="about-subtitle">
+          <span data-copy="en">No legal fog: what we read, what we never see, and what happens when you leave.</span>
+          <span data-copy="ar" lang="ar">بلا ضباب قانوني: ما نقرأه، وما لا نراه أبدًا، وما يحدث عند رحيلك.</span>
+        </p>
+      </header>
+
+      {SECTIONS.map((section) => (
+        <section class="about-section reveal">
+          <h2 class="about-section__heading">
+            <span data-copy="en">{section.heading.en}</span>
+            <span data-copy="ar" lang="ar">{section.heading.ar}</span>
+          </h2>
+          {section.body.map((paragraph) => (
+            <p class="about-section__body">
+              <span data-copy="en">{paragraph.en}</span>
+              <span data-copy="ar" lang="ar">{paragraph.ar}</span>
+            </p>
+          ))}
+        </section>
+      ))}
+
+      <p class="about-section__body reveal" style="margin-top: 28px;">
+        <span data-copy="en">
+          The formal documents are the <a href="/privacy">Privacy Policy</a>, the <a href="/terms">Terms</a> and the
+          <a href="/dpa">Data Processing Agreement</a>. This page is the human summary; those are the ones that hold.
+        </span>
+        <span data-copy="ar" lang="ar">
+          الوثائق الرسمية هي <a href="/privacy">سياسة الخصوصية</a> و<a href="/terms">الشروط</a> و<a href="/dpa">اتفاقية معالجة البيانات</a>. هذه الصفحة ملخص بشري، وتلك هي المرجع.
+        </span>
+      </p>
+    </div>
+  </main>
+  <CTA />
+  <MobileCta />
+  <Footer />
+</Base>

@@ -48,4 +48,18 @@ import Footer from "../components/Footer.astro";
   </main>
   <MobileCta />
   <Footer />
+
+  <script
+    is:inline
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.question.en,
+        acceptedAnswer: { "@type": "Answer", text: faq.answer.en },
+      })),
+    })}
+  />
 </Base>

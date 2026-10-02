@@ -1,5 +1,5 @@
 ---
-import { plans, planPricesUsd, pricingFeatures, site } from "../data/content";
+import { plans, planPricesUsd, pricingFeatures, pricingFaqs, site } from "../data/content";
 
 const FALLBACK_RATE = 50;
 
@@ -133,6 +133,27 @@ const egpValues = planPricesUsd.slice(0, 4).map((usd) => {
           </li>
         ))}
       </ul>
+    </div>
+
+    <div class="pricing-faqs reveal">
+      <h2 class="pricing-faqs__title">
+        <span data-copy="en">Billing questions</span>
+        <span data-copy="ar" lang="ar">أسئلة الفوترة</span>
+      </h2>
+      <div class="faq-list">
+        {pricingFaqs.map((faq) => (
+          <details class="faq-item">
+            <summary class="faq-summary">
+              <span data-copy="en">{faq.question.en}</span>
+              <span data-copy="ar" lang="ar">{faq.question.ar}</span>
+            </summary>
+            <p class="faq-answer">
+              <span data-copy="en">{faq.answer.en}</span>
+              <span data-copy="ar" lang="ar">{faq.answer.ar}</span>
+            </p>
+          </details>
+        ))}
+      </div>
     </div>
 
     <p class="price-note reveal">

@@ -20,15 +20,18 @@ The page is intentionally editorial rather than a conventional SaaS template: a 
 - `/login` — sends the visitor to the console at `whano.nomeda.tech/dashboard`
 - `/faq` — bilingual questions and answers
 - `/whats-new` — real shipped changes, newest first
+- `/guides` — practical guides (order follow-up, cutting delivery questions)
+- `/security` — plain-language data handling, checked against the code
 - `/about` — the team behind Whano
 - `/terms`, `/privacy`, `/dpa` — bilingual legal pages
 
 ## Analytics
 
 First-party and cookieless: the Worker counts one hit per page view and per
-install/login click in a KV namespace, and `GET /api/stats?key=…` reads the
-counters behind the `STATS_KEY` secret. No third party, no cookie, so there
-is nothing to consent to. The key lives with the team.
+install/login click in a KV namespace. `GET /api/stats?key=…` returns JSON and
+`/stats?key=…` renders the same numbers as a page, both behind the
+`STATS_KEY` secret. No third party, no cookie, so there is nothing to consent
+to. The key lives with the team.
 
 ## Sharing
 
@@ -53,9 +56,10 @@ npm run deploy   # build + wrangler deploy
 
 ## Bilingual behavior
 
-The site opens in Arabic by default and the language control switches to
-English, flips the document direction, and remembers the choice in local
-storage.
+A saved choice wins; on a first visit the site follows the browser (Arabic
+browser → Arabic, anything else → English). The language control switches at
+any time, flips the document direction, re-renders the phone conversations,
+and remembers the choice in local storage.
 
 Product copy is **Modern Standard Arabic** (فصحى), matching the console and
 the help articles. The message bubbles inside the hero phones are the exact

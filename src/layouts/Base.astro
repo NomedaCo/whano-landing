@@ -6,6 +6,8 @@ interface Props {
   titleArabic?: string;
   description?: string;
   descriptionArabic?: string;
+  /** A page-specific social card; defaults to the homepage one. */
+  ogImagePath?: string;
 }
 
 const {
@@ -13,10 +15,11 @@ const {
   titleArabic = title,
   description = "Whano keeps Shopify orders moving on WhatsApp with clear confirmations, updates, and follow-up.",
   descriptionArabic = "Whano يساعد متاجر Shopify على متابعة الطلبات عبر واتساب بتأكيدات وتحديثات ومتابعة واضحة.",
+  ogImagePath = "/og.png",
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site);
-const ogImage = new URL("/og.png", Astro.site);
+const ogImage = new URL(ogImagePath, Astro.site);
 ---
 
 <!doctype html>
@@ -57,23 +60,22 @@ const ogImage = new URL("/og.png", Astro.site);
       image: ogImage.href,
       description,
       publisher: { "@type": "Organization", name: "Nomeda", url: "https://nomeda.tech" },
-      // The real packs, nothing more: four standard bundles, $10 to $59.
-      offers: {
-        "@type": "AggregateOffer",
-        priceCurrency: "USD",
-        lowPrice: 10,
-        highPrice: 59,
-        offerCount: 4,
-        url: new URL("/pricing/", Astro.site).href,
-      },
     })} />
     <script is:inline>
       (() => {
         const root = document.documentElement;
         root.classList.add("js");
         try {
+          // A saved choice wins. On a first visit, follow the browser: an
+          // Arabic browser gets Arabic, anything else gets English — the
+          // toggle still remembers whatever the visitor picks.
           const saved = window.localStorage.getItem("whano-language");
-          const language = saved === "en" ? "en" : "ar";
+          const language =
+            saved === "en" || saved === "ar"
+              ? saved
+              : (navigator.language || "").toLowerCase().startsWith("ar")
+                ? "ar"
+                : "en";
           root.dataset.language = language;
           root.lang = language;
           root.dir = language === "ar" ? "rtl" : "ltr";

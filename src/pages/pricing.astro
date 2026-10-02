@@ -5,7 +5,36 @@ import Footer from "../components/Footer.astro";
 import Nav from "../components/Nav.astro";
 import MobileCta from "../components/MobileCta.astro";
 import Pricing from "../components/Pricing.astro";
-import { site } from "../data/content";
+import { plans, site } from "../data/content";
+
+// The real offers, on the page they belong to. Built here because `Astro` is
+// not in scope inside the inline-script expression at render time.
+const pricingUrl = new URL("/pricing/", Astro.site).href;
+const pricingSchema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: "Whano",
+  description: site.pricing.body.en,
+  brand: { "@type": "Brand", name: "Whano" },
+  url: pricingUrl,
+  offers: {
+    "@type": "AggregateOffer",
+    priceCurrency: "USD",
+    lowPrice: 10,
+    highPrice: 59,
+    offerCount: 4,
+    url: pricingUrl,
+    offers: plans
+      .filter((plan) => !("isEnterprise" in plan && plan.isEnterprise))
+      .map((plan) => ({
+        "@type": "Offer",
+        name: plan.name.en,
+        price: plan.price.en.replace("$", ""),
+        priceCurrency: "USD",
+        url: pricingUrl,
+      })),
+  },
+};
 ---
 
 <Base
@@ -13,6 +42,7 @@ import { site } from "../data/content";
   titleArabic="الأسعار — Whano"
   description="Whano runs on points: buy a pack from $10, spend it across the automations you enable, and follow the balance in the console. No monthly subscription."
   descriptionArabic="يعمل Whano بالنقاط: اشترِ باقة تبدأ من 10 دولارات، واستخدمها في الأتمتات التي تفعّلها، وتابع الرصيد في لوحة التحكم. من دون اشتراك شهري."
+  ogImagePath="/og-pricing.png"
 >
   <Nav />
   <main id="main-content">
@@ -37,6 +67,8 @@ import { site } from "../data/content";
     <Pricing />
     <CTA />
   </main>
+
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(pricingSchema)} />
   <MobileCta />
   <Footer />
 </Base>
