@@ -1,16 +1,26 @@
 /**
  * The landing Worker.
  *
- * Static assets, plus two first-party endpoints that make the site's
+ * Static assets, plus a few first-party endpoints that make the site's
  * conversion visible without a third party: no cookies, no fingerprinting,
  * no consent banner — one counter per day, path and event.
  *
  *   POST /api/hit    { path, event }  → increments a KV counter
  *   GET  /api/stats?key=…             → the counters, behind a shared secret
+ *   GET  /stats?key=…                 → the same numbers as a page
+ *   GET  /order/<slug>                → proxied to the API, which renders the
+ *                                       customer's order page (the slug is an
+ *                                       encrypted order id, see the API's
+ *                                       services/order-link.ts)
  *
  * Reading the numbers: `curl "https://whano.nomeda.tech/api/stats?key=…"`
  * (the key is the STATS_KEY secret; ask the team for it).
  */
+
+// Where the order preview page is rendered. The proxy exists so the link a
+// customer receives reads as the brand domain, and so the page's fonts are
+// same-origin when opened through it.
+const ORDER_API_ORIGIN = "https://whano-production.up.railway.app";
 
 interface KVListResult {
   keys: Array<{ name: string }>;
@@ -126,6 +136,28 @@ const worker = {
         </body></html>`,
         { headers: { "content-type": "text/html; charset=utf-8", "cache-control": "no-store" } },
       );
+    }
+
+    // The customer-facing order page is rendered by the API; proxying it here
+    // puts it on the brand domain and keeps its fonts same-origin. The slug in
+    // the path is the credential — nothing else is added, read or logged.
+    if (url.pathname === "/order" || url.pathname.startsWith("/order/")) {
+      const target = new URL(url.pathname + url.search, ORDER_API_ORIGIN);
+      return fetch(new Request(target, request));
+    }
+
+    // Fonts are fetched cross-origin when the order page is opened directly
+    // from the API (staging links), so they carry a permissive CORS header.
+    // The files are public brand assets; nothing here is personal.
+    if (url.pathname.startsWith("/fonts/")) {
+      const response = await env.ASSETS.fetch(request);
+      const headers = new Headers(response.headers);
+      headers.set("access-control-allow-origin", "*");
+      return new Response(response.body, {
+        status: response.status,
+        statusText: response.statusText,
+        headers,
+      });
     }
 
     return env.ASSETS.fetch(request);

@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /order/
 
 Sitemap: https://whano.nomeda.tech/sitemap.xml
