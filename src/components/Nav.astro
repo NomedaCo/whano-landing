@@ -41,7 +41,7 @@ import { site } from "../data/content";
         <span data-copy="en">{site.nav.login.en}</span>
         <span data-copy="ar" lang="ar">{site.nav.login.ar}</span>
       </a>
-      <button id="language-toggle" class="language-toggle" type="button" aria-label="التبديل إلى الإنجليزية" aria-pressed="true">
+      <button id="language-toggle" class="language-toggle" type="button" data-language-toggle aria-label="التبديل إلى الإنجليزية" aria-pressed="true">
         <span data-copy="en">{site.nav.language.en}</span>
         <span data-copy="ar" lang="ar">{site.nav.language.ar}</span>
       </button>
@@ -88,7 +88,8 @@ import { site } from "../data/content";
 
 <script>
   const header = document.getElementById("site-header");
-  const languageToggle = document.getElementById("language-toggle");
+  // Every language switch on the page — the nav has one, the footer has one.
+  const languageToggles = Array.from(document.querySelectorAll("[data-language-toggle]"));
   const menuButton = document.getElementById("menu-button");
   const mobileNav = document.getElementById("mobile-nav");
   const ui = {
@@ -109,8 +110,10 @@ import { site } from "../data/content";
     document.documentElement.dataset.language = language;
     document.documentElement.lang = language;
     document.documentElement.dir = language === "ar" ? "rtl" : "ltr";
-    languageToggle?.setAttribute("aria-pressed", String(language === "ar"));
-    languageToggle?.setAttribute("aria-label", language === "en" ? ui.switchToArabic : ui.switchToEnglish);
+    languageToggles.forEach((toggle) => {
+      toggle.setAttribute("aria-pressed", String(language === "ar"));
+      toggle.setAttribute("aria-label", language === "en" ? ui.switchToArabic : ui.switchToEnglish);
+    });
     const title = language === "ar"
       ? document.documentElement.dataset.titleAr
       : document.documentElement.dataset.titleEn;
@@ -162,9 +165,11 @@ import { site } from "../data/content";
     window.dispatchEvent(new CustomEvent("whano:language", { detail: { language } }));
   }
 
-  languageToggle?.addEventListener("click", () => {
-    const current = document.documentElement.dataset.language === "ar" ? "ar" : "en";
-    setLanguage(current === "en" ? "ar" : "en");
+  languageToggles.forEach((toggle) => {
+    toggle.addEventListener("click", () => {
+      const current = document.documentElement.dataset.language === "ar" ? "ar" : "en";
+      setLanguage(current === "en" ? "ar" : "en");
+    });
   });
 
   menuButton?.addEventListener("click", () => {

@@ -15,6 +15,17 @@ import { site } from "../data/content";
             <span data-copy="en">{site.cta.body.en}</span>
             <span data-copy="ar" lang="ar">{site.cta.body.ar}</span>
           </p>
+          <ul class="cta-band__reassurance">
+            {site.cta.reassurance.map((item) => (
+              <li>
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M3.4 8.6l3 3 6.2-6.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <span data-copy="en">{item.en}</span>
+                <span data-copy="ar" lang="ar">{item.ar}</span>
+              </li>
+            ))}
+          </ul>
           <a href={site.consoleUrl.en} data-console-link class="cta-band__login">
             <span data-copy="en">{site.cta.login.en}</span>
             <span data-copy="ar" lang="ar">{site.cta.login.ar}</span>

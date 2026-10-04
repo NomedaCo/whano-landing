@@ -1,0 +1,126 @@
+---
+import { site, type Localized } from "../data/content";
+
+const { consoleTour } = site;
+
+interface TourPanel {
+  tab: Localized;
+  caption: Localized;
+  kpis?: { label: Localized; value: string }[];
+  rows?: { id: string; state: Localized; amount?: string; carrier?: string }[];
+  bubbles?: { from: "bot" | "customer"; text: Localized }[];
+  badge?: Localized;
+}
+
+// The panels share one shape at render time; the data keeps each panel to the
+// fields it actually has, so this is a cast rather than a second source of
+// truth.
+const panels = consoleTour.panels as TourPanel[];
+---
+
+<section class="section section--compact" id="console">
+  <div class="site-frame">
+    <div class="section-heading reveal">
+      <div>
+        <p class="eyebrow">
+          <span data-copy="en">{consoleTour.eyebrow.en}</span>
+          <span data-copy="ar" lang="ar">{consoleTour.eyebrow.ar}</span>
+        </p>
+      </div>
+      <div>
+        <h2 class="section-title">
+          <span data-copy="en">{consoleTour.title.en}</span>
+          <span data-copy="ar" lang="ar">{consoleTour.title.ar}</span>
+        </h2>
+        <p class="section-copy">
+          <span data-copy="en">{consoleTour.body.en}</span>
+          <span data-copy="ar" lang="ar">{consoleTour.body.ar}</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="tour-grid">
+      {panels.map((panel, index) => (
+        <article class={`tour-panel tour-panel--${["overview", "shipments", "chats"][index] ?? "overview"} reveal`}>
+          <div class="tour-window">
+            <div class="tour-window__chrome">
+              <span class="tour-window__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="tour-window__url" dir="ltr">whano.nomeda.tech/dashboard</span>
+            </div>
+            <div class="tour-window__body">
+              <span class="tour-tab">
+                <span data-copy="en">{panel.tab.en}</span>
+                <span data-copy="ar" lang="ar">{panel.tab.ar}</span>
+              </span>
+
+              {panel.kpis && (
+                <div class="tour-kpis">
+                  {panel.kpis.map((kpi) => (
+                    <div class="tour-kpi">
+                      <bdi dir="ltr">{kpi.value}</bdi>
+                      <span class="tour-kpi__label">
+                        <span data-copy="en">{kpi.label.en}</span>
+                        <span data-copy="ar" lang="ar">{kpi.label.ar}</span>
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {panel.rows && (
+                <ul class="tour-rows">
+                  {panel.rows.map((row) => (
+                    <li>
+                      <bdi class="tour-rows__id" dir="ltr">{row.id}</bdi>
+                      <span class={`tour-state${row.state.ar === "تم التأجيل" ? " tour-state--warn" : ""}`}>
+                        <span data-copy="en">{row.state.en}</span>
+                        <span data-copy="ar" lang="ar">{row.state.ar}</span>
+                      </span>
+                      {row.carrier && <span class="tour-rows__carrier">{row.carrier}</span>}
+                      {row.amount && <bdi class="tour-rows__amount" dir="ltr">{row.amount}</bdi>}
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              {panel.bubbles && (
+                <div class="tour-bubbles">
+                  {panel.bubbles.map((bubble) => (
+                    <p class={`tour-bubble tour-bubble--${bubble.from}`}>
+                      <span data-copy="en">{bubble.text.en}</span>
+                      <span data-copy="ar" lang="ar">{bubble.text.ar}</span>
+                    </p>
+                  ))}
+                </div>
+              )}
+
+              {panel.badge && (
+                <p class="tour-badge">
+                  <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <path d="M8 1.8a6.2 6.2 0 1 0 6.2 6.2A6.2 6.2 0 0 0 8 1.8zm3 4.6L7.4 9.9 5.5 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  <span data-copy="en">{panel.badge.en}</span>
+                  <span data-copy="ar" lang="ar">{panel.badge.ar}</span>
+                </p>
+              )}
+            </div>
+          </div>
+          <p class="tour-panel__caption">
+            <span data-copy="en">{panel.caption.en}</span>
+            <span data-copy="ar" lang="ar">{panel.caption.ar}</span>
+          </p>
+        </article>
+      ))}
+    </div>
+
+    <p class="capabilities-more reveal">
+      <a href="/features" class="section-link">
+        <span data-copy="en">{consoleTour.cta.en}</span>
+        <span data-copy="ar" lang="ar">{consoleTour.cta.ar}</span>
+        <svg width="14" height="14" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+          <path d="M2.5 7.5h9M8 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
+    </p>
+  </div>
+</section>

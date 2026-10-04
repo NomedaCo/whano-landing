@@ -1,0 +1,40 @@
+---
+import { site } from "../data/content";
+
+const { audience } = site;
+---
+
+<section class="section section--compact" id="audience">
+  <div class="site-frame">
+    <div class="section-heading reveal">
+      <div>
+        <p class="eyebrow">
+          <span data-copy="en">{audience.eyebrow.en}</span>
+          <span data-copy="ar" lang="ar">{audience.eyebrow.ar}</span>
+        </p>
+      </div>
+      <div>
+        <h2 class="section-title">
+          <span data-copy="en">{audience.title.en}</span>
+          <span data-copy="ar" lang="ar">{audience.title.ar}</span>
+        </h2>
+      </div>
+    </div>
+
+    <div class="audience-grid">
+      {audience.items.map((item, index) => (
+        <article class="audience-card reveal">
+          <span class="audience-card__index" aria-hidden="true">0{index + 1}</span>
+          <h3 class="audience-card__title">
+            <span data-copy="en">{item.title.en}</span>
+            <span data-copy="ar" lang="ar">{item.title.ar}</span>
+          </h3>
+          <p class="audience-card__body">
+            <span data-copy="en">{item.body.en}</span>
+            <span data-copy="ar" lang="ar">{item.body.ar}</span>
+          </p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

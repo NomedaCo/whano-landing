@@ -405,6 +405,86 @@ export const site = {
     title: { en: "The questions worth asking first.", ar: "الأسئلة التي تستحق أن تُطرح أولًا." },
     all: { en: "All questions", ar: "كل الأسئلة" },
   },
+  consoleTour: {
+    eyebrow: { en: "The console", ar: "لوحة التحكم" },
+    title: { en: "One screen for everything the order touches.", ar: "شاشة واحدة لكل ما يلمسه الطلب." },
+    body: {
+      en: "Orders, shipments, conversations, and reports sit in one place — so the next step is never a guess.",
+      ar: "الطلبات، والشحنات، والمحادثات، والتقارير في مكان واحد — حتى لا تكون الخطوة التالية تخمينًا.",
+    },
+    cta: { en: "See everything it does", ar: "اطّلع على كل ما تفعله" },
+    panels: [
+      {
+        tab: { en: "Overview", ar: "نظرة عامة" },
+        caption: {
+          en: "The day at a glance: orders, points left, and who is waiting on you.",
+          ar: "اليوم من نظرة واحدة: الطلبات، والنقاط المتاحة، ومن ينتظر ردًّا منك.",
+        },
+        kpis: [
+          { label: { en: "Orders today", ar: "طلبات اليوم" }, value: "12" },
+          { label: { en: "Points left", ar: "النقاط المتاحة" }, value: "4,280" },
+          { label: { en: "Awaiting reply", ar: "بانتظار رد" }, value: "3" },
+        ],
+        rows: [
+          { id: "#1036", state: { en: "Confirmed", ar: "مؤكد" }, amount: "650 EGP" },
+          { id: "#1035", state: { en: "Shipped", ar: "تم الشحن" }, amount: "1,240 EGP" },
+          { id: "#1034", state: { en: "Delivered", ar: "تم التوصيل" }, amount: "310 EGP" },
+        ],
+      },
+      {
+        tab: { en: "Shipments", ar: "الشحنات" },
+        caption: {
+          en: "Every parcel's state, and the carrier's own reason when something goes wrong.",
+          ar: "حالة كل شحنة، والسبب الذي تذكره شركة الشحن عند حدوث خلل.",
+        },
+        rows: [
+          { id: "BST-884213", state: { en: "On the way", ar: "في الطريق" }, carrier: "Bosta" },
+          { id: "SBL-221074", state: { en: "Delivered", ar: "تم التوصيل" }, carrier: "ShipBlu" },
+          { id: "ARX-553091", state: { en: "Postponed", ar: "تم التأجيل" }, carrier: "Aramex" },
+        ],
+      },
+      {
+        tab: { en: "Chats", ar: "المحادثات" },
+        caption: {
+          en: "What the bot sent, what the customer answered, and when a person should step in.",
+          ar: "ما أرسله البوت، وما أجاب به العميل، ومتى ينبغي أن يتدخل شخص.",
+        },
+        bubbles: [
+          { from: "bot", text: { en: "Order #1036 confirmed — tracking follows on shipping.", ar: "تم تأكيد الطلب #1036 — التتبع يلي عند الشحن." } },
+          { from: "customer", text: { en: "Add one more cap please", ar: "أضف كاب واحد كمان من فضلك" } },
+          { from: "bot", text: { en: "Added. New total: 800 EGP.", ar: "تمت الإضافة. الإجمالي الجديد: 800 EGP." } },
+        ],
+        badge: { en: "Ticket opened for an exchange", ar: "فُتحت تذكرة لطلب استبدال" },
+      },
+    ],
+  },
+  audience: {
+    eyebrow: { en: "Who it's for", ar: "لمن Whano" },
+    title: { en: "Built for stores where every order is a conversation.", ar: "مصمم للمتاجر التي تجعل كل طلب محادثة." },
+    items: [
+      {
+        title: { en: "Fashion and accessories", ar: "الأزياء والإكسسوارات" },
+        body: {
+          en: "Size, colour, and quantity changes are normal here. Whano handles them in the conversation before the parcel is packed, and asks for the review once it arrives.",
+          ar: "تغيّر المقاس واللون والكمية شائع هنا. يعالجها Whano في المحادثة قبل تغليف الشحنة، ويسأل عن التقييم بعد وصولها.",
+        },
+      },
+      {
+        title: { en: "Cash-on-delivery sellers", ar: "متاجر الدفع عند الاستلام" },
+        body: {
+          en: "Every order starts with an explicit confirmation on WhatsApp, so the parcel ships against a confirmed total — not a guess.",
+          ar: "كل طلب يبدأ بتأكيد صريح على واتساب، فتُشحن الشحنة على أساس إجمالي مؤكد، لا على التخمين.",
+        },
+      },
+      {
+        title: { en: "Teams running several stores", ar: "فرق تدير أكثر من متجر" },
+        body: {
+          en: "One console for every store, each with its own orders, messages, points, and settings — plus a change log of who did what.",
+          ar: "لوحة واحدة لكل متجر، ولكل منها طلباته ورسائله ونقاطه وإعداداته — مع سجل تغييرات يوضّح من فعل ماذا.",
+        },
+      },
+    ],
+  },
   cta: {
     title: { en: "Keep the next order moving after checkout.", ar: "اجعل الطلب القادم يكمل رحلته حتى النهاية." },
     body: {
@@ -413,14 +493,50 @@ export const site = {
     },
     button: { en: "Install on Shopify", ar: "ثبّت على Shopify" },
     login: { en: "Already using Whano? Log in", ar: "تستخدم Whano بالفعل؟ سجّل الدخول" },
+    reassurance: [
+      { en: "Free to install", ar: "التثبيت مجاني" },
+      { en: "100 points included to test it", ar: "100 نقطة مجانية للتجربة" },
+      { en: "No monthly subscription", ar: "من دون اشتراك شهري" },
+      { en: "Uninstall anytime", ar: "يمكنك إلغاء التثبيت في أي وقت" },
+    ],
   },
   footer: {
     descriptor: { en: "Post-purchase WhatsApp automation for Shopify.", ar: "أتمتة تواصل ما بعد الشراء لمتاجر Shopify." },
+    tagline: {
+      en: "Confirm orders, ship them, track them, and ask for the review — on WhatsApp, automatically.",
+      ar: "أكّد الطلبات، وشحّنها، وتتبعها، واطلب تقييمها — على واتساب، وبشكل تلقائي.",
+    },
+    trust: [
+      { en: "Official WhatsApp Cloud API", ar: "واتساب Cloud API الرسمية" },
+      { en: "Billed through Shopify", ar: "الفوترة عبر Shopify" },
+    ],
+    productLabel: { en: "Product", ar: "المنتج" },
+    productLinks: [
+      { href: "/features", label: { en: "Features", ar: "المزايا" } },
+      { href: "/pricing", label: { en: "Pricing", ar: "الأسعار" } },
+      { href: "/#shipping", label: { en: "Shipping & carriers", ar: "الشحن وشركات الشحن" } },
+      { href: "/#order-page", label: { en: "The order page", ar: "صفحة الطلب" } },
+    ],
+    resourcesLabel: { en: "Resources", ar: "الموارد" },
+    resourcesLinks: [
+      { href: "/faq", label: { en: "Questions", ar: "الأسئلة الشائعة" } },
+      { href: "/guides", label: { en: "Guides", ar: "الأدلة" } },
+      { href: "/whats-new", label: { en: "What's new", ar: "ما الجديد" } },
+      { href: "/security", label: { en: "Security & data", ar: "الأمان والبيانات" } },
+    ],
+    companyLabel: { en: "Company", ar: "الشركة" },
+    companyLinks: [
+      { href: "/about", label: { en: "About", ar: "من نحن" } },
+      { href: "https://whano.nomeda.tech/dashboard", label: { en: "Console", ar: "لوحة التحكم" }, external: true, console: true },
+      { href: "https://apps.shopify.com/whano", label: { en: "App Store", ar: "متجر التطبيقات" }, external: true },
+    ],
+    language: { en: "العربية", ar: "English" },
+    credit: { en: "A NomedaCo product", ar: "منتج من NomedaCo" },
+    backToTop: { en: "Back to top", ar: "العودة إلى الأعلى" },
     contact: { en: "contact@nomeda.tech", ar: "contact@nomeda.tech" },
     contactLabel: { en: "Email", ar: "البريد الإلكتروني" },
     copyright: { en: "© 2026 Whano, a NomedaCo product.", ar: "© 2026 Whano، منتج من NomedaCo." },
     shopifyBadge: { en: "Available on the Shopify App Store", ar: "متوفر على متجر تطبيقات Shopify" },
-    login: { en: "Log in", ar: "تسجيل الدخول" },
     legal: {
       label: { en: "Legal", ar: "قانوني" },
       privacy: { en: "Privacy Policy", ar: "سياسة الخصوصية" },
@@ -428,12 +544,7 @@ export const site = {
       dpa: { en: "Data Processing Agreement", ar: "اتفاقية معالجة البيانات" },
       security: { en: "Security & data", ar: "الأمان والبيانات" },
     },
-    productLabel: { en: "Product", ar: "المنتج" },
-    aboutLink: { en: "About", ar: "من نحن" },
-    whatsNew: { en: "What's new", ar: "ما الجديد" },
-    guides: { en: "Guides", ar: "أدلة" },
     socialLabel: { en: "Follow us", ar: "تابعنا" },
-    backToTop: { en: "Back to top", ar: "العودة إلى الأعلى" },
   },
   loginPage: {
     eyebrow: { en: "Whano / console", ar: "Whano / لوحة التحكم" },
