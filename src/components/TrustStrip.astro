@@ -1,0 +1,24 @@
+---
+import { site } from "../data/content";
+---
+
+<section class="trust-strip" aria-label="Trust">
+  <div class="site-frame">
+    <ul class="trust-strip__list reveal">
+      {site.trustStrip.items.map((item) => (
+        <li>
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path
+              d="M3.4 8.6l3 3 6.2-6.8"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+          <span data-copy="en">{item.en}</span>
+          <span data-copy="ar" lang="ar">{item.ar}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

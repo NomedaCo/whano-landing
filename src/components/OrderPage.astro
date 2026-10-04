@@ -1,0 +1,58 @@
+---
+import { site } from "../data/content";
+
+const { orderPage } = site;
+---
+
+<section class="section section--compact" id="order-page">
+  <div class="site-frame">
+    <div class="order-band">
+      <div class="order-band__copy reveal">
+        <p class="eyebrow">
+          <span data-copy="en">{orderPage.eyebrow.en}</span>
+          <span data-copy="ar" lang="ar">{orderPage.eyebrow.ar}</span>
+        </p>
+        <h2 class="section-title">
+          <span data-copy="en">{orderPage.title.en}</span>
+          <span data-copy="ar" lang="ar">{orderPage.title.ar}</span>
+        </h2>
+        <p class="section-copy">
+          <span data-copy="en">{orderPage.body.en}</span>
+          <span data-copy="ar" lang="ar">{orderPage.body.ar}</span>
+        </p>
+        <ul class="order-band__list">
+          {orderPage.items.map((item) => (
+            <li>
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path
+                  d="M3.4 8.6l3 3 6.2-6.8"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+              </svg>
+              <span data-copy="en">{item.en}</span>
+              <span data-copy="ar" lang="ar">{item.ar}</span>
+            </li>
+          ))}
+        </ul>
+        <p class="order-band__note">
+          <span data-copy="en">{orderPage.note.en}</span>
+          <span data-copy="ar" lang="ar">{orderPage.note.ar}</span>
+        </p>
+      </div>
+      <figure class="order-band__shot reveal">
+        <div class="phone-shell">
+          <img
+            src="/order-page.png"
+            width="780"
+            height="1688"
+            loading="lazy"
+            decoding="async"
+            alt=""
+          />
+        </div>
+      </figure>
+    </div>
+  </div>
+</section>

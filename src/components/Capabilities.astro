@@ -1,9 +1,9 @@
 ---
 import { features, site } from "../data/content";
 
-// The homepage shows the first six capabilities; the features page carries
-// the full list.
-const teaser = features.slice(0, 6);
+// The homepage shows the six capabilities marked `featured` — the ones that
+// sell the product; the features page carries the full list.
+const teaser = features.filter((feature) => feature.featured);
 ---
 
 <section class="section section--compact">

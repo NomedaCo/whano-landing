@@ -1,0 +1,51 @@
+---
+import { faqs, site } from "../data/content";
+
+// The homepage carries the four questions that block an install; the rest
+// live on /faq with the full list.
+const home = faqs.filter((faq) => (faq as { home?: boolean }).home === true).slice(0, 4);
+---
+
+<section class="section section--compact" id="questions">
+  <div class="site-frame">
+    <div class="section-heading reveal">
+      <div>
+        <p class="eyebrow">
+          <span data-copy="en">{site.faqTeaser.eyebrow.en}</span>
+          <span data-copy="ar" lang="ar">{site.faqTeaser.eyebrow.ar}</span>
+        </p>
+      </div>
+      <div>
+        <h2 class="section-title">
+          <span data-copy="en">{site.faqTeaser.title.en}</span>
+          <span data-copy="ar" lang="ar">{site.faqTeaser.title.ar}</span>
+        </h2>
+      </div>
+    </div>
+
+    <div class="faq-list faq-list--teaser reveal">
+      {home.map((faq) => (
+        <details class="faq-item">
+          <summary class="faq-summary">
+            <span data-copy="en">{faq.question.en}</span>
+            <span data-copy="ar" lang="ar">{faq.question.ar}</span>
+          </summary>
+          <p class="faq-answer">
+            <span data-copy="en">{faq.answer.en}</span>
+            <span data-copy="ar" lang="ar">{faq.answer.ar}</span>
+          </p>
+        </details>
+      ))}
+    </div>
+
+    <p class="capabilities-more reveal">
+      <a href="/faq" class="section-link">
+        <span data-copy="en">{site.faqTeaser.all.en}</span>
+        <span data-copy="ar" lang="ar">{site.faqTeaser.all.ar}</span>
+        <svg width="14" height="14" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+          <path d="M2.5 7.5h9M8 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </a>
+    </p>
+  </div>
+</section>

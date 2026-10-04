@@ -1,0 +1,62 @@
+---
+import { site } from "../data/content";
+
+const { shipping } = site;
+---
+
+<section class="section" id="shipping">
+  <div class="site-frame">
+    <div class="section-heading reveal">
+      <div>
+        <p class="eyebrow">
+          <span data-copy="en">{shipping.eyebrow.en}</span>
+          <span data-copy="ar" lang="ar">{shipping.eyebrow.ar}</span>
+        </p>
+      </div>
+      <div>
+        <h2 class="section-title">
+          <span data-copy="en">{shipping.title.en}</span>
+          <span data-copy="ar" lang="ar">{shipping.title.ar}</span>
+        </h2>
+        <p class="section-copy">
+          <span data-copy="en">{shipping.body.en}</span>
+          <span data-copy="ar" lang="ar">{shipping.body.ar}</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="carrier-band reveal">
+      <p class="carrier-band__label">
+        <span data-copy="en">{shipping.carriersLabel.en}</span>
+        <span data-copy="ar" lang="ar">{shipping.carriersLabel.ar}</span>
+      </p>
+      <ul class="carrier-band__list">
+        {shipping.carriers.map((carrier) => (
+          <li>
+            <span data-copy="en">{carrier.en}</span>
+            <span data-copy="ar" lang="ar">{carrier.ar}</span>
+          </li>
+        ))}
+      </ul>
+      <p class="carrier-band__note">
+        <span data-copy="en">{shipping.carriersNote.en}</span>
+        <span data-copy="ar" lang="ar">{shipping.carriersNote.ar}</span>
+      </p>
+    </div>
+
+    <div class="shipping-grid">
+      {shipping.items.map((item) => (
+        <article class="shipping-card reveal">
+          <h3 class="shipping-card__title">
+            <span data-copy="en">{item.title.en}</span>
+            <span data-copy="ar" lang="ar">{item.title.ar}</span>
+          </h3>
+          <p class="shipping-card__body">
+            <span data-copy="en">{item.body.en}</span>
+            <span data-copy="ar" lang="ar">{item.body.ar}</span>
+          </p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

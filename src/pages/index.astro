@@ -2,12 +2,17 @@
 import Base from "../layouts/Base.astro";
 import Capabilities from "../components/Capabilities.astro";
 import CTA from "../components/CTA.astro";
+import FaqTeaser from "../components/FaqTeaser.astro";
 import Features from "../components/Features.astro";
 import Footer from "../components/Footer.astro";
 import Hero from "../components/Hero.astro";
-import Nav from "../components/Nav.astro";
 import MobileCta from "../components/MobileCta.astro";
+import OrderPage from "../components/OrderPage.astro";
+import Outcomes from "../components/Outcomes.astro";
 import PricingTeaser from "../components/PricingTeaser.astro";
+import Shipping from "../components/Shipping.astro";
+import TrustStrip from "../components/TrustStrip.astro";
+import Nav from "../components/Nav.astro";
 ---
 
 <Base
@@ -19,9 +24,14 @@ import PricingTeaser from "../components/PricingTeaser.astro";
   <Nav />
   <main id="main-content">
     <Hero />
+    <TrustStrip />
     <Features />
+    <Shipping />
+    <OrderPage />
+    <Outcomes />
     <Capabilities />
     <PricingTeaser />
+    <FaqTeaser />
     <CTA />
   </main>
   <MobileCta />

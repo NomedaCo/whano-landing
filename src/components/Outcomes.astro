@@ -1,0 +1,50 @@
+---
+import { site } from "../data/content";
+
+const { outcomes } = site;
+---
+
+<section class="section section--compact" id="outcomes">
+  <div class="site-frame">
+    <div class="section-heading reveal">
+      <div>
+        <p class="eyebrow">
+          <span data-copy="en">{outcomes.eyebrow.en}</span>
+          <span data-copy="ar" lang="ar">{outcomes.eyebrow.ar}</span>
+        </p>
+      </div>
+      <div>
+        <h2 class="section-title">
+          <span data-copy="en">{outcomes.title.en}</span>
+          <span data-copy="ar" lang="ar">{outcomes.title.ar}</span>
+        </h2>
+      </div>
+    </div>
+
+    <div class="outcomes-grid">
+      {outcomes.items.map((item) => (
+        <article class="outcome-card reveal">
+          <h3 class="outcome-card__title">
+            <span data-copy="en">{item.title.en}</span>
+            <span data-copy="ar" lang="ar">{item.title.ar}</span>
+          </h3>
+          <p class="outcome-card__body">
+            <span data-copy="en">{item.body.en}</span>
+            <span data-copy="ar" lang="ar">{item.body.ar}</span>
+          </p>
+        </article>
+      ))}
+    </div>
+
+    <div class="outcomes-cost reveal">
+      <p class="outcomes-cost__line">
+        <span data-copy="en">{outcomes.cost.en}</span>
+        <span data-copy="ar" lang="ar">{outcomes.cost.ar}</span>
+      </p>
+      <p class="outcomes-cost__note">
+        <span data-copy="en">{outcomes.costNote.en}</span>
+        <span data-copy="ar" lang="ar">{outcomes.costNote.ar}</span>
+      </p>
+    </div>
+  </div>
+</section>
