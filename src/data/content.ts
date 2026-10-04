@@ -10,7 +10,7 @@ export interface ChatMessage {
 }
 
 export const site = {
-  contactEmail: "contact@nomeda.tech",
+  contactEmail: "whano@nomeda.tech",
   accessUrl: {
     en: "https://apps.shopify.com/whano",
     ar: "https://apps.shopify.com/whano",
@@ -533,7 +533,7 @@ export const site = {
     language: { en: "العربية", ar: "English" },
     credit: { en: "A NomedaCo product", ar: "منتج من NomedaCo" },
     backToTop: { en: "Back to top", ar: "العودة إلى الأعلى" },
-    contact: { en: "contact@nomeda.tech", ar: "contact@nomeda.tech" },
+    contact: { en: "whano@nomeda.tech", ar: "whano@nomeda.tech" },
     contactLabel: { en: "Email", ar: "البريد الإلكتروني" },
     copyright: { en: "© 2026 Whano, a NomedaCo product.", ar: "© 2026 Whano، منتج من NomedaCo." },
     shopifyBadge: { en: "Available on the Shopify App Store", ar: "متوفر على متجر تطبيقات Shopify" },

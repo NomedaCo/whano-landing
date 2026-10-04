@@ -110,7 +110,7 @@ export const termsSections: LegalSection[] = [
         ar: "للاستفسارات المتعلقة بهذه الشروط، تواصل معنا عبر",
       },
     ],
-    links: [{ label: { en: "contact@nomeda.tech", ar: "contact@nomeda.tech" }, href: "mailto:contact@nomeda.tech" }],
+    links: [{ label: { en: "whano@nomeda.tech", ar: "whano@nomeda.tech" }, href: "mailto:whano@nomeda.tech" }],
   },
 ];
 
