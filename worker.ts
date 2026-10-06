@@ -146,6 +146,16 @@ const worker = {
       return fetch(new Request(target, request));
     }
 
+    // The cart templates' "Complete order" URL button points at
+    // https://whano.nomeda.tech/cart/{token} — that URL is frozen into the
+    // approved template, so this proxy is what makes the button work at all.
+    // The API resolves the token and redirects to the checkout's recovery URL;
+    // this branch only carries the request across.
+    if (url.pathname === "/cart" || url.pathname.startsWith("/cart/")) {
+      const target = new URL(url.pathname + url.search, ORDER_API_ORIGIN);
+      return fetch(new Request(target, request));
+    }
+
     // Fonts are fetched cross-origin when the order page is opened directly
     // from the API (staging links), so they carry a permissive CORS header.
     // The files are public brand assets; nothing here is personal.
