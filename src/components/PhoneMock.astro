@@ -6,6 +6,8 @@ interface Props {
   replay?: boolean;
 }
 
+import { site } from "../data/content";
+
 const { streamId, statusId, typingId, replay = false } = Astro.props;
 ---
 
@@ -26,13 +28,17 @@ const { streamId, statusId, typingId, replay = false } = Astro.props;
           <path d="M15 19l-7-7 7-7" />
         </svg>
       </div>
-      <div class="wa-app-header__avatar" aria-hidden="true">
-        <img src="/whano-avatar.png" alt="" width="30" height="30" />
+      <div class="wa-app-header__avatar wa-app-header__avatar--store" aria-hidden="true">
+        <span data-copy="en">{site.demo.storeInitial.en}</span>
+        <span data-copy="ar" lang="ar">{site.demo.storeInitial.ar}</span>
       </div>
       <div class="wa-app-header__meta">
         <div class="wa-app-header__name-row">
-          <span class="wa-app-header__name">Whano</span>
-          <svg class="wa-app-header__verified" viewBox="0 0 16 16" fill="#25D366" aria-label="Verified Business">
+          <span class="wa-app-header__name">
+            <span data-copy="en">{site.demo.storeName.en}</span>
+            <span data-copy="ar" lang="ar">{site.demo.storeName.ar}</span>
+          </span>
+          <svg class="wa-app-header__verified" viewBox="0 0 16 16" fill="#25D366" aria-hidden="true">
             <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zm3.2 5.2L7 9.4 4.8 7.2a.8.8 0 0 0-1.1 1.1l2.8 2.8c.3.3.8.3 1.1 0l4.8-4.8a.8.8 0 1 0-1.2-1.1z"/>
           </svg>
         </div>
@@ -43,7 +49,9 @@ const { streamId, statusId, typingId, replay = false } = Astro.props;
       </div>
       {replay && (
         <div class="wa-app-header__actions">
-          <button type="button" class="wa-replay-btn" id="wf-replay-btn" title="Replay" aria-label="Replay conversation">
+          <button type="button" class="wa-replay-btn" id="wf-replay-btn">
+            <span class="sr-only" data-copy="en">Replay conversation</span>
+            <span class="sr-only" data-copy="ar" lang="ar">إعادة المحادثة</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M1 4v6h6M23 20v-6h-6"/>
               <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/>
@@ -58,7 +66,7 @@ const { streamId, statusId, typingId, replay = false } = Astro.props;
         <span data-copy="en">TODAY</span>
         <span data-copy="ar" lang="ar">اليوم</span>
       </div>
-      <div class="wa-stream" id={streamId}></div>
+      <div class="wa-stream" id={streamId} aria-live={replay ? "polite" : undefined}></div>
       {typingId && (
         <div class="wa-typing-pill" id={typingId} aria-hidden="true">
           <span class="wa-typing-dot"></span>

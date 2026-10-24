@@ -14,7 +14,8 @@ const pricingSchema = {
   "@context": "https://schema.org",
   "@type": "Product",
   name: "Whano",
-  description: site.pricing.body.en,
+  description: site.pricing.body.ar,
+  inLanguage: "ar",
   brand: { "@type": "Brand", name: "Whano" },
   url: pricingUrl,
   offers: {
@@ -25,12 +26,13 @@ const pricingSchema = {
     offerCount: 4,
     url: pricingUrl,
     offers: plans
-      .filter((plan) => !("isEnterprise" in plan && plan.isEnterprise))
+      .filter((plan) => plan.priceUsd !== null)
       .map((plan) => ({
         "@type": "Offer",
-        name: plan.name.en,
-        price: plan.price.en.replace("$", ""),
+        name: plan.name.ar,
+        price: plan.priceUsd,
         priceCurrency: "USD",
+        availability: "https://schema.org/InStock",
         url: pricingUrl,
       })),
   },
@@ -38,11 +40,12 @@ const pricingSchema = {
 ---
 
 <Base
-  title="Pricing — Whano"
-  titleArabic="الأسعار — Whano"
-  description="Whano runs on points: buy a pack from $10, spend it across the automations you enable, and follow the balance in the console. No monthly subscription."
-  descriptionArabic="يعمل Whano بالنقاط: اشترِ باقة تبدأ من 10 دولارات، واستخدمها في الأتمتات التي تفعّلها، وتابع الرصيد في لوحة التحكم. من دون اشتراك شهري."
+  title="Pricing — WhatsApp automation for Shopify | Whano"
+  titleArabic="الأسعار — أتمتة واتساب لمتاجر Shopify | Whano"
+  description="Whano runs on one-time points packs from 500 EGP ($10), billed in USD through Shopify. No monthly subscription, no automatic renewal, and points never expire."
+  descriptionArabic="يعمل Whano بباقات نقاط تُدفع مرة واحدة بدءًا من 500 جنيه (10 دولارات)، وتُفوتر بالدولار عبر Shopify. من دون اشتراك شهري أو تجديد تلقائي، والنقاط لا تنتهي."
   ogImagePath="/og-pricing.png"
+  schema={pricingSchema}
 >
   <Nav />
   <main id="main-content">
@@ -68,7 +71,6 @@ const pricingSchema = {
     <CTA />
   </main>
 
-  <script is:inline type="application/ld+json" set:html={JSON.stringify(pricingSchema)} />
   <MobileCta />
   <Footer />
 </Base>

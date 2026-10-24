@@ -1,11 +1,10 @@
 ---
 import Base from "../layouts/Base.astro";
 import Audience from "../components/Audience.astro";
-import Capabilities from "../components/Capabilities.astro";
 import ConsoleTour from "../components/ConsoleTour.astro";
 import CTA from "../components/CTA.astro";
 import FaqTeaser from "../components/FaqTeaser.astro";
-import Features from "../components/Features.astro";
+import Flow from "../components/Flow.astro";
 import Footer from "../components/Footer.astro";
 import Hero from "../components/Hero.astro";
 import MobileCta from "../components/MobileCta.astro";
@@ -15,25 +14,48 @@ import PricingTeaser from "../components/PricingTeaser.astro";
 import Shipping from "../components/Shipping.astro";
 import TrustStrip from "../components/TrustStrip.astro";
 import Nav from "../components/Nav.astro";
+
+const softwareSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "Whano",
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Web",
+  url: new URL("/", Astro.site).href,
+  description:
+    "WhatsApp automation for Shopify: order confirmation, edits, cancellations, shipping updates, delivery ratings, and a live customer order page.",
+  inLanguage: ["ar", "en"],
+  offers: {
+    "@type": "Offer",
+    price: 10,
+    priceCurrency: "USD",
+    availability: "https://schema.org/InStock",
+    url: "https://apps.shopify.com/whano",
+    description: "Points packs from 500 EGP ($10); one-time charges billed in USD through Shopify.",
+  },
+  sameAs: ["https://apps.shopify.com/whano"],
+  publisher: { "@type": "Organization", name: "NomedaCo", url: "https://nomeda.tech" },
+  screenshot: new URL("/og.png", Astro.site).href,
+};
 ---
 
 <Base
-  title="Whano | WhatsApp operations for Shopify"
-  titleArabic="Whano | عمليات واتساب لمتاجر Shopify"
-  description="Whano keeps Shopify orders moving on WhatsApp with clear confirmations, updates, and follow-up for merchants."
-  descriptionArabic="Whano يبقي طلبات Shopify متحركة على واتساب بتأكيدات وتحديثات ومتابعة واضحة."
+  title="Whano | WhatsApp automation for Shopify stores"
+  titleArabic="Whano | أتمتة واتساب لمتاجر Shopify"
+  description="Whano automates WhatsApp order confirmation, edits, shipping updates, and reviews for Shopify stores in Egypt — no number to connect and points-based pricing."
+  descriptionArabic="يؤتمت Whano تأكيد الطلبات وتعديلها وتحديثات الشحن والتقييمات لمتاجر Shopify في مصر — من دون ربط أي رقم، وبأسعار بالنقاط."
+  schema={softwareSchema}
 >
   <Nav />
   <main id="main-content">
     <Hero />
     <TrustStrip />
-    <Features />
+    <Flow />
     <Shipping />
     <OrderPage />
     <ConsoleTour />
     <Outcomes />
     <Audience />
-    <Capabilities />
     <PricingTeaser />
     <FaqTeaser />
     <CTA />

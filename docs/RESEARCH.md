@@ -1,5 +1,8 @@
 # Research Notes
 
+> This is the original design research. The 2026 audit research, with sources and
+> dates, is in `docs/website-audit/RESEARCH.md`.
+
 ## Sources reviewed
 
 - Stripe: direct positioning, concrete proof, customer stories, and product-led explanations.

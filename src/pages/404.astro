@@ -1,0 +1,52 @@
+---
+import Base from "../layouts/Base.astro";
+import Footer from "../components/Footer.astro";
+import MobileCta from "../components/MobileCta.astro";
+import Nav from "../components/Nav.astro";
+import { site } from "../data/content";
+---
+
+<Base
+  title="Page not found — Whano"
+  titleArabic="الصفحة غير موجودة — Whano"
+  description="This page does not exist. Return to the Whano homepage or see the product features."
+  descriptionArabic="هذه الصفحة غير موجودة. عد إلى الصفحة الرئيسية لـ Whano أو اطّلع على مزايا المنتج."
+  noindex
+>
+  <Nav />
+  <main id="main-content" class="about-page">
+    <div class="site-frame">
+      <header class="about-header reveal">
+        <p class="eyebrow">
+          <span data-copy="en">Error 404</span>
+          <span data-copy="ar" lang="ar">خطأ 404</span>
+        </p>
+        <h1 class="about-title">
+          <span data-copy="en">This page isn't here.</span>
+          <span data-copy="ar" lang="ar">هذه الصفحة غير موجودة.</span>
+        </h1>
+        <p class="about-subtitle">
+          <span data-copy="en">The link may be old or mistyped. The product, pricing, and answers are one step away.</span>
+          <span data-copy="ar" lang="ar">قد يكون الرابط قديمًا أو مكتوبًا خطأً. المنتج والأسعار والأسئلة على بعد خطوة واحدة.</span>
+        </p>
+        <p class="hero-actions">
+          <a href="/" class="button-primary">
+            <span data-copy="en">Back to home</span>
+            <span data-copy="ar" lang="ar">العودة إلى الرئيسية</span>
+          </a>
+          <a href="/features/" class="section-link">
+            <span data-copy="en">See features</span>
+            <span data-copy="ar" lang="ar">اطّلع على المزايا</span>
+          </a>
+        </p>
+        <p class="about-section__body">
+          <span data-copy="en">Still stuck? Email</span>{" "}
+          <span data-copy="ar" lang="ar">ما زلت بحاجة إلى مساعدة؟ راسلنا على</span>{" "}
+          <a href={`mailto:${site.contactEmail}`}><bdi dir="ltr">{site.contactEmail}</bdi></a>
+        </p>
+      </header>
+    </div>
+  </main>
+  <MobileCta />
+  <Footer />
+</Base>

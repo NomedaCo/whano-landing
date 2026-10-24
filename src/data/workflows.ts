@@ -1,10 +1,12 @@
 /**
  * Interactive workflow conversations.
  *
- * The Arabic bubbles are the exact templates the live app sends, kept
- * verbatim from production. The English strings are translations of those
- * same bubbles, shown when the site is in English so an English visitor can
- * read the demo; the Arabic remains the source of truth.
+ * The bubbles follow the approved production templates where one exists
+ * (confirmation v7, cancellation reason, one-time edit link, shipping, rating,
+ * cart recovery) with sample order/customer values; the confirmation is
+ * lightly shortened for the phone. Support replies are policy-neutral samples.
+ * The section itself is labelled representative. The English strings are
+ * translations, shown in English mode; Arabic is the source of truth.
  *
  * The surrounding marketing copy (tabs, titles, descriptions, costs) is MSA,
  * like the rest of the site.
@@ -18,6 +20,8 @@ export interface WorkflowMessage {
   buttons?: string[];
   /** Parallel to `buttons`: the English labels, same order. */
   buttonsEn?: string[];
+  /** A WhatsApp URL button (opens a page; it is not a chat reply). */
+  urlButton?: { text: string; textEn?: string; url?: string };
   isButtonTap?: boolean;
   success?: boolean;
   badge?: string;
@@ -54,10 +58,10 @@ export function msgBadge(message: WorkflowMessage, language: string): string | u
 
 const orderMessage: WorkflowMessage = {
   sender: "whano",
-  text: "طلب جديد #1056\nThe Collection Snowboard: Hydrogen × 1\nالمبلغ الإجمالي: USD 600\nعنوان الشحن: Elbasha st, Kafr eldawar, Virginia, 1, 22101, United States\nموعد التوصيل: Standard\nشكراً لطلبك من nomeda!",
-  textEn: "New order #1056\nThe Collection Snowboard: Hydrogen × 1\nTotal: USD 600\nShipping to: Elbasha st, Kafr eldawar, Virginia, 1, 22101, United States\nEstimated delivery: Standard\nThanks for ordering from nomeda!",
-  buttons: ["تأكيد الطلب", "إلغاء الطلب", "عايز أعدل"],
-  buttonsEn: ["Confirm order", "Cancel order", "I want to edit"],
+  text: "أهلاً أ/أحمد 👋\n📦 طلب جديد من نوى\n\n• تيشيرت قطن أوفرسايز (مقاس L) × 2\n• كاب شمس × 1\n\n💰 المبلغ الإجمالي: 650 EGP\n🛍️ رقم الطلب: 1056\n📍 عنوان الشحن: 9 شارع 216، المعادي، القاهرة\n🚚 موعد التوصيل: 2–4 أيام عمل\n\n✨ شكراً لثقتك في نوى!\n\nشوف طلبك وتابعه من هنا 👇\nhttps://whano.nomeda.tech/order/demo\n\nبرجاء تأكيد الطلب علشان نبدأ في تجهيزه.",
+  textEn: "Hey Ahmed 👋\n📦 New order from Nawa\n\n• Oversized cotton tee (size L) × 2\n• Sun cap × 1\n\n💰 Total: 650 EGP\n🛍️ Order #: 1056\n📍 Shipping to: 9 Street 216, Maadi, Cairo\n🚚 Estimated delivery: 2–4 working days\n\n✨ Thanks for trusting Nawa!\n\nSee your order and track it here 👇\nhttps://whano.nomeda.tech/order/demo\n\nPlease confirm your order so we can start preparing it.",
+  buttons: ["تأكيد الطلب", "إلغاء الطلب", "عدّل الطلب"],
+  buttonsEn: ["Confirm Order", "Cancel Order", "Edit order"],
 };
 
 /* ── Workflow definitions ──────────────────────────────────── */
@@ -76,8 +80,8 @@ export const workflows: Workflow[] = [
       ar: "أي طلب جديد على Shopify يُشغّل رسالة تأكيد فورية على واتساب. يضغط العميل زرًا واحدًا فيتأكد الطلب.",
     },
     shopifyAction: {
-      en: "Order #1056 tagged as 'WhatsApp Confirmed'",
-      ar: "وسم الطلب #1056 في Shopify بأنه مؤكد",
+      en: "Order #1056 confirmed",
+      ar: "تم تأكيد الطلب #1056",
     },
     pointsCost: {
       en: "~1 Point per confirmation",
@@ -89,7 +93,7 @@ export const workflows: Workflow[] = [
       {
         sender: "customer",
         text: "تأكيد الطلب",
-        textEn: "Confirm order",
+        textEn: "Confirm Order",
         isButtonTap: true,
       },
       {
@@ -126,15 +130,15 @@ export const workflows: Workflow[] = [
       {
         sender: "customer",
         text: "إلغاء الطلب",
-        textEn: "Cancel order",
+        textEn: "Cancel Order",
         isButtonTap: true,
       },
       {
         sender: "whano",
-        text: "تم إلغاء طلبك #1056.\n\nممكن نعرف السبب؟",
-        textEn: "Order #1056 is cancelled.\n\nMay we know why?",
+        text: "تم إلغاء طلبك #1056 من نوى.\n\nممكن نعرف السبب؟",
+        textEn: "Your order #1056 from Nawa has been cancelled.\n\nMind telling us why?",
         buttons: ["السعر مرتفع", "غيرت رأيي", "سبب آخر"],
-        buttonsEn: ["Price is high", "Changed my mind", "Another reason"],
+        buttonsEn: ["Too expensive", "Changed my mind", "Another reason"],
       },
       {
         sender: "customer",
@@ -149,41 +153,39 @@ export const workflows: Workflow[] = [
     number: "03",
     tabLabel: { en: "Order Edits", ar: "تعديل الطلب" },
     title: {
-      en: "The customer edits in natural language.",
-      ar: "يعدّل العميل طلبه بعباراته الطبيعية.",
+      en: "The customer edits through a one-time link.",
+      ar: "يعدّل العميل طلبه من رابط لمرة واحدة.",
     },
     description: {
-      en: "Customers speak naturally to add items or adjust quantities. Whano recalculates line items and keeps Shopify in perfect sync.",
-      ar: "يطلب العميل التعديل بعباراته الطبيعية. يفهمه Whano، ويحدّث المنتجات والإجمالي، ويتزامن مباشرة مع Shopify وشركة الشحن.",
+      en: "The confirmation's Edit order button sends a secure link. The customer changes a quantity, a variant, or adds an item on that page, sees the new total, and submits once. Shopify updates before fulfillment.",
+      ar: "زر عدّل الطلب في التأكيد يرسل رابطًا آمنًا. يغيّر العميل الكمية أو المقاس أو يضيف منتجًا من الصفحة، ويرى الإجمالي الجديد، ويرسل التعديل مرة واحدة، فيُحدَّث Shopify قبل التجهيز.",
     },
     shopifyAction: {
-      en: "Order line items updated & new total calculated",
-      ar: "تحديث بنود الطلب والإجمالي الجديد في Shopify",
+      en: "Order updated after the customer submits the edit link",
+      ar: "تحديث الطلب بعد إرسال العميل رابط التعديل",
     },
     pointsCost: {
-      en: "~1 Point per message",
-      ar: "~1 نقطة لكل رسالة",
+      en: "~2 points per saved edit",
+      ar: "~2 نقطتان لكل تعديل محفوظ",
     },
     icon: "edit-3",
     messages: [
       { ...orderMessage },
       {
         sender: "customer",
-        text: "عايز أعدل",
-        textEn: "I want to edit",
+        text: "عدّل الطلب",
+        textEn: "Edit order",
         isButtonTap: true,
       },
       {
-        sender: "customer",
-        text: "عايز أزود واحد من نفس المنتج",
-        textEn: "I want to add one more of the same item",
-      },
-      {
         sender: "whano",
-        text: "تم تعديل الطلب ✅\n\nThe Collection Snowboard: Hydrogen × 2\nالإجمالي الجديد: USD 1,200",
-        textEn: "Order updated ✅\n\nThe Collection Snowboard: Hydrogen × 2\nNew total: USD 1,200",
-        badge: "← متزامن مع Shopify وشركة الشحن",
-        badgeEn: "← Synced with Shopify and the carrier",
+        text: "طلبك #1056 من نوى.\n\nعايز تغيّر حاجة — الكمية أو المقاس أو تضيف منتج؟\nافتح الرابط من الزر وعدّل طلبك بنفسك.\n\nالرابط يعمل مرة واحدة، وقبل تأكيد الطلب.",
+        textEn: "Your order #1056 from Nawa.\n\nNeed to change something — a quantity, a variant, or adding an item?\nOpen the link from the button and update your order yourself.\n\nThe link works once, before the order is confirmed.",
+        urlButton: {
+          text: "عدّل طلبك",
+          textEn: "Update your order",
+          url: "https://whano.nomeda.tech/order/update/demo",
+        },
       },
     ],
   },
@@ -211,8 +213,8 @@ export const workflows: Workflow[] = [
     messages: [
       {
         sender: "whano",
-        text: "#1056\nطلبك اتشحن 🚚\nرقم التتبع: هيتوفر قريب\nالمتوقع وصوله: 2-5 ايام عمل",
-        textEn: "#1056\nYour order has shipped 🚚\nTracking: available soon\nExpected delivery: 2-5 business days",
+        text: "#1056 · نوى\n\nيا أحمد طلبك خرج للشحن 🚚\nرقم التتبع: BST-884213\nالمتوقع وصوله: 2–4 أيام عمل\n\nتقدر تتابع الشحنة برقم التتبع اللي فوق.",
+        textEn: "#1056 · Nawa\n\nHey Ahmed, your order has shipped 🚚\nTracking number: BST-884213\nExpected delivery: 2–4 working days\n\nYou can follow it with the tracking number above.",
       },
     ],
   },
@@ -240,15 +242,15 @@ export const workflows: Workflow[] = [
     messages: [
       {
         sender: "whano",
-        text: "طلبك 1057 وصل 🎉\nنتمنى تكون عجبك.\n\nإزاي كانت تجربتك؟",
-        textEn: "Order 1057 has arrived 🎉\nWe hope you liked it.\n\nHow was your experience?",
+        text: "🎉 طلبك #1056 من نوى وصل بنجاح!\n\nأهلًا يا أحمد، نتمنى يكون طلبك وصلك بحالة ممتازة ❤️\n\nشاركنا رأيك في تجربتك وقيّم طلبك من هنا 👇",
+        textEn: "🎉 Your order #1056 from Nawa has arrived!\n\nHi Ahmed, we hope it reached you in perfect condition ❤️\n\nShare your experience and rate your order from here 👇",
         buttons: ["ممتاز", "جيد", "سيء"],
-        buttonsEn: ["Excellent", "Good", "Bad"],
+        buttonsEn: ["Excellent", "Good", "Poor"],
       },
       {
         sender: "customer",
         text: "سيء",
-        textEn: "Bad",
+        textEn: "Poor",
         isButtonTap: true,
       },
       {
@@ -265,16 +267,16 @@ export const workflows: Workflow[] = [
     number: "06",
     tabLabel: { en: "Support & Returns", ar: "تذاكر الدعم" },
     title: {
-      en: "Automated support tickets with your exact return policy.",
-      ar: "تذاكر دعم فورية بسياسة الاسترجاع الخاصة بمتجرك.",
+      en: "Support tickets that follow your store policy.",
+      ar: "تذاكر دعم تتبع سياسة متجرك.",
     },
     description: {
-      en: "When a customer requests an exchange or return, Whano creates a support ticket, explains the policy terms, and shares the store support contact.",
-      ar: "إذا طلب العميل استبدالًا أو استرجاعًا، يفتح Whano تذكرة دعم فورية برقم محدد، ويوضح سياسة المتجر، ويصل العميل بخدمة العملاء.",
+      en: "When a customer requests an exchange or return, Whano opens a support ticket and connects them with the store's support team; the store policy is theirs.",
+      ar: "إذا طلب العميل استبدالًا أو استرجاعًا، يفتح Whano تذكرة دعم ويصله بفريق دعم المتجر؛ وسياسة الاسترجاع تبقى خاصة بالمتجر.",
     },
     shopifyAction: {
-      en: "Support ticket #W-1005 opened & merchant notified",
-      ar: "تم فتح تذكرة دعم #W-1005 وإرسال إشعار مباشر لخدمة العملاء",
+      en: "Support ticket #W-1005 opened & store notified",
+      ar: "تم فتح تذكرة دعم #W-1005 وإشعار المتجر",
     },
     pointsCost: {
       en: "~2 Points per interaction",
@@ -297,10 +299,39 @@ export const workflows: Workflow[] = [
       },
       {
         sender: "whano",
-        text: "تم فتح تذكرة الدعم #W-1005.\nاتواصل مع خدمة العملاء على الرقم ده:\n+20 1001580461\n• يمكن للعميل طلب استبدال المنتج خلال 14 يومًا من تاريخ استلامه.\n• عند طلب الاستبدال، يتم فتح تذكرة دعم تلقائيًا وإخطار التاجر.\n• قبول أو رفض طلب الاستبدال يخضع لسياسة المتجر وشروط المنتج.\n• يجب أن يكون المنتج في حالته الأصلية وبالتغليف الأصلي.\nبعد مرور 14 يومًا من تاريخ الاستلام، لا يمكن للعميل تقديم طلب استبدال من خلال Whano.\n• سيتواصل فريق خدمة العملاء مع العميل من رقم الدعم المسجل لدى المتجر.",
-        textEn: "Support ticket #W-1005 is open.\nReach customer service on this number:\n+20 1001580461\n• A customer may request an exchange within 14 days of receiving the item.\n• An exchange request opens a support ticket automatically and notifies the merchant.\n• Accepting or refusing the exchange follows the store's policy and the item's condition.\n• The item must be in its original condition and packaging.\nAfter 14 days from delivery, a customer cannot request an exchange through Whano.\n• Customer service will contact the customer from the store's registered support number.",
-        badge: "← تم فتح تذكرة الدعم #W-1005 وإخطار التاجر",
-        badgeEn: "← Support ticket #W-1005 opened and the merchant notified",
+        text: "تم فتح تذكرة الدعم #W-1005.\nفريق خدمة العملاء هيتواصل معاك على الرقم ده:\n+20 100 000 0000\nوهيشرح لك سياسة الاستبدال أو الاسترجاع الخاصة بالمتجر.",
+        textEn: "Support ticket #W-1005 is open.\nCustomer service will contact you on this number:\n+20 100 000 0000\nThey will explain the store's exchange or return policy.",
+        badge: "← تم فتح تذكرة الدعم #W-1005 وإشعار المتجر",
+        badgeEn: "← Support ticket #W-1005 opened and the store notified",
+      },
+    ],
+  },
+  {
+    id: "wf-cart",
+    number: "07",
+    tabLabel: { en: "Abandoned cart", ar: "السلة المتروكة" },
+    title: {
+      en: "Bring the cart back without a manual message.",
+      ar: "أعد السلة من دون رسالة يدوية.",
+    },
+    description: {
+      en: "When checkout stalls, Whano sends a reminder with the cart link, inside the consent and quiet-mode rules, and can include a discount.",
+      ar: "إذا توقف الدفع، يرسل Whano تذكيرًا مع رابط السلة، ضمن قواعد الموافقة ووضع الهدوء، ويمكنه إضافة خصم.",
+    },
+    shopifyAction: {
+      en: "Abandoned checkout detected; reminder queued",
+      ar: "تم رصد سلة متروكة؛ التذكير في الانتظار",
+    },
+    pointsCost: {
+      en: "~4 points per reminder",
+      ar: "~4 نقاط لكل تذكير",
+    },
+    icon: "shopping-cart",
+    messages: [
+      {
+        sender: "whano",
+        text: "أهلاً من نوى 👋\n\nسيبّت حاجة في السلة:\n• تيشيرت قطن أوفرسايز × 1\n\nتقدر تكمّل من هنا: https://nawa-store.example/cart/recover\n\nشكراً ليك ❤️",
+        textEn: "Hi from Nawa 👋\n\nYou left something in your cart:\n• Oversized cotton tee × 1\n\nPick up where you left off here: https://nawa-store.example/cart/recover\n\nThank you!",
       },
     ],
   },

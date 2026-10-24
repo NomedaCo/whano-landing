@@ -5,14 +5,25 @@ import Footer from "../components/Footer.astro";
 import Nav from "../components/Nav.astro";
 import MobileCta from "../components/MobileCta.astro";
 import { featureGroups, site } from "../data/content";
+
+const pageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "Whano features — WhatsApp automation for Shopify",
+  description:
+    "Every automation Whano runs for a Shopify store: confirmations, order edits, shipping updates, ratings, returns, campaigns, reports, and the controls around them.",
+  inLanguage: "ar",
+  about: { "@type": "SoftwareApplication", name: "Whano", applicationCategory: "BusinessApplication" },
+};
 ---
 
 <Base
-  title="Features — Whano"
-  titleArabic="المزايا — Whano"
+  title="Features — WhatsApp automation for Shopify | Whano"
+  titleArabic="المزايا — أتمتة واتساب لمتاجر Shopify | Whano"
   description="Every automation Whano runs for a Shopify store: confirmations, order edits, shipping updates, ratings, returns, campaigns, reports, and the controls around them."
   descriptionArabic="كل أتمتة يشغّلها Whano لمتجر Shopify: التأكيدات، وتعديلات الطلبات، وتحديثات الشحن، والتقييمات، والاسترجاع، والحملات، والتقارير، ومفاتيح التحكم حولها."
   ogImagePath="/og-features.png"
+  schema={pageSchema}
 >
   <Nav />
   <main id="main-content" class="about-page">

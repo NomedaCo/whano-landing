@@ -5,13 +5,23 @@ import Footer from "../../components/Footer.astro";
 import MobileCta from "../../components/MobileCta.astro";
 import Nav from "../../components/Nav.astro";
 import { guides } from "../../data/guides";
+
+const pageSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "Whano guides — WhatsApp order follow-up",
+  description:
+    "Practical guides for Shopify stores running order follow-up on WhatsApp: what to send, when, and how to cut delivery questions.",
+  inLanguage: "ar",
+};
 ---
 
 <Base
-  title="Guides — Whano"
-  titleArabic="أدلة — Whano"
+  title="Guides — WhatsApp order follow-up for Shopify | Whano"
+  titleArabic="الأدلة — متابعة طلبات واتساب لمتاجر Shopify | Whano"
   description="Practical guides for Shopify stores running order follow-up on WhatsApp: what to send, when, and how to cut delivery questions."
   descriptionArabic="أدلة عملية لمتاجر Shopify التي تتابع طلباتها على واتساب: ماذا ترسل، ومتى، وكيف تقلّل أسئلة التوصيل."
+  schema={pageSchema}
 >
   <Nav />
   <main id="main-content" class="about-page">
@@ -33,7 +43,7 @@ import { guides } from "../../data/guides";
 
       <div class="guide-list">
         {guides.map((guide) => (
-          <a href={`/guides/${guide.slug}`} class="guide-card reveal">
+          <a href={`/guides/${guide.slug}/`} class="guide-card reveal">
             <p class="guide-card__meta">
               <span data-copy="en">{guide.readingTime.en}</span>
               <span data-copy="ar" lang="ar">{guide.readingTime.ar}</span>

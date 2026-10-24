@@ -2,7 +2,7 @@
 
 The public product site for Whano, a post-purchase WhatsApp workflow for Shopify merchants.
 
-The page is intentionally editorial rather than a conventional SaaS template: a warm paper palette, strict rules, typographic hierarchy, and a real order conversation do the explaining. There are no decorative gradients, fake customer logos, fabricated metrics, or stock imagery.
+The page is intentionally editorial rather than a conventional SaaS template: a calm paper palette, strict rules, typographic hierarchy, and a real order conversation do the explaining. There are no decorative gradients, fake customer logos, fabricated metrics, fake discounts, or stock imagery.
 
 ## Stack
 
@@ -10,28 +10,31 @@ The page is intentionally editorial rather than a conventional SaaS template: a 
 - Custom CSS for the visual system and responsive layout
 - Self-hosted Satoshi and Alexandria fonts (no third-party font host)
 - No React runtime and no animation or icon library
+- Cloudflare Worker for security headers, caching, first-party analytics, and the `/order` + `/cart` proxies
 - Deployed to Cloudflare Workers (`whano-landing`) on `whano.nomeda.tech`
 
 ## Routes
 
 - `/` — bilingual product landing page (story, how it works, capability teaser, pricing teaser)
 - `/features` — every capability the console ships, grouped
-- `/pricing` — points packs, per-interaction costs, custom volume
-- `/login` — sends the visitor to the console at `whano.nomeda.tech/dashboard`
+- `/pricing` — points packs shown in EGP at the fixed USD×50 display rate and in USD for Shopify billing, per-interaction costs, custom volume
+- `/login` — 301 to the console at `whano.nomeda.tech/dashboard` (kept only for old links; `noindex` fallback)
 - `/faq` — bilingual questions and answers
 - `/whats-new` — real shipped changes, newest first
 - `/guides` — practical guides (order follow-up, cutting delivery questions)
 - `/security` — plain-language data handling, checked against the code
 - `/about` — the team behind Whano
 - `/terms`, `/privacy`, `/dpa` — bilingual legal pages
+- `/404` — branded, noindex not-found page
+- `/sitemap.xml` — generated at build from the route list
 
 ## Analytics
 
 First-party and cookieless: the Worker counts one hit per page view and per
 install/login click in a KV namespace. `GET /api/stats?key=…` returns JSON and
-`/stats?key=…` renders the same numbers as a page, both behind the
-`STATS_KEY` secret. No third party, no cookie, so there is nothing to consent
-to. The key lives with the team.
+`/stats?key=…` renders the same numbers as a noindex page, both behind the
+`STATS_KEY` secret. Localhost and visitors sending DNT/GPC are ignored. No third
+party, no cookie, so there is nothing to consent to. The key lives with the team.
 
 ## Sharing
 
@@ -43,6 +46,13 @@ generated from the route list, and every page carries a canonical URL.
 The product itself lives on the same domain under `/dashboard` (a Next.js
 app on Cloudflare Workers). A signed-in visitor sees the overview; anyone
 else lands on the login page. Every "Log in" link on this site points there.
+
+## Documentation
+
+- `docs/website-audit/` — the 2026 full-site audit: verified context, inventory,
+  research with sources, issue register, decisions, and implementation log.
+- `docs/PLAN.md`, `docs/STRATEGY.md`, `docs/CONTENT.md`, `docs/DESIGN-TOKENS.md` —
+  the original design/strategy notes, kept current with the shipped site.
 
 ## Development
 

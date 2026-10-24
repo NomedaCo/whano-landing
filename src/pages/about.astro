@@ -2,13 +2,24 @@
 import Base from "../layouts/Base.astro";
 import AboutPage from "../components/AboutPage.astro";
 import MobileCta from "../components/MobileCta.astro";
+
+const pageSchema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  name: "About Whano",
+  description:
+    "Whano is built by NomedaCo, a software and AI company based in Egypt. We were merchants first.",
+  inLanguage: "ar",
+  about: { "@type": "Organization", name: "NomedaCo", url: "https://nomeda.tech" },
+};
 ---
 
 <Base
-  title="About Whano | Nomeda"
-  titleArabic="عن Whano | Nomeda"
-  description="Whano is built by Nomeda, a software and AI company based in Egypt. We were merchants first."
-  descriptionArabic="Whano من إنتاج Nomeda، شركة برمجيات وذكاء اصطناعي مقرها مصر. كنا تجارًا في البداية."
+  title="About Whano | NomedaCo"
+  titleArabic="عن Whano | NomedaCo"
+  description="Whano is built by NomedaCo, a software and AI company based in Egypt. We were merchants first."
+  descriptionArabic="Whano من إنتاج NomedaCo، شركة برمجيات وذكاء اصطناعي مقرها مصر. كنا تجارًا في البداية."
+  schema={pageSchema}
 >
   <AboutPage />
   <MobileCta />

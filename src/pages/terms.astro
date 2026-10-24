@@ -2,12 +2,23 @@
 import Base from "../layouts/Base.astro";
 import LegalPage from "../components/LegalPage.astro";
 import { termsSections } from "../data/legal";
+
+const pageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "Terms of Service",
+  inLanguage: "ar",
+  dateModified: "2026-10-24",
+  description: "شروط خدمة Whano لمتاجر Shopify.",
+};
 ---
 
-<Base title="Terms of Service | Whano" titleArabic="شروط الخدمة | Whano" description="Terms of Service for Whano, a WhatsApp automation service for Shopify merchants." descriptionArabic="شروط خدمة Whano، خدمة أتمتة التواصل على واتساب لمتاجر Shopify.">
+<Base
+  schema={pageSchema}
+  title="Terms of Service | Whano" titleArabic="شروط الخدمة | Whano" description="Terms of Service for Whano, a WhatsApp automation service for Shopify merchants." descriptionArabic="شروط خدمة Whano، خدمة أتمتة التواصل على واتساب لمتاجر Shopify.">
   <LegalPage
     title={{ en: "Terms of Service", ar: "شروط الخدمة" }}
-    updated={{ en: "Last updated: August 24, 2026", ar: "آخر تحديث: 24 أغسطس 2026" }}
+    updated={{ en: "Last updated: October 24, 2026", ar: "آخر تحديث: 24 أكتوبر 2026" }}
     indexText={{ en: "Please read before using the service.", ar: "يرجى قراءة الشروط قبل استخدام الخدمة." }}
     sections={termsSections}
   />

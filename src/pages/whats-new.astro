@@ -9,7 +9,7 @@ import Nav from "../components/Nav.astro";
 // is something a merchant can open the console and use today.
 const UPDATES = [
   {
-    when: { en: "This week", ar: "هذا الأسبوع" },
+    when: { en: "Recently", ar: "مؤخرًا" },
     title: { en: "The whole console speaks formal Arabic", ar: "لوحة التحكم كلها بالفصحى" },
     body: {
       en: "Every screen, table, filter and exported file now reads in Modern Standard Arabic — not just the big headings. Exports carry Arabic headers, and the tables line up right-to-left.",
@@ -17,7 +17,7 @@ const UPDATES = [
     },
   },
   {
-    when: { en: "This week", ar: "هذا الأسبوع" },
+    when: { en: "Recently", ar: "مؤخرًا" },
     title: { en: "Every shipment has a timeline", ar: "لكل شحنة خط زمني" },
     body: {
       en: "The shipments page now counts what needs attention, shows each shipment's state history, and lets you refresh, stop or remove tracking for a whole selection at once.",
@@ -25,7 +25,7 @@ const UPDATES = [
     },
   },
   {
-    when: { en: "This week", ar: "هذا الأسبوع" },
+    when: { en: "Recently", ar: "مؤخرًا" },
     title: { en: "A simpler way in", ar: "دخول أسهل" },
     body: {
       en: "Store owners sign in with their store's password, or ask for a single-use link to the store's own inbox. The link expires in 30 minutes and can only be used once.",
@@ -57,6 +57,16 @@ const UPDATES = [
     },
   },
 ];
+
+const pageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "Whano changelog",
+  description:
+    "What recently changed in Whano: formal Arabic across the console, shipment timelines, simpler sign-in, discount codes and campaigns, rating recovery, and controls you can prove.",
+  inLanguage: "ar",
+  dateModified: "2026-10-24",
+};
 ---
 
 <Base
@@ -65,6 +75,7 @@ const UPDATES = [
   description="What recently changed in Whano: formal Arabic across the console, shipment timelines, simpler sign-in, discount codes and campaigns, rating recovery, and controls you can prove."
   descriptionArabic="آخر ما تغيّر في Whano: الفصحى في كل اللوحة، وخط زمني للشحنات، ودخول أسهل، وأكواد خصم وحملات، واستعادة التقييمات، وتحكم موثّق."
   ogImagePath="/og-whats-new.png"
+  schema={pageSchema}
 >
   <Nav />
   <main id="main-content" class="about-page">

@@ -1,6 +1,8 @@
 ---
 import "../styles/global.css";
 
+type SchemaObject = Record<string, unknown>;
+
 interface Props {
   title: string;
   titleArabic?: string;
@@ -8,67 +10,154 @@ interface Props {
   descriptionArabic?: string;
   /** A page-specific social card; defaults to the homepage one. */
   ogImagePath?: string;
+  /** `article` for guides; `website` for everything else. */
+  ogType?: "website" | "article";
+  /** Keep utility pages out of the index (login, 404, stats). */
+  noindex?: boolean;
+  /** Page-specific JSON-LD. Organization + WebSite are added globally. */
+  schema?: SchemaObject | SchemaObject[];
+  publishedTime?: string;
+  modifiedTime?: string;
 }
 
 const {
   title,
   titleArabic = title,
-  description = "Whano keeps Shopify orders moving on WhatsApp with clear confirmations, updates, and follow-up.",
-  descriptionArabic = "Whano يساعد متاجر Shopify على متابعة الطلبات عبر واتساب بتأكيدات وتحديثات ومتابعة واضحة.",
+  description = "Whano automates WhatsApp order confirmation, edits, shipping updates, and reviews for Shopify stores in Egypt — with no number to connect.",
+  descriptionArabic = "Whano يؤتمت تأكيد الطلبات وتعديلها وتحديثات الشحن والتقييمات لمتاجر Shopify في مصر، من دون ربط أي رقم.",
   ogImagePath = "/og.png",
+  ogType = "website",
+  noindex = false,
+  schema,
+  publishedTime,
+  modifiedTime,
 } = Astro.props;
 
+// The live edge serves directory URLs with a trailing slash. Keep the
+// canonical and the sitemap on that same URL shape.
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL(ogImagePath, Astro.site);
+const siteRoot = new URL("/", Astro.site);
+const organization = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "NomedaCo",
+  alternateName: "Nomeda",
+  url: "https://nomeda.tech",
+  logo: new URL("/icon-512.png", Astro.site).href,
+  sameAs: [
+    "https://apps.shopify.com/whano",
+    "https://x.com/CoNomeda56945",
+    "https://instagram.com/nomeda.tech",
+  ],
+};
+const website = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Whano",
+  url: siteRoot.href,
+  inLanguage: ["ar", "en"],
+  publisher: { "@type": "Organization", name: "NomedaCo", url: "https://nomeda.tech" },
+};
+const pageSchemas = Array.isArray(schema) ? schema : schema ? [schema] : [];
 ---
 
 <!doctype html>
-<html lang="ar" dir="rtl" data-language="ar" data-title-en={title} data-title-ar={titleArabic} data-description-en={description} data-description-ar={descriptionArabic}>
+<html
+  lang="ar"
+  dir="rtl"
+  data-language="ar"
+  data-title-en={title}
+  data-title-ar={titleArabic}
+  data-description-en={description}
+  data-description-ar={descriptionArabic}
+>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta id="meta-description" name="description" content={descriptionArabic} />
     <meta name="theme-color" content="#f8faf9" />
+    <meta name="color-scheme" content="light" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="author" content="NomedaCo" />
     <link rel="canonical" href={canonical} />
-    <meta property="og:type" content="website" />
+    <link rel="sitemap" type="application/xml" href={new URL("/sitemap.xml", Astro.site)} />
+    <script is:inline>
+      // Preload the heading + body font for the language this visit will use.
+      // Static preloads of both languages used to spend the LCP budget on a
+      // font the visitor would never see.
+      (() => {
+        try {
+          const saved = window.localStorage.getItem("whano-language");
+          const language =
+            saved === "en" || saved === "ar"
+              ? saved
+              : (navigator.language || "").toLowerCase().startsWith("ar")
+                ? "ar"
+                : "en";
+          const fonts =
+            language === "ar"
+              ? ["alexandria-600-arabic", "alexandria-400-arabic"]
+              : ["satoshi-bold", "alexandria-400-latin"];
+          for (const font of fonts) {
+            const link = document.createElement("link");
+            link.rel = "preload";
+            link.as = "font";
+            link.type = "font/woff2";
+            link.crossOrigin = "anonymous";
+            link.href = `/fonts/${font}.woff2`;
+            document.head.appendChild(link);
+          }
+        } catch {
+          // No preload hints when storage is unavailable; the CSS still loads.
+        }
+      })();
+    </script>
+    {noindex ? (
+      <meta name="robots" content="noindex, nofollow" />
+    ) : (
+      <meta name="robots" content="index, follow, max-image-preview:large" />
+    )}
+    <meta property="og:type" content={ogType} />
     <meta property="og:url" content={canonical} />
     <meta id="meta-og-title" property="og:title" content={titleArabic} />
     <meta id="meta-og-description" property="og:description" content={descriptionArabic} />
     <meta property="og:site_name" content="Whano" />
     <meta property="og:locale" content="ar_EG" />
-    <meta property="og:locale:alternate" content="en_EG" />
+    <meta property="og:locale:alternate" content="en_US" />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content={titleArabic} />
+    <meta id="meta-og-image-alt" property="og:image:alt" content={titleArabic} />
+    {publishedTime && <meta property="article:published_time" content={publishedTime} />}
+    {modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
     <meta name="twitter:card" content="summary_large_image" />
     <meta id="meta-twitter-title" name="twitter:title" content={titleArabic} />
     <meta id="meta-twitter-description" name="twitter:description" content={descriptionArabic} />
     <meta name="twitter:image" content={ogImage} />
-    <meta name="twitter:image:alt" content={titleArabic} />
+    <meta id="meta-twitter-image-alt" name="twitter:image:alt" content={titleArabic} />
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" type="image/png" href="/icon-192.png" sizes="192x192" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <title>{titleArabic}</title>
-    <script is:inline type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      name: "Whano",
-      applicationCategory: "BusinessApplication",
-      operatingSystem: "Web",
-      url: new URL("/", Astro.site).href,
-      image: ogImage.href,
-      description,
-      publisher: { "@type": "Organization", name: "Nomeda", url: "https://nomeda.tech" },
-    })} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(organization)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(website)} />
+    {pageSchemas.map((entry) => (
+      <script is:inline type="application/ld+json" set:html={JSON.stringify(entry)} />
+    ))}
     <script is:inline>
       (() => {
         const root = document.documentElement;
         root.classList.add("js");
+        // A script error should never leave the editorial sections invisible.
+        const revealFallback = () => root.classList.remove("js");
+        window.addEventListener("error", revealFallback, { once: true });
+        window.addEventListener("unhandledrejection", revealFallback, { once: true });
         try {
-          // A saved choice wins. On a first visit, follow the browser: an
-          // Arabic browser gets Arabic, anything else gets English — the
-          // toggle still remembers whatever the visitor picks.
+          // Arabic is the server-rendered default. A saved choice wins; on a
+          // first visit, an Arabic browser gets Arabic and anything else gets
+          // English, so the page is readable before the first interaction.
           const saved = window.localStorage.getItem("whano-language");
           const language =
             saved === "en" || saved === "ar"
@@ -90,9 +179,11 @@ const ogImage = new URL(ogImagePath, Astro.site);
           if (title) {
             document.getElementById("meta-og-title")?.setAttribute("content", title);
             document.getElementById("meta-twitter-title")?.setAttribute("content", title);
+            document.getElementById("meta-og-image-alt")?.setAttribute("content", title);
+            document.getElementById("meta-twitter-image-alt")?.setAttribute("content", title);
           }
         } catch {
-          // Keep English as the safe default when storage is unavailable.
+          // Keep the Arabic default when storage is unavailable.
         }
       })();
     </script>
@@ -105,8 +196,10 @@ const ogImage = new URL(ogImagePath, Astro.site);
     <slot />
     <script is:inline>
       // First-party, cookieless analytics: one counter per page view and per
-      // install/login click. No third party, no cookie, nothing to consent to.
+      // install/login click. Localhost and privacy signals are ignored.
       (() => {
+        const production = /(^|\.)nomeda\.tech$/i.test(location.hostname);
+        if (!production || navigator.doNotTrack === "1" || navigator.globalPrivacyControl) return;
         const send = (event) => {
           try {
             const payload = JSON.stringify({ path: location.pathname, event });
@@ -130,17 +223,21 @@ const ogImage = new URL(ogImagePath, Astro.site);
       })();
     </script>
     <script is:inline>
-      if ("IntersectionObserver" in window) {
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("is-visible");
-              observer.unobserve(entry.target);
-            }
-          });
-        }, { threshold: 0.08 });
-        document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
-      } else {
+      try {
+        if ("IntersectionObserver" in window) {
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          }, { threshold: 0.08 });
+          document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
+        } else {
+          document.querySelectorAll(".reveal").forEach((element) => element.classList.add("is-visible"));
+        }
+      } catch {
         document.querySelectorAll(".reveal").forEach((element) => element.classList.add("is-visible"));
       }
     </script>

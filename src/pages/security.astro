@@ -48,8 +48,8 @@ const SECTIONS = [
     heading: { en: "Who can see your data", ar: "من يرى بياناتك" },
     body: [
       {
-        en: "You and the teammates you invite see your own store only. Whano's team can see a store's data when the session is opened for support, and every operator action is attributed in the audit log.",
-        ar: "ترى أنت وفريقك المدعو متجرك أنت فقط. ويمكن لفريق Whano الاطلاع على بيانات متجر عند فتح الجلسة للدعم، وكل إجراء من الفريق موثق باسمه في سجل التدقيق.",
+        en: "Only you can see your store. Whano's team can see a store's data when the session is opened for support, and every operator action is attributed in the audit log.",
+        ar: "ترى أنت متجرك فقط. ويمكن لفريق Whano الاطلاع على بيانات متجر عند فتح الجلسة للدعم، وكل إجراء من الفريق موثق باسمه في سجل التدقيق.",
       },
     ],
   },
@@ -76,6 +76,15 @@ const SECTIONS = [
     ],
   },
 ];
+
+const pageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "Whano — security and data",
+  description:
+    "What Whano reads from your Shopify store, what it never sees, where the messages live, and what happens to your data when you uninstall.",
+  inLanguage: "ar",
+};
 ---
 
 <Base
@@ -83,6 +92,7 @@ const SECTIONS = [
   titleArabic="الأمان والبيانات — Whano"
   description="What Whano reads from your Shopify store, what it never sees, where the messages live, and what happens to your data when you uninstall."
   descriptionArabic="ما يقرأه Whano من متجرك على Shopify، وما لا يراه أبدًا، وأين تعيش الرسائل، وماذا يحدث لبياناتك عند إلغاء التثبيت."
+  schema={pageSchema}
 >
   <Nav />
   <main id="main-content" class="about-page">
@@ -119,11 +129,11 @@ const SECTIONS = [
 
       <p class="about-section__body reveal" style="margin-top: 28px;">
         <span data-copy="en">
-          The formal documents are the <a href="/privacy">Privacy Policy</a>, the <a href="/terms">Terms</a> and the
-          <a href="/dpa">Data Processing Agreement</a>. This page is the human summary; those are the ones that hold.
+          The formal documents are the <a href="/privacy/">Privacy Policy</a>, the <a href="/terms/">Terms</a> and the
+          <a href="/dpa/">Data Processing Agreement</a>. This page is the human summary; those are the ones that hold.
         </span>
         <span data-copy="ar" lang="ar">
-          الوثائق الرسمية هي <a href="/privacy">سياسة الخصوصية</a> و<a href="/terms">الشروط</a> و<a href="/dpa">اتفاقية معالجة البيانات</a>. هذه الصفحة ملخص بشري، وتلك هي المرجع.
+          الوثائق الرسمية هي <a href="/privacy/">سياسة الخصوصية</a> و<a href="/terms/">الشروط</a> و<a href="/dpa/">اتفاقية معالجة البيانات</a>. هذه الصفحة ملخص بشري، وتلك هي المرجع.
         </span>
       </p>
     </div>

@@ -27,8 +27,8 @@ export const aboutPage: {
     ar: "كنا تجارًا في البداية.",
   },
   intro: {
-    en: "Whano is built by Nomeda, a software and AI company based in Egypt. We build digital solutions for the MENA region, including Nezam (our modular ERP), custom Shopify stores, and Whano.",
-    ar: "Whano من إنتاج Nomeda، شركة برمجيات وذكاء اصطناعي مقرها مصر. نبني حلولاً رقمية لمنطقة الشرق الأوسط وشمال أفريقيا، تشمل Nezam (نظام ERP المرن)، ومتاجر Shopify المخصصة، وWhano.",
+    en: "Whano is built by NomedaCo, a software and AI company based in Egypt. We build digital solutions for the MENA region, including Nezam (our modular ERP), custom Shopify stores, and Whano.",
+    ar: "Whano من إنتاج NomedaCo، شركة برمجيات وذكاء اصطناعي مقرها مصر. نبني حلولًا رقمية لمنطقة الشرق الأوسط وشمال أفريقيا، تشمل Nezam (نظام ERP المرن)، ومتاجر Shopify المخصصة، وWhano.",
   },
   sections: [
     {
@@ -49,11 +49,11 @@ export const aboutPage: {
       ],
     },
     {
-      heading: { en: "About Nomeda", ar: "عن Nomeda" },
+      heading: { en: "About NomedaCo", ar: "عن NomedaCo" },
       body: [
         {
-          en: "Nomeda is a bootstrapped software and AI company building for the MENA region. We believe software should be built for the people who use it, not translated from another market and labeled 'local.'",
-          ar: "Nomeda شركة برمجيات وذكاء اصطناعي مستقلة تبني للمنطقة. نؤمن بأن البرمجيات يجب أن تُبنى لمن يستخدمها، لا أن تُترجم من سوق آخر وتُوصف بأنها 'محلية'.",
+          en: "NomedaCo is a bootstrapped software and AI company building for the MENA region. We believe software should be built for the people who use it, not translated from another market and labeled 'local.'",
+          ar: "NomedaCo شركة برمجيات وذكاء اصطناعي مستقلة تبني للمنطقة. نؤمن بأن البرمجيات يجب أن تُبنى لمن يستخدمها، لا أن تُترجم من سوق آخر وتُوصف بأنها 'محلية'.",
         },
         {
           en: "Our products: Nezam (modular ERP with AI), Whano (WhatsApp automation for Shopify), and custom Shopify store development.",
@@ -61,8 +61,8 @@ export const aboutPage: {
         },
       ],
       list: [
-        { en: "Arabic-first interfaces, not afterthoughts", ar: "واجهات عربية أولًا، مش ملحق متأخر" },
-        { en: "AI built in from day one", ar: "ذكاء اصطناعي مدمج من الأول" },
+        { en: "Arabic-first interfaces, not afterthoughts", ar: "واجهات عربية أولًا، لا إضافة متأخرة" },
+        { en: "AI built in from day one", ar: "ذكاء اصطناعي مدمج من البداية" },
         { en: "Pay for what you use, no lock-in", ar: "ادفع مقابل ما تستخدمه، من دون اشتراك إجباري" },
       ],
     },
@@ -96,8 +96,8 @@ export const aboutPage: {
       {
         title: { en: "Transparency", ar: "الشفافية" },
         body: {
-          en: "Open pricing, open communication, open source when possible.",
-          ar: "أسعار واضحة، وتواصل مفتوح، ومصدر مفتوح عندما يكون ذلك ممكنًا.",
+          en: "Open pricing and open communication, with no hidden fees.",
+          ar: "أسعار واضحة وتواصل مفتوح، بلا رسوم خفية.",
         },
       },
     ],

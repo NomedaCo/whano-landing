@@ -6,16 +6,16 @@ const { consoleTour } = site;
 interface TourPanel {
   tab: Localized;
   caption: Localized;
-  kpis?: { label: Localized; value: string }[];
-  rows?: { id: string; state: Localized; amount?: string; carrier?: string }[];
-  bubbles?: { from: "bot" | "customer"; text: Localized }[];
+  kpis?: readonly { label: Localized; value: string }[];
+  rows?: readonly { id: string; state: Localized; amount?: string; carrier?: string }[];
+  bubbles?: readonly { from: "bot" | "customer"; text: Localized }[];
   badge?: Localized;
 }
 
 // The panels share one shape at render time; the data keeps each panel to the
-// fields it actually has, so this is a cast rather than a second source of
-// truth.
-const panels = consoleTour.panels as TourPanel[];
+// fields it actually has. The source is `as const`, so the view reads it as
+// readonly instead of casting away that guarantee.
+const panels: readonly TourPanel[] = consoleTour.panels;
 ---
 
 <section class="section section--compact" id="console">
@@ -114,7 +114,7 @@ const panels = consoleTour.panels as TourPanel[];
     </div>
 
     <p class="capabilities-more reveal">
-      <a href="/features" class="section-link">
+      <a href="/features/" class="section-link">
         <span data-copy="en">{consoleTour.cta.en}</span>
         <span data-copy="ar" lang="ar">{consoleTour.cta.ar}</span>
         <svg width="14" height="14" viewBox="0 0 15 15" fill="none" aria-hidden="true">

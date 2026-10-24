@@ -5,7 +5,12 @@
   "compatibility_date": "2026-06-01",
   "assets": {
     "directory": "./dist",
-    "run_worker_first": ["/api/*"]
+    "binding": "ASSETS",
+    // Every response passes through the Worker so the security, cache, and
+    // font-CORS headers apply to HTML and assets as well as /api/*.
+    "run_worker_first": ["/*"],
+    // Serve the Astro 404.html for unknown routes instead of an empty edge 404.
+    "not_found_handling": "404-page"
   },
   "kv_namespaces": [
     {

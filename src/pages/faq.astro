@@ -4,13 +4,25 @@ import { faqs, site } from "../data/content";
 import Nav from "../components/Nav.astro";
 import MobileCta from "../components/MobileCta.astro";
 import Footer from "../components/Footer.astro";
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  inLanguage: "ar",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question.ar,
+    acceptedAnswer: { "@type": "Answer", text: faq.answer.ar },
+  })),
+};
 ---
 
 <Base
-  title="Questions — Whano"
-  titleArabic="الأسئلة — Whano"
-  description="Frequently asked questions about Whano, WhatsApp automation for Shopify."
-  descriptionArabic="الأسئلة الشائعة عن Whano، أتمتة واتساب لـ Shopify."
+  title="Questions — WhatsApp automation for Shopify | Whano"
+  titleArabic="الأسئلة — أتمتة واتساب لمتاجر Shopify | Whano"
+  description="Practical answers about WhatsApp order confirmation, COD, carriers, points, and human handoff for Shopify merchants."
+  descriptionArabic="إجابات عملية عن تأكيد الطلبات على واتساب، والدفع عند الاستلام، وشركات الشحن، والنقاط، وتسليم المحادثات لشخص."
+  schema={faqSchema}
 >
   <Nav />
   <main id="main-content" class="legal-page">
@@ -31,8 +43,8 @@ import Footer from "../components/Footer.astro";
       </header>
 
       <div class="faq-list reveal" style="max-width: 740px;">
-        {faqs.map((faq) => (
-          <details class="faq-item" open>
+        {faqs.map((faq, index) => (
+          <details class="faq-item" open={index === 0}>
             <summary class="faq-summary">
               <span data-copy="en">{faq.question.en}</span>
               <span data-copy="ar" lang="ar">{faq.question.ar}</span>
@@ -49,17 +61,4 @@ import Footer from "../components/Footer.astro";
   <MobileCta />
   <Footer />
 
-  <script
-    is:inline
-    type="application/ld+json"
-    set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      mainEntity: faqs.map((faq) => ({
-        "@type": "Question",
-        name: faq.question.en,
-        acceptedAnswer: { "@type": "Answer", text: faq.answer.en },
-      })),
-    })}
-  />
 </Base>

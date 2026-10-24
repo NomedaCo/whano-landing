@@ -13,6 +13,27 @@ export function getStaticPaths() {
 const { slug } = Astro.params;
 const guide = guides.find((entry) => entry.slug === slug);
 if (!guide) throw new Error(`Unknown guide: ${slug}`);
+
+const published = "2026-10-02";
+const articleUrl = new URL(`/guides/${guide.slug}/`, Astro.site).href;
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: guide.title.ar,
+  description: guide.description.ar,
+  inLanguage: "ar",
+  datePublished: published,
+  dateModified: published,
+  mainEntityOfPage: articleUrl,
+  author: { "@type": "Organization", name: "NomedaCo", url: "https://nomeda.tech" },
+  publisher: {
+    "@type": "Organization",
+    name: "NomedaCo",
+    url: "https://nomeda.tech",
+    logo: { "@type": "ImageObject", url: new URL("/icon-512.png", Astro.site).href },
+  },
+  image: new URL("/og.png", Astro.site).href,
+};
 ---
 
 <Base
@@ -20,6 +41,10 @@ if (!guide) throw new Error(`Unknown guide: ${slug}`);
   titleArabic={`${guide.title.ar} — Whano`}
   description={guide.description.en}
   descriptionArabic={guide.description.ar}
+  ogType="article"
+  publishedTime={published}
+  modifiedTime={published}
+  schema={articleSchema}
 >
   <Nav />
   <main id="main-content" class="about-page">
@@ -31,6 +56,10 @@ if (!guide) throw new Error(`Unknown guide: ${slug}`);
           <span class="guide-reading">
             · <span data-copy="en">{guide.readingTime.en}</span>
             <span data-copy="ar" lang="ar">{guide.readingTime.ar}</span>
+            · <time datetime="2026-10-02">
+              <span data-copy="en">Published 2 October 2026</span>
+              <span data-copy="ar" lang="ar">نُشر في 2 أكتوبر 2026</span>
+            </time>
           </span>
         </p>
         <h1 class="about-title">
@@ -59,7 +88,7 @@ if (!guide) throw new Error(`Unknown guide: ${slug}`);
       ))}
 
       <p class="about-section__body reveal" style="margin-top: 28px;">
-        <a href="/guides" class="section-link">
+        <a href="/guides/" class="section-link">
           <span data-copy="en">All guides</span>
           <span data-copy="ar" lang="ar">كل الأدلة</span>
           <svg width="14" height="14" viewBox="0 0 15 15" fill="none" aria-hidden="true">

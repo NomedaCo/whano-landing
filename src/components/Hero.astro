@@ -1,7 +1,6 @@
 ---
 import { site } from "../data/content";
 import { workflows } from "../data/workflows";
-import CyclePhone from "./CyclePhone.astro";
 import PhoneMock from "./PhoneMock.astro";
 
 const total = String(workflows.length).padStart(2, "0");
@@ -60,10 +59,13 @@ const total = String(workflows.length).padStart(2, "0");
             target="_blank"
             rel="noreferrer"
             class="hero-rating"
-            aria-label={`${site.rating.value} ${site.rating.label.en}`}
           >
             <span class="hero-rating__stars" aria-hidden="true">★★★★★</span>
             <bdi dir="ltr">{site.rating.value}</bdi>
+            <span class="hero-rating__count">
+              <span data-copy="en">({site.rating.count.en})</span>
+              <span data-copy="ar" lang="ar">({site.rating.count.ar})</span>
+            </span>
             <span data-copy="en">{site.rating.label.en}</span>
             <span data-copy="ar" lang="ar">{site.rating.label.ar}</span>
           </a>
@@ -75,8 +77,8 @@ const total = String(workflows.length).padStart(2, "0");
               <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
             </svg>
             <span class="hero-trust-text">
-              <span data-copy="en">Instant setup with zero number hassle</span>
-              <span data-copy="ar" lang="ar">جاهز فورًا من دون إعداد أرقام</span>
+              <span data-copy="en">No Meta account to manage</span>
+              <span data-copy="ar" lang="ar">بلا حساب Meta لإدارته</span>
             </span>
           </div>
 
@@ -108,9 +110,6 @@ const total = String(workflows.length).padStart(2, "0");
         </div>
       </div>
 
-      <div class="hero-cycle reveal">
-        <CyclePhone />
-      </div>
     </div>
   </div>
 </section>
@@ -120,18 +119,18 @@ const total = String(workflows.length).padStart(2, "0");
     <div class="section-heading reveal">
       <div>
         <p class="eyebrow">
-          <span data-copy="en">Real conversations</span>
-          <span data-copy="ar" lang="ar">محادثات حقيقية</span>
+          <span data-copy="en">Example conversations</span>
+          <span data-copy="ar" lang="ar">محادثات تجريبية</span>
         </p>
       </div>
       <div>
         <h2 class="section-title">
-          <span data-copy="en">See the exact messages your customers receive.</span>
-          <span data-copy="ar" lang="ar">شاهد الرسائل الحقيقية كما تُرسل إلى عملائك.</span>
+          <span data-copy="en">See what your customers receive.</span>
+          <span data-copy="ar" lang="ar">شاهد ما يستلمه عملاؤك.</span>
         </h2>
         <p class="section-copy">
-          <span data-copy="en">The exact messages Whano sends. Swipe the middle phone, or tap any quick-reply button inside it to test the automated replies.</span>
-          <span data-copy="ar" lang="ar">رسائل حقيقية من تطبيق Whano كما تصل إلى عملائك. اسحب الهاتف في المنتصف، أو اضغط على أي زر داخل المحادثة لتجربة الردود الفورية.</span>
+          <span data-copy="en">Representative message examples with sample order data. Support wording follows your store policy. Use the arrows or swipe, or tap a quick reply to test the automated answers.</span>
+          <span data-copy="ar" lang="ar">أمثلة توضيحية للرسائل ببيانات طلب تجريبي، وصياغة الدعم تتبع سياسة متجرك. استخدم الأسهم أو اسحب، أو اضغط على أي زر لتجربة الردود الفورية.</span>
         </p>
       </div>
     </div>
@@ -155,12 +154,12 @@ const total = String(workflows.length).padStart(2, "0");
             replay
           />
 
-          <button type="button" class="hero-demo__arrow hero-demo__arrow--prev" id="wf-prev-btn" aria-label="Previous conversation">
+          <button type="button" class="hero-demo__arrow hero-demo__arrow--prev" id="wf-prev-btn" aria-label="Previous conversation" data-demo-label="prev">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M15 19l-7-7 7-7" />
             </svg>
           </button>
-          <button type="button" class="hero-demo__arrow hero-demo__arrow--next" id="wf-next-btn" aria-label="Next conversation">
+          <button type="button" class="hero-demo__arrow hero-demo__arrow--next" id="wf-next-btn" aria-label="Next conversation" data-demo-label="next">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M9 5l7 7-7 7" />
             </svg>
@@ -177,7 +176,7 @@ const total = String(workflows.length).padStart(2, "0");
         </div>
       </div>
 
-      <div class="hero-demo__dots" role="group" aria-label="Conversations">
+      <div class="hero-demo__dots" role="group" aria-label="Conversations" data-demo-label="dots">
         {workflows.map((wf, idx) => (
           <button
             type="button"
@@ -188,7 +187,7 @@ const total = String(workflows.length).padStart(2, "0");
         ))}
       </div>
 
-      <div class="hero-demo__text">
+      <div class="hero-demo__text" aria-live="polite" aria-atomic="true">
         <p class="hero-demo__label">
           <span class="hero-demo__count"><span id="wf-scenario-num">01</span> / {total}</span>
           <span class="hero-demo__title" id="wf-scenario-title">
@@ -213,37 +212,38 @@ const total = String(workflows.length).padStart(2, "0");
 
   /** Both languages map to one key, so the reply logic never parses text. */
   const BUTTON_KEYS: Record<string, string> = {
-    "تأكيد الطلب": "confirm", "Confirm order": "confirm",
-    "إلغاء الطلب": "cancel", "Cancel order": "cancel",
-    "عايز أعدل": "edit", "I want to edit": "edit",
-    "السعر مرتفع": "price", "Price is high": "price",
+    "تأكيد الطلب": "confirm", "Confirm Order": "confirm",
+    "إلغاء الطلب": "cancel", "Cancel Order": "cancel",
+    "عدّل الطلب": "edit", "Edit order": "edit",
+    "السعر مرتفع": "price", "Too expensive": "price",
     "غيرت رأيي": "mind", "Changed my mind": "mind",
     "سبب آخر": "reason", "Another reason": "reason",
     "ممتاز": "great", "Excellent": "great",
     "جيد": "good", "Good": "good",
-    "سيء": "bad", "Bad": "bad",
+    "سيء": "bad", "Poor": "bad",
     "استبدال": "exchange", "Exchange": "exchange",
     "استرجاع": "refund", "Refund": "refund",
     "مشكلة أخرى": "issue", "Another issue": "issue",
   };
 
-  const cancelReasons = () => [L("السعر مرتفع", "Price is high"), L("غيرت رأيي", "Changed my mind"), L("سبب آخر", "Another reason")];
+  const cancelReasons = () => [L("السعر مرتفع", "Too expensive"), L("غيرت رأيي", "Changed my mind"), L("سبب آخر", "Another reason")];
   const supportOptions = () => [L("استبدال", "Exchange"), L("استرجاع", "Refund"), L("مشكلة أخرى", "Another issue")];
-  const ticketBadge = () => L("← تم فتح تذكرة الدعم #W-1005 وإخطار التاجر", "← Support ticket #W-1005 opened and the merchant notified");
+  const ticketBadge = () => L("← تم فتح تذكرة الدعم #W-1005 وإشعار المتجر", "← Support ticket #W-1005 opened and the store notified");
   const ticketLong = () =>
     L(
-      "تم فتح تذكرة الدعم #W-1005.\nاتواصل مع خدمة العملاء على الرقم ده:\n+20 1001580461\n• يمكن للعميل طلب استبدال المنتج خلال 14 يومًا من تاريخ استلامه.\n• عند طلب الاستبدال، يتم فتح تذكرة دعم تلقائيًا وإخطار التاجر.\n• قبول أو رفض طلب الاستبدال يخضع لسياسة المتجر وشروط المنتج.\n• يجب أن يكون المنتج في حالته الأصلية وبالتغليف الأصلي.\nبعد مرور 14 يومًا من تاريخ الاستلام، لا يمكن للعميل تقديم طلب استبدال من خلال Whano.\n• سيتواصل فريق خدمة العملاء مع العميل من رقم الدعم المسجل لدى المتجر.",
-      "Support ticket #W-1005 is open.\nReach customer service on this number:\n+20 1001580461\n• A customer may request an exchange within 14 days of receiving the item.\n• An exchange request opens a support ticket automatically and notifies the merchant.\n• Accepting or refusing the exchange follows the store's policy and the item's condition.\n• The item must be in its original condition and packaging.\nAfter 14 days from delivery, a customer cannot request an exchange through Whano.\n• Customer service will contact the customer from the store's registered support number.",
+      "تم فتح تذكرة الدعم #W-1005.\nفريق خدمة العملاء هيتواصل معاك على الرقم ده:\n+20 100 000 0000\nوهيشرح لك سياسة الاستبدال أو الاسترجاع الخاصة بالمتجر.",
+      "Support ticket #W-1005 is open.\nCustomer service will contact you on this number:\n+20 100 000 0000\nThey will explain the store's exchange or return policy.",
     );
   const ticketShort = () =>
     L(
-      "تم فتح تذكرة الدعم #W-1005.\nاتواصل مع خدمة العملاء على الرقم ده:\n+20 1001580461",
-      "Support ticket #W-1005 is open.\nReach customer service on this number:\n+20 1001580461",
+      "تم فتح تذكرة الدعم #W-1005.\nاتواصل مع خدمة العملاء على الرقم ده:\n+20 100 000 0000",
+      "Support ticket #W-1005 is open.\nReach customer service on this number:\n+20 100 000 0000",
     );
 
   let activeIndex = 0;
   let activeTimers: number[] = [];
   let userInteracted = false;
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   const prevBtn = document.getElementById("wf-prev-btn");
   const nextBtn = document.getElementById("wf-next-btn");
@@ -294,6 +294,8 @@ const total = String(workflows.length).padStart(2, "0");
       sender: "whano" | "customer";
       text: string;
       buttons?: string[];
+      buttonsEn?: string[];
+      urlButton?: { text: string; textEn?: string; url?: string };
       success?: boolean;
       badge?: string;
     },
@@ -332,10 +334,31 @@ const total = String(workflows.length).padStart(2, "0");
     row.appendChild(bubble);
 
     const labels = msgButtons(msg, language);
-    if (labels.length > 0) {
+    const urlButton = msg.urlButton;
+    if (labels.length > 0 || urlButton) {
       const btnGroup = document.createElement("div");
       btnGroup.className = "wa-chip-group";
       btnGroup.setAttribute("dir", language === "en" ? "ltr" : "rtl");
+
+      if (urlButton) {
+        const link = document.createElement("span");
+        link.className = "wa-chip-btn wa-chip-btn--url";
+        link.setAttribute("role", "link");
+        link.setAttribute("aria-disabled", "true");
+        link.title = L(
+          "للعرض فقط — الزر الحقيقي يفتح صفحة تعديل الطلب.",
+          "Demo only — the real button opens the secure edit page.",
+        );
+        const label = language === "en" && urlButton.textEn ? urlButton.textEn : urlButton.text;
+        link.innerHTML = `
+          <svg class="wa-chip-btn__icon" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M5.5 8.5 11 3M6 3h5v5M10.5 8.5V11H3V3.5h2.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span></span>
+        `;
+        link.querySelector("span")!.textContent = label;
+        btnGroup.appendChild(link);
+      }
 
       labels.forEach((label) => {
         const btn = document.createElement("button");
@@ -410,27 +433,28 @@ const total = String(workflows.length).padStart(2, "0");
         reply = { text: L("تم تأكيد طلبك #1056!", "Order #1056 is confirmed!"), success: true };
       } else if (key === "cancel") {
         reply = {
-          text: L("تم إلغاء طلبك #1056.\n\nممكن نعرف السبب؟", "Order #1056 is cancelled.\n\nMay we know why?"),
+          text: L(
+            "تم إلغاء طلبك #1056 من نوى.\n\nممكن نعرف السبب؟",
+            "Your order #1056 from Nawa has been cancelled.\n\nMind telling us why?",
+          ),
           buttons: cancelReasons(),
         };
       } else if (key === "edit") {
-        const editReq = renderBubble({
-          sender: "customer",
-          text: L("عايز أزود واحد من نفس المنتج", "I want to add one more of the same item"),
-        });
-        activeStream?.appendChild(editReq);
-        if (activeStream) scrollStream(activeStream, "smooth");
-
-        showTyping(650, () => {
-          const editConfirm = renderBubble({
+        // The real v7 confirmation's third button opens the one-time update
+        // page; it is not a natural-language chat edit.
+        showTyping(450, () => {
+          const editLink = renderBubble({
             sender: "whano",
             text: L(
-              "تم تعديل الطلب ✅\n\nThe Collection Snowboard: Hydrogen × 2\nالإجمالي الجديد: USD 1,200",
-              "Order updated ✅\n\nThe Collection Snowboard: Hydrogen × 2\nNew total: USD 1,200",
+              "طلبك #1056 من نوى.\n\nعايز تغيّر حاجة — الكمية أو المقاس أو تضيف منتج؟\nافتح الرابط من الزر وعدّل طلبك بنفسك.\n\nالرابط يعمل مرة واحدة، وقبل تأكيد الطلب.",
+              "Your order #1056 from Nawa.\n\nNeed to change something — a quantity, a variant, or adding an item?\nOpen the link from the button and update your order yourself.\n\nThe link works once, before the order is confirmed.",
             ),
-            badge: L("← متزامن مع Shopify وشركة الشحن", "← Synced with Shopify and the carrier"),
+            urlButton: {
+              text: L("عدّل طلبك", "Update your order"),
+              url: "https://whano.nomeda.tech/order/update/demo",
+            },
           });
-          activeStream?.appendChild(editConfirm);
+          activeStream?.appendChild(editLink);
           if (activeStream) scrollStream(activeStream, "smooth");
         });
         return;
@@ -472,6 +496,11 @@ const total = String(workflows.length).padStart(2, "0");
   // built in JS, so the data-copy spans that switch the rest of the page do
   // not reach them.
   window.addEventListener("whano:language", () => {
+    // Stop the in-flight reveal before painting the finished thread. Without
+    // this, the old timers append a second copy of the last bubble.
+    clearTimers();
+    typingIndicator?.classList.remove("is-visible");
+    applyDemoLabels(currentLang());
     if (activeStream) renderStatic(activeStream, workflows[activeIndex].messages);
     if (prevStream) renderStatic(prevStream, workflows[(activeIndex - 1 + workflows.length) % workflows.length].messages);
     if (nextStream) renderStatic(nextStream, workflows[(activeIndex + 1) % workflows.length].messages);
@@ -479,6 +508,10 @@ const total = String(workflows.length).padStart(2, "0");
   });
 
   function showTyping(duration: number, callback: () => void) {
+    if (reducedMotion) {
+      callback();
+      return;
+    }
     if (typingIndicator) {
       typingIndicator.classList.add("is-visible");
       setHeaderTyping(true);
@@ -514,6 +547,14 @@ const total = String(workflows.length).padStart(2, "0");
     if (!wf || !wf.messages) return;
 
     userInteracted = false;
+
+    // Reduced motion: show the finished thread at once, not a timed reveal.
+    if (reducedMotion) {
+      wf.messages.forEach((msg) => activeStream!.appendChild(renderBubble(msg, false)));
+      requestAnimationFrame(() => scrollStream(activeStream!));
+      return;
+    }
+
     let delay = 200;
 
     wf.messages.forEach((msg, msgIdx) => {
@@ -544,6 +585,23 @@ const total = String(workflows.length).padStart(2, "0");
     });
   }
 
+  function applyDemoLabels(language: string) {
+    const isArabic = language === "ar";
+    prevBtn?.setAttribute("aria-label", isArabic ? "المحادثة السابقة" : "Previous conversation");
+    nextBtn?.setAttribute("aria-label", isArabic ? "المحادثة التالية" : "Next conversation");
+    document.querySelector("[data-demo-label='dots']")?.setAttribute(
+      "aria-label",
+      isArabic ? "المحادثات" : "Conversations",
+    );
+    dots.forEach((dot, i) => {
+      const wf = workflows[i];
+      dot.setAttribute(
+        "aria-label",
+        `${wf.number} — ${isArabic ? wf.tabLabel.ar : wf.tabLabel.en}`,
+      );
+    });
+  }
+
   function selectWorkflow(index: number) {
     if (index < 0) index = workflows.length - 1;
     if (index >= workflows.length) index = 0;
@@ -568,6 +626,8 @@ const total = String(workflows.length).padStart(2, "0");
 
     dots.forEach((dot, i) => {
       dot.classList.toggle("is-active", i === index);
+      if (i === index) dot.setAttribute("aria-current", "true");
+      else dot.removeAttribute("aria-current");
     });
 
     if (prevStream) renderStatic(prevStream, prevWf.messages);
@@ -697,12 +757,16 @@ const total = String(workflows.length).padStart(2, "0");
     obs.observe(demo);
   }
 
+  applyDemoLabels(currentLang());
+
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", () => {
+      applyDemoLabels(currentLang());
       selectWorkflow(0);
       setupAutoTrigger();
     });
   } else {
+    applyDemoLabels(currentLang());
     selectWorkflow(0);
     setupAutoTrigger();
   }

@@ -4,7 +4,7 @@
 
 English is direct, specific, and operational. It avoids hype and explains what happens to an order.
 
-Product Arabic is Egyptian colloquial Arabic. It should sound like a helpful Egyptian merchant speaking to a customer, not like formal documentation translated into Arabic.
+The WhatsApp message bubbles are Egyptian colloquial Arabic: they should sound like a helpful Egyptian merchant speaking to a customer. Marketing and product pages use Modern Standard Arabic for consistency and credibility; legal copy is formal Arabic. Do not mix registers inside one section.
 
 Legal Arabic is formal and precise. It should not use colloquial forms such as `مش` or `إنت`.
 
@@ -28,6 +28,15 @@ Legal Arabic is formal and precise. It should not use colloquial forms such as `
 - Keep product names, Shopify, WhatsApp, and tracking URLs in their recognizable Latin form.
 - Do not add emoji to compensate for weak copy.
 
+## Currency and feature labels
+
+- Plan prices are shown in **EGP at the fixed rate USD × 50** (500 / 950 / 1,800 /
+  2,950 EGP), with the USD amount and “billed in USD” beside them. Shopify
+  charges USD; never imply EGP is the charge currency.
+- The features page lists **24** capabilities. Optional features (product
+  messages, size verification, cart recovery) are labelled “optional when the
+  feature is switched on”; referral is labelled **beta**.
+
 ## Claims policy
 
-The page does not use customer counts, conversion rates, testimonials, or response-time claims until there is verified production evidence. The page only states behavior supported by the product documentation and shows representative conversations clearly labeled as examples.
+The page does not use customer counts, conversion rates, testimonials, fake discounts, or response-time claims without verified evidence. It only states behavior supported by the product code and the Shopify listing. Demo names, orders, and support numbers are sample data and are labelled as examples. Connected carriers are Bosta and ShipBlu only. Merchant chats are read-only; do not claim in-console merchant takeover. Confirmation and cancellation keep working at zero balance; optional automations pause.

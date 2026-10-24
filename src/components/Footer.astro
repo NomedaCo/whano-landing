@@ -33,6 +33,10 @@ const { footer } = site;
           </li>
           <li class="footer-trust__rating">
             ★ <bdi dir="ltr">{site.rating.value}</bdi>
+            <span class="footer-trust__count">
+              <span data-copy="en">({site.rating.count.en})</span>
+              <span data-copy="ar" lang="ar">({site.rating.count.ar})</span>
+            </span>
             <span data-copy="en">{site.rating.label.en}</span>
             <span data-copy="ar" lang="ar">{site.rating.label.ar}</span>
           </li>
@@ -62,8 +66,8 @@ const { footer } = site;
         </div>
       </div>
 
-      <nav class="footer-col" data-footer-nav aria-label="Footer navigation">
-        <p class="footer-col__heading">
+      <nav class="footer-col" aria-labelledby="footer-product-heading">
+        <p class="footer-col__heading" id="footer-product-heading">
           <span data-copy="en">{footer.productLabel.en}</span>
           <span data-copy="ar" lang="ar">{footer.productLabel.ar}</span>
         </p>
@@ -75,8 +79,8 @@ const { footer } = site;
         ))}
       </nav>
 
-      <nav class="footer-col" aria-label="Resources">
-        <p class="footer-col__heading">
+      <nav class="footer-col" aria-labelledby="footer-resources-heading">
+        <p class="footer-col__heading" id="footer-resources-heading">
           <span data-copy="en">{footer.resourcesLabel.en}</span>
           <span data-copy="ar" lang="ar">{footer.resourcesLabel.ar}</span>
         </p>
@@ -88,16 +92,16 @@ const { footer } = site;
         ))}
       </nav>
 
-      <nav class="footer-col" aria-label="Company">
-        <p class="footer-col__heading">
+      <nav class="footer-col" aria-labelledby="footer-company-heading">
+        <p class="footer-col__heading" id="footer-company-heading">
           <span data-copy="en">{footer.companyLabel.en}</span>
           <span data-copy="ar" lang="ar">{footer.companyLabel.ar}</span>
         </p>
         {footer.companyLinks.map((link) => (
           <a
             href={link.href}
-            {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-            {...(link.console ? { "data-console-link": "" } : {})}
+            {...("external" in link && link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+            {...("console" in link && link.console ? { "data-console-link": "" } : {})}
           >
             <span data-copy="en">{link.label.en}</span>
             <span data-copy="ar" lang="ar">{link.label.ar}</span>
@@ -112,15 +116,16 @@ const { footer } = site;
           <span data-copy="en">{footer.copyright.en}</span>
           <span data-copy="ar" lang="ar">{footer.copyright.ar}</span>
         </p>
-        <nav class="footer-legal-links" aria-label="Legal">
-          <a href="/privacy"><span data-copy="en">{footer.legal.privacy.en}</span><span data-copy="ar" lang="ar">{footer.legal.privacy.ar}</span></a>
-          <a href="/terms"><span data-copy="en">{footer.legal.terms.en}</span><span data-copy="ar" lang="ar">{footer.legal.terms.ar}</span></a>
-          <a href="/dpa"><span data-copy="en">{footer.legal.dpa.en}</span><span data-copy="ar" lang="ar">{footer.legal.dpa.ar}</span></a>
-          <a href="/security"><span data-copy="en">{footer.legal.security.en}</span><span data-copy="ar" lang="ar">{footer.legal.security.ar}</span></a>
+        <p class="sr-only" id="footer-legal-heading"><span data-copy="en">{footer.legal.label.en}</span><span data-copy="ar" lang="ar">{footer.legal.label.ar}</span></p>
+        <nav class="footer-legal-links" aria-labelledby="footer-legal-heading">
+          <a href="/privacy/"><span data-copy="en">{footer.legal.privacy.en}</span><span data-copy="ar" lang="ar">{footer.legal.privacy.ar}</span></a>
+          <a href="/terms/"><span data-copy="en">{footer.legal.terms.en}</span><span data-copy="ar" lang="ar">{footer.legal.terms.ar}</span></a>
+          <a href="/dpa/"><span data-copy="en">{footer.legal.dpa.en}</span><span data-copy="ar" lang="ar">{footer.legal.dpa.ar}</span></a>
+          <a href="/security/"><span data-copy="en">{footer.legal.security.en}</span><span data-copy="ar" lang="ar">{footer.legal.security.ar}</span></a>
         </nav>
       </div>
       <div class="footer-bar__controls">
-        <button class="footer-lang" type="button" data-language-toggle aria-label="التبديل إلى الإنجليزية" aria-pressed="true">
+        <button class="footer-lang" type="button" data-language-toggle aria-label="English — التبديل إلى الإنجليزية" aria-pressed="true">
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
             <circle cx="8" cy="8" r="6.4" stroke="currentColor" stroke-width="1.3" />
             <path d="M1.9 8h12.2M8 1.6c1.7 1.8 2.6 4 2.6 6.4S9.7 12.6 8 14.4C6.3 12.6 5.4 10.4 5.4 8S6.3 3.4 8 1.6z" stroke="currentColor" stroke-width="1.3" />

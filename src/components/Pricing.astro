@@ -1,29 +1,7 @@
 ---
-import { plans, planPricesUsd, pricingFeatures, pricingFaqs, site } from "../data/content";
+import { EGP_PER_USD, plans, pricingFeatures, pricingFaqs, site } from "../data/content";
 
-const FALLBACK_RATE = 50;
-
-async function fetchEgpRate(): Promise<number> {
-  try {
-    const res = await fetch("https://api.frankfurter.app/latest?from=USD&to=EGP", {
-      signal: AbortSignal.timeout(5000),
-    });
-    if (!res.ok) return FALLBACK_RATE;
-    const data = await res.json();
-    return data?.rates?.EGP ?? FALLBACK_RATE;
-  } catch {
-    return FALLBACK_RATE;
-  }
-}
-
-const rate = await fetchEgpRate();
-
-const standardPlans = plans.filter((p) => !(p as any).isEnterprise);
-
-const egpValues = planPricesUsd.slice(0, 4).map((usd) => {
-  if (usd === null) return null;
-  return Math.round(usd * rate).toLocaleString("en");
-});
+const standardPlans = plans.filter((p) => !("isEnterprise" in p && p.isEnterprise));
 ---
 
 <section id="pricing" class="section">
@@ -45,12 +23,12 @@ const egpValues = planPricesUsd.slice(0, 4).map((usd) => {
 
     <!-- 4 Standard Point Packs -->
     <div class="pricing-grid reveal">
-      {standardPlans.map((plan, i) => (
+      {standardPlans.map((plan) => (
         <div class:list={["pricing-card", plan.popular && "pricing-card--featured"]}>
           {plan.popular && (
             <span class="pricing-badge">
-              <span data-copy="en">Most popular</span>
-              <span data-copy="ar" lang="ar">الأكثر اختيارًا</span>
+              <span data-copy="en">Best value per point</span>
+              <span data-copy="ar" lang="ar">أفضل قيمة لكل نقطة</span>
             </span>
           )}
 
@@ -65,24 +43,19 @@ const egpValues = planPricesUsd.slice(0, 4).map((usd) => {
             </p>
           </div>
 
-          <div class="pricing-card__price">
-            {plan.originalPrice && (
-              <span class="pricing-card__original">
-                <span data-copy="en">{plan.originalPrice.en}</span>
-                <span data-copy="ar" lang="ar">{plan.originalPrice.ar}</span>
+          {plan.priceUsd !== null && (
+            <div class="pricing-card__price">
+              <span class="pricing-card__current">
+                <bdi dir="ltr">{(plan.priceUsd * EGP_PER_USD).toLocaleString("en-US")}</bdi>
+                <span data-copy="en">EGP</span>
+                <span data-copy="ar" lang="ar">جنيه</span>
               </span>
-            )}
-            <span class="pricing-card__current">
-              <span data-copy="en">{plan.price.en}</span>
-              <span data-copy="ar" lang="ar">{plan.price.ar}</span>
-            </span>
-          </div>
-
-          {egpValues[i] && (
-            <span class="pricing-card__egp">
-              <span data-copy="en">{`\u2248 ${egpValues[i]} EGP`}</span>
-              <span data-copy="ar" lang="ar">{`\u2248 ${egpValues[i]} \u062c\u0646\u064a\u0647`}</span>
-            </span>
+              <span class="pricing-card__usd">
+                <bdi dir="ltr">${plan.priceUsd}</bdi>
+                <span data-copy="en">billed in USD</span>
+                <span data-copy="ar" lang="ar">تُفوتر بالدولار</span>
+              </span>
+            </div>
           )}
 
           <p class="pricing-card__points">

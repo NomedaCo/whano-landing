@@ -1,5 +1,9 @@
 User-agent: *
 Allow: /
 Disallow: /order/
+Disallow: /cart/
+Disallow: /api/
+Disallow: /stats
+Disallow: /login
 
 Sitemap: https://whano.nomeda.tech/sitemap.xml

@@ -110,7 +110,7 @@ export const termsSections: LegalSection[] = [
         ar: "للاستفسارات المتعلقة بهذه الشروط، تواصل معنا عبر",
       },
     ],
-    links: [{ label: { en: "whano@nomeda.tech", ar: "whano@nomeda.tech" }, href: "mailto:whano@nomeda.tech" }],
+    links: [{ label: { en: "contact@nomeda.tech", ar: "contact@nomeda.tech" }, href: "mailto:contact@nomeda.tech" }],
   },
 ];
 
@@ -140,6 +140,10 @@ export const privacySections: LegalSection[] = [
         ar: "إعدادات هوية المتجر، وحالة الاتصال، والرسائل المرسلة أو المستلمة من خلال Whano.",
       },
       {
+        en: "Marketing consent and opt-out status, so campaigns only reach customers who agreed to receive them.",
+        ar: "حالة الموافقة على التسويق وإلغاء الاشتراك، لتصل الحملات فقط إلى العملاء الذين وافقوا على استقبالها.",
+      },
+      {
         en: "Account, billing, support, and usage information.",
         ar: "معلومات الحساب والفواتير والدعم والاستخدام.",
       },
@@ -155,6 +159,10 @@ export const privacySections: LegalSection[] = [
       {
         en: "To show order, message, review, and usage information in the merchant dashboard.",
         ar: "لعرض معلومات الطلبات والرسائل والتقييمات والاستخدام في لوحة تحكم التاجر.",
+      },
+      {
+        en: "To send marketing campaigns and cart-recovery messages only to customers who opted in, respect quiet hours, and honor every opt-out.",
+        ar: "لإرسال حملات التسويق ورسائل استرجاع السلات فقط إلى العملاء الذين وافقوا، مع احترام ساعات الهدوء وتنفيذ كل طلب لإلغاء الاشتراك.",
       },
       {
         en: "To generate product recommendations and conversational replies when those features are enabled.",
@@ -179,8 +187,8 @@ export const privacySections: LegalSection[] = [
     heading: { en: "5. Retention and deletion", ar: "5. الاحتفاظ بالبيانات وحذفها" },
     paragraphs: [
       {
-        en: "We retain information while your account is active or as needed to provide the service, meet legal obligations, resolve disputes, and enforce agreements. When you delete your account, we begin deleting personal data within 30 days, subject to backups, legal requirements, and information that has been anonymized.",
-        ar: "نحتفظ بالمعلومات طوال فترة نشاط حسابك أو بالقدر اللازم لتقديم الخدمة والوفاء بالالتزامات القانونية وحل النزاعات وتنفيذ الاتفاقات. عند حذف حسابك، نبدأ حذف البيانات الشخصية خلال 30 يومًا، مع مراعاة النسخ الاحتياطية والمتطلبات القانونية والمعلومات المجهّلة.",
+        en: "We retain information while your account is active or as needed to provide the service, meet legal obligations, resolve disputes, and enforce agreements. When you uninstall, the bot stops immediately and Shopify sends its shop-redaction request 48 hours later; we delete the store's data then. For a separate deletion request, we begin within 30 days, subject to backups, legal requirements, and information that has been anonymized.",
+        ar: "نحتفظ بالمعلومات طوال فترة نشاط حسابك أو بالقدر اللازم لتقديم الخدمة والوفاء بالالتزامات القانونية وحل النزاعات وتنفيذ الاتفاقات. عند إلغاء التثبيت يتوقف البوت فورًا، ويرسل Shopify طلب حذف بيانات المتجر بعد 48 ساعة، فنحذف بيانات المتجر حينها. أما طلب الحذف المستقل، فنبدأ تنفيذه خلال 30 يومًا، مع مراعاة النسخ الاحتياطية والمتطلبات القانونية والمعلومات المجهّلة.",
       },
     ],
   },
@@ -206,8 +214,8 @@ export const privacySections: LegalSection[] = [
     heading: { en: "8. Customer data", ar: "8. بيانات عملاء المتجر" },
     paragraphs: [
       {
-        en: "When you provide customer data to Whano, you remain responsible for having the right to provide it and for giving customers any notices required by law. We process that data only to provide the service to your store and according to your instructions.",
-        ar: "عند تزويد Whano ببيانات العملاء، تظل مسؤولًا عن امتلاك الحق في تقديمها وعن تزويد العملاء بأي إشعارات يطلبها القانون. نعالج هذه البيانات فقط لتقديم الخدمة لمتجرك ووفقًا لتعليماتك.",
+        en: "When you provide customer data to Whano, you remain responsible for having the right to provide it and for giving customers any notices required by law. You are also responsible for obtaining marketing opt-in where required. Whano records the consent and opt-out state it receives and blocks marketing messages when consent is withdrawn. We process customer data only to provide the service to your store and according to your instructions.",
+        ar: "عند تزويد Whano ببيانات العملاء، تظل مسؤولًا عن امتلاك الحق في تقديمها وعن تزويد العملاء بأي إشعارات يطلبها القانون. وأنت مسؤول أيضًا عن الحصول على الموافقة التسويقية حيث يلزم. ويسجّل Whano حالة الموافقة وإلغاء الاشتراك التي تصله، ويحجب رسائل التسويق عند سحب الموافقة. ونعالج بيانات العملاء فقط لتقديم الخدمة لمتجرك ووفقًا لتعليماتك.",
       },
     ],
   },
@@ -215,8 +223,8 @@ export const privacySections: LegalSection[] = [
     heading: { en: "9. Cookies", ar: "9. ملفات تعريف الارتباط" },
     paragraphs: [
       {
-        en: "The website uses only cookies or browser storage that are necessary for basic functionality, such as remembering your language preference. We do not use advertising cookies on this landing page.",
-        ar: "يستخدم الموقع فقط ملفات تعريف الارتباط أو تخزين المتصفح اللازم للوظائف الأساسية، مثل تذكر اختيار اللغة. ولا نستخدم ملفات تعريف ارتباط إعلانية في صفحة الهبوط هذه.",
+        en: "The landing page uses browser storage only to remember your language preference. Its analytics is first-party and cookieless: one counter per day, path, and event, with no third-party tracker and no advertising cookie.",
+        ar: "تستخدم صفحة الهبوط تخزين المتصفح فقط لتذكر اختيار اللغة. وتحليلاتها داخلية ومن دون ملفات تعريف ارتباط: عداد واحد لكل يوم ومسار وحدث، بلا أي متتبع خارجي أو ملف تعريف ارتباط إعلاني.",
       },
     ],
   },
@@ -256,8 +264,8 @@ export const dpaSections: LegalSection[] = [
     heading: { en: "2. Subject matter and purpose", ar: "2. موضوع المعالجة والغرض منها" },
     paragraphs: [
       {
-        en: "NomedaCo processes personal data of your customers solely to provide Whano: order confirmation and cancellation over WhatsApp, shipping notifications, delivery ratings, order modification, and support ticketing. We do not process it for our own purposes, and we do not sell it.",
-        ar: "تعالج NomedaCo البيانات الشخصية لعملائك لغرض تقديم خدمة Whano فقط: تأكيد الطلبات وإلغاؤها عبر واتساب، وإشعارات الشحن، وتقييمات التوصيل، وتعديل الطلبات، وتذاكر الدعم. ولا نعالجها لأغراضنا الخاصة، ولا نبيعها.",
+        en: "NomedaCo processes personal data of your customers solely to provide Whano: order confirmation and cancellation over WhatsApp, shipping notifications, delivery ratings, order modification, support ticketing, and marketing or cart-recovery messages for customers who opted in. We do not process it for our own purposes, and we do not sell it.",
+        ar: "تعالج NomedaCo البيانات الشخصية لعملائك لغرض تقديم خدمة Whano فقط: تأكيد الطلبات وإلغاؤها عبر واتساب، وإشعارات الشحن، وتقييمات التوصيل، وتعديل الطلبات، وتذاكر الدعم، ورسائل التسويق أو استرجاع السلات للعملاء الذين وافقوا. ولا نعالجها لأغراضنا الخاصة، ولا نبيعها.",
       },
     ],
   },
@@ -334,6 +342,10 @@ export const dpaSections: LegalSection[] = [
         ar: "Bosta، فقط إذا قمت بربطها — إنشاء الشحنات وتتبعها: اسم المستلم وهاتفه وعنوانه.",
       },
       {
+        en: "ShipBlu, only if you connect it — shipment creation, geography lookup, pickup and tracking: recipient name, phone and address.",
+        ar: "ShipBlu، فقط إذا قمت بربطها — إنشاء الشحنات وتحديد المنطقة وطلب الاستلام والتتبع: اسم المستلم وهاتفه وعنوانه.",
+      },
+      {
         en: "AI model provider — composing replies: message text and order context. Not used to train third-party models.",
         ar: "مزود نموذج الذكاء الاصطناعي — صياغة الردود: نص الرسالة وسياق الطلب. ولا تُستخدم لتدريب نماذج الأطراف الثالثة.",
       },
@@ -342,8 +354,12 @@ export const dpaSections: LegalSection[] = [
         ar: "Resend — إشعارات البريد الإلكتروني للتاجر: عنوان بريد التاجر فقط.",
       },
       {
-        en: "Railway — hosting and database: all of the above, at rest.",
-        ar: "Railway — الاستضافة وقاعدة البيانات: كل ما سبق، أثناء التخزين.",
+        en: "Railway — API hosting and database: all of the above, at rest.",
+        ar: "Railway — استضافة API وقاعدة البيانات: كل ما سبق، أثناء التخزين.",
+      },
+      {
+        en: "Cloudflare — edge hosting for the public site and console: request metadata and cached public content.",
+        ar: "Cloudflare — استضافة الحافة للموقع العام ولوحة التحكم: بيانات وصفية للطلبات ومحتوى عام مخزّن مؤقتًا.",
       },
     ],
   },
