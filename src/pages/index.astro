@@ -1,19 +1,71 @@
 ---
 import Base from "../layouts/Base.astro";
-import Audience from "../components/Audience.astro";
-import ConsoleTour from "../components/ConsoleTour.astro";
-import CTA from "../components/CTA.astro";
-import FaqTeaser from "../components/FaqTeaser.astro";
-import Flow from "../components/Flow.astro";
 import Footer from "../components/Footer.astro";
-import Hero from "../components/Hero.astro";
 import MobileCta from "../components/MobileCta.astro";
-import OrderPage from "../components/OrderPage.astro";
-import Outcomes from "../components/Outcomes.astro";
-import PricingTeaser from "../components/PricingTeaser.astro";
-import Shipping from "../components/Shipping.astro";
-import TrustStrip from "../components/TrustStrip.astro";
 import Nav from "../components/Nav.astro";
+import { faqs, featureGroups, orderFlow, site } from "../data/content";
+
+const featuredFeatures = featureGroups[0].items.filter((feature) => feature.featured).slice(0, 6);
+const homeFaqs = faqs.filter((faq) => (faq as { home?: boolean }).home === true).slice(0, 4);
+const featureTones = ["tone-mint", "tone-yellow", "tone-lilac", "tone-peach", "tone-mint", "tone-yellow"];
+const featureIcons = [
+  '<circle cx="12" cy="12" r="9" /><path d="m8 12.2 2.8 2.8 5.4-6" />',
+  '<path d="M4 20h4L19 9l-4-4L4 16z" /><path d="m13.5 6.5 4 4" />',
+  '<path d="M3 7h11v9H3zM14 10h4l3 3v3h-7" /><circle cx="7" cy="18" r="2" /><circle cx="17" cy="18" r="2" />',
+  '<rect x="5" y="3" width="14" height="18" rx="3" /><path d="M9 8h6M9 12h6M9 16h3" />',
+  '<path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z" />',
+  '<rect x="3" y="3" width="8" height="8" rx="2" /><rect x="13" y="3" width="8" height="8" rx="2" /><rect x="3" y="13" width="8" height="8" rx="2" /><rect x="13" y="13" width="8" height="8" rx="2" />',
+];
+const marqueeWords = [
+  { ar: "تأكيد", en: "Confirm" },
+  { ar: "تعديل", en: "Edit" },
+  { ar: "شحن", en: "Ship" },
+  { ar: "تتبع", en: "Track" },
+  { ar: "تقييم", en: "Review" },
+  { ar: "سلة", en: "Cart" },
+];
+const deepDives = [
+  {
+    tone: "tone-lilac",
+    icon: featureIcons[2],
+    title: { en: "Connected shipping", ar: "شحن متصل" },
+    body: {
+      en: "After confirmation, Whano creates the shipment with Bosta or ShipBlu, follows its state, and shows the carrier's own exception reason.",
+      ar: "بعد التأكيد، ينشئ Whano الشحنة مع بوسطة أو شيب بلو، ويتابع حالتها، ويعرض سبب التعثر من شركة الشحن نفسها.",
+    },
+    href: "/features/#order",
+  },
+  {
+    tone: "tone-peach",
+    icon: featureIcons[3],
+    title: { en: "A live order page", ar: "صفحة طلب حية" },
+    body: {
+      en: "One link carries the status, items, total, and tracking. The delivery address stays hidden until the customer enters the order phone number.",
+      ar: "رابط واحد يحمل الحالة والمنتجات والإجمالي والتتبع. ويبقى عنوان التوصيل مخفيًا حتى يُدخل العميل رقم الهاتف المسجل في الطلب.",
+    },
+    href: "/features/#order",
+  },
+  {
+    tone: "tone-yellow",
+    icon: featureIcons[5],
+    title: { en: "One console", ar: "لوحة تحكم واحدة" },
+    body: {
+      en: "Orders, shipments, chats, and reports in one place, with the full message log and a visible cost for every automation.",
+      ar: "الطلبات والشحنات والمحادثات والتقارير في مكان واحد، مع سجل الرسائل كاملًا وتكلفة ظاهرة لكل أتمتة.",
+    },
+    href: "/features/#control",
+  },
+  {
+    tone: "tone-mint",
+    icon: featureIcons[4],
+    title: { en: "Audience and campaigns", ar: "جمهور وحملات" },
+    body: {
+      en: "Build an opted-in audience by orders or spend, add or remove customers in bulk, keep a block list, and send a campaign when it is useful.",
+      ar: "ابنِ جمهورًا موافقًا حسب عدد الطلبات أو الإنفاق، وأضف العملاء أو أزلهم دفعة واحدة، واحتفظ بقائمة حظر، وأرسل حملة عندما تكون مفيدة.",
+    },
+    href: "/features/#growth",
+  },
+];
 
 const softwareSchema = {
   "@context": "https://schema.org",
@@ -27,11 +79,11 @@ const softwareSchema = {
   inLanguage: ["ar", "en"],
   offers: {
     "@type": "Offer",
-    price: 10,
-    priceCurrency: "USD",
+    price: 499,
+    priceCurrency: "EGP",
     availability: "https://schema.org/InStock",
     url: "https://apps.shopify.com/whano",
-    description: "Points packs from 500 EGP ($10); one-time charges billed in USD through Shopify.",
+    description: "Points packs from 499 EGP; one-time charges through Shopify or customer support.",
   },
   sameAs: ["https://apps.shopify.com/whano"],
   publisher: { "@type": "Organization", name: "NomedaCo", url: "https://nomeda.tech" },
@@ -42,24 +94,468 @@ const softwareSchema = {
 <Base
   title="Whano | WhatsApp automation for Shopify stores"
   titleArabic="Whano | أتمتة واتساب لمتاجر Shopify"
-  description="Whano automates WhatsApp order confirmation, edits, shipping updates, and reviews for Shopify stores in Egypt — no number to connect and points-based pricing."
-  descriptionArabic="يؤتمت Whano تأكيد الطلبات وتعديلها وتحديثات الشحن والتقييمات لمتاجر Shopify في مصر — من دون ربط أي رقم، وبأسعار بالنقاط."
+  description="Whano automates WhatsApp order confirmation, edits, shipping updates, and reviews for Shopify stores in Egypt, no number to connect and points-based pricing."
+  descriptionArabic="يؤتمت Whano تأكيد الطلبات وتعديلها وتحديثات الشحن والتقييمات لمتاجر Shopify في مصر، من دون ربط أي رقم، وبأسعار بالنقاط."
   schema={softwareSchema}
 >
   <Nav />
-  <main id="main-content">
-    <Hero />
-    <TrustStrip />
-    <Flow />
-    <Shipping />
-    <OrderPage />
-    <ConsoleTour />
-    <Outcomes />
-    <Audience />
-    <PricingTeaser />
-    <FaqTeaser />
-    <CTA />
+  <main id="main-content" class="play-home">
+    <section class="play-hero" id="top">
+      <div class="site-frame">
+        <div class="play-hero__grid">
+          <div class="play-hero__copy">
+            <p class="eyebrow">
+              <span data-copy="en">{site.hero.eyebrow.en}</span>
+              <span data-copy="ar" lang="ar">{site.hero.eyebrow.ar}</span>
+            </p>
+
+            <h1 class="play-title">
+              <span data-copy="en">{site.hero.titleLead.en} </span>
+              <span data-copy="ar" lang="ar">{site.hero.titleLead.ar} </span>
+              <span class="play-title__accent">
+                <span data-copy="en">{site.hero.titleAccent.en}</span>
+                <span data-copy="ar" lang="ar">{site.hero.titleAccent.ar}</span>
+                <svg viewBox="0 0 220 14" preserveAspectRatio="none" aria-hidden="true">
+                  <path d="M2 8 Q 28 1 56 8 T 112 8 T 166 8 T 218 8"></path>
+                </svg>
+              </span>
+            </h1>
+
+            <p class="play-hero__body">
+              <span data-copy="en">{site.hero.body.en}</span>
+              <span data-copy="ar" lang="ar">{site.hero.body.ar}</span>
+            </p>
+
+            <div class="play-actions">
+              <a href={site.accessUrl.en} data-access-link class="play-btn play-btn--primary play-btn--pulse">
+                <span data-copy="en">{site.hero.cta.en}</span>
+                <span data-copy="ar" lang="ar">{site.hero.cta.ar}</span>
+                <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+                  <path d="M2.5 7.5h9M8 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </a>
+              <a href={site.consoleUrl.en} data-console-link class="play-btn play-btn--ghost">
+                <span data-copy="en">{site.hero.loginCta.en}</span>
+                <span data-copy="ar" lang="ar">{site.hero.loginCta.ar}</span>
+              </a>
+            </div>
+
+            <p class="play-hero__note">
+              <span>
+                <span data-copy="en">{site.hero.ctaNote.en}</span>
+                <span data-copy="ar" lang="ar">{site.hero.ctaNote.ar}</span>
+              </span>
+              <a class="play-hero__rating" href={site.rating.url} target="_blank" rel="noopener noreferrer">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                  <path d="m8 1.5 1.9 4 4.4.6-3.2 3.1.8 4.3L8 11.5l-3.9 2 .8-4.3L1.7 6l4.4-.6z" />
+                </svg>
+                <bdi dir="ltr">{site.rating.value}</bdi>
+                <span class="play-hero__rating-count">
+                  <span data-copy="en">{site.rating.count.en}</span>
+                  <span data-copy="ar" lang="ar">{site.rating.count.ar}</span>
+                </span>
+                <span data-copy="en">{site.rating.label.en}</span>
+                <span data-copy="ar" lang="ar">{site.rating.label.ar}</span>
+              </a>
+            </p>
+          </div>
+
+          <div class="play-hero__art" aria-hidden="true">
+            <span class="play-blob"></span>
+            <svg class="play-star play-star--one" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 1l2.4 7.6L22 11l-7.6 2.4L12 21l-2.4-7.6L2 11l7.6-2.4z" />
+            </svg>
+            <svg class="play-star play-star--two" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 1l2.4 7.6L22 11l-7.6 2.4L12 21l-2.4-7.6L2 11l7.6-2.4z" />
+            </svg>
+            <span class="play-dot play-dot--orange"></span>
+            <span class="play-dot play-dot--purple"></span>
+            <span class="play-dot play-dot--mint"></span>
+
+            <div class="play-chat">
+              <div class="play-chat__head">
+                <span class="play-chat__avatar">
+                  <span data-copy="en">N</span>
+                  <span data-copy="ar" lang="ar">ن</span>
+                </span>
+                <span class="play-chat__store">
+                  <b>
+                    <span data-copy="en">Nawa</span>
+                    <span data-copy="ar" lang="ar">نوى</span>
+                  </b>
+                  <small>
+                    <span data-copy="en">online now</span>
+                    <span data-copy="ar" lang="ar">متصل الآن</span>
+                  </small>
+                </span>
+              </div>
+
+              <div class="play-chat__bubble play-chat__bubble--order">
+                <span data-copy="en">Hey Ahmed 👋<br />📦 New order from <b>Nawa</b><br /><br />• Oversized cotton tee (size L) × 2<br />• Sun cap × 1<br /><br />💰 Total: <b>650 EGP</b><br />🛍️ Order #: <b>#1056</b><br />📍 Shipping to: 9 Street 216, Maadi, Cairo<br />🚚 Estimated delivery: 2–4 working days<br /><br />✨ Thanks for trusting <b>Nawa!</b><br /><br />See your order and track it here 👇<br />https://whano.nomeda.tech/order/demo<br /><br />Please confirm your order so we can start preparing it.</span>
+                <span data-copy="ar" lang="ar">أهلاً أ/أحمد 👋<br />📦 طلب جديد من <b>نوى</b><br /><br />• تيشيرت قطن أوفرسايز (مقاس L) × 2<br />• كاب شمس × 1<br /><br />💰 المبلغ الإجمالي: <b>650 EGP</b><br />🛍️ رقم الطلب: <b>#1056</b><br />📍 عنوان الشحن: 9 شارع 216، المعادي، القاهرة<br />🚚 موعد التوصيل: 2–4 أيام عمل<br /><br />✨ شكراً لثقتك في <b>نوى!</b><br /><br />شوف طلبك وتابعه من هنا 👇<br />https://whano.nomeda.tech/order/demo<br /><br />برجاء تأكيد الطلب علشان نبدأ في تجهيزه.</span>
+              </div>
+              <div class="play-chat__chips">
+                <span class="play-chat__chip">
+                  <span data-copy="en">Confirm Order</span>
+                  <span data-copy="ar" lang="ar">تأكيد الطلب</span>
+                </span>
+                <span class="play-chat__chip">
+                  <span data-copy="en">Cancel Order</span>
+                  <span data-copy="ar" lang="ar">إلغاء الطلب</span>
+                </span>
+                <span class="play-chat__chip">
+                  <span data-copy="en">Edit order</span>
+                  <span data-copy="ar" lang="ar">عدّل الطلب</span>
+                </span>
+              </div>
+              <div class="play-chat__bubble play-chat__bubble--customer">
+                <span data-copy="en">Confirm Order</span>
+                <span data-copy="ar" lang="ar">تأكيد الطلب</span>
+              </div>
+              <div class="play-chat__bubble play-chat__bubble--success">
+                <span data-copy="en">✅ Your order #1056 is confirmed!<br /><br />We will start preparing it now.</span>
+                <span data-copy="ar" lang="ar">✅ تم تأكيد طلبك #1056!<br /><br />هنبدأ تجهيزه دلوقتي.</span>
+              </div>
+              <div class="play-chat__dots"><span></span><span></span><span></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="play-marquee" aria-hidden="true">
+      <div class="play-marquee__track">
+        {[0, 1].map(() => (
+          <div class="play-marquee__group">
+            {marqueeWords.map((word) => (
+              <>
+                <span class="play-marquee__word">
+                  <span data-copy="en">{word.en}</span>
+                  <span data-copy="ar" lang="ar">{word.ar}</span>
+                </span>
+                <svg class="play-marquee__star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 1l2.4 7.6L22 11l-7.6 2.4L12 21l-2.4-7.6L2 11l7.6-2.4z" />
+                </svg>
+              </>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <section class="play-section play-journey" id="flow">
+      <div class="site-frame">
+        <div class="play-head play-reveal" data-play-reveal>
+          <p class="eyebrow">
+            <span data-copy="en">The whole journey</span>
+            <span data-copy="ar" lang="ar">الرحلة كاملة</span>
+          </p>
+          <h2 class="play-title-md">
+            <span data-copy="en">One order, from first tap to the final review.</span>
+            <span data-copy="ar" lang="ar">طلب واحد من بدايته إلى نهايته.</span>
+          </h2>
+          <p class="play-copy">
+            <span data-copy="en">Shopify stays the source of truth. WhatsApp is where the customer always knows their next step.</span>
+            <span data-copy="ar" lang="ar">يبقى Shopify مصدر الحقيقة، وواتساب هو المكان الذي يعرف منه العميل خطوته التالية بوضوح.</span>
+          </p>
+        </div>
+
+        <div class="play-road" aria-hidden="true">
+          <svg class="play-truck" viewBox="0 0 24 24" fill="#FFD54A" stroke="#16122B" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round">
+            <path d="M2 6h12v10H2zM14 9h4.5L22 12.5V16h-8z"></path>
+            <circle cx="7" cy="17.5" r="2" fill="#FFFFFF"></circle>
+            <circle cx="17" cy="17.5" r="2" fill="#FFFFFF"></circle>
+          </svg>
+        </div>
+
+        <div class="play-steps">
+          {orderFlow.map((step, index) => (
+            <div class="play-step play-reveal" data-play-reveal style={`--reveal-delay: ${index * 90}ms`}>
+              <span class="play-step__num">{index + 1}</span>
+              <h3 class="play-step__title">
+                <span data-copy="en">{step.title.en}</span>
+                <span data-copy="ar" lang="ar">{step.title.ar}</span>
+              </h3>
+              <p class="play-step__body">
+                <span data-copy="en">{step.body.en}</span>
+                <span data-copy="ar" lang="ar">{step.body.ar}</span>
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="play-section play-features" id="features">
+      <div class="site-frame">
+        <div class="play-head play-head--row play-reveal" data-play-reveal>
+          <div class="play-head__copy">
+            <p class="eyebrow">
+              <span data-copy="en">What Whano touches</span>
+              <span data-copy="ar" lang="ar">ما يلمسه Whano</span>
+            </p>
+            <h2 class="play-title-md">
+              <span data-copy="en">Everything the order needs, in one place.</span>
+              <span data-copy="ar" lang="ar">كل ما يلمسه الطلب، في مكان واحد.</span>
+            </h2>
+          </div>
+          <a class="play-link" href="/features/">
+            <span data-copy="en">See all features</span>
+            <span data-copy="ar" lang="ar">شوف كل المزايا</span>
+            <svg width="14" height="14" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+              <path d="M2.5 7.5h9M8 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
+        </div>
+
+        <div class="play-feature-grid">
+          {featuredFeatures.map((feature, index) => (
+            <article class="play-feature play-reveal" data-play-reveal style={`--reveal-delay: ${index * 70}ms`}>
+              <span class:list={["play-feature__icon", featureTones[index]]} aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" set:html={featureIcons[index]} />
+              </span>
+              <h3 class="play-feature__title">
+                <span data-copy="en">{feature.title.en}</span>
+                <span data-copy="ar" lang="ar">{feature.title.ar}</span>
+              </h3>
+              <p class="play-feature__body">
+                <span data-copy="en">{feature.body.en}</span>
+                <span data-copy="ar" lang="ar">{feature.body.ar}</span>
+              </p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="play-section play-deep" id="more">
+      <div class="site-frame">
+        <div class="play-head play-reveal" data-play-reveal>
+          <p class="eyebrow">
+            <span data-copy="en">More than messages</span>
+            <span data-copy="ar" lang="ar">أكثر من رسائل</span>
+          </p>
+          <h2 class="play-title-md">
+            <span data-copy="en">The details that make the follow-up complete.</span>
+            <span data-copy="ar" lang="ar">التفاصيل التي تجعل المتابعة كاملة.</span>
+          </h2>
+          <p class="play-copy">
+            <span data-copy="en">Shipping, the customer order page, the console, and campaigns. Each has a clear job, and each is visible in the same place.</span>
+            <span data-copy="ar" lang="ar">الشحن، وصفحة الطلب، ولوحة التحكم، والحملات. لكل منها مهمة واضحة، وكلها ظاهرة في المكان نفسه.</span>
+          </p>
+        </div>
+        <div class="play-deep-grid">
+          {deepDives.map((item, index) => (
+            <a class="play-deep-card play-reveal" data-play-reveal style={`--reveal-delay: ${index * 70}ms`} href={item.href}>
+              <span class:list={["play-feature__icon", item.tone]} aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" set:html={item.icon} />
+              </span>
+              <h3 class="play-deep-card__title">
+                <span data-copy="en">{item.title.en}</span>
+                <span data-copy="ar" lang="ar">{item.title.ar}</span>
+              </h3>
+              <p class="play-deep-card__body">
+                <span data-copy="en">{item.body.en}</span>
+                <span data-copy="ar" lang="ar">{item.body.ar}</span>
+              </p>
+              <span class="play-deep-card__link">
+                <span data-copy="en">See the detail</span>
+                <span data-copy="ar" lang="ar">شوف التفاصيل</span>
+                <svg width="13" height="13" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+                  <path d="M2.5 7.5h9M8 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="play-section play-outcomes" id="outcomes">
+      <div class="site-frame">
+        <div class="play-head play-reveal" data-play-reveal>
+          <p class="eyebrow">
+            <span data-copy="en">The outcome</span>
+            <span data-copy="ar" lang="ar">النتيجة</span>
+          </p>
+          <h2 class="play-title-md">
+            <span data-copy="en">Fewer questions. Fewer cancellations. More reviews.</span>
+            <span data-copy="ar" lang="ar">أسئلة أقل. إلغاءات أقل. تقييمات أكثر.</span>
+          </h2>
+        </div>
+
+        <div class="play-outcome-grid">
+          {site.outcomes.items.map((item, index) => (
+            <div class="play-outcome play-reveal" data-play-reveal style={`--reveal-delay: ${index * 80}ms`}>
+              <span class="play-outcome__dot" aria-hidden="true"></span>
+              <div>
+                <h3 class="play-outcome__title">
+                  <span data-copy="en">{item.title.en}</span>
+                  <span data-copy="ar" lang="ar">{item.title.ar}</span>
+                </h3>
+                <p class="play-outcome__body">
+                  <span data-copy="en">{item.body.en}</span>
+                  <span data-copy="ar" lang="ar">{item.body.ar}</span>
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="play-pricing-wrap" id="pricing">
+      <div class="site-frame">
+        <div class="play-pricing play-reveal" data-play-reveal>
+          <div class="play-pricing__copy">
+            <p class="play-pricing__title">
+              <span data-copy="en">{site.pricingTeaser.title.en}</span>
+              <span data-copy="ar" lang="ar">{site.pricingTeaser.title.ar}</span>
+            </p>
+            <p class="play-pricing__body">
+              <span data-copy="en">{site.pricingTeaser.body.en}</span>
+              <span data-copy="ar" lang="ar">{site.pricingTeaser.body.ar}</span>
+            </p>
+            <div>
+              <a href="/pricing/" class="play-btn play-btn--dark">
+                <span data-copy="en">{site.pricingTeaser.cta.en}</span>
+                <span data-copy="ar" lang="ar">{site.pricingTeaser.cta.ar}</span>
+                <svg width="14" height="14" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+                  <path d="M2.5 7.5h9M8 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="play-pricing__sticker" aria-hidden="true">
+            <span class="play-pricing__sticker-num">499</span>
+            <span class="play-pricing__sticker-label">
+              <span data-copy="en">EGP to start</span>
+              <span data-copy="ar" lang="ar">جنيه للبداية</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="play-faq-wrap" id="faq">
+      <div class="site-frame">
+        <div class="play-head play-head--row play-reveal" data-play-reveal>
+          <div class="play-head__copy">
+            <p class="eyebrow">
+              <span data-copy="en">Before you install</span>
+              <span data-copy="ar" lang="ar">قبل التثبيت</span>
+            </p>
+            <h2 class="play-title-md">
+              <span data-copy="en">The questions worth asking first.</span>
+              <span data-copy="ar" lang="ar">الأسئلة التي تستحق أن تُطرح أولًا.</span>
+            </h2>
+          </div>
+          <a class="play-link" href="/faq/">
+            <span data-copy="en">All questions</span>
+            <span data-copy="ar" lang="ar">كل الأسئلة</span>
+            <svg width="14" height="14" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+              <path d="M2.5 7.5h9M8 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
+        </div>
+
+        <div class="play-faq">
+          {homeFaqs.map((faq, index) => (
+            <details class="play-faq__item play-reveal" data-play-reveal style={`--reveal-delay: ${index * 70}ms`}>
+              <summary class="play-faq__summary">
+                <span>
+                  <span data-copy="en">{faq.question.en}</span>
+                  <span data-copy="ar" lang="ar">{faq.question.ar}</span>
+                </span>
+                <span class="play-faq__plus" aria-hidden="true"></span>
+              </summary>
+              <p class="play-faq__answer">
+                <span data-copy="en">{faq.answer.en}</span>
+                <span data-copy="ar" lang="ar">{faq.answer.ar}</span>
+              </p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="play-cta-wrap" id="start">
+      <div class="site-frame">
+        <div class="play-cta play-reveal" data-play-reveal>
+          <svg class="play-cta__shape play-cta__shape--star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 1l2.4 7.6L22 11l-7.6 2.4L12 21l-2.4-7.6L2 11l7.6-2.4z" />
+          </svg>
+          <svg class="play-cta__shape play-cta__shape--purple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 1l2.4 7.6L22 11l-7.6 2.4L12 21l-2.4-7.6L2 11l7.6-2.4z" />
+          </svg>
+          <span class="play-cta__shape play-cta__shape--orange"></span>
+          <span class="play-cta__shape play-cta__shape--mint"></span>
+
+          <div class="play-cta__inner">
+            <h2 class="play-cta__title">
+              <span data-copy="en">{site.cta.title.en}</span>
+              <span data-copy="ar" lang="ar">{site.cta.title.ar}</span>
+            </h2>
+            <p class="play-cta__body">
+              <span data-copy="en">{site.cta.body.en}</span>
+              <span data-copy="ar" lang="ar">{site.cta.body.ar}</span>
+            </p>
+            <div class="play-cta__actions">
+              <a href={site.accessUrl.en} data-access-link class="play-btn play-btn--yellow play-btn--pulse">
+                <span data-copy="en">{site.cta.button.en}</span>
+                <span data-copy="ar" lang="ar">{site.cta.button.ar}</span>
+                <svg width="14" height="14" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+                  <path d="M2.5 7.5h9M8 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </a>
+              <a href={site.consoleUrl.en} data-console-link class="play-cta__login">
+                <span data-copy="en">{site.cta.login.en}</span>
+                <span data-copy="ar" lang="ar">{site.cta.login.ar}</span>
+              </a>
+            </div>
+            <p class="play-cta__note">
+              {site.cta.reassurance.slice(0, 3).map((item) => (
+                <span>
+                  <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <path d="M3.4 8.6l3 3 6.2-6.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  <span data-copy="en">{item.en}</span>
+                  <span data-copy="ar" lang="ar">{item.ar}</span>
+                </span>
+              ))}
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
+
   <MobileCta />
   <Footer />
+
+  <script is:inline>
+    (() => {
+      const elements = Array.from(document.querySelectorAll("[data-play-reveal]"));
+      if (!elements.length) return;
+
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduced || !("IntersectionObserver" in window)) {
+        elements.forEach((element) => element.classList.add("is-in"));
+        return;
+      }
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add("is-in");
+            observer.unobserve(entry.target);
+          });
+        },
+        { rootMargin: "0px 0px -8% 0px", threshold: 0.12 },
+      );
+
+      elements.forEach((element) => observer.observe(element));
+    })();
+  </script>
 </Base>

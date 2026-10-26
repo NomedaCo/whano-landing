@@ -1,5 +1,5 @@
 ---
-import { EGP_PER_USD, plans, pricingFeatures, pricingFaqs, site } from "../data/content";
+import { plans, pricingFeatures, pricingFaqs, site } from "../data/content";
 
 const standardPlans = plans.filter((p) => !("isEnterprise" in p && p.isEnterprise));
 ---
@@ -43,17 +43,12 @@ const standardPlans = plans.filter((p) => !("isEnterprise" in p && p.isEnterpris
             </p>
           </div>
 
-          {plan.priceUsd !== null && (
+          {plan.priceEgp !== null && (
             <div class="pricing-card__price">
               <span class="pricing-card__current">
-                <bdi dir="ltr">{(plan.priceUsd * EGP_PER_USD).toLocaleString("en-US")}</bdi>
+                <bdi dir="ltr">{plan.priceEgp.toLocaleString("en-US")}</bdi>
                 <span data-copy="en">EGP</span>
                 <span data-copy="ar" lang="ar">جنيه</span>
-              </span>
-              <span class="pricing-card__usd">
-                <bdi dir="ltr">${plan.priceUsd}</bdi>
-                <span data-copy="en">billed in USD</span>
-                <span data-copy="ar" lang="ar">تُفوتر بالدولار</span>
               </span>
             </div>
           )}
@@ -132,11 +127,6 @@ const standardPlans = plans.filter((p) => !("isEnterprise" in p && p.isEnterpris
     <p class="price-note reveal">
       <span data-copy="en">{site.pricing.note.en}</span>
       <span data-copy="ar" lang="ar">{site.pricing.note.ar}</span>
-    </p>
-
-    <p class="price-cost reveal">
-      <span data-copy="en">{site.pricing.cost.en}</span>
-      <span data-copy="ar" lang="ar">{site.pricing.cost.ar}</span>
     </p>
   </div>
 </section>

@@ -66,22 +66,22 @@ made.
 | Railway | Live | API/database hosting |
 | Cloudflare | Live | Landing Worker, console Worker, KV analytics |
 | Resend | Live | Merchant email notifications |
-| AI provider | Used by product features | Product code has AI/product recommendation and support-policy paths; do not name a vendor on the site |
+| AI provider | Transactional translation only | Do not name a vendor; do not claim AI composes replies |
 
 ## Pricing and points (verified 2026-10-24)
 
 The Shopify App Store listing and the product billing code agree on:
 
-| Pack | USD (billed) | EGP (display at USD × 50) | Points |
-|---|---|---|---|
-| Starter | $10 | 500 EGP | 500 |
-| Plus | $19 | 950 EGP | 1,000 |
-| Growth | $36 | 1,800 EGP | 2,000 |
-| Pro | $59 | 2,950 EGP | 3,500 |
+| Pack | Price | Points |
+|---|---|---|
+| Starter | 499 EGP | 450 |
+| Plus | 999 EGP | 1,000 |
+| Growth | 1,899 EGP | 2,000 |
+| Pro | 2,999 EGP | 3,500 |
 
-- All charges are billed in **USD through Shopify**.
-- EGP is a **display-only** fixed rate of **1 USD = 50 EGP** (`EGP_PER_USD` in
-  `src/data/content.ts`); it is not a second billing currency.
+- Prices are shown in **EGP only**. Do not add dollar or cent copy to the site.
+- The Shopify checkout handles the transaction; the public page does not state a
+  second billing currency.
 - There is **no monthly subscription** and no automatic renewal.
 - Points do **not** expire.
 - New stores receive **100 welcome points** once per shop domain.
@@ -135,7 +135,7 @@ Verified point costs (`POINT_COSTS` in `apps/api/src/services/points.ts`):
 | Size verification | 2 |
 
 A full order journey (confirmation + shipping + delivery rating) is about **4
-points** — under 10¢ at the current $10/500 rate.
+points.
 
 ## Store setup and WhatsApp number
 

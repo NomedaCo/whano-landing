@@ -13,20 +13,20 @@ const ORIGIN = "https://whano.nomeda.tech";
  * indexed (`/login`, `/stats`, `/order`, `/cart`, `/api`).
  */
 const routes = [
-  { path: "/", lastmod: "2026-10-24", changefreq: "monthly", priority: "1.0" },
-  { path: "/features/", lastmod: "2026-10-24", changefreq: "monthly", priority: "0.9" },
-  { path: "/pricing/", lastmod: "2026-10-24", changefreq: "monthly", priority: "0.9" },
-  { path: "/faq/", lastmod: "2026-10-24", changefreq: "monthly", priority: "0.8" },
-  { path: "/guides/", lastmod: "2026-10-24", changefreq: "monthly", priority: "0.7" },
+  { path: "/", lastmod: "2026-10-26", changefreq: "monthly", priority: "1.0" },
+  { path: "/features/", lastmod: "2026-10-27", changefreq: "monthly", priority: "0.9" },
+  { path: "/pricing/", lastmod: "2026-10-27", changefreq: "monthly", priority: "0.9" },
+  { path: "/faq/", lastmod: "2026-10-27", changefreq: "monthly", priority: "0.8" },
+  { path: "/guides/", lastmod: "2026-10-26", changefreq: "monthly", priority: "0.7" },
   { path: "/about/", lastmod: "2026-10-24", changefreq: "yearly", priority: "0.5" },
   { path: "/security/", lastmod: "2026-10-24", changefreq: "yearly", priority: "0.5" },
-  { path: "/whats-new/", lastmod: "2026-10-24", changefreq: "weekly", priority: "0.6" },
+  { path: "/whats-new/", lastmod: "2026-10-27", changefreq: "weekly", priority: "0.6" },
   { path: "/terms/", lastmod: "2026-10-24", changefreq: "yearly", priority: "0.3" },
   { path: "/privacy/", lastmod: "2026-10-24", changefreq: "yearly", priority: "0.3" },
   { path: "/dpa/", lastmod: "2026-10-24", changefreq: "yearly", priority: "0.3" },
   ...guides.map((guide) => ({
     path: `/guides/${guide.slug}/`,
-    lastmod: "2026-10-02",
+    lastmod: guide.published,
     changefreq: "yearly",
     priority: "0.6",
   })),

@@ -28,9 +28,9 @@ console. Centralized in `src/data/content.ts`.
 - No number to link: a store number is provisioned inside Whano's WhatsApp
   Business Account; no Meta API account or device to maintain.
 - Arabic-first product and customer messages; the console is Arabic for merchants.
-- One-time points packs ($10/500 to $59/3,500; shown as 500–2,950 EGP at a
-  fixed USD×50 display rate), billed in USD through Shopify; no monthly
-  subscription, no automatic renewal, points never expire.
+- One-time points packs from 499 EGP (450 points) to 2,999 EGP (3,500
+  points), paid through Shopify or customer support with InstaPay or Vodafone
+  Cash; no monthly subscription, no automatic renewal, points never expire.
 - Confirmation and cancellation keep working at zero balance.
 - Bosta and ShipBlu shipping, tracking, exceptions, pickup where supported, and
   the customer order page.
@@ -71,7 +71,7 @@ console. Centralized in `src/data/content.ts`.
 | Console tour | Show the merchant's overview, shipments, chats, and tickets |
 | Outcomes | Name four operational outcomes and the point cost |
 | Audience | Identify fashion, COD, and owner-run stores |
-| Pricing teaser | Remove the price objection (EGP primary, USD billing) |
+| Pricing teaser | Remove the price objection with EGP-only pricing |
 | FAQ | Resolve practical objections before the CTA |
 | CTA | One clear next step |
 

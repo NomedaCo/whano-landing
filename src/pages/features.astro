@@ -9,7 +9,7 @@ import { featureGroups, site } from "../data/content";
 const pageSchema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  name: "Whano features — WhatsApp automation for Shopify",
+  name: "Whano features | WhatsApp automation for Shopify",
   description:
     "Every automation Whano runs for a Shopify store: confirmations, order edits, shipping updates, ratings, returns, campaigns, reports, and the controls around them.",
   inLanguage: "ar",
@@ -18,8 +18,8 @@ const pageSchema = {
 ---
 
 <Base
-  title="Features — WhatsApp automation for Shopify | Whano"
-  titleArabic="المزايا — أتمتة واتساب لمتاجر Shopify | Whano"
+  title="Features | WhatsApp automation for Shopify | Whano"
+  titleArabic="المزايا | أتمتة واتساب لمتاجر Shopify | Whano"
   description="Every automation Whano runs for a Shopify store: confirmations, order edits, shipping updates, ratings, returns, campaigns, reports, and the controls around them."
   descriptionArabic="كل أتمتة يشغّلها Whano لمتجر Shopify: التأكيدات، وتعديلات الطلبات، وتحديثات الشحن، والتقييمات، والاسترجاع، والحملات، والتقارير، ومفاتيح التحكم حولها."
   ogImagePath="/og-features.png"
@@ -111,7 +111,7 @@ const pageSchema = {
       </section>
 
       {featureGroups.map((group) => (
-        <section class="feature-group">
+        <section class="feature-group" id={group.id}>
           <div class="feature-group__heading reveal">
             <h2 class="feature-group__title">
               <span data-copy="en">{group.title.en}</span>

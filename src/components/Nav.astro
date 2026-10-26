@@ -41,7 +41,7 @@ import { site } from "../data/content";
         <span data-copy="en">{site.nav.login.en}</span>
         <span data-copy="ar" lang="ar">{site.nav.login.ar}</span>
       </a>
-      <button id="language-toggle" class="language-toggle" type="button" data-language-toggle aria-label="English — التبديل إلى الإنجليزية" aria-pressed="true">
+      <button id="language-toggle" class="language-toggle" type="button" data-language-toggle aria-label="English | التبديل إلى الإنجليزية" aria-pressed="true">
         <span data-copy="en">{site.nav.language.en}</span>
         <span data-copy="ar" lang="ar">{site.nav.language.ar}</span>
       </button>
@@ -88,7 +88,7 @@ import { site } from "../data/content";
 
 <script>
   const header = document.getElementById("site-header");
-  // Every language switch on the page — the nav has one, the footer has one.
+  // Every language switch on the page, the nav has one, the footer has one.
   const languageToggles = Array.from(document.querySelectorAll("[data-language-toggle]"));
   const menuButton = document.getElementById("menu-button");
   const mobileNav = document.getElementById("mobile-nav");
@@ -116,7 +116,7 @@ import { site } from "../data/content";
       // 2.5.3 Label in Name): "العربية" / "English".
       const target = language === "en" ? "العربية" : "English";
       const action = language === "en" ? ui.switchToArabic : ui.switchToEnglish;
-      toggle.setAttribute("aria-label", `${target} — ${action}`);
+      toggle.setAttribute("aria-label", `${target} | ${action}`);
     });
     const title = language === "ar"
       ? document.documentElement.dataset.titleAr

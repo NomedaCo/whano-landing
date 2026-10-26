@@ -98,8 +98,8 @@ export const workflows: Workflow[] = [
       },
       {
         sender: "whano",
-        text: "تم تأكيد طلبك #1056!",
-        textEn: "Order #1056 is confirmed!",
+        text: "✅ تم تأكيد طلبك #1056!\n\nهنبدأ تجهيزه دلوقتي.",
+        textEn: "✅ Your order #1056 is confirmed!\n\nWe will start preparing it now.",
         success: true,
       },
     ],
@@ -179,8 +179,8 @@ export const workflows: Workflow[] = [
       },
       {
         sender: "whano",
-        text: "طلبك #1056 من نوى.\n\nعايز تغيّر حاجة — الكمية أو المقاس أو تضيف منتج؟\nافتح الرابط من الزر وعدّل طلبك بنفسك.\n\nالرابط يعمل مرة واحدة، وقبل تأكيد الطلب.",
-        textEn: "Your order #1056 from Nawa.\n\nNeed to change something — a quantity, a variant, or adding an item?\nOpen the link from the button and update your order yourself.\n\nThe link works once, before the order is confirmed.",
+        text: "طلبك #1056 من نوى.\n\nعايز تغيّر حاجة, الكمية أو المقاس أو تضيف منتج؟\nافتح الرابط من الزر وعدّل طلبك بنفسك.\n\nالرابط يعمل مرة واحدة، وقبل تأكيد الطلب.",
+        textEn: "Your order #1056 from Nawa.\n\nNeed to change something, a quantity, a variant, or adding an item?\nOpen the link from the button and update your order yourself.\n\nThe link works once, before the order is confirmed.",
         urlButton: {
           text: "عدّل طلبك",
           textEn: "Update your order",

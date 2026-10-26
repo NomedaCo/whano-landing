@@ -9,71 +9,118 @@ import Nav from "../components/Nav.astro";
 // is something a merchant can open the console and use today.
 const UPDATES = [
   {
-    when: { en: "Recently", ar: "مؤخرًا" },
-    title: { en: "The whole console speaks formal Arabic", ar: "لوحة التحكم كلها بالفصحى" },
+    when: { en: "Oct 23, 2026", ar: "23 أكتوبر 2026" },
+    title: { en: "A bigger send buffer for busy days", ar: "سعة إرسال أكبر في الأيام المزدحمة" },
     body: {
-      en: "Every screen, table, filter and exported file now reads in Modern Standard Arabic — not just the big headings. Exports carry Arabic headers, and the tables line up right-to-left.",
-      ar: "كل شاشة وجدول ومرشّح وملف مُصدَّر أصبح بالفصحى — لا العناوين فقط. الملفات المصدَّرة بعناوين عربية، والجداول مصفوفة من اليمين إلى اليسار.",
+      en: "The message queue now carries a thousand-message buffer, and a 250-message burst while the window warms up. Campaigns and order spikes wait their turn instead of failing.",
+      ar: "طابور الرسائل أصبح يستوعب حتى ألف رسالة، مع دفعة أولية من 250 رسالة أثناء تجهيز النافذة. الحملات وموجات الطلبات تنتظر دورها بدل أن تفشل.",
     },
   },
   {
-    when: { en: "Recently", ar: "مؤخرًا" },
-    title: { en: "Every shipment has a timeline", ar: "لكل شحنة خط زمني" },
+    when: { en: "Oct 23, 2026", ar: "23 أكتوبر 2026" },
+    title: { en: "Campaigns, bulk audiences, and a real block list", ar: "حملات، وجمهور بالجملة، وقائمة حظر حقيقية" },
     body: {
-      en: "The shipments page now counts what needs attention, shows each shipment's state history, and lets you refresh, stop or remove tracking for a whole selection at once.",
-      ar: "صفحة الشحنات أصبحت تُحصي ما يحتاج انتباهك، وتعرض سجل حالة كل شحنة، وتتيح تحديث التتبع أو إيقافه أو إزالته لمجموعة كاملة دفعة واحدة.",
+      en: "Choose an audience by number of orders or total spend, add or remove customers in bulk, and keep a block list for unsubscribed or ignored customers. A campaign message costs 5 points.",
+      ar: "اختر الجمهور حسب عدد الطلبات أو إجمالي الإنفاق، وأضف العملاء أو أزلهم دفعة واحدة، واحتفظ بقائمة حظر للمشتركين الملغين أو المتجاهلين. رسالة الحملة تكلّف 5 نقاط.",
     },
   },
   {
-    when: { en: "Recently", ar: "مؤخرًا" },
-    title: { en: "A simpler way in", ar: "دخول أسهل" },
+    when: { en: "Oct 23, 2026", ar: "23 أكتوبر 2026" },
+    title: { en: "Abandoned cart reminders", ar: "تذكير بالسلة المتروكة" },
     body: {
-      en: "Store owners sign in with their store's password, or ask for a single-use link to the store's own inbox. The link expires in 30 minutes and can only be used once.",
-      ar: "يدخل صاحب المتجر بكلمة مرور متجره، أو يطلب رابطًا لمرة واحدة يُرسل إلى بريد المتجر نفسه. ينتهي الرابط خلال 30 دقيقة ويُستخدم مرة واحدة فقط.",
+      en: "When checkout stalls, Whano sends a reminder after the delay you set, within quiet hours and consent rules. Each reminder costs 4 points, or 5 with a campaign message.",
+      ar: "عندما يتوقف الدفع، يرسل Whano تذكيرًا بعد المدة التي تحددها، ضمن ساعات الهدوء وقواعد الموافقة. كل تذكير يكلّف 4 نقاط، أو 5 مع رسالة حملة.",
     },
   },
   {
-    when: { en: "Earlier", ar: "سابقًا" },
-    title: { en: "Discount codes and campaigns", ar: "أكواد الخصم والحملات" },
+    when: { en: "Oct 21, 2026", ar: "21 أكتوبر 2026" },
+    title: { en: "Size check is open to every store", ar: "فحص المقاس متاح لكل متجر" },
     body: {
-      en: "Create a promo code in the console, then send it to the customers who agreed to receive offers. Campaigns respect quiet hours, and every message carries a way to unsubscribe.",
-      ar: "أنشئ كود خصم من لوحة التحكم، ثم أرسله إلى العملاء الذين وافقوا على استقبال العروض. تحترم الحملات ساعات الهدوء، وتتضمن كل رسالة طريقة لإلغاء الاشتراك.",
+      en: "Turn on size check in Controls. After confirmation, the customer enters height and weight once, and sees a size recommendation for every product with a size chart. The shipment waits until the check is done or expires.",
+      ar: "فعّل فحص المقاس من التحكم. بعد التأكيد، يدخل العميل طوله ووزنه مرة واحدة، ويرى توصية مقاس لكل منتج له جدول مقاسات. وتنتظر الشحنة حتى ينتهي الفحص أو تنتهي مدته.",
     },
   },
   {
-    when: { en: "Earlier", ar: "سابقًا" },
-    title: { en: "Ratings that recover", ar: "تقييمات لا تضيع" },
+    when: { en: "Oct 20, 2026", ar: "20 أكتوبر 2026" },
+    title: { en: "Size check tags in Shopify and the console", ar: "وسوم فحص المقاس في Shopify ولوحة التحكم" },
     body: {
-      en: "If a customer does not rate after delivery, Whano asks once more after a while. A low rating opens the exchange or refund path before it becomes a public review.",
-      ar: "إذا لم يقيّم العميل بعد التوصيل، يسأل Whano مرة أخرى بعد فترة. والتقييم المنخفض يفتح مسار الاستبدال أو الاسترجاع قبل أن يتحول إلى مراجعة علنية.",
+      en: "Each size check now has a clear state: pending, changed, confirmed, no answer, or failed. The tag appears on the Shopify order and in the console, so nobody has to guess.",
+      ar: "أصبح لكل فحص مقاس حالة واضحة: قيد الانتظار، أو تم التغيير، أو مؤكد، أو بلا رد، أو فشل. يظهر الوسم على طلب Shopify وفي لوحة التحكم، فلا يحتاج أحد إلى التخمين.",
     },
   },
   {
-    when: { en: "Earlier", ar: "سابقًا" },
-    title: { en: "Controls you can prove", ar: "تحكم يمكنك إثباته" },
+    when: { en: "Oct 20, 2026", ar: "20 أكتوبر 2026" },
+    title: { en: "A review page with five optional stars", ar: "صفحة تقييم بخمس نجوم اختيارية" },
     body: {
-      en: "Pause all sends, set business hours, choose how long to wait before each step, switch each automation on or off — and every change is logged with a one-tap revert.",
-      ar: "أوقف كل الإرسال، وحدد ساعات العمل، واختر مدة الانتظار قبل كل خطوة، وفعّل كل أتمتة أو أوقفها — وكل تغيير يُسجَّل مع إمكانية التراجع بضغطة.",
+      en: "The customer can leave a five-star rating and write a review on the order page. A low rating opens the exchange or refund path before it turns into a public review.",
+      ar: "يمكن للعميل ترك تقييم بخمس نجوم وكتابة مراجعة من صفحة الطلب. والتقييم المنخفض يفتح مسار الاستبدال أو الاسترجاع قبل أن يتحول إلى مراجعة علنية.",
+    },
+  },
+  {
+    when: { en: "Oct 20, 2026", ar: "20 أكتوبر 2026" },
+    title: { en: "Edit the order through a one-time link", ar: "تعديل الطلب عبر رابط لمرة واحدة" },
+    body: {
+      en: "The confirmation's Edit order button sends a secure link. The customer changes a quantity or variant or adds an item, sees the new total, and submits once before confirmation. Shopify stays in sync.",
+      ar: "زر عدّل الطلب في التأكيد يرسل رابطًا آمنًا. يغيّر العميل الكمية أو المقاس أو يضيف منتجًا، ويرى الإجمالي الجديد، ويرسل التعديل مرة واحدة قبل التأكيد. ويبقى Shopify متزامنًا.",
+    },
+  },
+  {
+    when: { en: "Oct 17, 2026", ar: "17 أكتوبر 2026" },
+    title: { en: "ShipBlu joins Bosta", ar: "انضمت ShipBlu إلى بوسطة" },
+    body: {
+      en: "Connect Bosta or ShipBlu from the console. Whano creates the shipment, follows its state, and handles pickup where the carrier supports it.",
+      ar: "اربط بوسطة أو ShipBlu من لوحة التحكم. ينشئ Whano الشحنة، ويتابع حالتها، ويتعامل مع طلب الاستلام حيث تدعمه شركة الشحن.",
+    },
+  },
+  {
+    when: { en: "Oct 17, 2026", ar: "17 أكتوبر 2026" },
+    title: { en: "Order status in your Google Sheet", ar: "حالة الطلب في Google Sheets" },
+    body: {
+      en: "The sheet export now includes status signs and the postal code, so the sheet reads like the order list you already use.",
+      ar: "تصدير Google Sheets أصبح يتضمن علامات الحالة والرمز البريدي، ليقرأ الجدول مثل قائمة الطلبات التي تستخدمها بالفعل.",
+    },
+  },
+  {
+    when: { en: "Oct 15, 2026", ar: "15 أكتوبر 2026" },
+    title: { en: "Choose the shape of every message", ar: "اختر شكل كل رسالة" },
+    body: {
+      en: "For each message that has more than one approved shape, choose whether it carries the order link, a rating page, or a reply. The manager previews the variables and button order before you save.",
+      ar: "لكل رسالة لها أكثر من شكل معتمد، اختر هل تحمل رابط الطلب أو صفحة تقييم أو ردًا. وتعاين الإدارة المتغيرات وترتيب الأزرار قبل الحفظ.",
+    },
+  },
+  {
+    when: { en: "Oct 15, 2026", ar: "15 أكتوبر 2026" },
+    title: { en: "The order update link works before confirmation", ar: "رابط تعديل الطلب يعمل قبل التأكيد" },
+    body: {
+      en: "The customer can edit quantities, remove an item, or add a new variant from one page. The link closes after one successful save, and the order stays pending until the customer confirms.",
+      ar: "يمكن للعميل تعديل الكميات أو حذف منتج أو إضافة مقاس جديد من صفحة واحدة. يُغلق الرابط بعد حفظ ناجح واحد، ويبقى الطلب معلقًا حتى يؤكده العميل.",
+    },
+  },
+  {
+    when: { en: "Oct 15, 2026", ar: "15 أكتوبر 2026" },
+    title: { en: "See where the points went", ar: "اعرف أين ذهبت النقاط" },
+    body: {
+      en: "The overview now shows the points spent per service for the selected period. Failed messages are netted out, so the number matches what actually ran.",
+      ar: "تعرض النظرة العامة النقاط المستهلكة لكل خدمة في الفترة المحددة. وتُستبعد الرسائل الفاشلة، فالرقم يطابق ما تم تشغيله فعلًا.",
     },
   },
 ];
-
 const pageSchema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
   name: "Whano changelog",
   description:
-    "What recently changed in Whano: formal Arabic across the console, shipment timelines, simpler sign-in, discount codes and campaigns, rating recovery, and controls you can prove.",
+    "The latest shipped Whano changes: send capacity, campaigns and audiences, abandoned carts, size check, review pages, the one-time edit link, ShipBlu, Sheets, and message shapes.",
   inLanguage: "ar",
-  dateModified: "2026-10-24",
+  dateModified: "2026-10-27",
 };
 ---
 
 <Base
-  title="What's new — Whano"
-  titleArabic="ما الجديد — Whano"
-  description="What recently changed in Whano: formal Arabic across the console, shipment timelines, simpler sign-in, discount codes and campaigns, rating recovery, and controls you can prove."
-  descriptionArabic="آخر ما تغيّر في Whano: الفصحى في كل اللوحة، وخط زمني للشحنات، ودخول أسهل، وأكواد خصم وحملات، واستعادة التقييمات، وتحكم موثّق."
+  title="What's new, Whano"
+  titleArabic="ما الجديد, Whano"
+  description="The latest shipped Whano changes: send capacity, campaigns and audiences, abandoned carts, size check, review pages, the one-time edit link, ShipBlu, Sheets, and message shapes."
+  descriptionArabic="آخر ما أُطلق في Whano: سعة إرسال أكبر، وحملات وجمهور، والسلة المتروكة، وفحص المقاس، وصفحة التقييم، ورابط تعديل الطلب، وShipBlu، وGoogle Sheets، وأشكال الرسائل."
   ogImagePath="/og-whats-new.png"
   schema={pageSchema}
 >

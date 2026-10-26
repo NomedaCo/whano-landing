@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import "../styles/playful.css";
 
 type SchemaObject = Record<string, unknown>;
 
@@ -23,7 +24,7 @@ interface Props {
 const {
   title,
   titleArabic = title,
-  description = "Whano automates WhatsApp order confirmation, edits, shipping updates, and reviews for Shopify stores in Egypt — with no number to connect.",
+  description = "Whano automates WhatsApp order confirmation, edits, shipping updates, and reviews for Shopify stores in Egypt, with no number to connect.",
   descriptionArabic = "Whano يؤتمت تأكيد الطلبات وتعديلها وتحديثات الشحن والتقييمات لمتاجر Shopify في مصر، من دون ربط أي رقم.",
   ogImagePath = "/og.png",
   ogType = "website",
@@ -82,37 +83,11 @@ const pageSchemas = Array.isArray(schema) ? schema : schema ? [schema] : [];
     <meta name="author" content="NomedaCo" />
     <link rel="canonical" href={canonical} />
     <link rel="sitemap" type="application/xml" href={new URL("/sitemap.xml", Astro.site)} />
-    <script is:inline>
-      // Preload the heading + body font for the language this visit will use.
-      // Static preloads of both languages used to spend the LCP budget on a
-      // font the visitor would never see.
-      (() => {
-        try {
-          const saved = window.localStorage.getItem("whano-language");
-          const language =
-            saved === "en" || saved === "ar"
-              ? saved
-              : (navigator.language || "").toLowerCase().startsWith("ar")
-                ? "ar"
-                : "en";
-          const fonts =
-            language === "ar"
-              ? ["alexandria-600-arabic", "alexandria-400-arabic"]
-              : ["satoshi-bold", "alexandria-400-latin"];
-          for (const font of fonts) {
-            const link = document.createElement("link");
-            link.rel = "preload";
-            link.as = "font";
-            link.type = "font/woff2";
-            link.crossOrigin = "anonymous";
-            link.href = `/fonts/${font}.woff2`;
-            document.head.appendChild(link);
-          }
-        } catch {
-          // No preload hints when storage is unavailable; the CSS still loads.
-        }
-      })();
-    </script>
+    <!-- Static preloads are discovered before the stylesheet. Both Readex
+         subsets are tiny variable fonts; loading both avoids a late swap on
+         pages that mix Arabic and Latin (Whano, EGP, tracking ids). -->
+    <link rel="preload" href="/fonts/readex-arabic.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/readex-latin.woff2" as="font" type="font/woff2" crossorigin />
     {noindex ? (
       <meta name="robots" content="noindex, nofollow" />
     ) : (

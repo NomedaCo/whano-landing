@@ -1,6 +1,6 @@
 # Whano Landing — Website Inventory
 
-Last verified: **2026-10-24**
+Last verified: **2026-10-27**
 
 ## Public routes
 
@@ -8,13 +8,15 @@ Last verified: **2026-10-24**
 |---|---|---|---|---|
 | `/` | `src/pages/index.astro` | Product landing page | Yes | Arabic-first; English client variant |
 | `/features/` | `src/pages/features.astro` | Full capability list (24 items) | Yes | `og-features.png` |
-| `/pricing/` | `src/pages/pricing.astro` | Points packs (EGP primary, USD billing), costs, billing FAQ | Yes | `og-pricing.png`; JSON-LD Product/Offer in USD |
-| `/faq/` | `src/pages/faq.astro` | Full FAQ | Yes | FAQPage JSON-LD |
+| `/pricing/` | `src/pages/pricing.astro` | Points packs in EGP, costs, billing FAQ | Yes | `og-pricing.png`; JSON-LD Product/Offer in EGP |
+| `/faq/` | `src/pages/faq.astro` | Help center: 17 answers, search, topics | Yes | FAQPage JSON-LD, 17 questions |
 | `/about/` | `src/pages/about.astro` + `src/data/about.ts` | Company/product background | Yes | Nomeda/NomedaCo naming inconsistency |
-| `/whats-new/` | `src/pages/whats-new.astro` | Shipped changes | Yes | Relative “This week” labels |
-| `/guides/` | `src/pages/guides/index.astro` | Guide index | Yes | |
+| `/whats-new/` | `src/pages/whats-new.astro` | 12 dated shipped changes | Yes | Dates from production commits |
+| `/guides/` | `src/pages/guides/index.astro` | Guide index, Arabic name شرح عملي | Yes | Four guides |
 | `/guides/whatsapp-order-follow-up/` | `src/pages/guides/[slug].astro` | Practical follow-up guide | Yes | |
 | `/guides/reduce-wismo/` | same | WISMO reduction guide | Yes | |
+| `/guides/confirmation-template/` | same | Confirmation message anatomy | Yes | New 2026-10-26 |
+| `/guides/shipping-readiness/` | same | Carrier and shipment readiness | Yes | New 2026-10-26 |
 | `/security/` | `src/pages/security.astro` | Plain-language data handling | Yes | |
 | `/terms/` | `src/pages/terms.astro` + `src/data/legal.ts` | Terms of Service | Yes | Bilingual/legal |
 | `/privacy/` | `src/pages/privacy.astro` + legal data | Privacy Policy | Yes | |
@@ -41,7 +43,7 @@ Last verified: **2026-10-24**
 | Order page | `OrderPage.astro` | The customer-facing link and what it contains |
 | Console tour | `ConsoleTour.astro` | Three mocked console panels |
 | Outcomes | `Outcomes.astro` | Four outcomes: status, cancellations, reviews, cart recovery + cost |
-| Audience | `Audience.astro` | Three store types || Pricing teaser | `PricingTeaser.astro` | Points from $10, no subscription |
+| Audience | `Audience.astro` | Three store types || Pricing teaser | inline on `index.astro` | EGP points packs, no subscription |
 | FAQ teaser | `FaqTeaser.astro` | Four install-blocking questions, including cart recovery |
 | CTA | `CTA.astro` | Install + log in + reassurance |
 | Mobile CTA | `MobileCta.astro` | Sticky install/login bar after 560px |
@@ -91,10 +93,10 @@ Last verified: **2026-10-24**
   pricing, what's new; `og:locale: ar_EG`, alternate `en_US`; `og:type=article`
   and article timestamps on guides.
 - Structured data: `Organization` + `WebSite` globally; `SoftwareApplication`
-  with a real $10 offer on home; `FAQPage` (Arabic) on /faq; `Product` /
+  with an EGP offer on home; `FAQPage` (Arabic) on /faq; `Product` /
   `AggregateOffer` (Arabic) on /pricing; `Article` on guides; `WebPage`/
   `AboutPage`/`CollectionPage` elsewhere. No self-serving aggregate rating. The
-  visible EGP prices are display-only; offers stay USD.
+  offers are EGP-backed and the site has no dollar or cent copy.
 - Sitemap: generated at build, 13 URLs, per-page lastmod, `/login`/`/stats`
   omitted.
 - Robots: `Allow /`; disallows `/order/`, `/cart/`, `/api/`, `/stats`,

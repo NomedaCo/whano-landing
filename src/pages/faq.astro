@@ -1,9 +1,16 @@
 ---
 import Base from "../layouts/Base.astro";
-import { faqs, site } from "../data/content";
+import { faqs, faqTopics, site } from "../data/content";
 import Nav from "../components/Nav.astro";
 import MobileCta from "../components/MobileCta.astro";
 import Footer from "../components/Footer.astro";
+
+const groups = faqTopics.map((topic) => ({
+  ...topic,
+  questions: faqs.filter((faq) => faq.topic === topic.id),
+}));
+
+const siteUrl = (Astro.site ?? new URL("https://whano.nomeda.tech")).href;
 
 const faqSchema = {
   "@context": "https://schema.org",
@@ -15,50 +22,456 @@ const faqSchema = {
     acceptedAnswer: { "@type": "Answer", text: faq.answer.ar },
   })),
 };
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Whano",
+      item: new URL("/", siteUrl).href,
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "الأسئلة الشائعة",
+      item: new URL("/faq/", siteUrl).href,
+    },
+  ],
+};
 ---
 
 <Base
-  title="Questions — WhatsApp automation for Shopify | Whano"
-  titleArabic="الأسئلة — أتمتة واتساب لمتاجر Shopify | Whano"
+  title="Questions | WhatsApp automation for Shopify | Whano"
+  titleArabic="الأسئلة | أتمتة واتساب لمتاجر Shopify | Whano"
   description="Practical answers about WhatsApp order confirmation, COD, carriers, points, and human handoff for Shopify merchants."
   descriptionArabic="إجابات عملية عن تأكيد الطلبات على واتساب، والدفع عند الاستلام، وشركات الشحن، والنقاط، وتسليم المحادثات لشخص."
-  schema={faqSchema}
+  schema={[breadcrumbSchema, faqSchema]}
 >
   <Nav />
-  <main id="main-content" class="legal-page">
-    <div class="site-frame">
-      <header class="legal-header reveal">
-        <p class="eyebrow">
-          <span data-copy="en">Whano / questions</span>
-          <span data-copy="ar" lang="ar">Whano / أسئلة</span>
-        </p>
-        <h1 class="legal-title">
-          <span data-copy="en">{site.faq.title.en}</span>
-          <span data-copy="ar" lang="ar">{site.faq.title.ar}</span>
-        </h1>
-        <p class="legal-meta">
-          <span data-copy="en">{site.faq.body.en}</span>
-          <span data-copy="ar" lang="ar">{site.faq.body.ar}</span>
-        </p>
-      </header>
-
-      <div class="faq-list reveal" style="max-width: 740px;">
-        {faqs.map((faq, index) => (
-          <details class="faq-item" open={index === 0}>
-            <summary class="faq-summary">
-              <span data-copy="en">{faq.question.en}</span>
-              <span data-copy="ar" lang="ar">{faq.question.ar}</span>
-            </summary>
-            <p class="faq-answer">
-              <span data-copy="en">{faq.answer.en}</span>
-              <span data-copy="ar" lang="ar">{faq.answer.ar}</span>
+  <main id="main-content" class="faq-page">
+    <header class="faq-hero">
+      <div class="site-frame">
+        <div class="faq-hero__grid">
+          <div class="faq-hero__copy">
+            <p class="eyebrow">
+              <span data-copy="en">{site.faq.eyebrow.en}</span>
+              <span data-copy="ar" lang="ar">{site.faq.eyebrow.ar}</span>
             </p>
-          </details>
-        ))}
+            <h1 class="faq-title">
+              <span data-copy="en">{site.faq.title.en}</span>
+              <span data-copy="ar" lang="ar">{site.faq.title.ar}</span>
+            </h1>
+            <p class="faq-intro">
+              <span data-copy="en">{site.faq.body.en}</span>
+              <span data-copy="ar" lang="ar">{site.faq.body.ar}</span>
+            </p>
+            <p class="faq-hero__meta">
+              <span><strong>{faqs.length}</strong> <span data-copy="en">answers</span><span data-copy="ar" lang="ar">إجابة</span></span>
+              <span class="faq-dot" aria-hidden="true"></span>
+              <span><strong>{faqTopics.length}</strong> <span data-copy="en">topics</span><span data-copy="ar" lang="ar">مواضيع</span></span>
+            </p>
+          </div>
+
+          <aside class="faq-help" aria-labelledby="faq-help-title">
+            <span class="faq-help__eyebrow">
+              <span data-copy="en">Talk to a human</span>
+              <span data-copy="ar" lang="ar">مساعدة بشرية</span>
+            </span>
+            <h2 id="faq-help-title" class="faq-help__title">
+              <span data-copy="en">Still stuck?</span>
+              <span data-copy="ar" lang="ar">لسه محتاج مساعدة؟</span>
+            </h2>
+            <p class="faq-help__body">
+              <span data-copy="en">Send the question you are actually asking. We read every message.</span>
+              <span data-copy="ar" lang="ar">ابعتلنا السؤال اللي في بالك فعلًا. بنقرأ كل رسالة.</span>
+            </p>
+            <a class="faq-help__link" href={`mailto:${site.contactEmail}`}>
+              <svg width="17" height="17" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <rect x="2.2" y="3.8" width="13.6" height="10.4" rx="2" stroke="currentColor" stroke-width="1.4" />
+                <path d="m3.2 5.1 5.8 4.4 5.8-4.4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              <bdi dir="ltr">{site.contactEmail}</bdi>
+              <svg class="faq-help__arrow" width="14" height="14" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+                <path d="M2.5 7.5h9M8 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
+          </aside>
+        </div>
+
+        <div class="faq-search" role="search">
+          <svg class="faq-search__icon" width="19" height="19" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <circle cx="8.7" cy="8.7" r="5.4" stroke="currentColor" stroke-width="1.5" />
+            <path d="m12.8 12.8 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+          </svg>
+          <label class="sr-only" for="faq-search">ابحث في الأسئلة / Search questions</label>
+          <input
+            id="faq-search"
+            class="faq-search__input"
+            type="search"
+            inputmode="search"
+            autocomplete="off"
+            spellcheck="false"
+            placeholder="ابحث في الأسئلة…"
+            data-faq-search
+          />
+          <button class="faq-search__clear" type="button" aria-label="مسح البحث" data-faq-clear hidden>
+            <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M3 3l8 8M11 3l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+            </svg>
+          </button>
+        </div>
       </div>
+    </header>
+
+    <div class="site-frame faq-shell">
+      <aside class="faq-side" aria-labelledby="faq-topics-label">
+        <p class="faq-side__label" id="faq-topics-label">
+          <span data-copy="en">Topics</span>
+          <span data-copy="ar" lang="ar">المواضيع</span>
+        </p>
+        <nav class="faq-side__nav" aria-labelledby="faq-topics-label">
+          <a href="#faq-all" class="faq-side__link" data-faq-topic="all" aria-current="true">
+            <span>
+              <span data-copy="en">All questions</span>
+              <span data-copy="ar" lang="ar">كل الأسئلة</span>
+            </span>
+            <span class="faq-side__count" data-faq-all-count>{faqs.length}</span>
+          </a>
+          {groups.map((topic) => (
+            <a
+              href={`#faq-${topic.id}`}
+              class="faq-side__link"
+              data-faq-topic={topic.id}
+              data-label-en={topic.label.en}
+              data-label-ar={topic.label.ar}
+            >
+              <span>
+                <span data-copy="en">{topic.label.en}</span>
+                <span data-copy="ar" lang="ar">{topic.label.ar}</span>
+              </span>
+              <span class="faq-side__count">{topic.questions.length}</span>
+            </a>
+          ))}
+        </nav>
+        <div class="faq-side__note">
+          <span class="faq-side__note-mark" aria-hidden="true">i</span>
+          <p>
+            <span data-copy="en">Short answers, no filler.</span>
+            <span data-copy="ar" lang="ar">إجابات مختصرة، بدون حشو.</span>
+          </p>
+        </div>
+        <a class="faq-mobile-help" href={`mailto:${site.contactEmail}`}>
+          <span data-copy="en">Need a human? Email us</span>
+          <span data-copy="ar" lang="ar">محتاج مساعدة بشرية؟ راسلنا</span>
+          <svg width="13" height="13" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+            <path d="M2.5 7.5h9M8 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </a>
+      </aside>
+
+      <section class="faq-main" id="faq-all" aria-labelledby="faq-list-heading">
+        <div class="faq-main__head">
+          <div>
+            <p class="faq-main__eyebrow">
+              <span data-copy="en">The answers</span>
+              <span data-copy="ar" lang="ar">الإجابات</span>
+            </p>
+            <h2 class="faq-main__title" id="faq-list-heading" data-faq-heading>
+              <span data-copy="en">All questions</span>
+              <span data-copy="ar" lang="ar">كل الأسئلة</span>
+            </h2>
+          </div>
+          <p class="faq-results" aria-live="polite" data-faq-results>14 سؤالًا</p>
+        </div>
+
+        <div class="faq-empty" data-faq-empty hidden>
+          <span class="faq-empty__mark" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+              <circle cx="9.5" cy="9.5" r="6.2" stroke="currentColor" stroke-width="1.5" />
+              <path d="m14.2 14.2 4.2 4.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+            </svg>
+          </span>
+          <h3>
+            <span data-copy="en">No answer for that search.</span>
+            <span data-copy="ar" lang="ar">مفيش إجابة مطابقة للبحث ده.</span>
+          </h3>
+          <p>
+            <span data-copy="en">Try a shorter phrase, or send the question to us directly.</span>
+            <span data-copy="ar" lang="ar">جرّب عبارة أقصر، أو ابعتلنا السؤال مباشرة.</span>
+          </p>
+          <div class="faq-empty__actions">
+            <button type="button" class="faq-empty__reset" data-faq-reset>
+              <span data-copy="en">Clear search</span>
+              <span data-copy="ar" lang="ar">امسح البحث</span>
+            </button>
+            <a class="faq-empty__mail" href={`mailto:${site.contactEmail}`}>
+              <span data-copy="en">Email us</span>
+              <span data-copy="ar" lang="ar">راسلنا</span>
+            </a>
+          </div>
+        </div>
+
+        {groups.map((topic, topicIndex) => (
+          <section
+            class="faq-topic"
+            id={`faq-${topic.id}`}
+            data-faq-topic-section={topic.id}
+            data-label-en={topic.label.en}
+            data-label-ar={topic.label.ar}
+            aria-labelledby={`faq-${topic.id}-title`}
+          >
+            <header class="faq-topic__head">
+              <span class="faq-topic__index" aria-hidden="true">{String(topicIndex + 1).padStart(2, "0")}</span>
+              <div class="faq-topic__copy">
+                <h3 class="faq-topic__title" id={`faq-${topic.id}-title`}>
+                  <span data-copy="en">{topic.label.en}</span>
+                  <span data-copy="ar" lang="ar">{topic.label.ar}</span>
+                </h3>
+                <p class="faq-topic__description">
+                  <span data-copy="en">{topic.description.en}</span>
+                  <span data-copy="ar" lang="ar">{topic.description.ar}</span>
+                </p>
+              </div>
+              <span class="faq-topic__count" data-faq-topic-count>{topic.questions.length}</span>
+            </header>
+
+            <div class="faq-list">
+              {topic.questions.map((faq) => (
+                <details class="faq-item" data-faq-item data-faq-item-topic={topic.id} open={topicIndex === 0 && topic.questions[0] === faq}>
+                  <summary class="faq-summary">
+                    <span class="faq-summary__question">
+                      <span data-copy="en">{faq.question.en}</span>
+                      <span data-copy="ar" lang="ar">{faq.question.ar}</span>
+                    </span>
+                    <span class="faq-summary__icon" aria-hidden="true"></span>
+                  </summary>
+                  <div class="faq-answer-wrap">
+                    <p class="faq-answer">
+                      <span data-copy="en">{faq.answer.en}</span>
+                      <span data-copy="ar" lang="ar">{faq.answer.ar}</span>
+                    </p>
+                  </div>
+                </details>
+              ))}
+            </div>
+          </section>
+        ))}
+
+        <div class="faq-main__footer">
+          <p>
+            <span data-copy="en">Question not here? The team can answer it directly.</span>
+            <span data-copy="ar" lang="ar">سؤالك مش موجود؟ الفريق يقدر يجاوبك مباشرة.</span>
+          </p>
+          <a href={`mailto:${site.contactEmail}`}>
+            <span data-copy="en">Ask the team</span>
+            <span data-copy="ar" lang="ar">اسأل الفريق</span>
+            <svg width="14" height="14" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+              <path d="M2.5 7.5h9M8 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
+        </div>
+      </section>
     </div>
   </main>
   <MobileCta />
   <Footer />
 
+  <script is:inline>
+    (() => {
+      const root = document.documentElement;
+      const input = document.querySelector("[data-faq-search]");
+      const clear = document.querySelector("[data-faq-clear]");
+      const reset = document.querySelector("[data-faq-reset]");
+      const items = Array.from(document.querySelectorAll("[data-faq-item]"));
+      const sections = Array.from(document.querySelectorAll("[data-faq-topic-section]"));
+      const links = Array.from(document.querySelectorAll(".faq-side__link[data-faq-topic]"));
+      const results = document.querySelector("[data-faq-results]");
+      const heading = document.querySelector("[data-faq-heading]");
+      const empty = document.querySelector("[data-faq-empty]");
+      const main = document.getElementById("faq-all");
+      const allCount = document.querySelector("[data-faq-all-count]");
+      if (!input || !clear || !reset || !items.length || !sections.length || !links.length || !results) return;
+
+      let topic = "all";
+      let query = "";
+      const haystack = new Map();
+      const language = () => (root.dataset.language === "en" ? "en" : "ar");
+      const copy = (ar, en) => (language() === "en" ? en : ar);
+      const normalize = (value) =>
+        value
+          .toLocaleLowerCase()
+          .normalize("NFKD")
+          .replace(/[\u064B-\u065F\u0670\u0640]/g, "")
+          .replace(/[أإآٱ]/g, "ا")
+          .replace(/ى/g, "ي")
+          .replace(/ة/g, "ه")
+          .replace(/[^\p{L}\p{N}]+/gu, " ")
+          .trim();
+
+      items.forEach((item) => haystack.set(item, normalize(item.textContent || "")));
+
+      const activeLink = () => links.find((link) => link.dataset.faqTopic === topic);
+
+      function setHeading() {
+        if (!heading) return;
+        if (query) {
+          heading.textContent = copy("نتائج البحث", "Search results");
+          return;
+        }
+        if (topic === "all") {
+          heading.textContent = copy("كل الأسئلة", "All questions");
+          return;
+        }
+        const link = activeLink();
+        heading.textContent = language() === "en" ? link?.dataset.labelEn || "" : link?.dataset.labelAr || "";
+      }
+
+      function setResults(count) {
+        const arabicCount = (number, singular, dual, few, many) =>
+          number === 1 ? singular : number === 2 ? dual : number >= 3 && number <= 10 ? `${number} ${few}` : `${number} ${many}`;
+        results.textContent = query
+          ? (count === 0
+              ? copy("لا نتائج", "No results")
+              : language() === "en"
+                ? `${count} ${count === 1 ? "result" : "results"}`
+                : arabicCount(count, "نتيجة واحدة", "نتيجتان", "نتائج", "نتيجة"))
+          : (language() === "en"
+              ? `${count} ${count === 1 ? "question" : "questions"}`
+              : arabicCount(count, "سؤال واحد", "سؤالان", "أسئلة", "سؤالًا"));
+        if (allCount) allCount.textContent = String(items.length);
+      }
+
+      function apply() {
+        const terms = query.split(" ").filter(Boolean);
+        let visible = 0;
+        let firstVisible = null;
+
+        items.forEach((item) => {
+          const inTopic = topic === "all" || item.dataset.faqItemTopic === topic;
+          const text = haystack.get(item) || "";
+          const matches = !terms.length || terms.every((term) => text.includes(term));
+          const show = inTopic && matches;
+          item.hidden = !show;
+          if (show) {
+            visible += 1;
+            if (!firstVisible) firstVisible = item;
+          }
+        });
+
+        sections.forEach((section) => {
+          const count = Array.from(section.querySelectorAll("[data-faq-item]")).filter((item) => !item.hidden).length;
+          section.hidden = count === 0;
+          const badge = section.querySelector("[data-faq-topic-count]");
+          if (badge) badge.textContent = String(count);
+        });
+
+        if (query && firstVisible) {
+          items.forEach((item) => {
+            item.open = item === firstVisible;
+          });
+        }
+
+        setHeading();
+        setResults(visible);
+        if (empty) empty.hidden = visible > 0;
+        links.forEach((link) => {
+          if (link.dataset.faqTopic === topic) link.setAttribute("aria-current", "true");
+          else link.removeAttribute("aria-current");
+        });
+      }
+
+      function setTopic(next, scroll = false) {
+        topic = next;
+        query = "";
+        input.value = "";
+        clear.hidden = true;
+        apply();
+        const link = activeLink();
+        if (link) history.replaceState(null, "", link.getAttribute("href"));
+        if (scroll && main && window.matchMedia("(max-width: 820px)").matches) {
+          main.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+
+      links.forEach((link) => {
+        link.addEventListener("click", (event) => {
+          event.preventDefault();
+          setTopic(link.dataset.faqTopic || "all", true);
+        });
+      });
+
+      input.addEventListener("input", () => {
+        const value = input.value;
+        clear.hidden = value.length === 0;
+        if (value.trim()) topic = "all";
+        query = normalize(value);
+        apply();
+      });
+
+      input.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          input.value = "";
+          query = "";
+          clear.hidden = true;
+          apply();
+        }
+      });
+
+      const clearSearch = () => {
+        input.value = "";
+        query = "";
+        clear.hidden = true;
+        apply();
+        input.focus();
+      };
+
+      clear.addEventListener("click", clearSearch);
+      reset.addEventListener("click", () => {
+        setTopic("all");
+        input.focus();
+      });
+
+      document.addEventListener("keydown", (event) => {
+        const tag = document.activeElement?.tagName;
+        const typing = tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT";
+        if ((event.key === "/" && !typing) || ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k")) {
+          event.preventDefault();
+          input.focus();
+        }
+      });
+
+      function syncLanguage() {
+        input.placeholder = copy("ابحث في الأسئلة…", "Search questions…");
+        input.setAttribute("aria-label", copy("ابحث في الأسئلة", "Search questions"));
+        clear.setAttribute("aria-label", copy("مسح البحث", "Clear search"));
+        apply();
+      }
+
+      const observer = new MutationObserver(syncLanguage);
+      observer.observe(root, { attributes: true, attributeFilter: ["lang", "data-language"] });
+
+      function faqTopicsIds() {
+        return sections.map((section) => section.dataset.faqTopicSection);
+      }
+
+      const initial = location.hash.replace(/^#faq-/, "");
+      if (faqTopicsIds().includes(initial)) topic = initial;
+
+      window.addEventListener("hashchange", () => {
+        const next = location.hash.replace(/^#faq-/, "");
+        if (next === "all" || faqTopicsIds().includes(next)) {
+          topic = next;
+          query = "";
+          input.value = "";
+          clear.hidden = true;
+          apply();
+        }
+      });
+
+      syncLanguage();
+    })();
+  </script>
 </Base>

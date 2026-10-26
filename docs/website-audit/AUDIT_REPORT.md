@@ -202,3 +202,18 @@ verification checks** (A8 skip link/status, X5 secret scan).
 See `IMPLEMENTATION_LOG.md` for commands, build/check results, screenshots, and
 Lighthouse/manual verification outcomes. Statuses above are only marked
 **Verified** when a command or rendered inspection supports them.
+
+## Post-audit product and visual pass (2026-10-27)
+
+This pass supersedes the pricing-display and changelog entries from the first
+audit without changing the register counts:
+
+- **D26** removes all dollar, USD, and cent copy from the site, structured data,
+  and OG pricing card. Pricing is EGP only (499 / 999 / 1,899 / 2,999).
+- **D25/D27/D28** record the playful visual system, the **شرح عملي** guide
+  section with four dated guides, and the 12-event dated changelog.
+- The home now carries the production confirmation template, a deeper product
+  section (shipping, order page, console, campaigns), 17 FAQ answers, and the
+  new CTA treatment. Mobile overflow and all key mobile pages were rechecked.
+- Historical USD references in this report describe the state at the time of
+  the original finding and are not current site copy.

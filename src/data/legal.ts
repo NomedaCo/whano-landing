@@ -16,8 +16,8 @@ export const termsSections: LegalSection[] = [
         ar: "تحدد شروط الخدمة هذه قواعد استخدامك لخدمة Whano، وهي خدمة لأتمتة التواصل عبر واتساب لمتاجر Shopify وتديرها NomedaCo (ويُشار إليها بـ\"Whano\" أو \"نحن\"). بطلب الوصول إلى الخدمة أو استخدامها، فأنت توافق على هذه الشروط.",
       },
       {
-        en: "Because Whano processes your customers' personal data on your behalf, our Data Processing Agreement forms part of these terms and takes effect at the same moment — when you install Whano on your store. You are the data controller and NomedaCo is the processor.",
-        ar: "ولأن Whano يعالج البيانات الشخصية لعملائك نيابةً عنك، فإن اتفاقية معالجة البيانات الخاصة بنا تُعد جزءًا من هذه الشروط وتسري في اللحظة نفسها — عند تثبيت Whano على متجرك. أنت المتحكم في البيانات وNomedaCo هي المعالج.",
+        en: "Because Whano processes your customers' personal data on your behalf, our Data Processing Agreement forms part of these terms and takes effect at the same moment, when you install Whano on your store. You are the data controller and NomedaCo is the processor.",
+        ar: "ولأن Whano يعالج البيانات الشخصية لعملائك نيابةً عنك، فإن اتفاقية معالجة البيانات الخاصة بنا تُعد جزءًا من هذه الشروط وتسري في اللحظة نفسها, عند تثبيت Whano على متجرك. أنت المتحكم في البيانات وNomedaCo هي المعالج.",
       },
     ],
     links: [{ label: { en: "Read the Data Processing Agreement", ar: "اقرأ اتفاقية معالجة البيانات" }, href: "/dpa" }],
@@ -179,7 +179,7 @@ export const privacySections: LegalSection[] = [
     paragraphs: [
       {
         en: "We do not sell your data. We share only what is needed with service providers that help us operate Whano, including Shopify, WhatsApp, hosting and database providers, payment processors, email delivery providers, and AI or workflow providers used to produce enabled features. We may also disclose information when required by law or to protect the service and its users.",
-        ar: "لا نبيع بياناتك. نشارك فقط المعلومات اللازمة مع مقدمي الخدمات الذين يساعدوننا في تشغيل Whano، ومنهم Shopify وواتساب ومقدمو الاستضافة وقواعد البيانات ومعالجو الدفع وخدمات إرسال البريد ومقدمو الذكاء الاصطناعي أو سير العمل المستخدمون لتشغيل الميزات المفعّلة. وقد نكشف المعلومات إذا طلب القانون ذلك أو لحماية الخدمة ومستخدميها.",
+        ar: "لا نبيع بياناتك. نشارك فقط المعلومات اللازمة مع مقدمي الخدمات الذين يساعدوننا في تشغيل Whano، ومنهم Shopify وواتساب ومقدمو الاستضافة وقواعد البيانات ومعالجو الدفع وخدمات إرسال البريد ومقدمو الترجمة الآلية المستخدمون لتشغيل الميزات المفعّلة. وقد نكشف المعلومات إذا طلب القانون ذلك أو لحماية الخدمة ومستخدميها.",
       },
     ],
   },
@@ -246,7 +246,7 @@ export const privacySections: LegalSection[] = [
  *
  * Published rather than kept as an internal document because Shopify's
  * protected customer data rules require a processor to have an agreement
- * actually in place with each merchant — an agreement nobody can read is not
+ * actually in place with each merchant, an agreement nobody can read is not
  * one. It takes effect on install, and section 1 of the Terms is what makes
  * that binding.
  */
@@ -293,8 +293,8 @@ export const dpaSections: LegalSection[] = [
     heading: { en: "5. Our obligations as processor", ar: "5. التزاماتنا بصفتنا معالجًا" },
     bullets: [
       {
-        en: "Process personal data only on your documented instructions — installing and configuring the app is that instruction.",
-        ar: "معالجة البيانات الشخصية وفق تعليماتك الموثقة فقط — ويُعد تثبيت التطبيق وإعداده بمثابة تلك التعليمات.",
+        en: "Process personal data only on your documented instructions, installing and configuring the app is that instruction.",
+        ar: "معالجة البيانات الشخصية وفق تعليماتك الموثقة فقط, ويُعد تثبيت التطبيق وإعداده بمثابة تلك التعليمات.",
       },
       {
         en: "Keep it confidential, and require the same of anyone with access.",
@@ -309,16 +309,16 @@ export const dpaSections: LegalSection[] = [
         ar: "الاستعانة بمعالجين فرعيين بشروط مكافئة فقط، وإبلاغك قبل إضافة أي معالج جديد.",
       },
       {
-        en: "Assist you in answering shoppers' access and deletion requests — automated through Shopify's customers/data_request and customers/redact webhooks, and acted on immediately.",
-        ar: "مساعدتك في الرد على طلبات العملاء بالاطلاع على بياناتهم أو حذفها — وهي مؤتمتة عبر إشعارَي customers/data_request و customers/redact من Shopify، ويتم تنفيذها فورًا.",
+        en: "Assist you in answering shoppers' access and deletion requests, automated through Shopify's customers/data_request and customers/redact webhooks, and acted on immediately.",
+        ar: "مساعدتك في الرد على طلبات العملاء بالاطلاع على بياناتهم أو حذفها, وهي مؤتمتة عبر إشعارَي customers/data_request و customers/redact من Shopify، ويتم تنفيذها فورًا.",
       },
       {
         en: "Report a personal data breach to you within 72 hours of confirming it.",
         ar: "إبلاغك بأي اختراق للبيانات الشخصية خلال 72 ساعة من تأكيده.",
       },
       {
-        en: "Delete personal data on request and on uninstall, except where retention is legally required — in which case the data is severed from the identifiable person rather than kept linked.",
-        ar: "حذف البيانات الشخصية عند الطلب وعند إلغاء التثبيت، إلا حيث يوجب القانون الاحتفاظ بها — وعندها تُفصل البيانات عن الشخص الممكن تحديده بدلًا من إبقائها مرتبطة به.",
+        en: "Delete personal data on request and on uninstall, except where retention is legally required, in which case the data is severed from the identifiable person rather than kept linked.",
+        ar: "حذف البيانات الشخصية عند الطلب وعند إلغاء التثبيت، إلا حيث يوجب القانون الاحتفاظ بها, وعندها تُفصل البيانات عن الشخص الممكن تحديده بدلًا من إبقائها مرتبطة به.",
       },
       {
         en: "Make available what you need to demonstrate compliance.",
@@ -330,36 +330,36 @@ export const dpaSections: LegalSection[] = [
     heading: { en: "6. Sub-processors", ar: "6. المعالجون الفرعيون" },
     bullets: [
       {
-        en: "Meta Platforms (WhatsApp) — message delivery: phone number and message content.",
-        ar: "Meta Platforms (واتساب) — تسليم الرسائل: رقم الهاتف ومحتوى الرسالة.",
+        en: "Meta Platforms (WhatsApp), message delivery: phone number and message content.",
+        ar: "Meta Platforms (واتساب), تسليم الرسائل: رقم الهاتف ومحتوى الرسالة.",
       },
       {
-        en: "Shopify — source of order data and order write-back: customer and order data.",
-        ar: "Shopify — مصدر بيانات الطلبات وكتابة التعديلات عليها: بيانات العملاء والطلبات.",
+        en: "Shopify, source of order data and order write-back: customer and order data.",
+        ar: "Shopify, مصدر بيانات الطلبات وكتابة التعديلات عليها: بيانات العملاء والطلبات.",
       },
       {
-        en: "Bosta, only if you connect it — shipment creation and tracking: recipient name, phone and address.",
-        ar: "Bosta، فقط إذا قمت بربطها — إنشاء الشحنات وتتبعها: اسم المستلم وهاتفه وعنوانه.",
+        en: "Bosta, only if you connect it, shipment creation and tracking: recipient name, phone and address.",
+        ar: "Bosta، فقط إذا قمت بربطها, إنشاء الشحنات وتتبعها: اسم المستلم وهاتفه وعنوانه.",
       },
       {
-        en: "ShipBlu, only if you connect it — shipment creation, geography lookup, pickup and tracking: recipient name, phone and address.",
-        ar: "ShipBlu، فقط إذا قمت بربطها — إنشاء الشحنات وتحديد المنطقة وطلب الاستلام والتتبع: اسم المستلم وهاتفه وعنوانه.",
+        en: "ShipBlu, only if you connect it, shipment creation, geography lookup, pickup and tracking: recipient name, phone and address.",
+        ar: "ShipBlu، فقط إذا قمت بربطها, إنشاء الشحنات وتحديد المنطقة وطلب الاستلام والتتبع: اسم المستلم وهاتفه وعنوانه.",
       },
       {
-        en: "AI model provider — composing replies: message text and order context. Not used to train third-party models.",
-        ar: "مزود نموذج الذكاء الاصطناعي — صياغة الردود: نص الرسالة وسياق الطلب. ولا تُستخدم لتدريب نماذج الأطراف الثالثة.",
+        en: "AI provider, when transactional translation is needed: message text only. Not used to train third-party models.",
+        ar: "مزود ذكاء اصطناعي, عند الحاجة إلى ترجمة الرسائل: نص الرسالة فقط. ولا تُستخدم لتدريب نماذج الأطراف الثالثة.",
       },
       {
-        en: "Resend — merchant email notifications: merchant email address only.",
-        ar: "Resend — إشعارات البريد الإلكتروني للتاجر: عنوان بريد التاجر فقط.",
+        en: "Resend, merchant email notifications: merchant email address only.",
+        ar: "Resend, إشعارات البريد الإلكتروني للتاجر: عنوان بريد التاجر فقط.",
       },
       {
-        en: "Railway — API hosting and database: all of the above, at rest.",
-        ar: "Railway — استضافة API وقاعدة البيانات: كل ما سبق، أثناء التخزين.",
+        en: "Railway, API hosting and database: all of the above, at rest.",
+        ar: "Railway, استضافة API وقاعدة البيانات: كل ما سبق، أثناء التخزين.",
       },
       {
-        en: "Cloudflare — edge hosting for the public site and console: request metadata and cached public content.",
-        ar: "Cloudflare — استضافة الحافة للموقع العام ولوحة التحكم: بيانات وصفية للطلبات ومحتوى عام مخزّن مؤقتًا.",
+        en: "Cloudflare, edge hosting for the public site and console: request metadata and cached public content.",
+        ar: "Cloudflare, استضافة الحافة للموقع العام ولوحة التحكم: بيانات وصفية للطلبات ومحتوى عام مخزّن مؤقتًا.",
       },
     ],
   },
@@ -401,8 +401,8 @@ export const dpaSections: LegalSection[] = [
     heading: { en: "9. Your obligations as controller", ar: "9. التزاماتك بصفتك المتحكم" },
     paragraphs: [
       {
-        en: "You are the controller. You are responsible for having a lawful basis for the messages Whano sends on your behalf, for your own privacy notice to your customers, and for honouring shoppers' rights — which Whano supports as described above.",
-        ar: "أنت المتحكم في البيانات. وأنت المسؤول عن وجود أساس قانوني للرسائل التي يرسلها Whano نيابة عنك، وعن إشعار الخصوصية الخاص بك تجاه عملائك، وعن احترام حقوق المتسوقين — وهو ما يدعمه Whano على النحو الموضح أعلاه.",
+        en: "You are the controller. You are responsible for having a lawful basis for the messages Whano sends on your behalf, for your own privacy notice to your customers, and for honouring shoppers' rights, which Whano supports as described above.",
+        ar: "أنت المتحكم في البيانات. وأنت المسؤول عن وجود أساس قانوني للرسائل التي يرسلها Whano نيابة عنك، وعن إشعار الخصوصية الخاص بك تجاه عملائك، وعن احترام حقوق المتسوقين, وهو ما يدعمه Whano على النحو الموضح أعلاه.",
       },
     ],
   },

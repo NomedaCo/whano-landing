@@ -17,11 +17,11 @@ The page is intentionally editorial rather than a conventional SaaS template: a 
 
 - `/` — bilingual product landing page (story, how it works, capability teaser, pricing teaser)
 - `/features` — every capability the console ships, grouped
-- `/pricing` — points packs shown in EGP at the fixed USD×50 display rate and in USD for Shopify billing, per-interaction costs, custom volume
+- `/pricing`: points packs in EGP, per-interaction costs, custom volume
 - `/login` — 301 to the console at `whano.nomeda.tech/dashboard` (kept only for old links; `noindex` fallback)
-- `/faq` — bilingual questions and answers
-- `/whats-new` — real shipped changes, newest first
-- `/guides` — practical guides (order follow-up, cutting delivery questions)
+- `/faq`: bilingual help center with search and topic filters (17 answers)
+- `/whats-new`: 12 dated shipped changes, newest first
+- `/guides` (Arabic: شرح عملي): four practical guides, including the confirmation template and shipping readiness
 - `/security` — plain-language data handling, checked against the code
 - `/about` — the team behind Whano
 - `/terms`, `/privacy`, `/dpa` — bilingual legal pages

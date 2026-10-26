@@ -20,18 +20,18 @@ const pricingSchema = {
   url: pricingUrl,
   offers: {
     "@type": "AggregateOffer",
-    priceCurrency: "USD",
-    lowPrice: 10,
-    highPrice: 59,
+    priceCurrency: "EGP",
+    lowPrice: 499,
+    highPrice: 2999,
     offerCount: 4,
     url: pricingUrl,
     offers: plans
-      .filter((plan) => plan.priceUsd !== null)
+      .filter((plan) => plan.priceEgp !== null)
       .map((plan) => ({
         "@type": "Offer",
         name: plan.name.ar,
-        price: plan.priceUsd,
-        priceCurrency: "USD",
+        price: plan.priceEgp,
+        priceCurrency: "EGP",
         availability: "https://schema.org/InStock",
         url: pricingUrl,
       })),
@@ -40,15 +40,15 @@ const pricingSchema = {
 ---
 
 <Base
-  title="Pricing — WhatsApp automation for Shopify | Whano"
-  titleArabic="الأسعار — أتمتة واتساب لمتاجر Shopify | Whano"
-  description="Whano runs on one-time points packs from 500 EGP ($10), billed in USD through Shopify. No monthly subscription, no automatic renewal, and points never expire."
-  descriptionArabic="يعمل Whano بباقات نقاط تُدفع مرة واحدة بدءًا من 500 جنيه (10 دولارات)، وتُفوتر بالدولار عبر Shopify. من دون اشتراك شهري أو تجديد تلقائي، والنقاط لا تنتهي."
+  title="Pricing | WhatsApp automation for Shopify | Whano"
+  titleArabic="الأسعار | أتمتة واتساب لمتاجر Shopify | Whano"
+  description="Whano runs on one-time points packs from 499 EGP through Shopify or customer support with InstaPay or Vodafone Cash. No monthly subscription, no automatic renewal, and points never expire."
+  descriptionArabic="يعمل Whano بباقات نقاط تُدفع مرة واحدة بدءًا من 499 جنيه عبر Shopify أو خدمة العملاء عن طريق إنستاباي أو فودافون كاش. من دون اشتراك شهري أو تجديد تلقائي، والنقاط لا تنتهي."
   ogImagePath="/og-pricing.png"
   schema={pricingSchema}
 >
   <Nav />
-  <main id="main-content">
+  <main id="main-content" class="pricing-page">
     <div class="about-page">
       <div class="site-frame">
         <header class="about-header reveal">

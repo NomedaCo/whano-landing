@@ -395,3 +395,53 @@ and that several templates were wrong. C30 was reopened and rechecked.
 - No new register row: C30 (demo/template accuracy) was re-opened and
   re-closed, and C6's cost line was updated. Still 88 entries: 86 issues,
   78 fixed, 8 accepted, 0 open/blocked.
+
+### FAQ help-center pass
+
+Rebuilt `/faq/` from a plain legal-style list into a help center:
+
+- Split the 14 answers into three topics (Getting started, Orders & shipping,
+  Messages & campaigns) with topic descriptions and counts.
+- Added a live search with Arabic normalisation (hamza/alef, taa marbuta,
+  diacritics), result counts, no-results state, clear/reset, and `/` or
+  `Ctrl/Cmd+K` focus.
+- Added topic filters, sticky desktop rail, deep links (`#faq-orders`, etc.),
+  grouped accordions, a human-contact card, and a compact mobile contact link.
+- Kept native `<details>` for no-JS readability; the server still renders all
+  14 answers and the FAQPage schema.
+- FAQ page Lighthouse: mobile **100 / 100 / 100 / 100**, LCP **1.4s**;
+  desktop **100 / 100 / 100 / 100**, LCP **0.5s**. `astro check` 0 errors;
+  build 15 pages; 17/17 interaction assertions pass.
+
+This is an enhancement, not a new audit issue; the register counts are
+unchanged. The change is local and not deployed yet.
+
+### Playful redesign and content accuracy pass (2026-10-27)
+
+- Rebuilt the visual system around the reference mockup: Readex Pro variable
+  fonts, white and pastel surfaces, pill CTAs, 24-32px cards, ink CTA band, and
+  transform-based motion.
+- Rebuilt the home: production confirmation template in the hero chat, marquee,
+  four-step journey, six feature cards, four deeper product cards, four
+  outcomes, EGP pricing sticker, four FAQs, dark CTA.
+- Added the customer order page, shipping, console, and campaign details to the
+  home deep-dive cards and linked them to `#order`, `#growth`, and `#control` on
+  the features page.
+- Replaced the full hero confirmation sample with the v7 production shape:
+  order number, items, total in EGP, address, delivery range, order page link,
+  and Confirm / Cancel / Edit order buttons.
+- FAQ grew from 14 to 17 answers (order page, size check, points per service).
+- Guides renamed to **شرح عملي**, with four guides and dated bylines.
+- What's new rebuilt with 12 dated shipped events from the production commits.
+- Removed all dollar, USD, and cent copy and the old fixed-rate note; pricing
+  JSON-LD and OG pricing now use EGP only. Removed all em dashes from source and
+  built HTML.
+- Fixed the Arabic truck direction with `scaleX(-1)` and kept the LTR truck
+  unchanged.
+- Mobile: one-column pricing, stacked deep cards and guides, wrapped topic
+  pills, full-bleed hero spacing, and no horizontal overflow on the checked
+  pages.
+- Verification: `astro check` 0 errors; build 17 pages; 23/23 final redesign
+  assertions; FAQ 17-answer search suite; Lighthouse mobile home 99-100,
+  pricing/features/FAQ/guides/what's new 100, with accessibility, best
+  practices, and SEO at 100 across all six.

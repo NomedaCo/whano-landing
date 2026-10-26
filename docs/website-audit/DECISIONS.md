@@ -222,3 +222,47 @@ new total, and submits once; the link works once and only before confirmation.
 The website must not claim natural-language edits. The demo shows the actual
 edit-link message and URL button; Flow step 02, feature 02, FAQ 3, pricing, and
 the project context use the same model.
+
+### D24 — The FAQ is a help center, not a legal appendix
+
+`/faq/` uses three product topics, search, topic filters, deep links, grouped
+accordions, and a direct contact path. The content stays server-rendered and
+inside native `<details>` so the page still works without JavaScript; search
+and filters are progressive enhancement. The homepage teaser keeps its four
+install-blocking questions and links to the full help center.
+
+### D25: Playful visual system
+
+The site uses the pastel, rounded, Readex Pro direction from the
+`الصفحة الرئيسية-html` reference. The home page is now: the confirmation
+template in a floating chat, a yellow marquee, the four-step journey, six
+feature cards, four deeper product cards, four outcomes, a pricing sticker,
+four FAQs, and the dark CTA. Inner pages inherit the same type scale, pill
+badges, 24px cards, ink CTA band, and motion rules. The home animation uses
+scroll reveals plus a small set of transform-only entrance motions so the LCP
+heading paints immediately.
+
+### D26: EGP only, no dollar or cent copy
+
+The pricing page, home pricing panel, FAQ, billing answers, JSON-LD, metadata,
+and OG pricing card show **EGP only**. No dollar amount, USD label, or cent
+claim appears in the site source or the built HTML. Payment runs through Shopify or customer support with InstaPay or Vodafone Cash;
+the public page does not state a second billing currency. Plan prices
+are 499 / 999 / 1,899 / 2,999 EGP (450 / 1,000 / 2,000 / 3,500 points).
+
+### D27: Guides are شرح عملي and written from shipped flows
+
+The Arabic label "الأدلة" is replaced with **شرح عملي** in the footer, page
+title, and article eyebrow. Four guides are live: follow-up, reducing WISMO,
+the confirmation template, and shipping readiness. The last two use the
+production confirmation and shipment behaviour, including the one-time edit
+link and the Bosta account requirement. Each guide has its own published date
+in the Article schema and visible byline.
+
+### D28: What's new is a dated shipped changelog
+
+The changelog is rebuilt from the production commit log with 12 customer-facing
+entries dated 15 to 23 October 2026. It covers the send buffer, campaigns and
+audiences, abandoned carts, size check, shipment tags, review page, one-time
+edit link, ShipBlu, Google Sheets, message shapes, the pre-confirmation update
+link, and points spent per service. It is not a roadmap.

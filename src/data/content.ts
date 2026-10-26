@@ -50,7 +50,7 @@ export const site = {
     titleLead: { en: "The order doesn't end at checkout.", ar: "الطلب لا ينتهي عند إتمام الشراء." },
     titleAccent: { en: "Whano takes it from here.", ar: "Whano تُكمل الرحلة من هنا." },
     body: {
-      en: "Whano connects your Shopify store to automated WhatsApp messaging. It confirms orders, handles changes, sends delivery updates, and asks for the review — with no number to connect.",
+      en: "Whano connects your Shopify store to automated WhatsApp messaging. It confirms orders, handles changes, sends delivery updates, and asks for the review, with no number to connect.",
       ar: "يربط Whano متجرك على Shopify بأتمتة رسائل واتساب: يؤكد الطلبات، ويتعامل مع التعديلات، ويرسل تحديثات التوصيل، ويطلب التقييم، من دون ربط أي رقم.",
     },
     cta: { en: "Install on Shopify", ar: "ثبّت على Shopify" },
@@ -223,8 +223,8 @@ export const site = {
     eyebrow: { en: "Points", ar: "النقاط" },
     title: { en: "Pay for what you use.", ar: "ادفع مقابل ما تستخدمه." },
     body: {
-      en: "Points from 500 EGP ($10), billed in USD through Shopify. No monthly subscription, and points never expire.",
-      ar: "باقات النقاط تبدأ من 500 جنيه (10 دولارات)، وتُفوتر بالدولار عبر Shopify. من دون اشتراك شهري، والنقاط لا تنتهي.",
+      en: "Points from 499 EGP, paid once through Shopify or customer support with InstaPay or Vodafone Cash. No monthly subscription, and points never expire.",
+      ar: "باقات النقاط تبدأ من 499 جنيه، وتُدفع مرة واحدة عبر Shopify أو خدمة العملاء عن طريق إنستاباي أو فودافون كاش. من دون اشتراك شهري، والنقاط لا تنتهي.",
     },
     cta: { en: "See pricing", ar: "اطّلع على الأسعار" },
   },
@@ -243,7 +243,7 @@ export const site = {
         title: { en: "Let Shopify keep the facts", ar: "ليحتفظ Shopify بالبيانات" },
         body: {
           en: "Order totals, items, and shipping details come from your store. Whano does not invent an answer when the data is not there.",
-          ar: "تأتي بيانات الطلب — الإجمالي والمنتجات وتفاصيل الشحن — من متجرك مباشرة. ولا يخترع Whano إجابة عندما لا تتوفر المعلومة.",
+          ar: "تأتي بيانات الطلب, الإجمالي والمنتجات وتفاصيل الشحن, من متجرك مباشرة. ولا يخترع Whano إجابة عندما لا تتوفر المعلومة.",
         },
       },
       {
@@ -263,20 +263,16 @@ export const site = {
       ar: "تسحب كل أتمتة من رصيد النقاط نفسه. تكلفة واضحة ومحددة لكل تفاعل، من دون اشتراك شهري إلزامي.",
     },
     note: {
-      en: "Billed in USD through Shopify. EGP is shown at a fixed 1 USD = 50 EGP.",
-      ar: "تُفوتر بالدولار عبر Shopify، ويُعرض الجنيه بسعر ثابت: 1 دولار = 50 جنيهًا.",
-    },
-    cost: {
-      en: "A full order journey — confirmation, shipping, and review — costs about 4 points: about 4 EGP (under 10¢).",
-      ar: "رحلة الطلب كاملة — تأكيد، وشحن، وتقييم — تكلّف نحو 4 نقاط: نحو 4 جنيهات (أقل من 10 سنتات).",
+      en: "One-time points packs. No monthly subscription.",
+      ar: "باقات نقاط تُدفع مرة واحدة. بلا اشتراك شهري.",
     },
   },
   faq: {
-    eyebrow: { en: "Before you start", ar: "قبل أن تبدأ" },
+    eyebrow: { en: "Whano / help center", ar: "Whano / مركز المساعدة" },
     title: { en: "Questions worth answering.", ar: "أسئلة تستحق إجابات." },
     body: {
-      en: "A few practical answers about the number, the messages, and what happens when a person needs to take over.",
-      ar: "إجابات مباشرة عن الرقم، والرسائل، وما يحدث عندما يحتاج الأمر إلى شخص يتولى المحادثة.",
+      en: "Straight answers about setup, orders, shipping, points, and campaigns, with the detail you need to decide, not a sales pitch.",
+      ar: "إجابات مباشرة عن الإعداد، والطلبات، والشحن، والنقاط، والحملات, بالتفصيل الذي تحتاجه لتقرر، لا بجمل تسويقية.",
     },
   },
   // The live App Store rating, as a snapshot. Check the listing before editing.
@@ -298,8 +294,8 @@ export const site = {
     eyebrow: { en: "Shipping & delivery", ar: "الشحن والتوصيل" },
     title: { en: "From creating the shipment to the customer's door.", ar: "من إنشاء الشحنة إلى باب العميل." },
     body: {
-      en: "Whano connects to your carrier, creates the shipment once the customer confirms, and follows its state until delivery — with the exceptions visible before they become phone calls.",
-      ar: "يتصل Whano بشركة الشحن لديك، وينشئ الشحنة بعد تأكيد العميل، ويتابع حالتها حتى التسليم — مع إظهار التعثر قبل أن يتحول إلى مكالمات.",
+      en: "Whano connects to your carrier, creates the shipment once the customer confirms, and follows its state until delivery, with the exceptions visible before they become phone calls.",
+      ar: "يتصل Whano بشركة الشحن لديك، وينشئ الشحنة بعد تأكيد العميل، ويتابع حالتها حتى التسليم, مع إظهار التعثر قبل أن يتحول إلى مكالمات.",
     },
     carriersLabel: { en: "Connected carriers", ar: "شركات الشحن المتصلة" },
     carriers: [
@@ -318,15 +314,15 @@ export const site = {
       {
         title: { en: "Inspect on delivery", ar: "فحص الشحنة عند الاستلام" },
         body: {
-          en: "For Bosta shipments, the customer can open the parcel before paying — the store's own choice, per shipment.",
-          ar: "لشحنات بوسطة، يمكن للعميل فحص الشحنة قبل الدفع — قرار المتجر، ولكل شحنة على حدة.",
+          en: "For Bosta shipments, the customer can open the parcel before paying, the store's own choice, per shipment.",
+          ar: "لشحنات بوسطة، يمكن للعميل فحص الشحنة قبل الدفع, قرار المتجر، ولكل شحنة على حدة.",
         },
       },
       {
         title: { en: "Exceptions come with a reason", ar: "التعثر يأتي مع سببه" },
         body: {
-          en: "A postponed delivery, a wrong phone number, an address outside coverage — the console shows the carrier's own reason and how long it has been stuck.",
-          ar: "تأجيل التسليم، أو رقم هاتف خاطئ، أو عنوان خارج التغطية — تعرض لوحة التحكم سبب شركة الشحن نفسه ومدة التعثر.",
+          en: "A postponed delivery, a wrong phone number, an address outside coverage, the console shows the carrier's own reason and how long it has been stuck.",
+          ar: "تأجيل التسليم، أو رقم هاتف خاطئ، أو عنوان خارج التغطية, تعرض لوحة التحكم سبب شركة الشحن نفسه ومدة التعثر.",
         },
       },
       {
@@ -342,8 +338,8 @@ export const site = {
     eyebrow: { en: "The order page", ar: "صفحة الطلب" },
     title: { en: "One link answers \"where is my order?\"", ar: "رابط واحد يجيب عن «طلبي فين؟»" },
     body: {
-      en: "Every confirmation carries a link to the order page: the status, the items, the total, the tracking, and the delivery address — on the customer's phone, in the store's name.",
-      ar: "يحمل كل تأكيد رابطًا إلى صفحة الطلب: الحالة، والمنتجات، والإجمالي، والتتبع، وعنوان التوصيل — على هاتف العميل وباسم متجرك.",
+      en: "Every confirmation carries a link to the order page: the status, the items, the total, the tracking, and the delivery address, all on the customer's phone and in the store's name.",
+      ar: "يحمل كل تأكيد رابطًا إلى صفحة الطلب: الحالة، والمنتجات، والإجمالي، والتتبع، وعنوان التوصيل، كلها على هاتف العميل وباسم متجرك.",
     },
     items: [
       { en: "A status timeline the customer reads at a glance", ar: "مسار حالة واضح يقرأه العميل بلمحة" },
@@ -352,7 +348,7 @@ export const site = {
       { en: "A problem report from the page opens a real support ticket", ar: "بلاغ المشكلة من الصفحة يفتح تذكرة دعم حقيقية" },
       { en: "Links expire after 30 days", ar: "تنتهي صلاحية الروابط بعد 30 يومًا" },
     ],
-    note: { en: "No app, no account, no password — the link is the key.", ar: "بلا تطبيق، وبلا حساب، وبلا كلمة مرور — الرابط هو المفتاح." },
+    note: { en: "No app, no account, no password, the link is the key.", ar: "بلا تطبيق، وبلا حساب، وبلا كلمة مرور, الرابط هو المفتاح." },
     shotAlt: { en: "A Whano order page on a phone", ar: "صفحة طلب من Whano على الهاتف" },
   },
   outcomes: {
@@ -362,8 +358,8 @@ export const site = {
       {
         title: { en: "The status arrives before the question", ar: "الحالة تصل قبل السؤال" },
         body: {
-          en: "Confirmation, shipping, delivery — each one reaches the customer on WhatsApp before they have to ask.",
-          ar: "التأكيد، ثم الشحن، ثم التوصيل — كل خطوة تصل العميل على واتساب قبل أن يسأل.",
+          en: "Confirmation, shipping, delivery, each one reaches the customer on WhatsApp before they have to ask.",
+          ar: "التأكيد، ثم الشحن، ثم التوصيل, كل خطوة تصل العميل على واتساب قبل أن يسأل.",
         },
       },
       {
@@ -388,14 +384,6 @@ export const site = {
         },
       },
     ],
-    cost: {
-      en: "A full order journey — confirmation, shipping, and review — costs about 4 points: about 4 EGP (under 10¢).",
-      ar: "رحلة الطلب كاملة — تأكيد، وشحن، وتقييم — تكلّف نحو 4 نقاط: نحو 4 جنيهات (أقل من 10 سنتات).",
-    },
-    costNote: {
-      en: "Points from 500 EGP ($10) per 500, billed in USD on your Shopify invoice.",
-      ar: "النقاط تبدأ من 500 جنيه (10 دولارات) لكل 500 نقطة، وتُفوتر بالدولار على فاتورة Shopify.",
-    },
   },
   faqTeaser: {
     eyebrow: { en: "Before you install", ar: "قبل التثبيت" },
@@ -406,8 +394,8 @@ export const site = {
     eyebrow: { en: "The console", ar: "لوحة التحكم" },
     title: { en: "One screen for everything the order touches.", ar: "شاشة واحدة لكل ما يلمسه الطلب." },
     body: {
-      en: "Orders, shipments, conversations, and reports sit in one place — so the next step is never a guess.",
-      ar: "الطلبات، والشحنات، والمحادثات، والتقارير في مكان واحد — حتى لا تكون الخطوة التالية تخمينًا.",
+      en: "Orders, shipments, conversations, and reports sit in one place, so the next step is never a guess.",
+      ar: "الطلبات، والشحنات، والمحادثات، والتقارير في مكان واحد, حتى لا تكون الخطوة التالية تخمينًا.",
     },
     cta: { en: "See everything it does", ar: "اطّلع على كل ما تفعله" },
     panels: [
@@ -447,7 +435,7 @@ export const site = {
           ar: "ما أرسله البوت، وما أجاب به العميل، ومتى تجلب تذكرة الدعم شخصًا.",
         },
         bubbles: [
-          { from: "bot", text: { en: "Order #1036 confirmed — tracking follows on shipping.", ar: "تم تأكيد الطلب #1036 — التتبع يلي عند الشحن." } },
+          { from: "bot", text: { en: "Order #1036 confirmed, tracking follows on shipping.", ar: "تم تأكيد الطلب #1036, التتبع يلي عند الشحن." } },
           { from: "customer", text: { en: "Add one more cap please", ar: "أضف كاب واحد كمان من فضلك" } },
           { from: "bot", text: { en: "Added. New total: 800 EGP.", ar: "تمت الإضافة. الإجمالي الجديد: 800 EGP." } },
         ],
@@ -469,7 +457,7 @@ export const site = {
       {
         title: { en: "Cash-on-delivery sellers", ar: "متاجر الدفع عند الاستلام" },
         body: {
-          en: "Every order starts with an explicit confirmation on WhatsApp, so the parcel ships against a confirmed total — not a guess.",
+          en: "Every order starts with an explicit confirmation on WhatsApp, so the parcel ships against a confirmed total, not a guess.",
           ar: "كل طلب يبدأ بتأكيد صريح على واتساب، فتُشحن الشحنة على أساس إجمالي مؤكد، لا على التخمين.",
         },
       },
@@ -501,8 +489,8 @@ export const site = {
   footer: {
     descriptor: { en: "Post-purchase WhatsApp automation for Shopify.", ar: "أتمتة تواصل ما بعد الشراء لمتاجر Shopify." },
     tagline: {
-      en: "Confirm orders, ship them, track them, and ask for the review — on WhatsApp, automatically.",
-      ar: "أكّد الطلبات، وشحّنها، وتتبعها، واطلب تقييمها — على واتساب، وبشكل تلقائي.",
+      en: "Confirm orders, ship them, track them, and ask for the review, on WhatsApp, automatically.",
+      ar: "أكّد الطلبات، وشحّنها، وتتبعها، واطلب تقييمها, على واتساب، وبشكل تلقائي.",
     },
     trust: [
       { en: "Official WhatsApp Cloud API", ar: "واتساب Cloud API الرسمية" },
@@ -518,7 +506,7 @@ export const site = {
     resourcesLabel: { en: "Resources", ar: "الموارد" },
     resourcesLinks: [
       { href: "/faq/", label: { en: "Questions", ar: "الأسئلة الشائعة" } },
-      { href: "/guides/", label: { en: "Guides", ar: "الأدلة" } },
+      { href: "/guides/", label: { en: "Guides", ar: "شرح عملي" } },
       { href: "/whats-new/", label: { en: "What's new", ar: "ما الجديد" } },
       { href: "/security/", label: { en: "Security & data", ar: "الأمان والبيانات" } },
     ],
@@ -565,8 +553,8 @@ export const site = {
     eyebrow: { en: "Whano / pricing", ar: "Whano / الأسعار" },
     title: { en: "One currency: points.", ar: "عملة واحدة: النقاط." },
     body: {
-      en: "Buy a points pack from 500 EGP ($10), spend it across the automations you enable, and watch the balance in the console. No monthly subscription.",
-      ar: "اشترِ باقة نقاط تبدأ من 500 جنيه (10 دولارات)، واستخدمها في الأتمتات التي تفعّلها، وتابع الرصيد في لوحة التحكم. من دون اشتراك شهري.",
+      en: "Buy a points pack from 499 EGP, spend it across the automations you enable, and watch the balance in the console. No monthly subscription.",
+      ar: "اشترِ باقة نقاط تبدأ من 499 جنيه، واستخدمها في الأتمتات التي فعّلتها، وتابع الرصيد في لوحة التحكم. من دون اشتراك شهري.",
     },
   },
 } as const;
@@ -727,7 +715,7 @@ export const featureGroups: FeatureGroup[] = [
     id: "growth",
     title: { en: "Growth and follow-through", ar: "النمو والمتابعة" },
     body: {
-      en: "Turning a finished order into the next one — with consent and a clear limit.",
+      en: "Turning a finished order into the next one, with consent and a clear limit.",
       ar: "تحويل الطلب المكتمل إلى الطلب التالي، بموافقة العميل وحدود واضحة.",
     },
     items: [
@@ -772,8 +760,8 @@ export const featureGroups: FeatureGroup[] = [
         number: "15",
         title: { en: "Refer another store (beta)", ar: "رشّح متجرًا آخر (تجريبي)" },
         body: {
-          en: "Share your referral code with another store. The reward is points, and the feature is in beta — turn on beta features in Settings to see it.",
-          ar: "شارك كود الإحالة مع متجر آخر. المكافأة نقاط، والميزة تجريبية — فعّل المزايا التجريبية من الإعدادات لتظهر لك.",
+          en: "Share your referral code with another store. The reward is points, and the feature is in beta, turn on beta features in Settings to see it.",
+          ar: "شارك كود الإحالة مع متجر آخر. المكافأة نقاط، والميزة تجريبية, فعّل المزايا التجريبية من الإعدادات لتظهر لك.",
         },
         detail: { en: "Referrals (beta)", ar: "الإحالات (تجريبي)" },
       },
@@ -781,8 +769,8 @@ export const featureGroups: FeatureGroup[] = [
         number: "16",
         title: { en: "Reports that come from your orders", ar: "تقارير مستمدة من طلباتك" },
         body: {
-          en: "Sales, cancellations, message delivery, and growth over time — measured from your own store data, not estimates.",
-          ar: "المبيعات، والإلغاءات، وتسليم الرسائل، والنمو عبر الوقت — كلها مقيسة من بيانات متجرك نفسها، لا من تقديرات.",
+          en: "Sales, cancellations, message delivery, and growth over time, measured from your own store data, not estimates.",
+          ar: "المبيعات، والإلغاءات، وتسليم الرسائل، والنمو عبر الوقت, كلها مقيسة من بيانات متجرك نفسها، لا من تقديرات.",
         },
         detail: { en: "Sales & store health", ar: "المبيعات وصحة المتجر" },
       },
@@ -799,8 +787,8 @@ export const featureGroups: FeatureGroup[] = [
         number: "18",
         title: { en: "A push when something needs you", ar: "إشعار عندما يحتاجك أمر ما" },
         body: {
-          en: "New orders, a customer waiting for support, or a reply from the team — you can receive them as push notifications on your phone.",
-          ar: "طلب جديد، أو عميل ينتظر الدعم، أو رد من الفريق — يمكنك استقبالها كإشعارات فورية على هاتفك.",
+          en: "New orders, a customer waiting for support, or a reply from the team: you can receive them as push notifications on your phone.",
+          ar: "طلب جديد، أو عميل ينتظر الدعم، أو رد من الفريق, يمكنك استقبالها كإشعارات فورية على هاتفك.",
         },
         detail: { en: "Push notifications", ar: "الإشعارات الفورية" },
       },
@@ -827,8 +815,8 @@ export const featureGroups: FeatureGroup[] = [
         number: "20",
         title: { en: "See every message, hand it to a person", ar: "اطّلع على كل رسالة، وسلّمها لشخص عند الحاجة" },
         body: {
-          en: "The console keeps the full message log — what was sent and what the customer answered. When a question needs a person, Whano opens a support ticket and the support team can take over from the same number.",
-          ar: "تحتفظ لوحة التحكم بسجل الرسائل كاملًا — ما أُرسل وما أجاب به العميل. وإذا احتاج السؤال إلى شخص، يفتح Whano تذكرة دعم ويمكن لفريق الدعم تولي المحادثة من الرقم نفسه.",
+          en: "The console keeps the full message log, what was sent and what the customer answered. When a question needs a person, Whano opens a support ticket and the support team can take over from the same number.",
+          ar: "تحتفظ لوحة التحكم بسجل الرسائل كاملًا, ما أُرسل وما أجاب به العميل. وإذا احتاج السؤال إلى شخص، يفتح Whano تذكرة دعم ويمكن لفريق الدعم تولي المحادثة من الرقم نفسه.",
         },
         detail: { en: "Message log & support handoff", ar: "سجل الرسائل وتسليم الدعم" },
       },
@@ -854,8 +842,8 @@ export const featureGroups: FeatureGroup[] = [
         number: "23",
         title: { en: "Take your orders with you", ar: "خذ طلباتك معك" },
         body: {
-          en: "Export orders to CSV or a Google Sheet with the fields you choose — for accounting, fulfillment, or a second pair of eyes.",
-          ar: "صدّر الطلبات إلى CSV أو Google Sheets بالحقول التي تختارها — للمحاسبة أو التجهيز أو مراجعة إضافية.",
+          en: "Export orders to CSV or a Google Sheet with the fields you choose, for accounting, fulfillment, or a second pair of eyes.",
+          ar: "صدّر الطلبات إلى CSV أو Google Sheets بالحقول التي تختارها, للمحاسبة أو التجهيز أو مراجعة إضافية.",
         },
         detail: { en: "CSV & Google Sheets", ar: "CSV وGoogle Sheets" },
       },
@@ -863,8 +851,8 @@ export const featureGroups: FeatureGroup[] = [
         number: "24",
         title: { en: "The wording stays yours", ar: "الصياغة تبقى لك" },
         body: {
-          en: "Choose the approved shape for each message — with or without the order link, a rating page or a reply — and preview exactly what the customer receives. Meta-approved templates are managed for you.",
-          ar: "اختر الشكل المعتمد لكل رسالة — مع رابط الطلب أو بدونه، وبصفحة تقييم أو برد — وعاين بالضبط ما سيستلمه العميل. وتُدار قوالب Meta المعتمدة نيابةً عنك.",
+          en: "Choose the approved shape for each message, with or without the order link, a rating page or a reply, and preview exactly what the customer receives. Meta-approved templates are managed for you.",
+          ar: "اختر الشكل المعتمد لكل رسالة, مع رابط الطلب أو بدونه، وبصفحة تقييم أو برد, وعاين بالضبط ما سيستلمه العميل. وتُدار قوالب Meta المعتمدة نيابةً عنك.",
         },
         detail: { en: "Message templates", ar: "قوالب الرسائل" },
       },
@@ -886,22 +874,22 @@ export const pricingFeatures = [
   { en: "~4 points per abandoned-cart reminder", ar: "~4 نقاط لكل تذكير بسلة متروكة" },
   { en: "~2 points per support & returns interaction", ar: "~2 نقطتان لكل تفاعل دعم أو استرجاع" },
   { en: "No monthly subscription, points never expire", ar: "من دون اشتراك شهري، والنقاط لا تنتهي" },
-  { en: "Billed directly on your Shopify invoice", ar: "الفاتورة على حساب Shopify مباشرة" },
+  { en: "Paid through Shopify or customer support with InstaPay or Vodafone Cash", ar: "الدفع عبر Shopify أو خدمة العملاء عن طريق إنستاباي أو فودافون كاش" },
 ] as const;
 
 export const pricingFaqs = [
   {
     question: { en: "What happens when my points run out?", ar: "ماذا يحدث عندما تنفد نقاطي؟" },
     answer: {
-      en: "Order confirmations and cancellations keep working. Optional automations — shipping updates, ratings, edits, campaigns — pause until you top up. Your orders, message log and settings stay exactly where they are.",
-      ar: "يستمر تأكيد الطلبات وإلغاؤها، وتتوقف الأتمتات الاختيارية — تحديثات الشحن والتقييمات والتعديلات والحملات — حتى تشحن الرصيد. تبقى طلباتك وسجل رسائلك وإعداداتك كما هي.",
+      en: "Order confirmations and cancellations keep working. Optional automations, shipping updates, ratings, edits, campaigns, pause until you top up. Your orders, message log and settings stay exactly where they are.",
+      ar: "يستمر تأكيد الطلبات وإلغاؤها، وتتوقف الأتمتات الاختيارية, تحديثات الشحن والتقييمات والتعديلات والحملات, حتى تشحن الرصيد. تبقى طلباتك وسجل رسائلك وإعداداتك كما هي.",
     },
   },
   {
     question: { en: "How am I billed?", ar: "كيف تتم الفاتورة؟" },
     answer: {
-      en: "Through your Shopify invoice, in USD. The EGP prices on this page use a fixed 1 USD = 50 EGP; you buy a points pack once, with no monthly subscription and no automatic renewal.",
-      ar: "عبر فاتورة Shopify بالدولار. أسعار الجنيه في هذه الصفحة بسعر ثابت: 1 دولار = 50 جنيهًا. تشتري باقة النقاط مرة واحدة، من دون اشتراك شهري ومن دون تجديد تلقائي.",
+      en: "Through your Shopify invoice, or through customer support with InstaPay or Vodafone Cash. You buy a points pack once, with no monthly subscription and no automatic renewal.",
+      ar: "عبر فاتورة Shopify، أو عبر خدمة العملاء عن طريق إنستاباي أو فودافون كاش. تشتري باقة النقاط مرة واحدة، من دون اشتراك شهري ومن دون تجديد تلقائي.",
     },
   },
   {
@@ -914,50 +902,75 @@ export const pricingFaqs = [
   {
     question: { en: "What if I stop using Whano?", ar: "ماذا لو توقفت عن استخدام Whano؟" },
     answer: {
-      en: "Nothing is charged again — there is no subscription to cancel. You can pause every send from the console, and uninstalling keeps your Shopify orders and history untouched.",
+      en: "Nothing is charged again: there is no subscription to cancel. You can pause every send from the console, and uninstalling keeps your Shopify orders and history untouched.",
       ar: "لن تُحصَّل أي مبالغ أخرى، فلا يوجد اشتراك لإلغائه. يمكنك إيقاف كل الإرسال من لوحة التحكم، وإلغاء التثبيت لا يمس طلباتك أو سجلك في Shopify.",
     },
   },
 ] as const;
 
-export const EGP_PER_USD = 50;
-
 export const plans = [
   {
     name: { en: "Starter", ar: "البداية" },
-    points: { en: "500 points", ar: "500 نقطة" },
-    priceUsd: 10,
+    points: { en: "450 points", ar: "450 نقطة" },
+    priceEgp: 499,
     description: { en: "For a store just getting started with WhatsApp automations.", ar: "لمتجر بدأ تجربة أتمتة واتساب." },
     popular: false,
   },
   {
     name: { en: "Plus", ar: "بلس" },
     points: { en: "1,000 points", ar: "1,000 نقطة" },
-    priceUsd: 19,
+    priceEgp: 999,
     description: { en: "For a store past its first month and ordering regularly.", ar: "لمتجر تجاوز شهره الأول وطلباته منتظمة." },
     popular: false,
   },
   {
     name: { en: "Growth", ar: "النمو" },
     points: { en: "2,000 points", ar: "2,000 نقطة" },
-    priceUsd: 36,
+    priceEgp: 1899,
     description: { en: "For a growing store running automations on most orders.", ar: "لمتجر ينمو ويشغّل الأتمتة على معظم الطلبات." },
     popular: false,
   },
   {
     name: { en: "Pro", ar: "برو" },
     points: { en: "3,500 points", ar: "3,500 نقطة" },
-    priceUsd: 59,
+    priceEgp: 2999,
     description: { en: "Best value per point, for a busy store that tops up every couple of months.", ar: "أفضل قيمة لكل نقطة، لمتجر مشغول يعيد التعبئة كل شهرين تقريبًا." },
     popular: true,
   },
   {
     name: { en: "Enterprise", ar: "الشركات" },
     points: { en: "Custom", ar: "مخصص" },
-    priceUsd: null,
+    priceEgp: null,
     description: { en: "Need a custom volume or a higher point bundle?", ar: "تحتاج حجمًا مخصصًا أو باقة نقاط أكبر؟" },
     popular: false,
     isEnterprise: true,
+  },
+] as const;
+
+export const faqTopics = [
+  {
+    id: "start",
+    label: { en: "Getting started", ar: "البدء والإعداد" },
+    description: {
+      en: "The number, installation, and what changes in your store.",
+      ar: "الرقم، والتثبيت، وما يتغير في متجرك.",
+    },
+  },
+  {
+    id: "orders",
+    label: { en: "Orders & shipping", ar: "الطلبات والشحن" },
+    description: {
+      en: "Confirmation, edits, cash on delivery, and carriers.",
+      ar: "التأكيد، والتعديل، والدفع عند الاستلام، وشركات الشحن.",
+    },
+  },
+  {
+    id: "growth",
+    label: { en: "Messages & campaigns", ar: "الرسائل والحملات" },
+    description: {
+      en: "Points, offers, audience, and abandoned carts.",
+      ar: "النقاط، والعروض، والجمهور، والسلة المتروكة.",
+    },
   },
 ] as const;
 
@@ -965,6 +978,7 @@ export const faqs = [
   {
     home: true,
     question: { en: "Do I need my own WhatsApp Business number?", ar: "هل أحتاج إلى رقم واتساب خاص بي أو إعدادات معقدة؟" },
+    topic: "start",
     answer: {
       en: "No. Whano uses a unified, verified WhatsApp infrastructure for all merchants. Your messages are sent instantly with your store name and order details, with no QR code scanning, no Meta API accounts, and zero number maintenance.",
       ar: "لا. يستخدم Whano بنية واتساب موحدة وموثقة لجميع المتاجر. تُرسل رسائلك فورًا باسم متجرك وتفاصيل الطلب، من دون مسح رموز QR، ولا حسابات Meta API، ومن دون أي صيانة للأرقام.",
@@ -972,6 +986,7 @@ export const faqs = [
   },
   {
     question: { en: "Will the messages sound robotic?", ar: "هل ستبدو الرسائل آلية؟" },
+    topic: "growth",
     answer: {
       en: "You control the message templates and store details. Arabic and English messages are written to sound natural, and you can adjust the wording to match your brand.",
       ar: "أنت من يتحكم في قوالب الرسائل وتفاصيل المتجر. الرسائل بالعربية والإنجليزية مكتوبة بلغة طبيعية، ويمكنك تعديل الصياغة بما يناسب علامتك.",
@@ -979,6 +994,7 @@ export const faqs = [
   },
   {
     question: { en: "Can a customer change an order after placing it?", ar: "هل يمكن للعميل تعديل الطلب بعد إرساله؟" },
+    topic: "orders",
     answer: {
       en: "Yes, before confirmation. The confirmation has an Edit order button; tapping it sends a secure one-time link. The customer opens it, changes a quantity or variant or adds an item, sees the new total, and submits once. The link works once and only before confirmation, and Shopify updates automatically.",
       ar: "نعم، قبل تأكيد الطلب. يحمل التأكيد زر عدّل الطلب؛ الضغط عليه يرسل رابطًا آمنًا لمرة واحدة. يفتحه العميل، ويغيّر الكمية أو المقاس أو يضيف منتجًا، ويرى الإجمالي الجديد، ويرسل التعديل مرة واحدة. ويعمل الرابط مرة واحدة وقبل التأكيد فقط، ويتحدّث Shopify تلقائيًا.",
@@ -986,20 +1002,39 @@ export const faqs = [
   },
   {
     question: { en: "What happens when a conversation needs a person?", ar: "ماذا يحدث عندما تحتاج المحادثة إلى شخص؟" },
+    topic: "orders",
     answer: {
       en: "The console keeps the full message log. When a question needs a person, Whano opens a support ticket and the support team can take over from the same WhatsApp number. You can follow the conversation and the ticket in the console.",
       ar: "تحتفظ لوحة التحكم بسجل الرسائل كاملًا. وإذا احتاج السؤال إلى شخص، يفتح Whano تذكرة دعم ويمكن لفريق الدعم تولي المحادثة من رقم واتساب نفسه. ويمكنك متابعة المحادثة والتذكرة من لوحة التحكم.",
     },
   },
   {
+    question: { en: "What does the customer see on the order page?", ar: "ماذا يرى العميل في صفحة الطلب؟" },
+    topic: "orders",
+    answer: {
+      en: "Every confirmation carries a read-only order page link. The customer sees the status, items, total, and tracking button. The delivery address stays hidden until the phone number on the order is entered. A problem report from the page opens a support ticket, and the link expires after 30 days.",
+      ar: "يحمل كل تأكيد رابطًا لصفحة الطلب للقراءة فقط. يرى العميل الحالة والمنتجات والإجمالي وزر التتبع. ويبقى عنوان التوصيل مخفيًا حتى يُدخل رقم الهاتف المسجل في الطلب. وبلاغ المشكلة من الصفحة يفتح تذكرة دعم، وتنتهي صلاحية الرابط بعد 30 يومًا.",
+    },
+  },
+  {
     question: { en: "How do message points work?", ar: "كيف تُحتسب نقاط الرسائل؟" },
+    topic: "growth",
     answer: {
       en: "You buy points in packs. Automations use points as they run, so a confirmation and a review follow-up can have different costs. There is no monthly contract.",
       ar: "تشتري النقاط في باقات. تستهلك الأتمتات النقاط حسب تشغيلها، فقد تختلف تكلفة التأكيد عن متابعة التقييم. ولا يوجد اشتراك شهري.",
     },
   },
   {
+    question: { en: "How does the size check work?", ar: "كيف يعمل فحص المقاس؟" },
+    topic: "orders",
+    answer: {
+      en: "Turn on size check in Controls. After confirmation, the customer enters height and weight once and sees a recommendation for every product that has a size chart. The customer accepts or changes the size, Shopify is updated, and the shipment waits until the check is finished or the link expires.",
+      ar: "فعّل فحص المقاس من التحكم. بعد التأكيد، يدخل العميل طوله ووزنه مرة واحدة ويرى توصية لكل منتج له جدول مقاسات. يقبل العميل المقاس أو يغيّره، ويتحدّث Shopify، وتنتظر الشحنة حتى ينتهي الفحص أو تنتهي مدة الرابط.",
+    },
+  },
+  {
     question: { en: "Can I send offers and discounts to customers?", ar: "هل يمكنني إرسال عروض وخصومات للعملاء؟" },
+    topic: "growth",
     answer: {
       en: "Yes. Create a promo code, then send a campaign to the customers who agreed to receive offers. Campaigns respect quiet hours, and every message includes a way to unsubscribe.",
       ar: "نعم. أنشئ كود خصم، ثم أرسل حملة إلى العملاء الذين وافقوا على استقبال العروض. تحترم الحملات ساعات الهدوء، وتتضمن كل رسالة طريقة لإلغاء الاشتراك.",
@@ -1007,6 +1042,7 @@ export const faqs = [
   },
   {
     question: { en: "Does my customer need to install anything?", ar: "هل يحتاج عميلي إلى تثبيت أي شيء؟" },
+    topic: "start",
     answer: {
       en: "No. The customer keeps using WhatsApp exactly as they do today; the conversation arrives from your store's name, and every message is a normal WhatsApp message with buttons.",
       ar: "لا. يستخدم عميلك واتساب كما اعتاد تمامًا؛ تصل المحادثة باسم متجرك، وكل رسالة هي رسالة واتساب عادية بأزرار.",
@@ -1014,6 +1050,7 @@ export const faqs = [
   },
   {
     question: { en: "Can I use my own WhatsApp number?", ar: "هل يمكنني استخدام رقم واتساب الخاص بي؟" },
+    topic: "start",
     answer: {
       en: "You do not need one. Whano sends from a verified business number on its own infrastructure, so there is no device to link and no risk to your personal number. The store name and details on every message are yours.",
       ar: "لا تحتاج إلى رقم خاص. يرسل Whano من رقم تجاري موثق على بنيته التحتية، فلا يوجد جهاز لربطه ولا خطر على رقمك الشخصي، واسم متجرك وتفاصيله على كل رسالة.",
@@ -1022,13 +1059,15 @@ export const faqs = [
   {
     home: true,
     question: { en: "Does Whano work for cash-on-delivery orders?", ar: "هل يعمل Whano مع طلبات الدفع عند الاستلام؟" },
+    topic: "orders",
     answer: {
-      en: "Yes — confirmation matters most there. The customer sees the items, total, and delivery address, then taps Confirm, Cancel, or Edit before the parcel ships. Your Shopify order is updated with that answer.",
+      en: "Yes, confirmation matters most there. The customer sees the items, total, and delivery address, then taps Confirm, Cancel, or Edit before the parcel ships. Your Shopify order is updated with that answer.",
       ar: "نعم، والتأكيد أهم ما في هذه الطلبات. يرى العميل المنتجات والإجمالي وعنوان التوصيل، ثم يضغط تأكيد أو إلغاء أو تعديل قبل شحن الطلب، ويتحدّث طلب Shopify بهذه الإجابة.",
     },
   },
   {
     question: { en: "What if I stop using it?", ar: "ماذا لو توقفت عن استخدامه؟" },
+    topic: "start",
     answer: {
       en: "Pause every send from the console whenever you want, and uninstall from Shopify when you are done. Your orders and history stay in Shopify, and no subscription needs cancelling.",
       ar: "أوقف كل الإرسال من لوحة التحكم وقتما تشاء، وألغِ التثبيت من Shopify عند الانتهاء. تبقى طلباتك وسجلك في Shopify، ولا يوجد اشتراك لإلغائه.",
@@ -1037,6 +1076,7 @@ export const faqs = [
   {
     home: true,
     question: { en: "Does it work with my shipping company?", ar: "هل يعمل مع شركة الشحن التي أتعامل معها؟" },
+    topic: "orders",
     answer: {
       en: "Whano creates shipments with Bosta and ShipBlu after the customer confirms, follows each shipment's state, and shows delivery exceptions with the reason the carrier gives. If you ship through another company, the tracking update still reaches the customer on WhatsApp.",
       ar: "ينشئ Whano الشحنات مع بوسطة وشيب بلو بعد تأكيد العميل، ويتابع حالة كل شحنة، ويعرض تعثر التوصيل مع السبب الذي تذكره شركة الشحن. وإذا كنت تشحن عبر شركة أخرى، يظل تحديث التتبع يصل إلى العميل على واتساب.",
@@ -1044,6 +1084,7 @@ export const faqs = [
   },
   {
     question: { en: "Is it right for my store?", ar: "هل يناسب Whano متجري؟" },
+    topic: "start",
     answer: {
       en: "If you use Shopify, sell physical products, and already speak to customers on WhatsApp, Whano is built for the space between a new order and a completed delivery.",
       ar: "إذا كنت تستخدم Shopify، وتبيع منتجات ملموسة، وتتواصل مع عملائك على واتساب، فـ Whano مصمم للمسافة بين الطلب الجديد والتسليم المكتمل.",
@@ -1052,13 +1093,23 @@ export const faqs = [
   {
     home: true,
     question: { en: "Can I recover abandoned carts?", ar: "هل يمكنني استرجاع السلات المتروكة؟" },
+    topic: "growth",
     answer: {
       en: "Yes. Turn on abandoned carts in Controls; Whano sends a WhatsApp reminder after the delay you set, respects quiet hours and consent, and can attach a discount. About 4 points per message.",
       ar: "نعم. فعّل السلات المتروكة من التحكم؛ يرسل Whano تذكيرًا على واتساب بعد المدة التي تحددها، ويحترم ساعات الهدوء والموافقة، ويمكنه إرفاق كود خصم. نحو 4 نقاط لكل رسالة.",
     },
   },
   {
+    question: { en: "Can I see what each automation spent?", ar: "هل أرى ما استهلكته كل أتمتة؟" },
+    topic: "growth",
+    answer: {
+      en: "Yes. The console overview shows the points spent per service for the selected period. Failed messages are netted out, so the number matches what actually ran, and the same breakdown is available in the balance view.",
+      ar: "نعم. تعرض النظرة العامة في لوحة التحكم النقاط المستهلكة لكل خدمة في الفترة المحددة. وتُستبعد الرسائل الفاشلة، فالرقم يطابق ما تم تشغيله فعلًا، ويتوفر التفصيل نفسه في عرض الرصيد.",
+    },
+  },
+  {
     question: { en: "How do I choose who gets a campaign?", ar: "كيف أختار من تستهدفهم الحملة؟" },
+    topic: "growth",
     answer: {
       en: "Build the audience in the console by number of orders or total spend, add or remove customers in bulk, and keep a block list for unsubscribed or ignored customers. Only opted-in customers receive campaigns; you can optionally auto opt-in new customers.",
       ar: "ابنِ الجمهور من لوحة التحكم حسب عدد الطلبات أو إجمالي الإنفاق، وأضف العملاء أو أزلهم دفعة واحدة، واحتفظ بقائمة حظر للمشتركين الملغين أو المتجاهلين. ولا تستقبل الحملات إلا من وافق، ويمكنك تفعيل الموافقة التلقائية للعملاء الجدد.",

@@ -182,7 +182,7 @@ const total = String(workflows.length).padStart(2, "0");
             type="button"
             class:list={["hero-demo__dot", idx === 0 && "is-active"]}
             data-wf-dot={idx}
-            aria-label={`${wf.number} — ${wf.tabLabel.en}`}
+            aria-label={`${wf.number}, ${wf.tabLabel.en}`}
           ></button>
         ))}
       </div>
@@ -346,8 +346,8 @@ const total = String(workflows.length).padStart(2, "0");
         link.setAttribute("role", "link");
         link.setAttribute("aria-disabled", "true");
         link.title = L(
-          "للعرض فقط — الزر الحقيقي يفتح صفحة تعديل الطلب.",
-          "Demo only — the real button opens the secure edit page.",
+          "للعرض فقط, الزر الحقيقي يفتح صفحة تعديل الطلب.",
+          "Demo only, the real button opens the secure edit page.",
         );
         const label = language === "en" && urlButton.textEn ? urlButton.textEn : urlButton.text;
         link.innerHTML = `
@@ -430,7 +430,7 @@ const total = String(workflows.length).padStart(2, "0");
       let reply: { text: string; success?: boolean; buttons?: string[]; badge?: string } | null = null;
 
       if (key === "confirm") {
-        reply = { text: L("تم تأكيد طلبك #1056!", "Order #1056 is confirmed!"), success: true };
+        reply = { text: L("✅ تم تأكيد طلبك #1056!\n\nهنبدأ تجهيزه دلوقتي.", "✅ Your order #1056 is confirmed!\n\nWe will start preparing it now."), success: true };
       } else if (key === "cancel") {
         reply = {
           text: L(
@@ -446,8 +446,8 @@ const total = String(workflows.length).padStart(2, "0");
           const editLink = renderBubble({
             sender: "whano",
             text: L(
-              "طلبك #1056 من نوى.\n\nعايز تغيّر حاجة — الكمية أو المقاس أو تضيف منتج؟\nافتح الرابط من الزر وعدّل طلبك بنفسك.\n\nالرابط يعمل مرة واحدة، وقبل تأكيد الطلب.",
-              "Your order #1056 from Nawa.\n\nNeed to change something — a quantity, a variant, or adding an item?\nOpen the link from the button and update your order yourself.\n\nThe link works once, before the order is confirmed.",
+              "طلبك #1056 من نوى.\n\nعايز تغيّر حاجة, الكمية أو المقاس أو تضيف منتج؟\nافتح الرابط من الزر وعدّل طلبك بنفسك.\n\nالرابط يعمل مرة واحدة، وقبل تأكيد الطلب.",
+              "Your order #1056 from Nawa.\n\nNeed to change something, a quantity, a variant, or adding an item?\nOpen the link from the button and update your order yourself.\n\nThe link works once, before the order is confirmed.",
             ),
             urlButton: {
               text: L("عدّل طلبك", "Update your order"),
@@ -462,14 +462,14 @@ const total = String(workflows.length).padStart(2, "0");
         reply = {
           text: L(
             "شكراً لتوضيحك. تم إلغاء الطلب بالكامل ونتمنى نخدمك في المرة القادمة 🙏",
-            "Thanks for explaining. The order is fully cancelled — we hope to serve you again 🙏",
+            "Thanks for explaining. The order is fully cancelled, we hope to serve you again 🙏",
           ),
         };
       } else if (key === "great" || key === "good") {
         reply = {
           text: L(
             "شكراً لتقييمك! سعداء جداً بتجربتك معنا وبطلبك القادم 🎉",
-            "Thank you for the rating! We're glad you enjoyed it — see you on your next order 🎉",
+            "Thank you for the rating! We're glad you enjoyed it, see you on your next order 🎉",
           ),
           success: true,
         };
@@ -597,7 +597,7 @@ const total = String(workflows.length).padStart(2, "0");
       const wf = workflows[i];
       dot.setAttribute(
         "aria-label",
-        `${wf.number} — ${isArabic ? wf.tabLabel.ar : wf.tabLabel.en}`,
+        `${wf.number}, ${isArabic ? wf.tabLabel.ar : wf.tabLabel.en}`,
       );
     });
   }
