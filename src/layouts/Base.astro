@@ -1,6 +1,8 @@
 ---
 import "../styles/global.css";
 import "../styles/playful.css";
+import "../styles/chat.css";
+import ChatWidget from "../components/ChatWidget.astro";
 
 type SchemaObject = Record<string, unknown>;
 
@@ -169,6 +171,7 @@ const pageSchemas = Array.isArray(schema) ? schema : schema ? [schema] : [];
       <span data-copy="ar" lang="ar">تجاوز إلى المحتوى</span>
     </a>
     <slot />
+    <ChatWidget />
     <script is:inline>
       // First-party, cookieless analytics: one counter per page view and per
       // install/login click. Localhost and privacy signals are ignored.

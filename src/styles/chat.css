@@ -1,0 +1,567 @@
+/* ============================================================================
+   Whano app guide
+   A quiet, typographic chat surface. No mascot, no decorative icons, and no
+   ornamental motion. The only animation is the response and typing feedback.
+   ========================================================================== */
+
+.whano-chat {
+  position: relative;
+  z-index: 80;
+  font-family: var(--font-body);
+}
+
+.whano-chat__launcher {
+  position: fixed;
+  z-index: 70;
+  inset-inline-end: 24px;
+  bottom: 24px;
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  padding: 0 16px;
+  border: 1px solid var(--pl-line);
+  border-radius: 999px;
+  background: #ffffff;
+  color: var(--ink);
+  box-shadow: 0 10px 28px rgba(22, 18, 43, 0.1);
+  cursor: pointer;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.whano-chat__launcher:hover {
+  border-color: rgba(11, 122, 75, 0.32);
+  box-shadow: 0 12px 32px rgba(22, 18, 43, 0.13);
+}
+
+.whano-chat__wordmark {
+  display: inline-flex;
+  align-items: center;
+  color: var(--ink);
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.whano-chat__dot {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  margin-inline-start: 4px;
+  border-radius: 50%;
+  background: var(--green);
+}
+
+/* Panel */
+
+.whano-chat__panel {
+  position: fixed;
+  z-index: 80;
+  inset-inline-end: 24px;
+  bottom: 82px;
+  display: flex;
+  width: min(380px, calc(100vw - 32px));
+  height: min(620px, calc(100dvh - 116px));
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--pl-line);
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 24px 60px rgba(22, 18, 43, 0.16);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 140ms ease, transform 160ms ease;
+}
+
+.whano-chat__panel[hidden] {
+  display: none;
+}
+
+.whano-chat__panel.is-open {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.whano-chat__header {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--pl-line);
+  background: #ffffff;
+}
+
+.whano-chat__identity {
+  min-width: 0;
+}
+
+.whano-chat__identity h2 {
+  margin: 0;
+  font: inherit;
+}
+
+.whano-chat__identity .whano-chat__wordmark {
+  font-size: 15px;
+}
+
+.whano-chat__status {
+  margin: 4px 0 0;
+  color: var(--ink-muted);
+  font-size: 10.5px;
+  line-height: 1.4;
+}
+
+.whano-chat__actions {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 10px;
+  font-size: 10.5px;
+  line-height: 1.4;
+}
+
+.whano-chat__support,
+.whano-chat__action {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: 10.5px;
+  line-height: 1.4;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.whano-chat__support {
+  color: var(--green);
+  font-weight: 600;
+}
+
+.whano-chat__action {
+  color: var(--ink-muted);
+  font-weight: 500;
+}
+
+.whano-chat__support:hover,
+.whano-chat__action:hover {
+  color: var(--ink);
+}
+
+.whano-chat__support:hover {
+  color: var(--green-dark);
+}
+
+/* Body and welcome */
+
+.whano-chat__body {
+  min-height: 0;
+  flex: 1;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: #ffffff;
+  scrollbar-width: thin;
+  scrollbar-color: #ddd9e8 transparent;
+}
+
+.whano-chat__welcome {
+  padding: 24px 20px 18px;
+}
+
+.whano-chat__welcome[hidden] {
+  display: none;
+}
+
+.whano-chat__kicker {
+  margin: 0;
+  color: var(--green);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.whano-chat__welcome h3 {
+  margin: 8px 0 6px;
+  color: var(--ink);
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.35;
+}
+
+.whano-chat__description {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 12.5px;
+  line-height: 1.75;
+}
+
+.whano-chat__quick-label {
+  margin: 20px 0 0;
+  color: var(--ink-muted);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.whano-chat__suggestions {
+  display: flex;
+  flex-direction: column;
+  margin-top: 4px;
+  border-top: 1px solid var(--pl-line);
+}
+
+.whano-chat__suggestion {
+  display: flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 11px 0;
+  border: 0;
+  border-bottom: 1px solid var(--pl-line);
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+  text-align: start;
+  cursor: pointer;
+  transition: color 130ms ease;
+}
+
+.whano-chat__suggestion:hover {
+  color: var(--green);
+}
+
+.whano-chat__human {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--pl-line);
+  color: var(--ink-soft);
+  font-size: 11.5px;
+  line-height: 1.5;
+  text-decoration: none;
+}
+
+.whano-chat__human-link {
+  flex: none;
+  color: var(--green);
+  font-size: 10.5px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  white-space: nowrap;
+}
+
+.whano-chat__human:hover .whano-chat__human-link {
+  color: var(--green-dark);
+}
+
+/* Messages */
+
+.whano-chat__messages {
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  gap: 10px;
+  padding: 18px 20px 20px;
+}
+
+.whano-chat__messages:empty {
+  min-height: 0;
+  padding: 0;
+}
+
+.whano-chat__message {
+  display: flex;
+  animation: whano-chat-in 120ms ease both;
+}
+
+.whano-chat__message--user {
+  justify-content: flex-end;
+}
+
+.whano-chat__bubble {
+  max-width: 89%;
+  padding: 9px 12px;
+  border-radius: 12px;
+  background: #f6f6f3;
+  color: var(--ink);
+  font-size: 12.5px;
+  line-height: 1.75;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.whano-chat__message--user .whano-chat__bubble {
+  background: var(--green);
+  color: #ffffff;
+}
+
+.whano-chat__bubble p {
+  margin: 0;
+}
+
+.whano-chat__quick-tag {
+  display: block;
+  margin-top: 6px;
+  color: var(--ink-muted);
+  font-size: 9px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.whano-chat__support-link {
+  display: inline-block;
+  margin-top: 6px;
+  color: var(--green);
+  font-size: 11px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.whano-chat__message--error .whano-chat__bubble {
+  border: 1px solid #f0ddd7;
+  background: #fff9f7;
+}
+
+.whano-chat__typing .whano-chat__bubble {
+  display: inline-flex;
+  min-width: 46px;
+  align-items: center;
+  gap: 4px;
+  padding: 13px 14px;
+}
+
+.whano-chat__typing .whano-chat__bubble span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--ink-muted);
+  animation: whano-chat-dot 1s ease-in-out infinite;
+}
+
+.whano-chat__typing .whano-chat__bubble span:nth-child(2) {
+  animation-delay: 140ms;
+}
+
+.whano-chat__typing .whano-chat__bubble span:nth-child(3) {
+  animation-delay: 280ms;
+}
+
+/* Composer */
+
+.whano-chat__composer {
+  display: flex;
+  flex: none;
+  align-items: flex-end;
+  gap: 8px;
+  padding: 12px 16px 10px;
+  border-top: 1px solid var(--pl-line);
+  background: #ffffff;
+}
+
+.whano-chat__composer textarea {
+  flex: 1;
+  min-height: 38px;
+  max-height: 110px;
+  padding: 9px 11px;
+  border: 1px solid var(--pl-line);
+  border-radius: 10px;
+  background: #ffffff;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  line-height: 1.6;
+  resize: none;
+  outline: none;
+  transition: border-color 140ms ease;
+}
+
+.whano-chat__composer textarea::placeholder {
+  color: var(--ink-muted);
+}
+
+.whano-chat__composer textarea:focus {
+  border-color: rgba(11, 122, 75, 0.45);
+}
+
+.whano-chat__send,
+.whano-chat__stop {
+  display: inline-flex;
+  min-height: 38px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 14px;
+  border-radius: 10px;
+  font-family: var(--font-body);
+  font-size: 11.5px;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 140ms ease, border-color 140ms ease, color 140ms ease;
+}
+
+.whano-chat__send {
+  border: 1px solid var(--green);
+  background: var(--green);
+  color: #ffffff;
+}
+
+.whano-chat__send:hover {
+  border-color: var(--green-dark);
+  background: var(--green-dark);
+}
+
+.whano-chat__send:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.whano-chat__stop {
+  border: 1px solid var(--pl-line);
+  background: #ffffff;
+  color: var(--ink);
+}
+
+.whano-chat__stop:hover {
+  border-color: rgba(22, 18, 43, 0.2);
+}
+
+.whano-chat__stop[hidden] {
+  display: none;
+}
+
+/* Footer */
+
+.whano-chat__footer {
+  flex: none;
+  padding: 0 16px 12px;
+  background: #ffffff;
+  color: var(--ink-muted);
+  font-size: 9.5px;
+  line-height: 1.5;
+}
+
+/* Keyboard focus */
+
+.whano-chat button:focus-visible,
+.whano-chat a:focus-visible,
+.whano-chat textarea:focus-visible {
+  outline: 2px solid rgba(11, 122, 75, 0.45);
+  outline-offset: 2px;
+}
+
+.whano-chat.is-open .whano-chat__launcher {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Mobile */
+
+@media (max-width: 760px) {
+  .whano-chat__launcher {
+    inset-inline-end: 16px;
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    min-height: 42px;
+    padding: 0 14px;
+  }
+
+  body.has-mobile-cta .whano-chat__launcher {
+    bottom: calc(82px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .whano-chat__panel {
+    inset: 0;
+    width: 100%;
+    height: 100dvh;
+    max-height: none;
+    border: 0;
+    border-radius: 0;
+    opacity: 1;
+    transform: none;
+  }
+
+  .whano-chat__panel:not(.is-open) {
+    display: none;
+  }
+
+  .whano-chat__header {
+    padding-top: calc(14px + env(safe-area-inset-top, 0px));
+    padding-inline: 16px;
+  }
+
+  .whano-chat__actions {
+    gap: 8px;
+    font-size: 10px;
+  }
+
+  .whano-chat__support,
+  .whano-chat__action {
+    font-size: 10px;
+  }
+
+  .whano-chat__welcome {
+    padding: 26px 20px 18px;
+  }
+
+  .whano-chat__welcome h3 {
+    font-size: 21px;
+  }
+
+  .whano-chat__composer {
+    padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .whano-chat__footer {
+    padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+  }
+
+  body.chat-open {
+    overflow: hidden;
+  }
+}
+
+/* Motion */
+
+@keyframes whano-chat-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes whano-chat-dot {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .whano-chat__panel,
+  .whano-chat__launcher,
+  .whano-chat__message,
+  .whano-chat__typing .whano-chat__bubble span {
+    animation: none !important;
+    transition: none !important;
+  }
+}

@@ -169,6 +169,10 @@ export const privacySections: LegalSection[] = [
         ar: "لإنشاء اقتراحات المنتجات والردود الحوارية عند تفعيل هذه الميزات.",
       },
       {
+        en: "To answer questions in the Whano app guide. The messages you submit there are sent through OpenRouter to its model provider to generate a reply. The conversation stays in your browser session; Whano does not store the message text. A hashed IP is kept for at most two hours only to rate-limit requests. Do not send passwords, card numbers, one-time codes, or sensitive order data.",
+        ar: "للإجابة عن الأسئلة في دليل تطبيق Whano. تُرسل الرسائل التي تكتبها هناك عبر OpenRouter إلى مزود النموذج لإنشاء الرد. تبقى المحادثة في جلسة متصفحك، ولا يحتفظ Whano بنص الرسائل. ويُحفظ عنوان IP مجزأ لمدة ساعتين كحد أقصى لغرض تحديد معدل الطلبات فقط. لا ترسل كلمات مرور أو أرقام بطاقات أو رموزًا لمرة واحدة أو بيانات طلب حساسة.",
+      },
+      {
         en: "To provide support, process payments, detect abuse, maintain security, and improve reliability using aggregated or anonymized information where possible.",
         ar: "لتقديم الدعم ومعالجة المدفوعات واكتشاف إساءة الاستخدام والحفاظ على الأمان وتحسين الاعتمادية، باستخدام معلومات مجمعة أو مجهّلة كلما أمكن.",
       },
@@ -178,8 +182,8 @@ export const privacySections: LegalSection[] = [
     heading: { en: "4. When information is shared", ar: "4. متى نشارك المعلومات" },
     paragraphs: [
       {
-        en: "We do not sell your data. We share only what is needed with service providers that help us operate Whano, including Shopify, WhatsApp, hosting and database providers, payment processors, email delivery providers, and AI or workflow providers used to produce enabled features. We may also disclose information when required by law or to protect the service and its users.",
-        ar: "لا نبيع بياناتك. نشارك فقط المعلومات اللازمة مع مقدمي الخدمات الذين يساعدوننا في تشغيل Whano، ومنهم Shopify وواتساب ومقدمو الاستضافة وقواعد البيانات ومعالجو الدفع وخدمات إرسال البريد ومقدمو الترجمة الآلية المستخدمون لتشغيل الميزات المفعّلة. وقد نكشف المعلومات إذا طلب القانون ذلك أو لحماية الخدمة ومستخدميها.",
+        en: "We do not sell your data. We share only what is needed with service providers that help us operate Whano, including Shopify, WhatsApp, hosting and database providers, payment processors, email delivery providers, translation providers, and OpenRouter for the Whano app guide. We may also disclose information when required by law or to protect the service and its users.",
+        ar: "لا نبيع بياناتك. نشارك فقط المعلومات اللازمة مع مقدمي الخدمات الذين يساعدوننا في تشغيل Whano، ومنهم Shopify وواتساب ومقدمو الاستضافة وقواعد البيانات ومعالجو الدفع وخدمات إرسال البريد ومقدمو الترجمة، وOpenRouter لدليل تطبيق Whano. وقد نكشف المعلومات إذا طلب القانون ذلك أو لحماية الخدمة ومستخدميها.",
       },
     ],
   },
@@ -348,6 +352,10 @@ export const dpaSections: LegalSection[] = [
       {
         en: "AI provider, when transactional translation is needed: message text only. Not used to train third-party models.",
         ar: "مزود ذكاء اصطناعي, عند الحاجة إلى ترجمة الرسائل: نص الرسالة فقط. ولا تُستخدم لتدريب نماذج الأطراف الثالثة.",
+      },
+      {
+        en: "OpenRouter and its model provider, for the Whano app guide: the message text you submit. Messages are processed only to generate the reply. Do not send sensitive data.",
+        ar: "OpenRouter ومزود النموذج، لدليل تطبيق Whano: نص الرسالة التي تكتبها. تُعالج الرسائل فقط لإنشاء الرد. لا ترسل بيانات حساسة.",
       },
       {
         en: "Resend, merchant email notifications: merchant email address only.",

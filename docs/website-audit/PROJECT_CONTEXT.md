@@ -186,10 +186,13 @@ Verified in the merchant console code:
 
 - **Landing:** Astro 7, static output, deployed to Cloudflare Workers
   (`whano-landing`). Custom CSS, no React runtime, self-hosted fonts, no
-  third-party analytics.
+  third-party analytics. The Whano app guide uses a minimal typographic
+  wordmark and quiet panel, deterministic product-only quick answers, and a
+  server-side OpenRouter proxy.
 - **Public routes:** see `WEBSITE_INVENTORY.md`.
 - **Worker:** serves static assets, first-party `/api/hit` + `/api/stats`, a
-  secret `/stats` page, and proxies `/order/*` and `/cart/*` to the Railway API.
+  secret `/stats` page, `/api/chat` for the Whano app guide, and proxies
+  `/order/*` and `/cart/*` to the Railway API.
 - **Bilingual:** one URL; the server renders Arabic-first HTML; an inline script
   selects Arabic or English from a saved choice or the browser language. The
   language toggle switches copy, direction, metadata, and links in the browser.

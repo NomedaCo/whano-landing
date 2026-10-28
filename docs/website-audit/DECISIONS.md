@@ -266,3 +266,38 @@ entries dated 15 to 23 October 2026. It covers the send buffer, campaigns and
 audiences, abandoned carts, size check, shipment tags, review page, one-time
 edit link, ShipBlu, Google Sheets, message shapes, the pre-confirmation update
 link, and points spent per service. It is not a roadmap.
+
+## 2026-10-28
+
+### D29: Minimal, product-only Whano app guide
+
+The widget is deliberately quiet. There is no mascot, invented character,
+avatar, decorative icon set, gradient artwork, or ornamental motion. The
+launcher is an ink-and-white `whano` wordmark; the panel is white with a thin
+border, Readex Pro typography, and the green brand dot. Header actions are text
+links: WhatsApp, New, and Close. Quick topics are plain rows, and the human
+support option is a line of text with the WhatsApp number.
+
+Its scope is Whano only. The system prompt refuses general knowledge, coding,
+news, jokes, personal advice, competitors, and other off-topic requests, and
+offers WhatsApp support instead. Common Whano questions do not call a model. The
+client matches a content-backed quick answer set before `POST /api/chat`:
+getting started, pricing and points, product capabilities, order edits, shipping
+and tracking, installation, size check, campaigns, order page, cancellation,
+console reports, and WhatsApp support. These answers use the same `plans` and
+`site` data as the rest of the site, so they do not drift from the pricing or
+support number. Unmatched questions stream from `openai/gpt-5-nano` through the
+Worker; the OpenRouter key is a Cloudflare secret and never reaches the browser.
+
+The chat text stays in browser session storage. The Worker keeps no message
+content. A SHA-256 hashed IP counter in the existing `ANALYTICS` KV limits each
+visitor to 30 model requests per hour. Missing configuration, an upstream
+failure, a 429, or an empty stream shows a graceful Arabic or English answer with
+the WhatsApp fallback. The public support number is **+2001260055031** and the
+link is `https://wa.me/2001260055031`.
+
+Privacy and DPA copy disclose that assistant messages are processed through
+OpenRouter and that the transcript remains in the browser session. The chat is
+mounted on every page through `Base.astro`, but it stays closed and out of the
+LCP until the visitor opens it. CSS motion is limited to a short panel fade and
+typing feedback, and is disabled under `prefers-reduced-motion`.

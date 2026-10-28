@@ -11,14 +11,18 @@ export interface ChatMessage {
 
 export const site = {
   contactEmail: "contact@nomeda.tech",
-  // Sample data for the interactive demos. It is deliberately a fictional
-  // Egyptian store, not a real merchant, and the support number is not a
-  // reachable line.
+  support: {
+    display: "+2001260055031",
+    whatsapp: "https://wa.me/2001260055031",
+    whatsappLabel: { en: "WhatsApp support", ar: "دعم واتساب" },
+  },
+  // Sample data for the interactive demos. The store is fictional; the
+  // support number is Whano's real support line.
   demo: {
     storeName: { en: "Nawa", ar: "نوى" },
     storeInitial: { en: "N", ar: "ن" },
     customerName: { en: "Ahmed", ar: "أحمد" },
-    supportPhone: "+20 100 000 0000",
+    supportPhone: "+2001260055031",
   },
   accessUrl: {
     en: "https://apps.shopify.com/whano",

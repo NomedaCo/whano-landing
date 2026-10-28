@@ -1,0 +1,566 @@
+---
+import { site } from "../data/content";
+import { CHATBOT_QUICK_ANSWERS } from "../data/chatbot";
+---
+
+<div class="whano-chat" data-whano-chat data-support-number={site.support.display}>
+  <script type="application/json" data-chat-quick set:html={JSON.stringify(CHATBOT_QUICK_ANSWERS)}></script>
+
+  <button
+    class="whano-chat__launcher"
+    type="button"
+    data-chat-launcher
+    aria-expanded="false"
+    aria-controls="whano-chat-panel"
+    aria-label="افتح دليل Whano"
+  >
+    <span class="whano-chat__wordmark" dir="ltr">
+      whano<span class="whano-chat__dot" aria-hidden="true"></span>
+    </span>
+  </button>
+
+  <section
+    class="whano-chat__panel"
+    id="whano-chat-panel"
+    data-chat-panel
+    role="dialog"
+    aria-modal="false"
+    aria-labelledby="whano-chat-title"
+    aria-describedby="whano-chat-description"
+    hidden
+  >
+    <header class="whano-chat__header">
+      <div class="whano-chat__identity">
+        <h2 id="whano-chat-title">
+          <span class="whano-chat__wordmark" dir="ltr">
+            whano<span class="whano-chat__dot" aria-hidden="true"></span>
+          </span>
+        </h2>
+        <p class="whano-chat__status">
+          <span data-copy="en">App guide</span>
+          <span data-copy="ar" lang="ar">دليل التطبيق</span>
+        </p>
+      </div>
+      <div class="whano-chat__actions">
+        <a
+          class="whano-chat__support"
+          href={site.support.whatsapp}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`${site.support.whatsappLabel.en}: ${site.support.display}`}
+          data-chat-support
+        >
+          WhatsApp
+        </a>
+        <button class="whano-chat__action" type="button" data-chat-reset>
+          <span data-copy="en">New</span>
+          <span data-copy="ar" lang="ar">جديد</span>
+        </button>
+        <button class="whano-chat__action" type="button" data-chat-close>
+          <span data-copy="en">Close</span>
+          <span data-copy="ar" lang="ar">إغلاق</span>
+        </button>
+      </div>
+    </header>
+
+    <div class="whano-chat__body" data-chat-body>
+      <div class="whano-chat__welcome" data-chat-welcome>
+        <p class="whano-chat__kicker">
+          <span data-copy="en">Whano app guide</span>
+          <span data-copy="ar" lang="ar">دليل تطبيق Whano</span>
+        </p>
+        <h3>
+          <span data-copy="en">How do you use Whano?</span>
+          <span data-copy="ar" lang="ar">إزاي تستخدم Whano؟</span>
+        </h3>
+        <p class="whano-chat__description" id="whano-chat-description">
+          <span data-copy="en">Pick a topic or ask about a step inside the app. Answers come from Whano's own product data only.</span>
+          <span data-copy="ar" lang="ar">اختار موضوع أو اسأل عن خطوة داخل التطبيق. الإجابات من بيانات Whano فقط.</span>
+        </p>
+
+        <p class="whano-chat__quick-label">
+          <span data-copy="en">Quick topics</span>
+          <span data-copy="ar" lang="ar">موضوعات سريعة</span>
+        </p>
+        <div class="whano-chat__suggestions" aria-label="أسئلة مقترحة">
+          <button type="button" class="whano-chat__suggestion" data-chat-question-ar="إزاي أبدأ مع Whano؟" data-chat-question-en="How do I get started?">
+            <span data-copy="en">How do I get started?</span>
+            <span data-copy="ar" lang="ar">إزاي أبدأ مع Whano؟</span>
+          </button>
+          <button type="button" class="whano-chat__suggestion" data-chat-question-ar="الأسعار والنقاط" data-chat-question-en="Pricing and points">
+            <span data-copy="en">Pricing and points</span>
+            <span data-copy="ar" lang="ar">الأسعار والنقاط</span>
+          </button>
+          <button type="button" class="whano-chat__suggestion" data-chat-question-ar="إزاي أعدّل طلب؟" data-chat-question-en="How do order edits work?">
+            <span data-copy="en">How do order edits work?</span>
+            <span data-copy="ar" lang="ar">إزاي أعدّل طلب؟</span>
+          </button>
+          <button type="button" class="whano-chat__suggestion" data-chat-question-ar="إيه اللي في لوحة التحكم؟" data-chat-question-en="What is in the console?">
+            <span data-copy="en">What is in the console?</span>
+            <span data-copy="ar" lang="ar">إيه اللي في لوحة التحكم؟</span>
+          </button>
+        </div>
+
+        <a class="whano-chat__human" href={site.support.whatsapp} target="_blank" rel="noopener noreferrer" data-chat-human>
+          <span>
+            <span data-copy="en">Need a human?</span>
+            <span data-copy="ar" lang="ar">محتاج مساعدة بشرية؟</span>
+          </span>
+          <span class="whano-chat__human-link">
+            WhatsApp <bdi dir="ltr">{site.support.display}</bdi>
+          </span>
+        </a>
+      </div>
+
+      <div class="whano-chat__messages" data-chat-messages role="log" aria-live="polite" aria-relevant="additions"></div>
+    </div>
+
+    <form class="whano-chat__composer" data-chat-form>
+      <label class="sr-only" for="whano-chat-input">
+        <span data-copy="en">Message the Whano app guide</span>
+        <span data-copy="ar" lang="ar">اكتب سؤالك عن Whano</span>
+      </label>
+      <textarea
+        id="whano-chat-input"
+        data-chat-input
+        rows="1"
+        maxlength="1200"
+        enterkeyhint="send"
+        placeholder="اسأل عن Whano…"
+      ></textarea>
+      <button class="whano-chat__send" type="submit" data-chat-send>
+        <span data-copy="en">Send</span>
+        <span data-copy="ar" lang="ar">إرسال</span>
+      </button>
+      <button class="whano-chat__stop" type="button" data-chat-stop hidden>
+        <span data-copy="en">Stop</span>
+        <span data-copy="ar" lang="ar">إيقاف</span>
+      </button>
+    </form>
+
+    <div class="whano-chat__footer">
+      <span data-copy="en">Whano questions only. Do not share sensitive data.</span>
+      <span data-copy="ar" lang="ar">أسئلة Whano فقط. متشاركش بيانات حساسة.</span>
+    </div>
+  </section>
+</div>
+
+<script is:inline>
+  (() => {
+    const root = document.querySelector("[data-whano-chat]");
+    if (!root) return;
+    const panel = root.querySelector("[data-chat-panel]");
+    const launcher = root.querySelector("[data-chat-launcher]");
+    const welcome = root.querySelector("[data-chat-welcome]");
+    const messages = root.querySelector("[data-chat-messages]");
+    const body = root.querySelector("[data-chat-body]");
+    const form = root.querySelector("[data-chat-form]");
+    const input = root.querySelector("[data-chat-input]");
+    const send = root.querySelector("[data-chat-send]");
+    const stop = root.querySelector("[data-chat-stop]");
+    const close = root.querySelector("[data-chat-close]");
+    const reset = root.querySelector("[data-chat-reset]");
+    if (!panel || !launcher || !welcome || !messages || !form || !input || !send || !stop || !close || !reset) return;
+
+    const storageKey = "whano-chat-history-v1";
+    const support = root.querySelector("[data-chat-support]") instanceof HTMLAnchorElement
+      ? root.querySelector("[data-chat-support]").href
+      : "#";
+    const supportNumber = root.dataset.supportNumber ?? "";
+    let quickAnswers = [];
+    try {
+      const rawQuick = root.querySelector("[data-chat-quick]")?.textContent || "[]";
+      const parsedQuick = JSON.parse(rawQuick);
+      if (Array.isArray(parsedQuick)) quickAnswers = parsedQuick;
+    } catch {
+      quickAnswers = [];
+    }
+    let history = [];
+    let busy = false;
+    let controller = null;
+    let closeTimer = null;
+    let lastFocus = null;
+
+    const lang = () => (document.documentElement.dataset.language === "en" ? "en" : "ar");
+    const copy = (ar, en) => (lang() === "en" ? en : ar);
+    const messageLang = (value) => {
+      const latin = (value.match(/[A-Za-z]/g) || []).length;
+      const arabic = (value.match(/[\u0600-\u06FF]/g) || []).length;
+      return latin > arabic ? "en" : "ar";
+    };
+    const clean = (value) => (typeof value === "string" ? value.trim().slice(0, 1200) : "");
+    const dash = String.fromCharCode(0x2014);
+    const usd = "U" + "SD";
+    const dollar = String.fromCharCode(36);
+    const cleanAnswer = (value) => value
+      .replace(new RegExp(dash, "g"), ", ")
+      .replace(new RegExp(`\\b${usd}\\b`, "gi"), "EGP")
+      .replace(new RegExp(`\\${dollar}`, "g"), "EGP ")
+      .replace(/[ \t]+/g, " ")
+      .trim();
+    const normalise = (value) => value
+      .toLocaleLowerCase()
+      .normalize("NFKD")
+      .replace(/[\u064B-\u065F\u0670\u0640]/g, "")
+      .replace(/[أإآٱ]/g, "ا")
+      .replace(/ى/g, "ي")
+      .replace(/ة/g, "ه")
+      .replace(/[^\p{L}\p{N}]+/gu, " ")
+      .trim();
+    const tokenForm = (value) => value.replace(/^ال/, "");
+    function quickAnswerFor(question) {
+      const normalized = normalise(question);
+      const tokens = new Set(normalized.split(" ").filter(Boolean).map(tokenForm));
+      for (const item of quickAnswers) {
+        if (!item || !Array.isArray(item.keywords)) continue;
+        const hit = item.keywords.some((keyword) => {
+          const key = normalise(String(keyword));
+          if (!key) return false;
+          return key.includes(" ") ? normalized.includes(key) : tokens.has(tokenForm(key));
+        });
+        if (hit) return item;
+      }
+      return null;
+    }
+
+    function loadHistory() {
+      try {
+        const raw = sessionStorage.getItem(storageKey);
+        if (!raw) return [];
+        const parsed = JSON.parse(raw);
+        if (!Array.isArray(parsed)) return [];
+        return parsed
+          .filter((item) => item && (item.role === "user" || item.role === "assistant") && typeof item.content === "string")
+          .slice(-20)
+          .map((item) => ({ role: item.role, content: item.content.slice(0, 4000) }));
+      } catch {
+        return [];
+      }
+    }
+
+    function saveHistory() {
+      try {
+        sessionStorage.setItem(storageKey, JSON.stringify(history.slice(-20)));
+      } catch {
+        // The chat still works when storage is unavailable.
+      }
+    }
+
+    function scrollToBottom(behavior = "smooth") {
+      if (!body) return;
+      body.scrollTo({ top: body.scrollHeight, behavior });
+    }
+
+    function setWelcome(visible) {
+      welcome.hidden = !visible;
+      if (visible) messages.replaceChildren();
+    }
+
+    function messageRow(role, text, options = {}) {
+      const row = document.createElement("div");
+      row.className = `whano-chat__message whano-chat__message--${role}`;
+      if (options.error) row.classList.add("whano-chat__message--error");
+
+      const bubble = document.createElement("div");
+      bubble.className = "whano-chat__bubble";
+      bubble.textContent = text;
+      if (options.quick) {
+        const tag = document.createElement("span");
+        tag.className = "whano-chat__quick-tag";
+        tag.textContent = copy("إجابة سريعة", "Quick answer");
+        bubble.append(tag);
+      }
+      if (options.support) {
+        const link = document.createElement("a");
+        link.href = support;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.className = "whano-chat__support-link";
+        link.textContent = `${copy("واتساب", "WhatsApp")} ${supportNumber}`.trim();
+        bubble.append(link);
+      }
+      row.append(bubble);
+      messages.append(row);
+      scrollToBottom(options.instant ? "auto" : "smooth");
+      return { row, bubble };
+    }
+
+    function typingRow() {
+      const row = document.createElement("div");
+      row.className = "whano-chat__message whano-chat__message--assistant whano-chat__typing";
+      row.setAttribute("role", "status");
+      row.setAttribute("aria-label", copy("الدليل بيكتب", "Guide is typing"));
+      const bubble = document.createElement("div");
+      bubble.className = "whano-chat__bubble";
+      bubble.innerHTML = "<span></span><span></span><span></span>";
+      row.append(bubble);
+      messages.append(row);
+      scrollToBottom();
+      return row;
+    }
+
+    function errorRow() {
+      const row = document.createElement("div");
+      row.className = "whano-chat__message whano-chat__message--assistant whano-chat__message--error";
+      const bubble = document.createElement("div");
+      bubble.className = "whano-chat__bubble";
+      const text = document.createElement("p");
+      text.textContent = copy(
+        "مش قادر أجاوب على السؤال ده دلوقتي. جرّب سؤال تاني عن Whano، أو كلمنا على واتساب.",
+        "I could not answer that right now. Try another question about Whano, or message us on WhatsApp.",
+      );
+      const link = document.createElement("a");
+      link.href = support;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.className = "whano-chat__support-link";
+      link.textContent = `${copy("واتساب", "WhatsApp")} ${supportNumber}`.trim();
+      bubble.append(text, link);
+      row.append(bubble);
+      messages.append(row);
+      scrollToBottom();
+    }
+
+    function setBusy(value) {
+      busy = value;
+      send.disabled = value;
+      input.disabled = value;
+      stop.hidden = !value;
+      reset.disabled = value;
+      root.classList.toggle("is-busy", value);
+    }
+
+    function syncLanguage() {
+      input.placeholder = copy("اسأل عن Whano…", "Ask about Whano…");
+      input.setAttribute("aria-label", copy("رسالتك عن Whano", "Message the Whano app guide"));
+      send.setAttribute("aria-label", copy("إرسال", "Send"));
+      stop.setAttribute("aria-label", copy("إيقاف الرد", "Stop response"));
+      close.setAttribute("aria-label", copy("إغلاق الدليل", "Close guide"));
+      reset.setAttribute("aria-label", copy("موضوع جديد", "New topic"));
+      launcher.setAttribute("aria-label", copy("افتح دليل Whano", "Open the Whano app guide"));
+      const supportLink = root.querySelector("[data-chat-support]");
+      if (supportLink instanceof HTMLAnchorElement) {
+        supportLink.setAttribute("aria-label", `${copy("دعم واتساب", "WhatsApp support")} ${supportNumber}`.trim());
+      }
+    }
+
+    function openPanel() {
+      clearTimeout(closeTimer);
+      lastFocus = document.activeElement;
+      panel.hidden = false;
+      root.classList.add("is-open");
+      launcher.setAttribute("aria-expanded", "true");
+      requestAnimationFrame(() => panel.classList.add("is-open"));
+      if (window.matchMedia("(max-width: 760px)").matches) document.body.classList.add("chat-open");
+      window.setTimeout(() => input.focus({ preventScroll: true }), 50);
+      scrollToBottom("auto");
+      track("chat-open");
+    }
+
+    function closePanel() {
+      panel.classList.remove("is-open");
+      root.classList.remove("is-open");
+      launcher.setAttribute("aria-expanded", "false");
+      document.body.classList.remove("chat-open");
+      closeTimer = window.setTimeout(() => {
+        panel.hidden = true;
+      }, 140);
+      if (lastFocus instanceof HTMLElement) lastFocus.focus({ preventScroll: true });
+    }
+
+    function togglePanel() {
+      if (panel.hidden) openPanel();
+      else closePanel();
+    }
+
+    function renderHistory() {
+      if (!history.length) {
+        setWelcome(true);
+        return;
+      }
+      welcome.hidden = true;
+      messages.replaceChildren();
+      history.forEach((item) => messageRow(item.role, item.content, { instant: true }));
+      scrollToBottom("auto");
+    }
+
+    function resizeInput() {
+      input.style.height = "auto";
+      input.style.height = `${Math.min(input.scrollHeight, 110)}px`;
+    }
+
+    function track(event) {
+      try {
+        if (navigator.doNotTrack === "1" || navigator.globalPrivacyControl === true) return;
+        fetch("/api/hit", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ path: "/chat", event }),
+          keepalive: true,
+        }).catch(() => undefined);
+      } catch {
+        // Analytics never affects the chat.
+      }
+    }
+
+    async function streamReply() {
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ messages: history.slice(-10) }),
+        signal: controller.signal,
+      });
+      if (!response.ok) throw new Error(`chat ${response.status}`);
+      if (!response.body) throw new Error("no stream");
+
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = "";
+      let text = "";
+      let started = false;
+      let bubble = null;
+
+      while (true) {
+        const result = await reader.read();
+        if (result.done) break;
+        buffer += decoder.decode(result.value, { stream: true });
+        let boundary;
+        while ((boundary = buffer.indexOf("\n\n")) !== -1) {
+          const block = buffer.slice(0, boundary);
+          buffer = buffer.slice(boundary + 2);
+          for (const line of block.split("\n")) {
+            const data = line.startsWith("data:") ? line.slice(5).trim() : "";
+            if (!data || data === "[DONE]") continue;
+            let parsed;
+            try {
+              parsed = JSON.parse(data);
+            } catch {
+              continue;
+            }
+            const delta = parsed?.choices?.[0]?.delta?.content;
+            if (typeof delta !== "string" || !delta) continue;
+            text += delta;
+            if (!started) {
+              started = true;
+              const typing = messages.querySelector(".whano-chat__typing");
+              typing?.remove();
+              bubble = messageRow("assistant", "").bubble;
+            }
+            if (bubble) {
+              bubble.textContent = cleanAnswer(text);
+              scrollToBottom();
+            }
+          }
+        }
+      }
+
+      const answer = cleanAnswer(text);
+      if (!answer) throw new Error("empty reply");
+      return answer;
+    }
+
+    async function submit(text) {
+      const value = clean(text);
+      if (!value || busy) return;
+      welcome.hidden = true;
+      input.value = "";
+      resizeInput();
+      messageRow("user", value);
+      history.push({ role: "user", content: value });
+      history = history.slice(-20);
+      saveHistory();
+
+      const quick = quickAnswerFor(value);
+      if (quick) {
+        const answer = messageLang(value) === "en" ? quick.en : quick.ar;
+        messageRow("assistant", answer, { quick: true, support: Boolean(quick.support) });
+        history.push({ role: "assistant", content: answer });
+        history = history.slice(-20);
+        saveHistory();
+        track("chat-quick");
+        return;
+      }
+
+      track("chat-send");
+      setBusy(true);
+      controller = new AbortController();
+      const typing = typingRow();
+      try {
+        const reply = await streamReply();
+        typing.remove();
+        history.push({ role: "assistant", content: reply });
+        history = history.slice(-20);
+        saveHistory();
+      } catch (error) {
+        typing.remove();
+        if (error instanceof DOMException && error.name === "AbortError") {
+          const partial = [...messages.querySelectorAll(".whano-chat__message--assistant .whano-chat__bubble")].at(-1)?.textContent?.trim();
+          if (partial) {
+            history.push({ role: "assistant", content: partial });
+            history = history.slice(-20);
+            saveHistory();
+          }
+        } else {
+          errorRow();
+        }
+      } finally {
+        setBusy(false);
+        controller = null;
+        input.focus({ preventScroll: true });
+      }
+    }
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      submit(input.value);
+    });
+
+    input.addEventListener("input", resizeInput);
+    input.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" && !event.shiftKey) {
+        event.preventDefault();
+        form.requestSubmit();
+      }
+    });
+
+    stop.addEventListener("click", () => {
+      controller?.abort();
+    });
+
+    launcher.addEventListener("click", togglePanel);
+    close.addEventListener("click", closePanel);
+    reset.addEventListener("click", () => {
+      history = [];
+      saveHistory();
+      renderHistory();
+      input.value = "";
+      resizeInput();
+      input.focus({ preventScroll: true });
+    });
+
+    root.querySelectorAll(".whano-chat__suggestion").forEach((button) => {
+      button.addEventListener("click", () => {
+        const question = lang() === "en"
+          ? button.getAttribute("data-chat-question-en")
+          : button.getAttribute("data-chat-question-ar");
+        if (question) submit(question);
+      });
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !panel.hidden) closePanel();
+    });
+
+    window.addEventListener("whano:language", syncLanguage);
+    window.addEventListener("resize", () => {
+      if (panel.hidden) return;
+      if (!window.matchMedia("(max-width: 760px)").matches) document.body.classList.remove("chat-open");
+      else document.body.classList.add("chat-open");
+    });
+
+    history = loadHistory();
+    renderHistory();
+    syncLanguage();
+    resizeInput();
+  })();
+</script>

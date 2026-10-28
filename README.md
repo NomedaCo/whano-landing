@@ -54,6 +54,39 @@ else lands on the login page. Every "Log in" link on this site points there.
 - `docs/PLAN.md`, `docs/STRATEGY.md`, `docs/CONTENT.md`, `docs/DESIGN-TOKENS.md` —
   the original design/strategy notes, kept current with the shipped site.
 
+## Whano app guide
+
+The widget on every page is a minimal, typographic **Whano app guide**. There is
+no mascot, avatar, or decorative icon set: a wordmark launcher opens a quiet
+white panel with text actions and a short list of app topics. Common app
+questions are answered instantly from a content-backed quick-answer set before
+any model call: getting started, pricing, order edits, shipping and tracking,
+installation, size check, campaigns, the order page, cancellation, console
+reports, and WhatsApp support. Only unmatched Whano questions use the Worker
+endpoint `POST /api/chat`, which streams from OpenRouter using
+`openai/gpt-5-nano` with a strict product-only scope. Off-topic questions are
+declined and offered the WhatsApp support link instead of a general answer. The
+API key stays server-side as the `OPENROUTER_API_KEY` secret. The browser keeps
+the conversation in session storage only; the Worker stores no message content.
+Requests are limited to 30 per IP per hour using a hashed IP in the existing KV
+namespace.
+
+Set the production secret (the account has two Cloudflare accounts, so pass
+the account explicitly):
+
+```sh
+CLOUDFLARE_ACCOUNT_ID=d8ee8a23c9503d16109abc86cc1da53c npx wrangler secret put OPENROUTER_API_KEY --name whano-landing
+```
+
+For local development, create an ignored `.dev.vars` file:
+
+```sh
+OPENROUTER_API_KEY=sk-or-v1-your-key
+```
+
+Without a key, the widget still opens and gracefully sends visitors to the
+WhatsApp support number instead of returning a broken answer.
+
 ## Development
 
 ```sh
@@ -72,10 +105,10 @@ any time, flips the document direction, re-renders the phone conversations,
 and remembers the choice in local storage.
 
 Product copy is **Modern Standard Arabic** (فصحى), matching the console and
-the help articles. The message bubbles inside the hero phones are the exact
-Arabic templates the live product sends, kept verbatim so the demo shows what
-a customer actually receives; English translations of those bubbles are shown
-when the site is in English, with the Arabic as the source. Legal copy is
+the help articles. The message bubbles follow the approved production templates with sample
+values; the home confirmation uses the v7 shape and the exact confirmation
+reply. English translations are shown when the site is in English, with the
+Arabic as the source. Legal copy is
 formal Arabic as well.
 
 ## Project shape

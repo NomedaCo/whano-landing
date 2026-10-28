@@ -299,8 +299,8 @@ export const workflows: Workflow[] = [
       },
       {
         sender: "whano",
-        text: "تم فتح تذكرة الدعم #W-1005.\nفريق خدمة العملاء هيتواصل معاك على الرقم ده:\n+20 100 000 0000\nوهيشرح لك سياسة الاستبدال أو الاسترجاع الخاصة بالمتجر.",
-        textEn: "Support ticket #W-1005 is open.\nCustomer service will contact you on this number:\n+20 100 000 0000\nThey will explain the store's exchange or return policy.",
+        text: "تم فتح تذكرة الدعم #W-1005.\nفريق خدمة العملاء هيتواصل معاك على الرقم ده:\n+2001260055031\nوهيشرح لك سياسة الاستبدال أو الاسترجاع الخاصة بالمتجر.",
+        textEn: "Support ticket #W-1005 is open.\nCustomer service will contact you on this number:\n+2001260055031\nThey will explain the store's exchange or return policy.",
         badge: "← تم فتح تذكرة الدعم #W-1005 وإشعار المتجر",
         badgeEn: "← Support ticket #W-1005 opened and the store notified",
       },

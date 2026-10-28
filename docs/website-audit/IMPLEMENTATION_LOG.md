@@ -445,3 +445,33 @@ unchanged. The change is local and not deployed yet.
   assertions; FAQ 17-answer search suite; Lighthouse mobile home 99-100,
   pricing/features/FAQ/guides/what's new 100, with accessibility, best
   practices, and SEO at 100 across all six.
+
+### Whano app guide and support pass (2026-10-28)
+
+- Added `ChatWidget.astro`, mounted on every page. It is deliberately minimal:
+  a wordmark launcher, a white panel with a thin border, text header actions,
+  plain quick-topic rows, and a text human-support line. No mascot, character,
+  avatar, decorative icon set, gradient artwork, or ornamental animation.
+- Added content-backed `CHATBOT_QUICK_ANSWERS` for getting started, prices and
+  points, product capabilities, order edits, shipping and tracking,
+  installation, size check, campaigns, order page, cancellation, console
+  reports, and support. Matching is normalized for Arabic and English, and a
+  quick answer never reaches the model.
+- Added `POST /api/chat` in `worker.ts`: input limits, same-origin check, 30
+  requests per hashed IP per hour in KV, a 45s stream timeout, OpenRouter
+  `openai/gpt-5-nano`, low reasoning budget, and graceful JSON errors. The
+  system prompt strictly limits the model to Whano product questions and
+  declines general or unrelated questions with the WhatsApp handoff.
+- The browser parses the OpenAI-compatible SSE stream, strips em dashes and
+  dollar symbols from model text, keeps only the last 20 messages in
+  `sessionStorage`, and falls back to WhatsApp on missing key, rate limit,
+  upstream failure, empty output, or stop.
+- OpenRouter processing is disclosed in Privacy and the DPA. `.dev.vars` is
+  ignored; `OPENROUTER_API_KEY` is a Cloudflare secret.
+- Corrected the support number everywhere to **+2001260055031** and
+  `https://wa.me/2001260055031`, including the footer, FAQ help cards, mobile FAQ
+  CTA, hero sample, workflows, assistant prompt, quick answers, and fallback.
+- Verification: `astro check` 0 errors; 17 pages built; mocked quick, AI, human,
+  mobile, language, and persistence checks pass; a real OpenRouter stream and a
+  real browser streaming reply pass; Lighthouse home is 100/100/100/100 with
+  LCP 0.9s and CLS 0.

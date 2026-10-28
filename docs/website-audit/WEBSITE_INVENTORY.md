@@ -26,6 +26,7 @@ Last verified: **2026-10-27**
 | `/robots.txt` | `public/robots.txt` | Crawl rules | N/A | Disallows order/cart/api/stats/login; Cloudflare prepends managed AI signals |
 | `/stats?key=` | `worker.ts` | Private analytics view | No | Secret key; noindex/no-referrer/no-store |
 | `/api/hit` | `worker.ts` | First-party analytics beacon | No | POST only |
+| `/api/chat` | `worker.ts` | Whano app guide SSE proxy | No | POST, same-origin, rate limited |
 | `/api/stats?key=` | `worker.ts` | JSON analytics | No | Secret key |
 | `/order/*` | `worker.ts` proxy → API | Customer order page | Disallowed in robots | Rendered by the API; noindex header |
 | `/cart/*` | `worker.ts` proxy → API | Cart recovery link | Disallowed | Frozen into approved templates; noindex header |

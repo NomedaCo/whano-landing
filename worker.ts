@@ -14,6 +14,8 @@
  * to HTML and assets, and so the font CORS branch actually runs.
  */
 
+import { CHATBOT_MODEL, CHATBOT_SYSTEM_PROMPT } from "./src/data/chatbot";
+
 const ORDER_API_ORIGIN = "https://whano-production.up.railway.app";
 const CONSOLE_URL = "https://whano.nomeda.tech/dashboard";
 
@@ -23,7 +25,7 @@ interface KVListResult {
 
 interface KVNamespaceLike {
   get(key: string): Promise<string | null>;
-  put(key: string, value: string): Promise<void>;
+  put(key: string, value: string, options?: { expirationTtl?: number }): Promise<void>;
   list(options: { prefix: string; limit?: number }): Promise<KVListResult>;
 }
 
@@ -31,6 +33,7 @@ interface Env {
   ASSETS: { fetch(request: Request): Promise<Response> };
   ANALYTICS: KVNamespaceLike;
   STATS_KEY?: string;
+  OPENROUTER_API_KEY?: string;
 }
 
 const json = (body: unknown, status = 200) =>
@@ -95,6 +98,62 @@ function harden(
   });
 }
 
+const CHAT_LIMIT_PER_HOUR = 30;
+const CHAT_MAX_MESSAGES = 12;
+const CHAT_MAX_CHARS = 12_000;
+const CHAT_MAX_MESSAGE_CHARS = 2_000;
+
+type ChatMessage = { role: "user" | "assistant"; content: string };
+
+async function chatRateLimit(request: Request, env: Env): Promise<boolean> {
+  try {
+    const ip = request.headers.get("cf-connecting-ip") ?? "local";
+    const hour = new Date().toISOString().slice(0, 13);
+    const digest = await crypto.subtle.digest(
+      "SHA-256",
+      new TextEncoder().encode(`${ip}:${hour}`),
+    );
+    const hash = [...new Uint8Array(digest)]
+      .slice(0, 8)
+      .map((byte) => byte.toString(16).padStart(2, "0"))
+      .join("");
+    const key = `chat:${hour}:${hash}`;
+    const current = Number((await env.ANALYTICS.get(key)) ?? "0");
+    if (Number.isFinite(current) && current >= CHAT_LIMIT_PER_HOUR) return false;
+    await env.ANALYTICS.put(key, String((Number.isFinite(current) ? current : 0) + 1), {
+      expirationTtl: 7200,
+    });
+    return true;
+  } catch (error) {
+    // A KV failure should not take the assistant down.
+    console.error("chat rate limit failed", error);
+    return true;
+  }
+}
+
+function readChatMessages(value: unknown): ChatMessage[] | null {
+  if (!Array.isArray(value) || value.length === 0 || value.length > 20) return null;
+  const messages: ChatMessage[] = [];
+  let total = 0;
+
+  for (const item of value.slice(-CHAT_MAX_MESSAGES)) {
+    if (!item || typeof item !== "object") continue;
+    const role = (item as { role?: unknown }).role;
+    const content = (item as { content?: unknown }).content;
+    if (role !== "user" && role !== "assistant") continue;
+    if (typeof content !== "string") continue;
+    const text = content.trim();
+    if (!text) continue;
+    if (text.length > CHAT_MAX_MESSAGE_CHARS) return null;
+    total += text.length;
+    if (total > CHAT_MAX_CHARS) return null;
+    messages.push({ role, content: text });
+  }
+
+  if (!messages.length || messages.at(-1)?.role !== "user") return null;
+  return messages;
+}
+
 const worker = {
   async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
@@ -108,6 +167,105 @@ const worker = {
         }),
         { cache: "public, max-age=3600" },
       );
+    }
+
+    if (url.pathname === "/api/chat") {
+      if (request.method !== "POST") return json({ error: "method_not_allowed" }, 405);
+      const origin = request.headers.get("origin");
+      if (origin && origin !== url.origin) return json({ error: "forbidden" }, 403);
+      if (Number(request.headers.get("content-length") ?? "0") > 32_768) {
+        return json({ error: "payload_too_large" }, 413);
+      }
+      if (!env.OPENROUTER_API_KEY) {
+        return json({ error: "chat_not_configured" }, 503);
+      }
+      if (!(await chatRateLimit(request, env))) {
+        return json({ error: "rate_limited" }, 429);
+      }
+
+      let body: unknown;
+      try {
+        body = await request.json();
+      } catch {
+        return json({ error: "invalid_json" }, 400);
+      }
+      const messages = readChatMessages((body as { messages?: unknown })?.messages);
+      if (!messages) return json({ error: "invalid_messages" }, 400);
+
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 45_000);
+      try {
+        const upstream = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+          method: "POST",
+          headers: {
+            authorization: `Bearer ${env.OPENROUTER_API_KEY}`,
+            "content-type": "application/json",
+            "HTTP-Referer": "https://whano.nomeda.tech",
+            "X-Title": "Whano app guide",
+          },
+          body: JSON.stringify({
+            model: CHATBOT_MODEL,
+            messages: [
+              { role: "system", content: CHATBOT_SYSTEM_PROMPT },
+              ...messages,
+            ],
+            stream: true,
+            temperature: 0.2,
+            max_tokens: 2000,
+            reasoning: { effort: "low" },
+          }),
+          signal: controller.signal,
+        });
+
+        if (!upstream.ok) {
+          await upstream.body?.cancel().catch(() => undefined);
+          console.warn("openrouter chat failed", { status: upstream.status });
+          const status = upstream.status === 429 ? 429 : upstream.status === 401 || upstream.status === 403 ? 503 : 502;
+          return json({ error: status === 429 ? "rate_limited" : "chat_unavailable" }, status);
+        }
+
+        if (!upstream.body) {
+          clearTimeout(timeout);
+          return json({ error: "chat_unavailable" }, 502);
+        }
+
+        // Keep the 45s timeout alive while the body is streamed. Clearing it
+        // when the headers arrive would let a stalled upstream hold the reader
+        // forever; this wrapper clears it only when the stream ends or is
+        // cancelled.
+        const reader = upstream.body.getReader();
+        const stream = new ReadableStream<Uint8Array>({
+          async pull(consumer) {
+            try {
+              const { done, value } = await reader.read();
+              if (done) {
+                clearTimeout(timeout);
+                consumer.close();
+                return;
+              }
+              consumer.enqueue(value);
+            } catch (error) {
+              clearTimeout(timeout);
+              consumer.error(error);
+            }
+          },
+          cancel(reason) {
+            clearTimeout(timeout);
+            controller.abort();
+            return reader.cancel(reason);
+          },
+        });
+
+        const headers = new Headers();
+        headers.set("content-type", "text/event-stream; charset=utf-8");
+        headers.set("cache-control", "no-store, no-transform");
+        headers.set("x-accel-buffering", "no");
+        return harden(new Response(stream, { status: 200, headers }), { cache: "no-store" });
+      } catch (error) {
+        clearTimeout(timeout);
+        console.error("openrouter chat request failed", error);
+        return json({ error: "chat_unavailable" }, 502);
+      }
     }
 
     if (url.pathname === "/api/hit") {
