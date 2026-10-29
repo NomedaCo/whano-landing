@@ -15,6 +15,7 @@
  */
 
 import { CHATBOT_MODEL, CHATBOT_SYSTEM_PROMPT } from "./src/data/chatbot";
+import { handleAdmin, handleTrack } from "./src/analytics";
 
 const ORDER_API_ORIGIN = "https://whano-production.up.railway.app";
 const CONSOLE_URL = "https://whano.nomeda.tech/dashboard";
@@ -33,6 +34,7 @@ interface Env {
   ASSETS: { fetch(request: Request): Promise<Response> };
   ANALYTICS: KVNamespaceLike;
   STATS_KEY?: string;
+  DASHBOARD_PASSWORD?: string;
   OPENROUTER_API_KEY?: string;
 }
 
@@ -197,6 +199,14 @@ const worker = {
         return json({ error: "method_not_allowed" }, 405);
       }
       return json({ ok: true, service: "whano-landing" });
+    }
+
+    if (url.pathname === "/api/track") {
+      return handleTrack(request, env);
+    }
+
+    if (url.pathname === "/admin" || url.pathname.startsWith("/admin/")) {
+      return handleAdmin(request, url, env);
     }
 
     if (url.pathname === "/api/chat") {

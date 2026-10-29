@@ -336,3 +336,23 @@ remain allowed for the current Astro markup. `GET /api/health` is a small
 unauthenticated liveness endpoint for an external uptime monitor. The OpenRouter
 spend cap and key rotation remain operational tasks in the provider dashboard,
 not application code.
+
+## 2026-10-29
+
+### D33: Consented first-party sessions and a private dashboard
+
+The public site keeps its cookieless aggregate counters. A separate opt-in
+analytics layer records anonymous visitor and session IDs, page paths, active
+seconds, scroll depth, click labels, language, device type, and consented chat
+text. Events and sessions expire after 30 days; chat transcript keys expire
+after 14 days. No raw IP addresses are stored; the IP is hashed only for rate
+limiting.
+
+`/admin/analytics` is protected by `DASHBOARD_PASSWORD` and an HttpOnly signed
+cookie. It lists sessions and shows pages, active time, scroll, events, and chat
+transcripts. `/admin/` is disallowed in robots and noindexed. The existing
+aggregate `/stats` route remains separate for compatibility.
+
+The consent banner is the gate. Essential-only visitors get no session events
+and no transcript storage. Privacy and DPA copy disclose the optional retention
+and processor role; legal review remains required before relying on the wording.

@@ -169,8 +169,12 @@ export const privacySections: LegalSection[] = [
         ar: "لإنشاء اقتراحات المنتجات والردود الحوارية عند تفعيل هذه الميزات.",
       },
       {
-        en: "To answer questions in the Whano app guide. The messages you submit there are sent through OpenRouter to its model provider to generate a reply. The conversation stays in your browser session; Whano does not store the message text. A hashed IP is kept for at most two hours only to rate-limit requests. Do not send passwords, card numbers, one-time codes, or sensitive order data.",
-        ar: "للإجابة عن الأسئلة في دليل تطبيق Whano. تُرسل الرسائل التي تكتبها هناك عبر OpenRouter إلى مزود النموذج لإنشاء الرد. تبقى المحادثة في جلسة متصفحك، ولا يحتفظ Whano بنص الرسائل. ويُحفظ عنوان IP مجزأ لمدة ساعتين كحد أقصى لغرض تحديد معدل الطلبات فقط. لا ترسل كلمات مرور أو أرقام بطاقات أو رموزًا لمرة واحدة أو بيانات طلب حساسة.",
+        en: "To answer questions in the Whano app guide. The messages you submit there are sent through OpenRouter to its model provider to generate a reply. If you allow analytics, the chat transcript is stored for up to 14 days; otherwise the conversation stays in your browser session and Whano does not store the message text. A hashed IP is kept for at most two hours only to rate-limit requests. Do not send passwords, card numbers, one-time codes, or sensitive order data.",
+        ar: "للإجابة عن الأسئلة في دليل تطبيق Whano. تُرسل الرسائل التي تكتبها هناك عبر OpenRouter إلى مزود النموذج لإنشاء الرد. إذا سمحت بالتحليلات، يُحفظ نص المحادثة لمدة 14 يومًا كحد أقصى؛ وإلا تبقى المحادثة في جلسة متصفحك ولا يحتفظ Whano بنص الرسائل. ويُحفظ عنوان IP مجزأ لمدة ساعتين كحد أقصى لغرض تحديد معدل الطلبات فقط. لا ترسل كلمات مرور أو أرقام بطاقات أو رموزًا لمرة واحدة أو بيانات طلب حساسة.",
+      },
+      {
+        en: "To understand and improve the landing page, only if you allow analytics in the consent banner: anonymous session events such as pages visited, active time, scroll depth, clicks, and device type are kept for up to 30 days. No raw IP addresses are stored. If you choose Essential only, no session analytics are collected.",
+        ar: "لفهم صفحة الموقع وتحسينها، فقط إذا سمحت بالتحليلات في شريط الموافقة: تُحفظ أحداث جلسة مجهولة مثل الصفحات التي تمت زيارتها، ومدة الاستخدام، وعمق التمرير، والنقرات، ونوع الجهاز لمدة 30 يومًا كحد أقصى. ولا تُحفظ عناوين IP الأصلية. وإذا اخترت الأساسي فقط، لا تُجمع تحليلات الجلسة.",
       },
       {
         en: "To provide support, process payments, detect abuse, maintain security, and improve reliability using aggregated or anonymized information where possible.",
@@ -356,6 +360,10 @@ export const dpaSections: LegalSection[] = [
       {
         en: "OpenRouter and its model provider, for the Whano app guide: the message text you submit. Messages are processed only to generate the reply. Do not send sensitive data.",
         ar: "OpenRouter ومزود النموذج، لدليل تطبيق Whano: نص الرسالة التي تكتبها. تُعالج الرسائل فقط لإنشاء الرد. لا ترسل بيانات حساسة.",
+      },
+      {
+        en: "Cloudflare, hosting and consented website analytics: anonymous session events for 30 days, and chat transcripts for 14 days. No raw IP addresses are stored.",
+        ar: "Cloudflare، الاستضافة وتحليلات الموقع المصرّح بها: أحداث جلسة مجهولة لمدة 30 يومًا، ونصوص محادثة لمدة 14 يومًا. ولا تُحفظ عناوين IP الأصلية.",
       },
       {
         en: "Resend, merchant email notifications: merchant email address only.",

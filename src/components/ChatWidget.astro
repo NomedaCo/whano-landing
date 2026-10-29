@@ -307,6 +307,7 @@ import { CHATBOT_QUICK_ANSWERS } from "../data/chatbot";
 
     function errorRow() {
       track("chat-error");
+      trackSession("chat-error");
       const row = document.createElement("div");
       row.className = "whano-chat__message whano-chat__message--assistant whano-chat__message--error";
       const bubble = document.createElement("div");
@@ -362,6 +363,7 @@ import { CHATBOT_QUICK_ANSWERS } from "../data/chatbot";
       window.setTimeout(() => input.focus({ preventScroll: true }), 50);
       scrollToBottom("auto");
       track("chat-open");
+      trackSession("chat-open");
     }
 
     function closePanel() {
@@ -410,6 +412,14 @@ import { CHATBOT_QUICK_ANSWERS } from "../data/chatbot";
       }
     }
 
+    const trackSession = (type, data = {}) => {
+      try {
+        window.whanoTrack?.(type, data);
+      } catch {
+        // Session analytics is optional.
+      }
+    };
+
     async function streamReply() {
       const response = await fetch("/api/chat", {
         method: "POST",
@@ -418,7 +428,10 @@ import { CHATBOT_QUICK_ANSWERS } from "../data/chatbot";
         signal: controller.signal,
       });
       if (!response.ok) {
-        if (response.status === 429) track("chat-rate-limited");
+        if (response.status === 429) {
+          track("chat-rate-limited");
+          trackSession("chat-rate-limited");
+        }
         throw new Error(`chat ${response.status}`);
       }
       if (!response.body) throw new Error("no stream");
@@ -476,6 +489,7 @@ import { CHATBOT_QUICK_ANSWERS } from "../data/chatbot";
       input.value = "";
       resizeInput();
       messageRow("user", value);
+      trackSession("chat-message", { role: "user", content: value });
       history.push({ role: "user", content: value });
       history = history.slice(-20);
       saveHistory();
@@ -484,6 +498,8 @@ import { CHATBOT_QUICK_ANSWERS } from "../data/chatbot";
       if (quick) {
         const answer = messageLang(value) === "en" ? quick.en : quick.ar;
         messageRow("assistant", answer, { quick: true, support: Boolean(quick.support) });
+        trackSession("chat-message", { role: "assistant", content: answer });
+        trackSession("chat-quick", { quick: quick.id });
         history.push({ role: "assistant", content: answer });
         history = history.slice(-20);
         saveHistory();
@@ -498,6 +514,7 @@ import { CHATBOT_QUICK_ANSWERS } from "../data/chatbot";
       try {
         const reply = await streamReply();
         typing.remove();
+        trackSession("chat-message", { role: "assistant", content: reply });
         history.push({ role: "assistant", content: reply });
         history = history.slice(-20);
         saveHistory();
@@ -506,6 +523,7 @@ import { CHATBOT_QUICK_ANSWERS } from "../data/chatbot";
         if (error instanceof DOMException && error.name === "AbortError") {
           const partial = [...messages.querySelectorAll(".whano-chat__message--assistant .whano-chat__bubble")].at(-1)?.textContent?.trim();
           if (partial) {
+            trackSession("chat-message", { role: "assistant", content: partial });
             history.push({ role: "assistant", content: partial });
             history = history.slice(-20);
             saveHistory();

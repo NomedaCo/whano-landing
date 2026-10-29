@@ -5,5 +5,6 @@ Disallow: /cart/
 Disallow: /api/
 Disallow: /stats
 Disallow: /login
+Disallow: /admin/
 
 Sitemap: https://whano.nomeda.tech/sitemap.xml

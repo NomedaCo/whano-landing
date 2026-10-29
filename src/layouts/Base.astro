@@ -4,6 +4,7 @@ import "../styles/playful.css";
 import "../styles/chat.css";
 import ChatWidget from "../components/ChatWidget.astro";
 import FreePointsPromo from "../components/FreePointsPromo.astro";
+import AnalyticsConsent from "../components/AnalyticsConsent.astro";
 
 type SchemaObject = Record<string, unknown>;
 
@@ -197,6 +198,7 @@ const pageSchemas = (Array.isArray(schema) ? schema : schema ? [schema] : []).ma
     <slot />
     <ChatWidget />
     {showPromo && <FreePointsPromo />}
+    <AnalyticsConsent />
     <script is:inline>
       // First-party, cookieless analytics: one counter per page view and per
       // install/login click. Localhost and privacy signals are ignored.

@@ -37,6 +37,9 @@ Last verified: **2026-10-29**
 | `/api/hit` | `worker.ts` | First-party analytics beacon | No | POST only |
 | `/api/chat` | `worker.ts` | Whano app guide SSE proxy | No | POST, same-origin, rate limited |
 | `/api/health` | `worker.ts` | Liveness endpoint | No | GET/HEAD; no secrets |
+| `/api/track` | `src/analytics.ts` | Consented anonymous session events | No | POST; same-origin; rate limited |
+| `/admin/login` | `src/analytics.ts` | Admin login | No | Password + signed HttpOnly cookie |
+| `/admin/analytics` | `src/analytics.ts` | Private session dashboard | No | Cookie protected; noindex; 30-day events, 14-day chat |
 | `/api/stats?key=` | `worker.ts` | JSON analytics | No | Secret key |
 | `/order/*` | `worker.ts` proxy → API | Customer order page | Disallowed in robots | Rendered by the API; noindex header |
 | `/cart/*` | `worker.ts` proxy → API | Cart recovery link | Disallowed | Frozen into approved templates; noindex header |

@@ -1,0 +1,191 @@
+---
+import "../styles/analytics.css";
+---
+
+<div class="analytics-consent" data-analytics-consent hidden>
+  <div class="analytics-consent__copy">
+    <p>
+      <span data-copy="en">Help us improve Whano. Allow anonymous session analytics and chat transcripts. Pages, active time, scroll depth, and clicks are kept for 30 days; chat content for 14 days. No passwords or card data.</span>
+      <span data-copy="ar" lang="ar">ساعدنا في تحسين Whano. اسمح بتحليلات مجهولة للجلسة ونصوص المحادثة. تُحفظ الصفحات ومدة الاستخدام والتمرير والنقرات لمدة 30 يومًا، ومحتوى المحادثة لمدة 14 يومًا. لا كلمات مرور أو بيانات بطاقات.</span>
+      <a href="/privacy/">
+        <span data-copy="en">Privacy</span>
+        <span data-copy="ar" lang="ar">الخصوصية</span>
+      </a>
+    </p>
+  </div>
+  <div class="analytics-consent__actions">
+    <button class="analytics-consent__essential" type="button" data-analytics-deny>
+      <span data-copy="en">Essential only</span>
+      <span data-copy="ar" lang="ar">الأساسي فقط</span>
+    </button>
+    <button class="analytics-consent__allow" type="button" data-analytics-allow>
+      <span data-copy="en">Allow analytics</span>
+      <span data-copy="ar" lang="ar">اسمح بالتحليلات</span>
+    </button>
+  </div>
+</div>
+
+<script is:inline>
+  (() => {
+    const banner = document.querySelector("[data-analytics-consent]");
+    if (!banner) return;
+    const allow = banner.querySelector("[data-analytics-allow]");
+    const deny = banner.querySelector("[data-analytics-deny]");
+    if (!allow || !deny) return;
+
+    const consentKey = "whano-analytics-consent-v1";
+    const visitorKey = "whano-analytics-visitor-v1";
+    const sessionKey = "whano-analytics-session-v1";
+    const dnt = navigator.doNotTrack === "1" || navigator.globalPrivacyControl === true;
+    let enabled = false;
+    let sessionId = "";
+    let visitorId = "";
+    let lastActiveAt = 0;
+    let lastScroll = 0;
+    let heartbeatTimer = 0;
+
+    const readStore = (store, key) => {
+      try {
+        return store.getItem(key);
+      } catch {
+        return null;
+      }
+    };
+    const writeStore = (store, key, value) => {
+      try {
+        store.setItem(key, value);
+      } catch {
+        // Analytics is optional.
+      }
+    };
+    const uuid = () => {
+      if (crypto.randomUUID) return crypto.randomUUID();
+      return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (char) => {
+        const value = (Math.random() * 16) | 0;
+        return (char === "x" ? value : (value & 3) | 8).toString(16);
+      });
+    };
+    const device = () => {
+      if (window.matchMedia("(max-width: 760px)").matches) return "mobile";
+      if (window.matchMedia("(max-width: 1100px)").matches) return "tablet";
+      return "desktop";
+    };
+    const referrer = () => {
+      try {
+        return document.referrer ? new URL(document.referrer).origin.slice(0, 200) : "";
+      } catch {
+        return "";
+      }
+    };
+    const send = (type, data = {}, beacon = false) => {
+      if (!enabled || !sessionId) return;
+      const payload = JSON.stringify({
+        sessionId,
+        visitorId,
+        type,
+        path: location.pathname,
+        language: document.documentElement.lang || "ar",
+        device: device(),
+        referrer: referrer(),
+        ...data,
+      });
+      try {
+        if (beacon && navigator.sendBeacon) {
+          navigator.sendBeacon("/api/track", new Blob([payload], { type: "application/json" }));
+          return;
+        }
+        fetch("/api/track", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: payload,
+          keepalive: true,
+        }).catch(() => undefined);
+      } catch {
+        // Analytics never affects the page.
+      }
+    };
+    const activeSeconds = () => {
+      if (!lastActiveAt) return 0;
+      const now = Date.now();
+      const seconds = Math.max(0, Math.min(60, Math.round((now - lastActiveAt) / 1000)));
+      lastActiveAt = now;
+      return seconds;
+    };
+    const heartbeat = (beacon = false) => {
+      if (document.visibilityState !== "visible" && !beacon) return;
+      const seconds = activeSeconds();
+      if (seconds > 0) send("heartbeat", { activeSeconds: seconds }, beacon);
+    };
+
+    const start = () => {
+      if (enabled || dnt) return;
+      enabled = true;
+      visitorId = readStore(localStorage, visitorKey) || uuid();
+      writeStore(localStorage, visitorKey, visitorId);
+      sessionId = readStore(sessionStorage, sessionKey) || uuid();
+      writeStore(sessionStorage, sessionKey, sessionId);
+      lastActiveAt = Date.now();
+      lastScroll = 0;
+      send("page", {});
+      heartbeatTimer = window.setInterval(() => heartbeat(false), 15000);
+
+      window.whanoTrack = (type, data = {}) => send(type, data);
+      window.whanoAnalytics = { get enabled() { return enabled; }, get sessionId() { return sessionId; } };
+
+      window.addEventListener("scroll", () => {
+        const max = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+        const depth = max > 0 ? Math.min(100, Math.round((window.scrollY / max) * 100)) : 0;
+        if (depth >= lastScroll + 10) {
+          lastScroll = depth;
+          send("scroll", { scroll: depth });
+        }
+      }, { passive: true });
+
+      document.addEventListener("click", (event) => {
+        const link = event.target instanceof Element ? event.target.closest("a, button[data-track]") : null;
+        if (!link) return;
+        const label = (link.innerText || link.getAttribute("aria-label") || "").replace(/\s+/g, " ").trim().slice(0, 80);
+        if (!label) return;
+        const href = link instanceof HTMLAnchorElement ? link.getAttribute("href") || "" : "";
+        send("click", { label, href: href.slice(0, 200) });
+      });
+
+      document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState === "hidden") {
+          heartbeat(true);
+          lastActiveAt = 0;
+        } else {
+          lastActiveAt = Date.now();
+        }
+      });
+      window.addEventListener("pagehide", () => {
+        heartbeat(true);
+        window.clearInterval(heartbeatTimer);
+      });
+    };
+
+    const decide = (value) => {
+      writeStore(localStorage, consentKey, value);
+      banner.hidden = true;
+      if (value === "granted") start();
+    };
+
+    if (dnt) {
+      banner.hidden = true;
+      return;
+    }
+    const choice = readStore(localStorage, consentKey);
+    if (choice === "granted") {
+      start();
+      return;
+    }
+    if (choice === "denied") {
+      banner.hidden = true;
+      return;
+    }
+
+    banner.hidden = false;
+    allow.addEventListener("click", () => decide("granted"));
+    deny.addEventListener("click", () => decide("denied"));
+  })();
+</script>

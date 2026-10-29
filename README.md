@@ -30,12 +30,19 @@ The page is intentionally editorial rather than a conventional SaaS template: a 
 
 ## Analytics
 
-First-party and cookieless: the Worker counts page views and events in a KV
-namespace: install, login, WhatsApp, email, calculator use, chat open, quick
-answer, model request, and chat error. `GET /api/stats?key=…` returns JSON and
-`/stats?key=…` renders the same numbers as a noindex page, both behind the
-`STATS_KEY` secret. Localhost and visitors sending DNT/GPC are ignored. No third
-party, no cookie, so there is nothing to consent to. The key lives with the team.
+There are two layers:
+
+- **Aggregate counters:** first-party and cookieless page and action counts in
+  the existing KV namespace. `GET /api/stats?key=…` returns JSON and
+  `/stats?key=…` renders the same numbers as a noindex page, behind
+  `STATS_KEY`. Localhost and DNT/GPC visitors are ignored.
+- **Consented sessions:** after the visitor chooses **Allow analytics**, the
+  browser sends anonymous page, active-time, scroll, click, and chat events.
+  Session records expire after 30 days and chat transcripts after 14 days.
+  The dashboard is `/admin/analytics`, protected by `DASHBOARD_PASSWORD` and an
+  HttpOnly signed cookie. No raw IP addresses are stored. Visitors who choose
+  **Essential only** receive no session tracking and no chat transcript storage.
+
 `GET /api/health` is a small unauthenticated liveness endpoint for uptime checks.
 
 ## Sharing

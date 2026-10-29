@@ -498,3 +498,22 @@ unchanged. The change is local and not deployed yet.
   in both languages; contact/integrations render; sitemap has 44 URLs; health
   returns 200; CSP produces no browser console errors; Lighthouse home remains
   100/100/100/100 with LCP 0.9s and CLS 0.
+
+### Consented session analytics dashboard (2026-10-29)
+
+- Added a consent banner and an opt-in session tracker. It records anonymous
+  visitor/session IDs, page path, active seconds, scroll depth, click labels,
+  language, device type, and chat open/message/quick/error events.
+- `/api/track` stores sessions in the existing KV namespace. Session records
+  expire after 30 days; chat transcript keys expire after 14 days. IPs are
+  hashed only for rate limiting, never stored in session records.
+- Added `/admin/analytics` and `/admin/login`, protected by a
+  `DASHBOARD_PASSWORD` secret and an HttpOnly HMAC-signed cookie. The dashboard
+  lists sessions and shows pages, active time, scroll, events, and chat
+  transcripts. `/admin/` is noindexed and disallowed in robots.
+- Updated Privacy and DPA copy for consented analytics and retention. Legal
+  review is still required.
+- Verification: local consent banner, opt-in tracking, page/chat events,
+  dashboard login, session list, session detail, chat transcript, and 14-day
+  chat retention setup pass. `astro check` 0 errors; 46 pages build; local
+  dashboard returns 200 after login and redirects to login when unauthenticated.

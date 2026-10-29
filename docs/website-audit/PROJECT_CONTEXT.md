@@ -190,9 +190,12 @@ Verified in the merchant console code:
   wordmark and quiet panel, deterministic product-only quick answers, and a
   server-side OpenRouter proxy.
 - **Public routes:** see `WEBSITE_INVENTORY.md`.
-- **Worker:** serves static assets with hash-based CSP, first-party `/api/hit` +
-  `/api/stats`, a secret `/stats` page, `/api/health`, `/api/chat` for the Whano
-  app guide, and proxies `/order/*` and `/cart/*` to the Railway API.
+- **Worker:** serves static assets with hash-based CSP, first-party aggregate
+  counters (`/api/hit`, `/api/stats`, hidden `/stats`), `/api/health`, consented
+  anonymous session analytics (`/api/track`) with a password-protected
+  `/admin/analytics` dashboard, `/api/chat` for the Whano app guide, and proxies
+  `/order/*` and `/cart/*` to the Railway API. Session events expire after 30
+  days; chat transcripts after 14 days. No raw IP is stored.
 - **Bilingual:** `/` is the Arabic route and `/en/` is the English route. Both
   are server-rendered, carry reciprocal `hreflang` and canonical URLs, and are
   listed with alternates in the sitemap. The language control navigates between
