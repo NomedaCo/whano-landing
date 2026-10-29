@@ -1,5 +1,5 @@
 ---
-import { plans, pricingFeatures, pricingFaqs, site } from "../data/content";
+import { plans, pricingFeatures, site } from "../data/content";
 
 const standardPlans = plans.filter((p) => !("isEnterprise" in p && p.isEnterprise));
 ---
@@ -86,7 +86,7 @@ const standardPlans = plans.filter((p) => !("isEnterprise" in p && p.isEnterpris
           <span data-copy="ar" lang="ar">نوفر باقات مخصصة ودعمًا مخصصًا للمتاجر ذات حجم الطلبات الكبير.</span>
         </p>
       </div>
-      <a href={`mailto:${site.contactEmail}?subject=Whano%20Custom%20Points%20Inquiry`} class="pricing-custom-card__cta">
+      <a href="/contact/" class="pricing-custom-card__cta">
         <span data-copy="en">Contact us</span>
         <span data-copy="ar" lang="ar">تواصل معنا</span>
       </a>
@@ -101,27 +101,6 @@ const standardPlans = plans.filter((p) => !("isEnterprise" in p && p.isEnterpris
           </li>
         ))}
       </ul>
-    </div>
-
-    <div class="pricing-faqs reveal">
-      <h2 class="pricing-faqs__title">
-        <span data-copy="en">Billing questions</span>
-        <span data-copy="ar" lang="ar">أسئلة الفوترة</span>
-      </h2>
-      <div class="faq-list">
-        {pricingFaqs.map((faq) => (
-          <details class="faq-item">
-            <summary class="faq-summary">
-              <span data-copy="en">{faq.question.en}</span>
-              <span data-copy="ar" lang="ar">{faq.question.ar}</span>
-            </summary>
-            <p class="faq-answer">
-              <span data-copy="en">{faq.answer.en}</span>
-              <span data-copy="ar" lang="ar">{faq.answer.ar}</span>
-            </p>
-          </details>
-        ))}
-      </div>
     </div>
 
     <p class="price-note reveal">

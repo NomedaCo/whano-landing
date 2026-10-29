@@ -448,12 +448,24 @@
 /* Footer */
 
 .whano-chat__footer {
+  display: flex;
   flex: none;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
   padding: 0 16px 12px;
   background: #ffffff;
   color: var(--ink-muted);
   font-size: 9.5px;
   line-height: 1.5;
+}
+
+.whano-chat__footer a {
+  flex: none;
+  color: var(--green);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 /* Keyboard focus */

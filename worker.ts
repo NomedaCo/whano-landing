@@ -50,22 +50,45 @@ const SECURITY_HEADERS: Record<string, string> = {
   "x-frame-options": "SAMEORIGIN",
 };
 
-// Inline scripts and style attributes are part of this static Astro site. A
-// nonce/hash CSP would be stricter; until the inline bootstrap is externalised,
-// `'unsafe-inline'` keeps the page working while still blocking third-party
-// script and frame injection.
-const CSP = [
-  "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com",
-  "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data:",
-  "font-src 'self'",
-  "connect-src 'self' https://cloudflareinsights.com https://static.cloudflareinsights.com",
-  "object-src 'none'",
-  "base-uri 'self'",
-  "form-action 'none'",
-  "frame-ancestors 'none'",
-].join("; ");
+// Inline scripts are part of the static Astro output. The Worker hashes each
+// page's inline script blocks and allows only those exact hashes, rather than
+// allowing arbitrary inline script with `'unsafe-inline'`. Inline style
+// attributes remain necessary for the existing Astro markup.
+const CSP_HASH_CACHE = new Map<string, string[]>();
+
+function buildCsp(scriptHashes: string[]): string {
+  const scriptSources = [
+    "'self'",
+    ...scriptHashes.map((hash) => `'${hash}'`),
+    "https://static.cloudflareinsights.com",
+  ].join(" ");
+  return [
+    "default-src 'self'",
+    `script-src ${scriptSources}`,
+    "style-src 'self' 'unsafe-inline'",
+    "img-src 'self' data:",
+    "font-src 'self'",
+    "connect-src 'self' https://cloudflareinsights.com https://static.cloudflareinsights.com",
+    "object-src 'none'",
+    "base-uri 'self'",
+    "form-action 'none'",
+    "frame-ancestors 'none'",
+  ].join("; ");
+}
+
+async function inlineScriptHashes(html: string): Promise<string[]> {
+  const hashes = new Set<string>();
+  const pattern = /<script\b(?![^>]*\bsrc\s*=)[^>]*>([\s\S]*?)<\/script>/gi;
+  let match: RegExpExecArray | null;
+  while ((match = pattern.exec(html))) {
+    const source = match[1];
+    if (!source.trim()) continue;
+    const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(source));
+    const binary = [...new Uint8Array(digest)].map((byte) => String.fromCharCode(byte)).join("");
+    hashes.add(`sha256-${btoa(binary)}`);
+  }
+  return [...hashes];
+}
 
 function cacheFor(pathname: string, contentType: string): string | undefined {
   if (pathname.startsWith("/_astro/")) return "public, max-age=31536000, immutable";
@@ -83,11 +106,11 @@ function cacheFor(pathname: string, contentType: string): string | undefined {
  */
 function harden(
   response: Response,
-  options: { html?: boolean; cache?: string; noindex?: boolean } = {},
+  options: { html?: boolean; cache?: string; noindex?: boolean; scriptHashes?: string[] } = {},
 ): Response {
   const headers = new Headers(response.headers);
   for (const [name, value] of Object.entries(SECURITY_HEADERS)) headers.set(name, value);
-  if (options.html) headers.set("content-security-policy", CSP);
+  if (options.html) headers.set("content-security-policy", buildCsp(options.scriptHashes ?? []));
   if (options.cache) headers.set("cache-control", options.cache);
   if (options.noindex) headers.set("x-robots-tag", "noindex, nofollow");
   const body = response.status === 204 || response.status === 304 ? null : response.body;
@@ -167,6 +190,13 @@ const worker = {
         }),
         { cache: "public, max-age=3600" },
       );
+    }
+
+    if (url.pathname === "/api/health") {
+      if (request.method !== "GET" && request.method !== "HEAD") {
+        return json({ error: "method_not_allowed" }, 405);
+      }
+      return json({ ok: true, service: "whano-landing" });
     }
 
     if (url.pathname === "/api/chat") {
@@ -402,9 +432,30 @@ const worker = {
 
     const response = await env.ASSETS.fetch(request);
     const contentType = response.headers.get("content-type") ?? "";
-    return harden(response, {
-      html: contentType.includes("text/html"),
+    if (
+      !contentType.includes("text/html") ||
+      request.method === "HEAD" ||
+      response.status === 304 ||
+      response.status === 204
+    ) {
+      return harden(response, {
+        cache: cacheFor(url.pathname, contentType),
+      });
+    }
+
+    const html = await response.text();
+    let scriptHashes = CSP_HASH_CACHE.get(url.pathname);
+    if (!scriptHashes) {
+      scriptHashes = await inlineScriptHashes(html);
+      CSP_HASH_CACHE.set(url.pathname, scriptHashes);
+    }
+    const headers = new Headers(response.headers);
+    headers.delete("content-length");
+    headers.delete("content-encoding");
+    return harden(new Response(html, { status: response.status, headers }), {
+      html: true,
       cache: cacheFor(url.pathname, contentType),
+      scriptHashes,
     });
   },
 };

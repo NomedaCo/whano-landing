@@ -190,14 +190,15 @@ Verified in the merchant console code:
   wordmark and quiet panel, deterministic product-only quick answers, and a
   server-side OpenRouter proxy.
 - **Public routes:** see `WEBSITE_INVENTORY.md`.
-- **Worker:** serves static assets, first-party `/api/hit` + `/api/stats`, a
-  secret `/stats` page, `/api/chat` for the Whano app guide, and proxies
-  `/order/*` and `/cart/*` to the Railway API.
-- **Bilingual:** one URL; the server renders Arabic-first HTML; an inline script
-  selects Arabic or English from a saved choice or the browser language. The
-  language toggle switches copy, direction, metadata, and links in the browser.
-  There are no separate `/ar` and `/en` URLs or hreflang annotations (see audit
-  S1; this is the main accepted architectural limitation).
+- **Worker:** serves static assets with hash-based CSP, first-party `/api/hit` +
+  `/api/stats`, a secret `/stats` page, `/api/health`, `/api/chat` for the Whano
+  app guide, and proxies `/order/*` and `/cart/*` to the Railway API.
+- **Bilingual:** `/` is the Arabic route and `/en/` is the English route. Both
+  are server-rendered, carry reciprocal `hreflang` and canonical URLs, and are
+  listed with alternates in the sitemap. The language control navigates between
+  routes. Internal English links are localized after the DOM is ready.
+- **Acquisition pages:** contact, integrations, a pricing calculator, nine
+  guides, and English equivalents for every indexable route.
 - **Analytics:** cookieless, first-party counters in Cloudflare KV; events `view`,
   `click-install`, `click-login`.
 

@@ -5,7 +5,10 @@ decisions are marked, not deleted.
 
 ## 2026-10-24
 
-### D1 — Arabic-first server HTML, client language switch, one URL for now
+### D1 — Arabic-first server HTML (superseded by D30 for locale routing)
+
+> Superseded on 2026-10-29 by D30: `/` is Arabic and `/en/` is English with
+> server-rendered routes, hreflang, and route-based navigation.
 
 The server renders Arabic-first HTML (`lang="ar"`, `dir="rtl"`) because the
 audience is Egyptian merchants. The inline script chooses Arabic or English from
@@ -301,3 +304,35 @@ OpenRouter and that the transcript remains in the browser session. The chat is
 mounted on every page through `Base.astro`, but it stays closed and out of the
 LCP until the visitor opens it. CSS motion is limited to a short panel fade and
 typing feedback, and is disabled under `prefers-reduced-motion`.
+
+## 2026-10-29
+
+### D30: Locale routes replace the single-URL language switch
+
+`/` remains the Arabic route and `/en/` serves a server-rendered English
+version. Both carry `lang`, direction, localized metadata, canonical URLs,
+reciprocal `hreflang`, and `x-default` pointing at Arabic. The sitemap lists both
+locales with alternates. English wrapper routes render the existing page
+components with the English locale, and the language control navigates between
+`/` and `/en/` rather than changing only client-side copy. Internal links on
+English pages are localized after the DOM is ready. This closes audit issue S1.
+
+### D31: Points calculator, contact, and integrations
+
+The pricing page includes a client-side estimator based on the published point
+costs: confirmation, shipping, ratings, edits, carts, campaigns, and support.
+It recommends the smallest current pack or a custom pack and labels the result
+as an estimate. `/contact/` provides WhatsApp and email without a form backend.
+`/integrations/` names Shopify, the official WhatsApp Cloud API, Bosta, and
+ShipBlu, and explicitly lists unsupported connections. Five new guides cover
+COD confirmation, carrier choice, template approval, points per order, and
+abandoned carts.
+
+### D32: Hash-based script CSP and a health endpoint
+
+The Worker now reads each HTML asset response, hashes its inline scripts, and
+sets `script-src` to those hashes instead of `'unsafe-inline'`. Inline styles
+remain allowed for the current Astro markup. `GET /api/health` is a small
+unauthenticated liveness endpoint for an external uptime monitor. The OpenRouter
+spend cap and key rotation remain operational tasks in the provider dashboard,
+not application code.

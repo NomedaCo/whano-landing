@@ -475,3 +475,26 @@ unchanged. The change is local and not deployed yet.
   mobile, language, and persistence checks pass; a real OpenRouter stream and a
   real browser streaming reply pass; Lighthouse home is 100/100/100/100 with
   LCP 0.9s and CLS 0.
+
+### Locale, acquisition, and security expansion (2026-10-29)
+
+- Added server-rendered `/en/` routes for every indexable page, reciprocal
+  `hreflang`, x-default, localized metadata, canonical URLs, and a sitemap with
+  Arabic/English alternates.
+- Changed the language control to navigate between `/` and `/en/`; internal
+  links on English pages are localized after DOM ready.
+- Added `/contact/`, `/integrations/`, a pricing points calculator, and five
+  new guides: COD confirmation, Bosta vs ShipBlu, template approval, points per
+  order, and abandoned carts.
+- Linked the calculator from the home pricing teaser and the pricing page.
+- Added `GET /api/health`, `chat-error`, `chat-rate-limited`, WhatsApp, email,
+  and calculator analytics events.
+- Replaced the Worker's script CSP with per-page SHA-256 hashes for inline
+  scripts; inline style attributes remain allowed.
+- Updated the changelog with the quiet app guide and the English/calculator
+  release.
+- Verification: `astro check` 0 errors; 46 pages built; English routes render
+  English and localize nav links; language navigation works; calculator updates
+  in both languages; contact/integrations render; sitemap has 44 URLs; health
+  returns 200; CSP produces no browser console errors; Lighthouse home remains
+  100/100/100/100 with LCP 0.9s and CLS 0.

@@ -1196,6 +1196,18 @@ html[data-language="ar"] .play-copy {
   line-height: 1.7;
 }
 
+.play-pricing__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 20px;
+  margin-top: 6px;
+}
+
+.play-pricing__actions .play-link {
+  margin: 0;
+}
+
 .play-pricing__sticker {
   position: relative;
   z-index: 1;

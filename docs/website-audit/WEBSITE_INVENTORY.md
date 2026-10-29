@@ -1,32 +1,42 @@
 # Whano Landing — Website Inventory
 
-Last verified: **2026-10-27**
+Last verified: **2026-10-29**
 
 ## Public routes
 
 | Route | Source | Purpose | Indexable | Notes |
 |---|---|---|---|---|
-| `/` | `src/pages/index.astro` | Product landing page | Yes | Arabic-first; English client variant |
+| `/` | `src/pages/index.astro` | Arabic product landing page | Yes | Canonical Arabic route |
+| `/en/` | `src/pages/en/index.astro` | English product landing page | Yes | Server-rendered; hreflang alternate |
 | `/features/` | `src/pages/features.astro` | Full capability list (24 items) | Yes | `og-features.png` |
 | `/pricing/` | `src/pages/pricing.astro` | Points packs in EGP, costs, billing FAQ | Yes | `og-pricing.png`; JSON-LD Product/Offer in EGP |
 | `/faq/` | `src/pages/faq.astro` | Help center: 17 answers, search, topics | Yes | FAQPage JSON-LD, 17 questions |
 | `/about/` | `src/pages/about.astro` + `src/data/about.ts` | Company/product background | Yes | Nomeda/NomedaCo naming inconsistency |
-| `/whats-new/` | `src/pages/whats-new.astro` | 12 dated shipped changes | Yes | Dates from production commits |
-| `/guides/` | `src/pages/guides/index.astro` | Guide index, Arabic name شرح عملي | Yes | Four guides |
+| `/whats-new/` | `src/pages/whats-new.astro` | 14 dated product and website changes | Yes | Dates from production commits; newest first |
+| `/contact/` | `src/pages/contact.astro` | WhatsApp and email support | Yes | No form backend |
+| `/integrations/` | `src/pages/integrations.astro` | Shopify, WhatsApp, Bosta, ShipBlu | Yes | Explicitly lists what is not connected |
+| `/guides/` | `src/pages/guides/index.astro` | Guide index, Arabic name شرح عملي | Yes | Nine guides |
 | `/guides/whatsapp-order-follow-up/` | `src/pages/guides/[slug].astro` | Practical follow-up guide | Yes | |
 | `/guides/reduce-wismo/` | same | WISMO reduction guide | Yes | |
 | `/guides/confirmation-template/` | same | Confirmation message anatomy | Yes | New 2026-10-26 |
-| `/guides/shipping-readiness/` | same | Carrier and shipment readiness | Yes | New 2026-10-26 |
+| `/guides/shipping-readiness/` | same | Carrier and shipment readiness | Yes | |
+| `/guides/whatsapp-cod-confirmation/` | same | COD confirmation checklist | Yes | New 2026-10-29 |
+| `/guides/bosta-vs-shipblu/` | same | Carrier choice without invented rankings | Yes | New 2026-10-29 |
+| `/guides/whatsapp-template-approval/` | same | Template approval checklist | Yes | New 2026-10-29 |
+| `/guides/points-per-order/` | same | Point cost breakdown | Yes | New 2026-10-29 |
+| `/guides/abandoned-cart-whatsapp/` | same | Consent and timing for cart reminders | Yes | New 2026-10-29 |
 | `/security/` | `src/pages/security.astro` | Plain-language data handling | Yes | |
 | `/terms/` | `src/pages/terms.astro` + `src/data/legal.ts` | Terms of Service | Yes | Bilingual/legal |
 | `/privacy/` | `src/pages/privacy.astro` + legal data | Privacy Policy | Yes | |
 | `/dpa/` | `src/pages/dpa.astro` + legal data | Data Processing Agreement | Yes | |
 | `/login/` | `src/pages/login.astro` | Console hand-off | Noindex | Worker 301 to `/dashboard`; JS fallback |
-| `/sitemap.xml` | `src/pages/sitemap.xml.ts` | Generated sitemap | N/A | 13 URLs; excludes utility routes |
+| `/sitemap.xml` | `src/pages/sitemap.xml.ts` | Generated sitemap | N/A | 44 URLs with Arabic/English alternates; excludes utility routes |
+| `/en/*` | `src/pages/en/*` | English equivalents of every indexable route | Yes | Server-rendered wrappers |
 | `/robots.txt` | `public/robots.txt` | Crawl rules | N/A | Disallows order/cart/api/stats/login; Cloudflare prepends managed AI signals |
 | `/stats?key=` | `worker.ts` | Private analytics view | No | Secret key; noindex/no-referrer/no-store |
 | `/api/hit` | `worker.ts` | First-party analytics beacon | No | POST only |
 | `/api/chat` | `worker.ts` | Whano app guide SSE proxy | No | POST, same-origin, rate limited |
+| `/api/health` | `worker.ts` | Liveness endpoint | No | GET/HEAD; no secrets |
 | `/api/stats?key=` | `worker.ts` | JSON analytics | No | Secret key |
 | `/order/*` | `worker.ts` proxy → API | Customer order page | Disallowed in robots | Rendered by the API; noindex header |
 | `/cart/*` | `worker.ts` proxy → API | Cart recovery link | Disallowed | Frozen into approved templates; noindex header |
@@ -98,7 +108,7 @@ Last verified: **2026-10-27**
   `AggregateOffer` (Arabic) on /pricing; `Article` on guides; `WebPage`/
   `AboutPage`/`CollectionPage` elsewhere. No self-serving aggregate rating. The
   offers are EGP-backed and the site has no dollar or cent copy.
-- Sitemap: generated at build, 13 URLs, per-page lastmod, `/login`/`/stats`
+- Sitemap: generated at build, 44 URLs with Arabic/English alternates, per-page lastmod, `/login`/`/stats`
   omitted.
 - Robots: `Allow /`; disallows `/order/`, `/cart/`, `/api/`, `/stats`,
   `/login`; sitemap reference. Cloudflare prepends managed content-signals and

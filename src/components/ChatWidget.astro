@@ -139,8 +139,14 @@ import { CHATBOT_QUICK_ANSWERS } from "../data/chatbot";
     </form>
 
     <div class="whano-chat__footer">
-      <span data-copy="en">Whano questions only. Do not share sensitive data.</span>
-      <span data-copy="ar" lang="ar">أسئلة Whano فقط. متشاركش بيانات حساسة.</span>
+      <span>
+        <span data-copy="en">Whano questions only. Do not share sensitive data.</span>
+        <span data-copy="ar" lang="ar">أسئلة Whano فقط. متشاركش بيانات حساسة.</span>
+      </span>
+      <a href="/privacy/">
+        <span data-copy="en">Privacy</span>
+        <span data-copy="ar" lang="ar">الخصوصية</span>
+      </a>
     </div>
   </section>
 </div>
@@ -300,6 +306,7 @@ import { CHATBOT_QUICK_ANSWERS } from "../data/chatbot";
     }
 
     function errorRow() {
+      track("chat-error");
       const row = document.createElement("div");
       row.className = "whano-chat__message whano-chat__message--assistant whano-chat__message--error";
       const bubble = document.createElement("div");
@@ -410,7 +417,10 @@ import { CHATBOT_QUICK_ANSWERS } from "../data/chatbot";
         body: JSON.stringify({ messages: history.slice(-10) }),
         signal: controller.signal,
       });
-      if (!response.ok) throw new Error(`chat ${response.status}`);
+      if (!response.ok) {
+        if (response.status === 429) track("chat-rate-limited");
+        throw new Error(`chat ${response.status}`);
+      }
       if (!response.body) throw new Error("no stream");
 
       const reader = response.body.getReader();

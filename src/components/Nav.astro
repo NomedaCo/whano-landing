@@ -157,12 +157,6 @@ import { site } from "../data/content";
       if (status) status.textContent = language === "ar" ? "تم التبديل إلى العربية" : "Switched to English";
     }
 
-    try {
-      window.localStorage.setItem("whano-language", language);
-    } catch {
-      // Language still changes for this visit when storage is unavailable.
-    }
-
     // The phones build their bubbles in JS; they listen for this on window
     // (an event dispatched on document does not reach window listeners).
     window.dispatchEvent(new CustomEvent("whano:language", { detail: { language } }));
@@ -171,7 +165,15 @@ import { site } from "../data/content";
   languageToggles.forEach((toggle) => {
     toggle.addEventListener("click", () => {
       const current = document.documentElement.dataset.language === "ar" ? "ar" : "en";
-      setLanguage(current === "en" ? "ar" : "en");
+      const target = current === "en" ? "ar" : "en";
+      const path = window.location.pathname;
+      let targetPath;
+      if (target === "en") {
+        targetPath = /^\/en(?:\/|$)/.test(path) ? path : `/en${path}`;
+      } else {
+        targetPath = path === "/en" ? "/" : path.replace(/^\/en(?=\/|$)/, "") || "/";
+      }
+      window.location.assign(`${targetPath}${window.location.search}${window.location.hash}`);
     });
   });
 

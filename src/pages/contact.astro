@@ -1,0 +1,226 @@
+---
+import Base from "../layouts/Base.astro";
+import CTA from "../components/CTA.astro";
+import Footer from "../components/Footer.astro";
+import MobileCta from "../components/MobileCta.astro";
+import Nav from "../components/Nav.astro";
+import { site } from "../data/content";
+
+const contactSchema = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  name: "Contact Whano",
+  description: "Contact Whano support by WhatsApp or email.",
+  inLanguage: "ar",
+  mainEntity: {
+    "@type": "Organization",
+    name: "NomedaCo",
+    url: "https://nomeda.tech",
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        contactType: "customer support",
+        telephone: site.support.display,
+        availableLanguage: ["ar", "en"],
+      },
+      {
+        "@type": "ContactPoint",
+        contactType: "customer support",
+        email: site.contactEmail,
+        availableLanguage: ["ar", "en"],
+      },
+    ],
+  },
+};
+---
+
+<Base
+  title="Contact Whano | WhatsApp support and email"
+  titleArabic="تواصل مع Whano | دعم واتساب والبريد"
+  description="Reach Whano support on WhatsApp or by email. For order issues, include your store domain and order number."
+  descriptionArabic="تواصل مع دعم Whano على واتساب أو بالبريد الإلكتروني. وللمشكلات الخاصة بالطلبات، أرسل رابط المتجر ورقم الطلب."
+  schema={contactSchema}
+>
+  <Nav />
+  <main id="main-content" class="about-page">
+    <div class="site-frame">
+      <header class="about-header reveal">
+        <p class="eyebrow">
+          <span data-copy="en">Whano / contact</span>
+          <span data-copy="ar" lang="ar">Whano / تواصل</span>
+        </p>
+        <h1 class="about-title">
+          <span data-copy="en">Talk to a person.</span>
+          <span data-copy="ar" lang="ar">تحدّث إلى شخص حقيقي.</span>
+        </h1>
+        <p class="about-subtitle">
+          <span data-copy="en">WhatsApp is the fastest way to reach us. Email works too. For an order or account issue, include your store domain and order number.</span>
+          <span data-copy="ar" lang="ar">واتساب أسرع طريقة للتواصل معنا، والبريد الإلكتروني متاح أيضًا. وإذا كانت المشكلة في طلب أو حساب، أرسل رابط المتجر ورقم الطلب.</span>
+        </p>
+      </header>
+
+      <section class="contact-grid" aria-label="Contact options">
+        <article class="contact-card contact-card--primary reveal">
+          <p class="contact-card__label">
+            <span data-copy="en">WhatsApp support</span>
+            <span data-copy="ar" lang="ar">دعم واتساب</span>
+          </p>
+          <p class="contact-card__value" dir="ltr">{site.support.display}</p>
+          <p class="contact-card__body">
+            <span data-copy="en">Order status, edits, shipping, billing, or a question about the app.</span>
+            <span data-copy="ar" lang="ar">حالة الطلب، أو التعديل، أو الشحن، أو الفوترة، أو أي سؤال عن التطبيق.</span>
+          </p>
+          <a class="contact-card__action" href={site.support.whatsapp} target="_blank" rel="noopener noreferrer">
+            <span data-copy="en">Open WhatsApp</span>
+            <span data-copy="ar" lang="ar">افتح واتساب</span>
+          </a>
+        </article>
+
+        <article class="contact-card reveal">
+          <p class="contact-card__label">
+            <span data-copy="en">Email</span>
+            <span data-copy="ar" lang="ar">البريد الإلكتروني</span>
+          </p>
+          <p class="contact-card__value" dir="ltr">{site.contactEmail}</p>
+          <p class="contact-card__body">
+            <span data-copy="en">General questions, billing, or a message that is easier to write by email. For privacy requests, email privacy@nomeda.tech.</span>
+            <span data-copy="ar" lang="ar">الأسئلة العامة، أو الفوترة، أو رسالة يسهل كتابتها بالبريد. ولطلبات الخصوصية، راسل privacy@nomeda.tech.</span>
+          </p>
+          <a class="contact-card__action" href={`mailto:${site.contactEmail}`}>
+            <span data-copy="en">Send an email</span>
+            <span data-copy="ar" lang="ar">أرسل بريدًا</span>
+          </a>
+        </article>
+      </section>
+
+      <section class="about-section reveal" aria-labelledby="before-you-write">
+        <h2 class="about-section__heading" id="before-you-write">
+          <span data-copy="en">Before you write</span>
+          <span data-copy="ar" lang="ar">قبل ما تكتب</span>
+        </h2>
+        <div class="about-section__body">
+          <p>
+            <span data-copy="en">Have your store domain and order number ready. Do not send passwords, card numbers, one-time codes, or other sensitive data.</span>
+            <span data-copy="ar" lang="ar">جهّز رابط متجرك ورقم الطلب، ولا تشارك كلمات مرور أو أرقام بطاقات أو رموزًا لمرة واحدة أو بيانات حساسة.</span>
+          </p>
+          <p>
+            <span data-copy="en">Looking for a quick answer? The app guide covers setup, pricing, edits, shipping, the console, and reports.</span>
+            <span data-copy="ar" lang="ar">هل تبحث عن إجابة سريعة؟ يغطي دليل التطبيق التثبيت، والأسعار، والتعديلات، والشحن، ولوحة التحكم، والتقارير.</span>
+          </p>
+          <p class="contact-links">
+            <a href="/faq/">
+              <span data-copy="en">Read the questions</span>
+              <span data-copy="ar" lang="ar">اقرأ الأسئلة</span>
+            </a>
+            <a href="/security/">
+              <span data-copy="en">How data is handled</span>
+              <span data-copy="ar" lang="ar">كيف نتعامل مع البيانات</span>
+            </a>
+            <a href="/pricing/">
+              <span data-copy="en">See pricing</span>
+              <span data-copy="ar" lang="ar">اطّلع على الأسعار</span>
+            </a>
+          </p>
+        </div>
+      </section>
+    </div>
+  </main>
+  <CTA />
+  <MobileCta />
+  <Footer />
+</Base>
+
+<style>
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin: 28px 0 40px;
+  }
+
+  .contact-card {
+    display: flex;
+    min-height: 230px;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px;
+    border: 1.5px solid var(--pl-line);
+    border-radius: 22px;
+    background: #ffffff;
+  }
+
+  .contact-card--primary {
+    background: var(--pl-mint);
+    border-color: rgba(11, 122, 75, 0.22);
+  }
+
+  .contact-card--primary .contact-card__label {
+    color: var(--green-dark);
+  }
+
+  .contact-card__label {
+    margin: 0;
+    color: var(--ink-muted);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .contact-card__value {
+    margin: 12px 0 0;
+    color: var(--ink);
+    font-family: var(--font-heading);
+    font-size: 21px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+  }
+
+  .contact-card__body {
+    max-width: 42ch;
+    margin: 10px 0 20px;
+    color: var(--ink-soft);
+    font-size: 13px;
+    line-height: 1.75;
+  }
+
+  .contact-card__action {
+    margin-top: auto;
+    color: var(--green);
+    font-size: 12.5px;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px 22px;
+    margin: 18px 0 0 !important;
+  }
+
+  .contact-links a {
+    color: var(--green);
+    font-weight: 600;
+    text-underline-offset: 4px;
+  }
+
+  @media (max-width: 760px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+      margin-top: 20px;
+    }
+
+    .contact-card {
+      min-height: 0;
+      padding: 20px;
+    }
+
+    .contact-card__value {
+      font-size: 19px;
+    }
+  }
+</style>

@@ -258,6 +258,242 @@ export const guides: Guide[] = [
       },
     ],
   },
+  {
+    slug: "whatsapp-cod-confirmation",
+    eyebrow: { en: "Guide", ar: "شرح" },
+    title: {
+      en: "COD order confirmation on WhatsApp: what to include",
+      ar: "تأكيد طلبات الدفع عند الاستلام على واتساب: ماذا تتضمن الرسالة؟",
+    },
+    description: {
+      en: "The details that prevent a failed cash-on-delivery order, and the confirmation message that gets them checked before dispatch.",
+      ar: "التفاصيل التي تمنع فشل طلب الدفع عند الاستلام، ورسالة التأكيد التي تراجعها قبل الشحن.",
+    },
+    intro: {
+      en: "Cash on delivery moves the risk to the doorstep. The confirmation message is the last cheap moment to catch a wrong address, an unclear item, or a customer who changed their mind.",
+      ar: "الدفع عند الاستلام ينقل المخاطرة إلى باب العميل. ورسالة التأكيد هي آخر لحظة منخفضة التكلفة لاكتشاف عنوان خطأ أو منتج غير واضح أو عميل غيّر رأيه.",
+    },
+    readingTime: { en: "4 min read", ar: "4 دقائق قراءة" },
+    published: "2026-10-29",
+    sections: [
+      {
+        heading: { en: "1. Confirm the order, not the payment", ar: "1. أكّد الطلب، لا الدفع" },
+        body: [
+          {
+            en: "Whano does not collect cash and does not process the payment. The message should say what the customer is confirming: the products, quantity, total in EGP, delivery address, and the expected delivery window. End with Confirm, Cancel, and Edit order.",
+            ar: "لا يحصّل Whano النقد ولا يعالج الدفع. يجب أن توضح الرسالة ما يؤكده العميل: المنتجات، والكمية، والإجمالي بالجنيه، وعنوان التوصيل، وموعد التوصيل المتوقع. وتنتهي بزر التأكيد أو الإلغاء أو تعديل الطلب.",
+          },
+        ],
+      },
+      {
+        heading: { en: "2. Make the address the main check", ar: "2. اجعل العنوان هو نقطة المراجعة" },
+        body: [
+          {
+            en: "COD orders fail at the door when the address is incomplete or the phone number is wrong. Put the governorate, street, building, and phone number in the confirmation. Let the customer fix them through the one-time edit link before confirmation, not after the parcel is with the carrier.",
+            ar: "تفشل طلبات الدفع عند الاستلام عند الباب عندما يكون العنوان ناقصًا أو رقم الهاتف خطأ. ضع المحافظة والشارع والمبنى ورقم الهاتف في التأكيد. واترك العميل يصححها عبر رابط التعديل لمرة واحدة قبل التأكيد، لا بعد تسليم الشحنة لشركة الشحن.",
+          },
+        ],
+      },
+      {
+        heading: { en: "3. Set the delivery expectation before dispatch", ar: "3. حدّد توقع التوصيل قبل الشحن" },
+        body: [
+          {
+            en: "Use a delivery window you can defend, not a promise you cannot keep. If the carrier reports an exception, send the carrier's reason early. After delivery, ask for the rating once and open a support path if the answer is negative.",
+            ar: "استخدم موعد توصيل يمكنك الدفاع عنه، لا وعدًا لا تستطيع الوفاء به. وإذا أبلغت شركة الشحن عن تعثر، أرسل سببها مبكرًا. وبعد التوصيل اطلب التقييم مرة واحدة، وافتح مسار دعم إذا كانت الإجابة سلبية.",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "bosta-vs-shipblu",
+    eyebrow: { en: "Guide", ar: "شرح" },
+    title: {
+      en: "Bosta or ShipBlu: how to choose a shipping integration",
+      ar: "بوسطة أم ShipBlu؟ كيف تختار تكامل الشحن؟",
+    },
+    description: {
+      en: "Both carriers are supported. Here is what Whano does with either one, and what to decide with the carrier directly.",
+      ar: "شركتا الشحن مدعومتان. هذا ما يفعله Whano مع أي منهما، وما تحتاج إلى حسمه مع الشركة مباشرة.",
+    },
+    intro: {
+      en: "Whano does not rank carriers. It connects to Bosta and ShipBlu, creates the shipment, and follows the state that the carrier returns. The right choice depends on your contract, coverage, and operation.",
+      ar: "لا يرتب Whano شركات الشحن. يتصل ببوسطة وShipBlu، وينشئ الشحنة، ويتابع الحالة التي ترجعها الشركة. والاختيار الصحيح يعتمد على تعاقدك وتغطيتك وتشغيلك.",
+    },
+    readingTime: { en: "4 min read", ar: "4 دقائق قراءة" },
+    published: "2026-10-29",
+    sections: [
+      {
+        heading: { en: "1. What Whano does with either carrier", ar: "1. ما يفعله Whano مع أي شركة" },
+        body: [
+          {
+            en: "After confirmation, Whano creates the shipment with the carrier connected in the console, follows its state, and shows the carrier's own exception reason. Pickup is available where the carrier supports it.",
+            ar: "بعد التأكيد، ينشئ Whano الشحنة مع الشركة المربوطة في لوحة التحكم، ويتابع حالتها، ويعرض سبب التعثر من الشركة نفسها. ويتاح الاستلام حيث تدعمه الشركة.",
+          },
+        ],
+      },
+      {
+        heading: { en: "2. Decide with the carrier, not from a feature table", ar: "2. احسم القرار مع الشركة، لا من جدول مزايا" },
+        body: [
+          {
+            en: "Coverage, pickup, cash-on-delivery remittance, pricing, and service levels are commercial terms between you and the carrier. Ask for the current coverage map and contract terms. Do not choose a carrier because a landing page calls it faster.",
+            ar: "التغطية والاستلام وتحويل مبالغ الدفع عند الاستلام والأسعار ومستويات الخدمة شروط تجارية بينك وبين الشركة. اطلب خريطة التغطية الحالية وشروط التعاقد. ولا تختر شركة لأن صفحة تسويقية وصفتها بالأسرع.",
+          },
+        ],
+      },
+      {
+        heading: { en: "3. Keep the customer message carrier-neutral", ar: "3. اجعل رسالة العميل محايدة" },
+        body: [
+          {
+            en: "The customer cares about the tracking number, the delivery window, and what happens if something goes wrong. Do not blame the carrier in the message. Send the reason, the next step, and a support path.",
+            ar: "يهتم العميل برقم التتبع وموعد التوصيل وما سيحدث إذا تعثر شيء. لا تحمّل شركة الشحن المسؤولية في الرسالة. أرسل السبب والخطوة التالية ومسار الدعم.",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "whatsapp-template-approval",
+    eyebrow: { en: "Guide", ar: "شرح" },
+    title: {
+      en: "WhatsApp templates: how approval works and what to prepare",
+      ar: "قوالب واتساب: كيف تتم الموافقة وما الذي تجهزه؟",
+    },
+    description: {
+      en: "A practical checklist for business-initiated WhatsApp messages, from the purpose and variables to what happens after approval.",
+      ar: "قائمة عملية لرسائل واتساب التي يبدأها النشاط التجاري، من الهدف والمتغيرات إلى ما يحدث بعد الموافقة.",
+    },
+    intro: {
+      en: "A WhatsApp template is a message shape that Meta reviews before a business can send it outside an open customer conversation. Approval is about clarity and consent, not clever copy.",
+      ar: "قالب واتساب هو شكل رسالة تراجعه Meta قبل أن يرسله النشاط التجاري خارج محادثة عميل مفتوحة. الموافقة تتعلق بالوضوح والموافقة، لا بجمال الصياغة.",
+    },
+    readingTime: { en: "5 min read", ar: "5 دقائق قراءة" },
+    published: "2026-10-29",
+    sections: [
+      {
+        heading: { en: "1. Start with one clear job", ar: "1. ابدأ بمهمة واحدة واضحة" },
+        body: [
+          {
+            en: "Each template should answer one question: confirm this order, update this shipment, ask for this review, or open this support path. A template that tries to sell, confirm, and announce a discount at once is harder to review and easier to ignore.",
+            ar: "كل قالب يجب أن يجيب عن سؤال واحد: أكّد هذا الطلب، أو حدّث هذه الشحنة، أو اطلب هذا التقييم، أو افتح مسار الدعم. القالب الذي يحاول البيع والتأكيد والإعلان عن خصم في رسالة واحدة أصعب في المراجعة وأسهل في التجاهل.",
+          },
+        ],
+      },
+      {
+        heading: { en: "2. Make variables explicit and safe", ar: "2. اجعل المتغيرات واضحة وآمنة" },
+        body: [
+          {
+            en: "Name the order number, product, total, address, and tracking variables, and show a real example. Do not hide critical information behind a variable that may be empty. Keep the message useful even if a customer never taps a button.",
+            ar: "سمِّ متغيرات رقم الطلب والمنتج والإجمالي والعنوان والتتبع، واعرض مثالًا حقيقيًا. لا تخفِ معلومة أساسية خلف متغير قد يكون فارغًا. واجعل الرسالة مفيدة حتى لو لم يضغط العميل أي زر.",
+          },
+        ],
+      },
+      {
+        heading: { en: "3. Treat approval as a living check", ar: "3. اعتبر الموافقة مراجعة مستمرة" },
+        body: [
+          {
+            en: "Do not silently change approved wording. If the message changes, review the new shape and the variables again. Whano manages approved templates for the store, but it cannot guarantee a review time or waive Meta's rules.",
+            ar: "لا تغيّر صياغة معتمدة بصمت. وإذا تغيرت الرسالة، راجع الشكل والمتغيرات مرة أخرى. يدير Whano القوالب المعتمدة للمتجر، لكنه لا يضمن مدة المراجعة ولا يعفي من قواعد Meta.",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "points-per-order",
+    eyebrow: { en: "Guide", ar: "شرح" },
+    title: {
+      en: "How many points does one order use?",
+      ar: "كم نقطة يستهلك الطلب الواحد؟",
+    },
+    description: {
+      en: "A clear breakdown of the point costs behind a confirmation, shipping update, rating, edit, campaign, and abandoned cart.",
+      ar: "تفصيل واضح لتكلفة النقاط في التأكيد وتحديث الشحن والتقييم والتعديل والحملة والسلة المتروكة.",
+    },
+    intro: {
+      en: "Points are not charged per order. They are spent per automation, so the same order can cost differently depending on what the store turns on.",
+      ar: "لا تُحتسب النقاط لكل طلب. تُستهلك لكل أتمتة، لذلك قد يختلف الطلب نفسه حسب ما يفعّله المتجر.",
+    },
+    readingTime: { en: "4 min read", ar: "4 دقائق قراءة" },
+    published: "2026-10-29",
+    sections: [
+      {
+        heading: { en: "1. The common path", ar: "1. المسار الشائع" },
+        body: [
+          {
+            en: "A confirmation is about 1 point, a shipping notification about 1 point, and a delivery and rating follow-up about 2 points. A typical confirmed, shipped, rated order can therefore total around 4 points. An edit is about 2 points, and a support interaction about 2.",
+            ar: "التأكيد نحو نقطة واحدة، وإشعار الشحن نحو نقطة، ومتابعة التوصيل والتقييم نحو نقطتين. لذلك قد يصل الطلب المعتاد المؤكد والمشحون والمقيّم إلى نحو 4 نقاط. والتعديل نحو نقطتين، وتفاعل الدعم نحو نقطتين.",
+          },
+        ],
+      },
+      {
+        heading: { en: "2. Campaigns and abandoned carts are separate", ar: "2. الحملات والسلات منفصلة" },
+        body: [
+          {
+            en: "A marketing campaign message is about 5 points, and an abandoned-cart reminder about 4 points. Those are optional and should be measured separately from the order journey.",
+            ar: "رسالة الحملة التسويقية نحو 5 نقاط، وتذكير السلة المتروكة نحو 4 نقاط. وهي اختيارية ويجب قياسها بشكل منفصل عن رحلة الطلب.",
+          },
+        ],
+      },
+      {
+        heading: { en: "3. A zero balance is not a stopped store", ar: "3. الرصيد الصفري لا يوقف المتجر" },
+        body: [
+          {
+            en: "Confirmation and cancellation keep working at zero balance. Optional automations pause until you top up, and failed messages are netted out of the points report. Use the calculator on the pricing page for a rough monthly estimate.",
+            ar: "يستمر التأكيد والإلغاء عند الرصيد الصفري. وتتوقف الأتمتات الاختيارية حتى تشحن الرصيد، وتُستبعد الرسائل الفاشلة من تقرير النقاط. استخدم الحاسبة في صفحة الأسعار لتقدير شهري تقريبي.",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "abandoned-cart-whatsapp",
+    eyebrow: { en: "Guide", ar: "شرح" },
+    title: {
+      en: "Abandoned-cart reminders on WhatsApp without becoming noise",
+      ar: "تذكير السلة المتروكة على واتساب من دون أن يتحول إلى إزعاج",
+    },
+    description: {
+      en: "Consent, timing, quiet hours, and one useful message. A practical setup for Shopify stores.",
+      ar: "الموافقة والتوقيت وساعات الهدوء ورسالة واحدة مفيدة. إعداد عملي لمتاجر Shopify.",
+    },
+    intro: {
+      en: "A cart reminder works when it arrives after a real pause, gives the customer a way back, and stops when they say no. Volume is not the strategy.",
+      ar: "يعمل تذكير السلة عندما يصل بعد توقف حقيقي، ويعطي العميل طريقًا للعودة، ويتوقف عندما يقول لا. الكثرة ليست الاستراتيجية.",
+    },
+    readingTime: { en: "4 min read", ar: "4 دقائق قراءة" },
+    published: "2026-10-29",
+    sections: [
+      {
+        heading: { en: "1. Consent and quiet hours first", ar: "1. الموافقة وساعات الهدوء أولًا" },
+        body: [
+          {
+            en: "Send only to customers who agreed to receive offers. Respect quiet hours, keep a block list for unsubscribed or ignored customers, and do not treat a cart as consent by itself.",
+            ar: "أرسل فقط للعملاء الذين وافقوا على تلقي العروض. احترم ساعات الهدوء، واحتفظ بقائمة حظر للمشتركين الملغين أو المتجاهلين، ولا تعتبر السلة موافقة بحد ذاتها.",
+          },
+        ],
+      },
+      {
+        heading: { en: "2. One reminder with a way back", ar: "2. تذكير واحد مع طريق للعودة" },
+        body: [
+          {
+            en: "Set the delay in the console, then send one message with the cart link and, if useful, a discount. A reminder costs about 4 points. Do not send a second message to someone who already replied or purchased.",
+            ar: "حدّد التأخير من لوحة التحكم، ثم أرسل رسالة واحدة مع رابط السلة، وخصمًا إن كان مفيدًا. يكلّف التذكير نحو 4 نقاط. ولا ترسل رسالة ثانية لمن رد بالفعل أو اشترى.",
+          },
+        ],
+      },
+      {
+        heading: { en: "3. Measure recovery, not volume", ar: "3. قِس الاستعادة، لا عدد الرسائل" },
+        body: [
+          {
+            en: "Track how many carts return and how many customers block or ignore the messages. If the second number rises, reduce frequency or change the offer before increasing the budget.",
+            ar: "تابع عدد السلات التي تعود وعدد العملاء الذين يحظرون الرسائل أو يتجاهلونها. إذا ارتفع الرقم الثاني، قلّل التكرار أو غيّر العرض قبل زيادة الميزانية.",
+          },
+        ],
+      },
+    ],
+  },
+
 ];
 
 export function guideBySlug(slug: string): Guide | undefined {

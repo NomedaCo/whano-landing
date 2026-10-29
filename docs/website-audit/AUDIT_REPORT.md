@@ -31,16 +31,16 @@ verification checks** (A8 skip link/status, X5 secret scan).
 
 | Group | Identified | Fixed & rechecked | Accepted |
 |---|---:|---:|---:|
-| High | 20 | 19 | 1 |
+| High | 20 | 20 | 0 |
 | Medium | 33 | 31 | 2 |
 | Low | 33 | 28 | 5 |
-| **Issues subtotal** | **86** | **78** | **8** |
+| **Issues subtotal** | **86** | **79** | **7** |
 | Positive checks | 2 | 2 | — |
-| **Register total** | **88** | **80** | **8** |
+| **Register total** | **88** | **81** | **7** |
 
-- **8 accepted exceptions**, no unreviewed open items, no blocked items.
-- The only high-severity accepted item is **S1** (single-URL bilingual
-  architecture); it needs a planned routing refactor and is not silently ignored.
+- **7 accepted exceptions**, no unreviewed open items, no blocked items.
+- The only high-severity open item, **S1** (single-URL bilingual architecture),
+  was closed on 2026-10-29 with `/en/` routes and hreflang.
 - “Fixed & rechecked” means the final build, Worker routes, browser suite and/or
   Lighthouse pass in `IMPLEMENTATION_LOG.md` supports it. It does **not** replace
   the pending legal review of the updated Terms/Privacy/DPA wording.
@@ -88,7 +88,7 @@ verification checks** (A8 skip link/status, X5 secret scan).
 
 | ID | Page/location | Issue | Evidence | Impact | Severity | Fix | Status |
 |---|---|---|---|---|---|---|---|
-| S1 | Whole site / `Base.astro` | One URL with browser-language switching; no separate locale URLs/hreflang | Google locale-adaptive guidance: Googlebot sends no Accept-Language; separate URLs recommended | English content may not be indexed/ranked; ambiguous language signals | High | Documented migration plan (`/en` + hreflang + x-default); not implemented in this pass | Accepted |
+| S1 | Whole site / `Base.astro` | One URL with browser-language switching; no separate locale URLs/hreflang | Google locale-adaptive guidance: Googlebot sends no Accept-Language; separate URLs recommended | English content may not be indexed/ranked; ambiguous language signals | High | Added `/en/` routes, `hreflang`, x-default, localized metadata, and sitemap alternates; closed 2026-10-29 | Fixed |
 | S2 | `Base.astro` + docs | Server default Arabic contradicts README/PLAN “English default”; title/meta change client-side | Source + rendered DOM | Documentation drift; crawler/users see different metadata | Medium | Decide Arabic-first (D1), fix docs; keep JS switch for UX | Fixed |
 | S3 | `Base.astro`, /faq, /pricing | SoftwareApplication repeated on every page with no offers/rating; FAQ/Product schema English on an Arabic page | JSON-LD in source; Google software-app required properties | Ineligible rich results; schema/content mismatch | High | Page-specific schema graph; offers; Arabic FAQ; Article for guides | Fixed |
 | S4 | `public/sitemap.xml` | Static, stale lastmod, manual, omits future routes | 13 URLs, all 2026-10-02 | Crawl freshness/discovery | Medium | Generate at build from route list + guides; exclude utility routes | Fixed |

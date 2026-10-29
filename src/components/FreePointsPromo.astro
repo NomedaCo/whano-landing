@@ -1,0 +1,237 @@
+---
+import { site } from "../data/content";
+import "../styles/promo.css";
+---
+
+<div class="free-points" data-free-points>
+  <button
+    class="free-points__trigger"
+    type="button"
+    data-promo-open
+    aria-haspopup="dialog"
+    aria-controls="free-points-dialog"
+    aria-label="جرّب Whano، 100 نقطة مجانية"
+  >
+    <span class="free-points__trigger-token" aria-hidden="true">100</span>
+    <span class="free-points__trigger-copy">
+      <b>
+        <span data-copy="en">Try now</span>
+        <span data-copy="ar" lang="ar">جرّب الآن</span>
+      </b>
+      <small>
+        <span data-copy="en">100 free points</span>
+        <span data-copy="ar" lang="ar">100 نقطة مجانية</span>
+      </small>
+    </span>
+  </button>
+
+  <div class="free-points__backdrop" data-promo-backdrop hidden></div>
+
+  <section
+    class="free-points__dialog"
+    id="free-points-dialog"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="free-points-title"
+    aria-describedby="free-points-description"
+    hidden
+  >
+    <button class="free-points__close" type="button" data-promo-close aria-label="إغلاق">
+      ×
+    </button>
+
+    <div class="free-points__visual" aria-hidden="true">
+      <div class="free-points__burst">
+        <span style="--tx: -104px; --ty: -50px; --size: 13px; --delay: 0.06s;">✦</span>
+        <span style="--tx: 99px; --ty: -44px; --size: 10px; --delay: 0.14s;">✦</span>
+        <span style="--tx: -90px; --ty: 49px; --size: 9px; --delay: 0.2s;">✦</span>
+        <span style="--tx: 106px; --ty: 42px; --size: 12px; --delay: 0.1s;">✦</span>
+        <span style="--tx: -14px; --ty: -76px; --size: 8px; --delay: 0.26s;">✦</span>
+        <span style="--tx: 14px; --ty: 78px; --size: 8px; --delay: 0.3s;">✦</span>
+      </div>
+      <span class="free-points__spark free-points__spark--one">✦</span>
+      <span class="free-points__spark free-points__spark--two">✦</span>
+      <div class="free-points__token">
+        <b data-promo-count>0</b>
+      </div>
+      <span class="free-points__visual-label">
+        <span data-copy="en">free points</span>
+        <span data-copy="ar" lang="ar">نقطة مجانية</span>
+      </span>
+    </div>
+
+    <div class="free-points__copy">
+      <p class="free-points__eyebrow">
+        <span data-copy="en">A welcome gift</span>
+        <span data-copy="ar" lang="ar">هدية البداية</span>
+      </p>
+      <h2 class="free-points__title" id="free-points-title">
+        <span data-copy="en">Try Whano now</span>
+        <span data-copy="ar" lang="ar">جرّب Whano الآن</span>
+      </h2>
+      <p class="free-points__body" id="free-points-description">
+        <span data-copy="en">Install Whano free on Shopify and start with <strong>100 free points</strong>. No monthly subscription, and points never expire.</span>
+        <span data-copy="ar" lang="ar">ثبّت Whano مجانًا على Shopify وابدأ بـ <strong>100 نقطة مجانية</strong>. من دون اشتراك شهري، والنقاط لا تنتهي.</span>
+      </p>
+
+      <p class="free-points__meta">
+        <span data-copy="en">Free install</span>
+        <span data-copy="ar" lang="ar">تثبيت مجاني</span>
+        <span aria-hidden="true">·</span>
+        <span data-copy="en">No monthly subscription</span>
+        <span data-copy="ar" lang="ar">بدون اشتراك شهري</span>
+        <span aria-hidden="true">·</span>
+        <span data-copy="en">Points never expire</span>
+        <span data-copy="ar" lang="ar">النقاط لا تنتهي</span>
+      </p>
+
+      <div class="free-points__actions">
+        <a class="free-points__cta" href={site.accessUrl.en} data-access-link>
+          <span data-copy="en">Install on Shopify</span>
+          <span data-copy="ar" lang="ar">ثبّت على Shopify</span>
+        </a>
+        <button class="free-points__later" type="button" data-promo-close>
+          <span data-copy="en">Not now</span>
+          <span data-copy="ar" lang="ar">ليس الآن</span>
+        </button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script is:inline>
+  (() => {
+    const root = document.querySelector("[data-free-points]");
+    if (!root) return;
+    const trigger = root.querySelector("[data-promo-open]");
+    const backdrop = root.querySelector("[data-promo-backdrop]");
+    const dialog = root.querySelector(".free-points__dialog");
+    const closeButtons = [...root.querySelectorAll("[data-promo-close]")];
+    const install = root.querySelector("[data-access-link]");
+    if (!trigger || !backdrop || !dialog || !closeButtons.length) return;
+
+    const normalizedPath = location.pathname.replace(/^\/en(?=\/|$)/, "") || "/";
+    if (/^\/(?:privacy|terms|dpa|login|stats|order|cart)(?:\/|$)/.test(normalizedPath)) {
+      root.hidden = true;
+      return;
+    }
+
+    const seenKey = "whano-promo-seen-v1";
+    let seen = false;
+    try {
+      seen = localStorage.getItem(seenKey) === "1";
+    } catch {
+      seen = false;
+    }
+    if (seen) {
+      root.hidden = true;
+      return;
+    }
+
+    const markSeen = () => {
+      try {
+        localStorage.setItem(seenKey, "1");
+      } catch {
+        // The offer still works when storage is unavailable.
+      }
+    };
+
+    const count = root.querySelector("[data-promo-count]");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let lastFocus = null;
+    let autoTimer = null;
+    let countFrame = 0;
+
+    function startCount() {
+      if (!count) return;
+      cancelAnimationFrame(countFrame);
+      if (reducedMotion) {
+        count.textContent = "100";
+        return;
+      }
+      count.textContent = "0";
+      const started = performance.now();
+      const tick = (now) => {
+        const progress = Math.min(1, (now - started) / 760);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        count.textContent = String(Math.round(100 * eased));
+        if (progress < 1) countFrame = requestAnimationFrame(tick);
+      };
+      countFrame = requestAnimationFrame(tick);
+    }
+
+    const track = (event) => {
+      try {
+        if (navigator.doNotTrack === "1" || navigator.globalPrivacyControl === true) return;
+        fetch("/api/hit", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ path: "/promo", event }),
+          keepalive: true,
+        }).catch(() => undefined);
+      } catch {
+        // Analytics is optional.
+      }
+    };
+
+    function openPromo(eventName = "promo-open") {
+      if (!dialog.hidden) return;
+      clearTimeout(autoTimer);
+      lastFocus = document.activeElement;
+      markSeen();
+      backdrop.hidden = false;
+      dialog.hidden = false;
+      requestAnimationFrame(() => root.classList.add("is-open"));
+      document.body.classList.add("promo-open");
+      closeButtons[0].focus({ preventScroll: true });
+      startCount();
+      track(eventName);
+    }
+
+    function closePromo(eventName = "promo-dismiss") {
+      if (dialog.hidden) return;
+      root.classList.remove("is-open");
+      cancelAnimationFrame(countFrame);
+      document.body.classList.remove("promo-open");
+      track(eventName);
+      const finish = () => {
+        backdrop.hidden = true;
+        dialog.hidden = true;
+        root.hidden = true;
+      };
+      window.setTimeout(finish, 240);
+      if (lastFocus instanceof HTMLElement) lastFocus.focus({ preventScroll: true });
+    }
+
+    trigger.addEventListener("click", () => openPromo("promo-open"));
+    closeButtons.forEach((button) => {
+      button.addEventListener("click", () => closePromo("promo-dismiss"));
+    });
+    backdrop.addEventListener("click", () => closePromo("promo-dismiss"));
+    install?.addEventListener("click", () => closePromo("promo-install"));
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !dialog.hidden) {
+        closePromo("promo-dismiss");
+        return;
+      }
+      if (event.key !== "Tab" || dialog.hidden) return;
+      const focusable = [...dialog.querySelectorAll("a[href], button:not([disabled])")];
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    });
+
+    // First visit only. The key persists across pages and refreshes.
+    autoTimer = window.setTimeout(() => {
+      if (!document.body.classList.contains("chat-open")) openPromo("promo-auto");
+    }, 700);
+  })();
+</script>

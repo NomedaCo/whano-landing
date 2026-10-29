@@ -3,6 +3,7 @@ import "../styles/global.css";
 import "../styles/playful.css";
 import "../styles/chat.css";
 import ChatWidget from "../components/ChatWidget.astro";
+import FreePointsPromo from "../components/FreePointsPromo.astro";
 
 type SchemaObject = Record<string, unknown>;
 
@@ -38,9 +39,29 @@ const {
 
 // The live edge serves directory URLs with a trailing slash. Keep the
 // canonical and the sitemap on that same URL shape.
+const isEnglish = /^\/en(?:\/|$)/.test(Astro.url.pathname);
+const locale = isEnglish ? "en" : "ar";
+const direction = isEnglish ? "ltr" : "rtl";
+const pageTitle = isEnglish ? title : titleArabic;
+const pageDescription = isEnglish ? description : descriptionArabic;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL(ogImagePath, Astro.site);
 const siteRoot = new URL("/", Astro.site);
+const arabicPath = isEnglish
+  ? Astro.url.pathname.replace(/^\/en(?=\/|$)/, "") || "/"
+  : Astro.url.pathname;
+const englishPath = isEnglish
+  ? Astro.url.pathname
+  : Astro.url.pathname === "/"
+    ? "/en/"
+    : `/en${Astro.url.pathname}`;
+const arabicUrl = new URL(arabicPath, Astro.site).href;
+const englishUrl = new URL(englishPath, Astro.site).href;
+const xDefaultUrl = arabicUrl;
+const ogLocale = isEnglish ? "en_US" : "ar_EG";
+const ogAlternateLocale = isEnglish ? "ar_EG" : "en_US";
+const promoPath = Astro.url.pathname.replace(/^\/en(?=\/|$)/, "") || "/";
+const showPromo = !/^\/(?:privacy|terms|dpa|login|stats|order|cart)(?:\/|$)/.test(promoPath);
 const organization = {
   "@context": "https://schema.org",
   "@type": "Organization",
@@ -52,6 +73,7 @@ const organization = {
     "https://apps.shopify.com/whano",
     "https://x.com/CoNomeda56945",
     "https://instagram.com/nomeda.tech",
+    "https://www.facebook.com/profile.php?id=61591391185115",
   ],
 };
 const website = {
@@ -62,14 +84,17 @@ const website = {
   inLanguage: ["ar", "en"],
   publisher: { "@type": "Organization", name: "NomedaCo", url: "https://nomeda.tech" },
 };
-const pageSchemas = Array.isArray(schema) ? schema : schema ? [schema] : [];
+const pageSchemas = (Array.isArray(schema) ? schema : schema ? [schema] : []).map((entry) => ({
+  ...entry,
+  ...("inLanguage" in entry ? { inLanguage: locale } : {}),
+}));
 ---
 
 <!doctype html>
 <html
-  lang="ar"
-  dir="rtl"
-  data-language="ar"
+  lang={locale}
+  dir={direction}
+  data-language={locale}
   data-title-en={title}
   data-title-ar={titleArabic}
   data-description-en={description}
@@ -78,12 +103,15 @@ const pageSchemas = Array.isArray(schema) ? schema : schema ? [schema] : [];
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta id="meta-description" name="description" content={descriptionArabic} />
+    <meta id="meta-description" name="description" content={pageDescription} />
     <meta name="theme-color" content="#f8faf9" />
     <meta name="color-scheme" content="light" />
     <meta name="format-detection" content="telephone=no" />
     <meta name="author" content="NomedaCo" />
     <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="ar" href={arabicUrl} />
+    <link rel="alternate" hreflang="en" href={englishUrl} />
+    <link rel="alternate" hreflang="x-default" href={xDefaultUrl} />
     <link rel="sitemap" type="application/xml" href={new URL("/sitemap.xml", Astro.site)} />
     <!-- Static preloads are discovered before the stylesheet. Both Readex
          subsets are tiny variable fonts; loading both avoids a late swap on
@@ -97,27 +125,27 @@ const pageSchemas = Array.isArray(schema) ? schema : schema ? [schema] : [];
     )}
     <meta property="og:type" content={ogType} />
     <meta property="og:url" content={canonical} />
-    <meta id="meta-og-title" property="og:title" content={titleArabic} />
-    <meta id="meta-og-description" property="og:description" content={descriptionArabic} />
+    <meta id="meta-og-title" property="og:title" content={pageTitle} />
+    <meta id="meta-og-description" property="og:description" content={pageDescription} />
     <meta property="og:site_name" content="Whano" />
-    <meta property="og:locale" content="ar_EG" />
-    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:locale:alternate" content={ogAlternateLocale} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta id="meta-og-image-alt" property="og:image:alt" content={titleArabic} />
+    <meta id="meta-og-image-alt" property="og:image:alt" content={pageTitle} />
     {publishedTime && <meta property="article:published_time" content={publishedTime} />}
     {modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
     <meta name="twitter:card" content="summary_large_image" />
-    <meta id="meta-twitter-title" name="twitter:title" content={titleArabic} />
-    <meta id="meta-twitter-description" name="twitter:description" content={descriptionArabic} />
+    <meta id="meta-twitter-title" name="twitter:title" content={pageTitle} />
+    <meta id="meta-twitter-description" name="twitter:description" content={pageDescription} />
     <meta name="twitter:image" content={ogImage} />
-    <meta id="meta-twitter-image-alt" name="twitter:image:alt" content={titleArabic} />
+    <meta id="meta-twitter-image-alt" name="twitter:image:alt" content={pageTitle} />
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" type="image/png" href="/icon-192.png" sizes="192x192" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <title>{titleArabic}</title>
+    <title>{pageTitle}</title>
     <script is:inline type="application/ld+json" set:html={JSON.stringify(organization)} />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(website)} />
     {pageSchemas.map((entry) => (
@@ -132,35 +160,31 @@ const pageSchemas = Array.isArray(schema) ? schema : schema ? [schema] : [];
         window.addEventListener("error", revealFallback, { once: true });
         window.addEventListener("unhandledrejection", revealFallback, { once: true });
         try {
-          // Arabic is the server-rendered default. A saved choice wins; on a
-          // first visit, an Arabic browser gets Arabic and anything else gets
-          // English, so the page is readable before the first interaction.
-          const saved = window.localStorage.getItem("whano-language");
-          const language =
-            saved === "en" || saved === "ar"
-              ? saved
-              : (navigator.language || "").toLowerCase().startsWith("ar")
-                ? "ar"
-                : "en";
+          // The route is the source of truth: / is Arabic, /en/ is English.
+          // This keeps the rendered HTML, canonical, and hreflang aligned.
+          const language = /^\/en(?:\/|$)/.test(location.pathname) ? "en" : "ar";
           root.dataset.language = language;
           root.lang = language;
           root.dir = language === "ar" ? "rtl" : "ltr";
-          const title = language === "ar" ? root.dataset.titleAr : root.dataset.titleEn;
-          const description = language === "ar" ? root.dataset.descriptionAr : root.dataset.descriptionEn;
-          if (title) document.title = title;
-          if (description) {
-            document.getElementById("meta-description")?.setAttribute("content", description);
-            document.getElementById("meta-og-description")?.setAttribute("content", description);
-            document.getElementById("meta-twitter-description")?.setAttribute("content", description);
-          }
-          if (title) {
-            document.getElementById("meta-og-title")?.setAttribute("content", title);
-            document.getElementById("meta-twitter-title")?.setAttribute("content", title);
-            document.getElementById("meta-og-image-alt")?.setAttribute("content", title);
-            document.getElementById("meta-twitter-image-alt")?.setAttribute("content", title);
+
+          if (language === "en") {
+            const localizeLinks = () => {
+              document.querySelectorAll('a[href^="/"]').forEach((anchor) => {
+                const href = anchor.getAttribute("href");
+                if (!href || /^\/en(?:\/|$)/.test(href)) return;
+                if (/^\/(?:api|order|cart|login|stats)(?:\/|$)/.test(href)) return;
+                if (/\.(?:xml|png|svg|ico|woff2?)(?:$|\?)/i.test(href)) return;
+                anchor.setAttribute("href", `/en${href}`);
+              });
+            };
+            if (document.readyState === "loading") {
+              document.addEventListener("DOMContentLoaded", localizeLinks, { once: true });
+            } else {
+              localizeLinks();
+            }
           }
         } catch {
-          // Keep the Arabic default when storage is unavailable.
+          // The server-rendered locale is already correct without JavaScript.
         }
       })();
     </script>
@@ -172,6 +196,7 @@ const pageSchemas = Array.isArray(schema) ? schema : schema ? [schema] : [];
     </a>
     <slot />
     <ChatWidget />
+    {showPromo && <FreePointsPromo />}
     <script is:inline>
       // First-party, cookieless analytics: one counter per page view and per
       // install/login click. Localhost and privacy signals are ignored.
@@ -193,10 +218,27 @@ const pageSchemas = Array.isArray(schema) ? schema : schema ? [schema] : [];
         send("view");
         document.addEventListener("click", (event) => {
           const target = event.target;
-          const link =
-            target && target.closest ? target.closest("a[data-access-link], a[data-console-link]") : null;
+          const link = target && target.closest ? target.closest("a") : null;
           if (!link) return;
-          send(link.hasAttribute("data-console-link") ? "click-login" : "click-install");
+          if (link.hasAttribute("data-console-link")) {
+            send("click-login");
+            return;
+          }
+          if (link.hasAttribute("data-access-link")) {
+            send("click-install");
+            return;
+          }
+          const href = link.getAttribute("href") || "";
+          if (href.includes("wa.me/")) {
+            send("click-whatsapp");
+            return;
+          }
+          if (href.startsWith("mailto:")) {
+            send("click-email");
+            return;
+          }
+          const eventName = link.getAttribute("data-track");
+          if (eventName) send(eventName);
         });
       })();
     </script>

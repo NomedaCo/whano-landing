@@ -1,0 +1,335 @@
+---
+import { plans } from "../data/content";
+
+const packs = plans
+  .filter((plan) => plan.priceEgp !== null)
+  .map((plan) => ({
+    points: Number(plan.points.en.replace(/[^0-9]/g, "")),
+    price: plan.priceEgp as number,
+    label: plan.points.en,
+  }))
+  .sort((a, b) => a.points - b.points);
+---
+
+<section class="pricing-calculator" id="calculator" aria-labelledby="pricing-calculator-title">
+  <script type="application/json" data-calc-packs set:html={JSON.stringify(packs)}></script>
+  <div class="site-frame">
+    <div class="pricing-calculator__card reveal">
+      <header class="pricing-calculator__header">
+        <p class="eyebrow">
+          <span data-copy="en">Estimate</span>
+          <span data-copy="ar" lang="ar">تقدير</span>
+        </p>
+        <h2 id="pricing-calculator-title">
+          <span data-copy="en">How many points will your store use?</span>
+          <span data-copy="ar" lang="ar">كم نقطة سيستهلك متجرك؟</span>
+        </h2>
+        <p>
+          <span data-copy="en">A rough monthly estimate from the same point costs shown above. It is not a bill.</span>
+          <span data-copy="ar" lang="ar">تقدير شهري تقريبي باستخدام تكاليف النقاط نفسها الموضحة بالأعلى. ليس فاتورة.</span>
+        </p>
+      </header>
+
+      <div class="pricing-calculator__grid">
+        <div class="pricing-calculator__fields">
+          <label class="pricing-calculator__field">
+            <span data-copy="en">Monthly orders</span>
+            <span data-copy="ar" lang="ar">الطلبات الشهرية</span>
+            <input data-calc-input="orders" type="number" min="0" max="1000000" step="1" value="120" inputmode="numeric" />
+          </label>
+          <label class="pricing-calculator__field">
+            <span data-copy="en">Order edits per month</span>
+            <span data-copy="ar" lang="ar">تعديلات الطلبات شهريًا</span>
+            <input data-calc-input="edits" type="number" min="0" max="1000000" step="1" value="12" inputmode="numeric" />
+          </label>
+          <label class="pricing-calculator__field">
+            <span data-copy="en">Abandoned carts per month</span>
+            <span data-copy="ar" lang="ar">السلات المتروكة شهريًا</span>
+            <input data-calc-input="carts" type="number" min="0" max="1000000" step="1" value="24" inputmode="numeric" />
+          </label>
+          <label class="pricing-calculator__field">
+            <span data-copy="en">Campaign messages per month</span>
+            <span data-copy="ar" lang="ar">رسائل الحملات شهريًا</span>
+            <input data-calc-input="campaigns" type="number" min="0" max="1000000" step="1" value="4" inputmode="numeric" />
+          </label>
+          <label class="pricing-calculator__field">
+            <span data-copy="en">Support interactions per month</span>
+            <span data-copy="ar" lang="ar">تفاعلات الدعم شهريًا</span>
+            <input data-calc-input="support" type="number" min="0" max="1000000" step="1" value="20" inputmode="numeric" />
+          </label>
+
+          <label class="pricing-calculator__check">
+            <input data-calc-input="shipping" type="checkbox" checked />
+            <span>
+              <span data-copy="en">Shipping updates</span>
+              <span data-copy="ar" lang="ar">تحديثات الشحن</span>
+            </span>
+          </label>
+          <label class="pricing-calculator__check">
+            <input data-calc-input="ratings" type="checkbox" checked />
+            <span>
+              <span data-copy="en">Delivery and rating follow-up</span>
+              <span data-copy="ar" lang="ar">متابعة التوصيل والتقييم</span>
+            </span>
+          </label>
+        </div>
+
+        <div class="pricing-calculator__result" aria-live="polite">
+          <span class="pricing-calculator__result-label">
+            <span data-copy="en">Estimated monthly points</span>
+            <span data-copy="ar" lang="ar">النقاط الشهرية التقديرية</span>
+          </span>
+          <strong data-calc-points>0</strong>
+          <span class="pricing-calculator__result-label">
+            <span data-copy="en">Recommended pack</span>
+            <span data-copy="ar" lang="ar">الباقة المقترحة</span>
+          </span>
+          <strong data-calc-pack>0</strong>
+          <p data-calc-note></p>
+          <a class="pricing-calculator__link" href="/pricing/">
+            <span data-copy="en">See the plans</span>
+            <span data-copy="ar" lang="ar">اطّلع على الباقات</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (() => {
+    const root = document.querySelector(".pricing-calculator");
+    if (!root) return;
+    const packs = JSON.parse(root.querySelector("[data-calc-packs]")?.textContent || "[]");
+    const inputs = [...root.querySelectorAll("[data-calc-input]")];
+    const pointsOut = root.querySelector("[data-calc-points]");
+    const packOut = root.querySelector("[data-calc-pack]");
+    const note = root.querySelector("[data-calc-note]");
+    const lang = () => (document.documentElement.dataset.language === "en" ? "en" : "ar");
+    const copy = (ar, en) => (lang() === "en" ? en : ar);
+    const format = (value) => new Intl.NumberFormat("en-EG").format(value);
+    let lastTracked = 0;
+
+    const value = (name) => {
+      const input = root.querySelector(`[data-calc-input="${name}"]`);
+      if (!(input instanceof HTMLInputElement)) return 0;
+      return input.type === "checkbox" ? (input.checked ? 1 : 0) : Math.max(0, Number(input.value) || 0);
+    };
+
+    function update() {
+      const orders = value("orders");
+      const points =
+        orders +
+        (value("shipping") ? orders : 0) +
+        (value("ratings") ? orders * 2 : 0) +
+        value("edits") * 2 +
+        value("carts") * 4 +
+        value("campaigns") * 5 +
+        value("support") * 2;
+      const pack = packs.find((entry) => entry.points >= points);
+      if (pointsOut) pointsOut.textContent = format(points);
+      if (packOut) {
+        packOut.textContent = pack
+          ? copy(`${format(pack.points)} نقطة`, `${format(pack.points)} points`)
+          : copy("باقة مخصصة", "Custom pack");
+      }
+      if (note) {
+        note.textContent = pack
+          ? copy(
+              `${format(pack.price)} جنيه تُدفع مرة واحدة.`,
+              `${format(pack.price)} EGP paid once.`,
+            )
+          : copy(
+              "الاستخدام أكبر من الباقات الحالية. تواصل معنا لباقة مخصصة.",
+              "Usage is above the current packs. Contact us for a custom pack.",
+            );
+      }
+      const now = Date.now();
+      if (now - lastTracked > 1500) {
+        lastTracked = now;
+        try {
+          if (navigator.doNotTrack !== "1" && !navigator.globalPrivacyControl) {
+            fetch("/api/hit", {
+              method: "POST",
+              headers: { "content-type": "application/json" },
+              body: JSON.stringify({ path: "/pricing", event: "calculator-use" }),
+              keepalive: true,
+            }).catch(() => undefined);
+          }
+        } catch {
+          // Analytics is optional.
+        }
+      }
+    }
+
+    inputs.forEach((input) => input.addEventListener("input", update));
+    window.addEventListener("whano:language", update);
+    update();
+  })();
+</script>
+
+<style>
+  .pricing-calculator {
+    padding: 12px 0 72px;
+  }
+
+  .pricing-calculator__card {
+    padding: 28px;
+    border: 1.5px solid var(--pl-line);
+    border-radius: 24px;
+    background: #ffffff;
+  }
+
+  .pricing-calculator__header {
+    max-width: 620px;
+  }
+
+  .pricing-calculator__header h2 {
+    margin: 8px 0 7px;
+    color: var(--ink);
+    font-family: var(--font-heading);
+    font-size: clamp(24px, 3vw, 34px);
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    line-height: 1.25;
+  }
+
+  .pricing-calculator__header > p:last-child {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 13px;
+    line-height: 1.75;
+  }
+
+  .pricing-calculator__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(240px, 0.8fr);
+    gap: 28px;
+    margin-top: 24px;
+  }
+
+  .pricing-calculator__fields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .pricing-calculator__field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    color: var(--ink-soft);
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  .pricing-calculator__field input {
+    width: 100%;
+    height: 40px;
+    padding: 0 10px;
+    border: 1px solid var(--pl-line);
+    border-radius: 9px;
+    background: #ffffff;
+    color: var(--ink);
+    font: inherit;
+    font-size: 13px;
+  }
+
+  .pricing-calculator__field input:focus {
+    border-color: var(--green);
+    outline: none;
+  }
+
+  .pricing-calculator__check {
+    display: flex;
+    grid-column: 1 / -1;
+    align-items: center;
+    gap: 8px;
+    color: var(--ink-soft);
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .pricing-calculator__check input {
+    width: 15px;
+    height: 15px;
+    accent-color: var(--green);
+  }
+
+  .pricing-calculator__result {
+    display: flex;
+    min-height: 230px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 22px;
+    border-radius: 16px;
+    background: var(--pl-mint);
+  }
+
+  .pricing-calculator__result-label {
+    color: var(--ink-soft);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    line-height: 1.5;
+    text-transform: uppercase;
+  }
+
+  .pricing-calculator__result strong {
+    margin: 3px 0 16px;
+    color: var(--green-dark);
+    font-family: var(--font-heading);
+    font-size: 27px;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+  }
+
+  .pricing-calculator__result strong:last-of-type {
+    font-size: 19px;
+  }
+
+  .pricing-calculator__result p {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 11px;
+    line-height: 1.6;
+  }
+
+  .pricing-calculator__link {
+    margin-top: 14px;
+    color: var(--green);
+    font-size: 11.5px;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  @media (max-width: 760px) {
+    .pricing-calculator {
+      padding-bottom: 48px;
+    }
+
+    .pricing-calculator__card {
+      padding: 20px;
+    }
+
+    .pricing-calculator__grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .pricing-calculator__fields {
+      grid-template-columns: 1fr;
+    }
+
+    .pricing-calculator__check {
+      grid-column: auto;
+    }
+
+    .pricing-calculator__result {
+      min-height: 0;
+    }
+  }
+</style>

@@ -5,6 +5,8 @@ import Footer from "../components/Footer.astro";
 import Nav from "../components/Nav.astro";
 import MobileCta from "../components/MobileCta.astro";
 import Pricing from "../components/Pricing.astro";
+import PricingFaqs from "../components/PricingFaqs.astro";
+import PointsCalculator from "../components/PointsCalculator.astro";
 import { plans, site } from "../data/content";
 
 // The real offers, on the page they belong to. Built here because `Astro` is
@@ -68,6 +70,8 @@ const pricingSchema = {
       </div>
     </div>
     <Pricing />
+    <PointsCalculator />
+    <PricingFaqs />
     <CTA />
   </main>
 

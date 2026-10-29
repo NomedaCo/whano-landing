@@ -9,6 +9,22 @@ import Nav from "../components/Nav.astro";
 // is something a merchant can open the console and use today.
 const UPDATES = [
   {
+    when: { en: "Oct 29, 2026", ar: "29 أكتوبر 2026" },
+    title: { en: "A quieter app guide", ar: "دليل تطبيق أهدأ" },
+    body: {
+      en: "The website guide is now a minimal, product-only panel: a wordmark launcher, text actions, plain quick topics, and a short WhatsApp line. Common app questions are answered without a model call, and off-topic questions are declined.",
+      ar: "دليل الموقع أصبح لوحة بسيطة مخصصة لتطبيق Whano: زر بالكلمة، وأزرار نصية، وموضوعات سريعة، وسطر واتساب مختصر. تُجاب الأسئلة الشائعة عن التطبيق من دون استدعاء نموذج، وتُرفض الأسئلة الخارجة عن النطاق.",
+    },
+  },
+  {
+    when: { en: "Oct 29, 2026", ar: "29 أكتوبر 2026" },
+    title: { en: "English pages and a points calculator", ar: "صفحات إنجليزية وحاسبة نقاط" },
+    body: {
+      en: "English routes now exist for the main pages, with hreflang and a localized sitemap. The pricing page also has a calculator that estimates monthly points and recommends a pack from the current EGP prices.",
+      ar: "أصبحت هناك مسارات إنجليزية للصفحات الرئيسية، مع hreflang وخريطة موقع محلية. وتضم صفحة الأسعار حاسبة تقدّر النقاط الشهرية وتقترح باقة من الأسعار الحالية بالجنيه.",
+    },
+  },
+  {
     when: { en: "Oct 23, 2026", ar: "23 أكتوبر 2026" },
     title: { en: "A bigger send buffer for busy days", ar: "سعة إرسال أكبر في الأيام المزدحمة" },
     body: {
@@ -110,17 +126,17 @@ const pageSchema = {
   "@type": "WebPage",
   name: "Whano changelog",
   description:
-    "The latest shipped Whano changes: send capacity, campaigns and audiences, abandoned carts, size check, review pages, the one-time edit link, ShipBlu, Sheets, and message shapes.",
+    "The latest product and website changes: a quieter app guide, English routes, a points calculator, send capacity, campaigns, abandoned carts, size check, review pages, the one-time edit link, ShipBlu, Sheets, and message shapes.",
   inLanguage: "ar",
-  dateModified: "2026-10-27",
+  dateModified: "2026-10-29",
 };
 ---
 
 <Base
   title="What's new, Whano"
   titleArabic="ما الجديد, Whano"
-  description="The latest shipped Whano changes: send capacity, campaigns and audiences, abandoned carts, size check, review pages, the one-time edit link, ShipBlu, Sheets, and message shapes."
-  descriptionArabic="آخر ما أُطلق في Whano: سعة إرسال أكبر، وحملات وجمهور، والسلة المتروكة، وفحص المقاس، وصفحة التقييم، ورابط تعديل الطلب، وShipBlu، وGoogle Sheets، وأشكال الرسائل."
+  description="The latest product and website changes: a quieter app guide, English routes, a points calculator, send capacity, campaigns, abandoned carts, size check, review pages, the one-time edit link, ShipBlu, Sheets, and message shapes."
+  descriptionArabic="آخر تغييرات المنتج والموقع: دليل تطبيق أهدأ، ومسارات إنجليزية، وحاسبة نقاط، وسعة إرسال أكبر، وحملات وجمهور، والسلة المتروكة، وفحص المقاس، وصفحة التقييم، ورابط تعديل الطلب، وShipBlu، وGoogle Sheets، وأشكال الرسائل."
   ogImagePath="/og-whats-new.png"
   schema={pageSchema}
 >
@@ -137,8 +153,8 @@ const pageSchema = {
           <span data-copy="ar" lang="ar">ما تم إطلاقه فعلًا.</span>
         </h1>
         <p class="about-subtitle">
-          <span data-copy="en">Every entry here is live in the console today.</span>
-          <span data-copy="ar" lang="ar">كل ما في هذه الصفحة متاح في لوحة التحكم اليوم.</span>
+          <span data-copy="en">Product and website changes, live today.</span>
+          <span data-copy="ar" lang="ar">تغييرات المنتج والموقع، متاحة اليوم.</span>
         </p>
       </header>
 

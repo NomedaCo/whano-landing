@@ -504,8 +504,8 @@ export const site = {
     productLinks: [
       { href: "/features/", label: { en: "Features", ar: "المزايا" } },
       { href: "/pricing/", label: { en: "Pricing", ar: "الأسعار" } },
-      { href: "/#shipping", label: { en: "Shipping & carriers", ar: "الشحن وشركات الشحن" } },
       { href: "/#order-page", label: { en: "The order page", ar: "صفحة الطلب" } },
+      { href: "/integrations/", label: { en: "Integrations", ar: "التكاملات" } },
     ],
     resourcesLabel: { en: "Resources", ar: "الموارد" },
     resourcesLinks: [
@@ -517,6 +517,7 @@ export const site = {
     companyLabel: { en: "Company", ar: "الشركة" },
     companyLinks: [
       { href: "/about/", label: { en: "About", ar: "من نحن" } },
+      { href: "/contact/", label: { en: "Contact", ar: "تواصل معنا" } },
       { href: "https://whano.nomeda.tech/dashboard", label: { en: "Console", ar: "لوحة التحكم" }, external: true, console: true },
       { href: "https://apps.shopify.com/whano", label: { en: "App Store", ar: "متجر التطبيقات" }, external: true },
     ],
