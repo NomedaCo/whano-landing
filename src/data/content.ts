@@ -882,37 +882,6 @@ export const pricingFeatures = [
   { en: "Paid through Shopify or customer support with InstaPay or Vodafone Cash", ar: "الدفع عبر Shopify أو خدمة العملاء عن طريق إنستاباي أو فودافون كاش" },
 ] as const;
 
-export const pricingFaqs = [
-  {
-    question: { en: "What happens when my points run out?", ar: "ماذا يحدث عندما تنفد نقاطي؟" },
-    answer: {
-      en: "Order confirmations and cancellations keep working. Optional automations, shipping updates, ratings, edits, campaigns, pause until you top up. Your orders, message log and settings stay exactly where they are.",
-      ar: "يستمر تأكيد الطلبات وإلغاؤها، وتتوقف الأتمتات الاختيارية, تحديثات الشحن والتقييمات والتعديلات والحملات, حتى تشحن الرصيد. تبقى طلباتك وسجل رسائلك وإعداداتك كما هي.",
-    },
-  },
-  {
-    question: { en: "How am I billed?", ar: "كيف تتم الفاتورة؟" },
-    answer: {
-      en: "Through your Shopify invoice, or through customer support with InstaPay or Vodafone Cash. You buy a points pack once, with no monthly subscription and no automatic renewal.",
-      ar: "عبر فاتورة Shopify، أو عبر خدمة العملاء عن طريق إنستاباي أو فودافون كاش. تشتري باقة النقاط مرة واحدة، من دون اشتراك شهري ومن دون تجديد تلقائي.",
-    },
-  },
-  {
-    question: { en: "Do unused points expire?", ar: "هل تنتهي صلاحية النقاط غير المستخدمة؟" },
-    answer: {
-      en: "No. Points stay in your balance until an automation spends them, and the console shows what each automation costs and how many days the balance still covers.",
-      ar: "لا. تبقى النقاط في رصيدك حتى تستهلكها الأتمتات، وتوضح لوحة التحكم تكلفة كل أتمتة وكم يومًا يكفي الرصيد.",
-    },
-  },
-  {
-    question: { en: "What if I stop using Whano?", ar: "ماذا لو توقفت عن استخدام Whano؟" },
-    answer: {
-      en: "Nothing is charged again: there is no subscription to cancel. You can pause every send from the console, and uninstalling keeps your Shopify orders and history untouched.",
-      ar: "لن تُحصَّل أي مبالغ أخرى، فلا يوجد اشتراك لإلغائه. يمكنك إيقاف كل الإرسال من لوحة التحكم، وإلغاء التثبيت لا يمس طلباتك أو سجلك في Shopify.",
-    },
-  },
-] as const;
-
 export const plans = [
   {
     name: { en: "Starter", ar: "البداية" },

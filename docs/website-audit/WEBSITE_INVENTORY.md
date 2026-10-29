@@ -9,7 +9,7 @@ Last verified: **2026-10-29**
 | `/` | `src/pages/index.astro` | Arabic product landing page | Yes | Canonical Arabic route |
 | `/en/` | `src/pages/en/index.astro` | English product landing page | Yes | Server-rendered; hreflang alternate |
 | `/features/` | `src/pages/features.astro` | Full capability list (24 items) | Yes | `og-features.png` |
-| `/pricing/` | `src/pages/pricing.astro` | Points packs in EGP, costs, billing FAQ | Yes | `og-pricing.png`; JSON-LD Product/Offer in EGP |
+| `/pricing/` | `src/pages/pricing.astro` | Points packs in EGP, costs, points calculator | Yes | `og-pricing.png`; JSON-LD Product/Offer in EGP |
 | `/faq/` | `src/pages/faq.astro` | Help center: 17 answers, search, topics | Yes | FAQPage JSON-LD, 17 questions |
 | `/about/` | `src/pages/about.astro` + `src/data/about.ts` | Company/product background | Yes | Nomeda/NomedaCo naming inconsistency |
 | `/whats-new/` | `src/pages/whats-new.astro` | 14 dated product and website changes | Yes | Dates from production commits; newest first |
