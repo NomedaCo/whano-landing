@@ -13,7 +13,7 @@ const planLines = plans
 const capabilityLines = [
   "Order confirmation and cancellation on WhatsApp.",
   "A one-time Edit order link before confirmation, with quantity, variant, remove, and add-item changes. It is not a natural-language chat edit.",
-  "Bosta and ShipBlu shipment creation, tracking, exceptions, and pickup where supported.",
+  "Bosta, ShipBlu, and J&T Express shipment creation, tracking, exceptions, and pickup where supported.",
   "A read-only customer order page with status, items, total, tracking, address protection, and a support ticket.",
   "Post-delivery ratings, a review page, and one follow-up if the customer does not rate.",
   "Abandoned cart reminders, campaigns, opted-in audiences, bulk add/remove, and a block list.",
@@ -37,7 +37,7 @@ LANGUAGE
 - The latest user message controls the reply language, not the site language. If that message is in English, reply in English only. If it is in Arabic, reply in Arabic only.
 - Do not default to Arabic when the latest user message is English.
 - Use warm, clear Egyptian Arabic when writing Arabic, not stiff marketing language.
-- When writing Arabic, do not mix in French or unexplained English words. Product names and technical terms (Shopify, WhatsApp, Bosta, ShipBlu, EGP, InstaPay, Vodafone Cash) may stay as they are.
+- When writing Arabic, do not mix in French or unexplained English words. Product names and technical terms (Shopify, WhatsApp, Bosta, ShipBlu, J&T Express, EGP, InstaPay, Vodafone Cash) may stay as they are.
 - Keep answers short: usually 2 to 4 short paragraphs or 3 to 5 bullets. Do not exceed about 140 words unless the visitor asks for detail.
 - Use plain text. Do not use Markdown bold, headings, or tables.
 
@@ -111,7 +111,7 @@ const pricingEn = plans
 export const CHATBOT_QUICK_ANSWERS: ChatQuickAnswer[] = [
   {
     id: "support",
-    keywords: ["دعم", "مساعدة بشرية", "شخص", "إنسان", "اتكلم", "واتساب", "استرجاع", "استبدال", "refund", "return", "returns", "support", "help", "human", "whatsapp", "agent"],
+    keywords: ["دعم", "مساعدة بشرية", "شخص", "إنسان", "اتكلم", "واتساب", "استرجاع", "استبدال", "refund", "return", "returns",  "support agent", "support team", "customer support", "help", "human", "whatsapp", "agent"],
     ar: `أكيد. كلمنا على واتساب: ${site.support.display}\nهنراجع سؤالك ونساعدك مباشرة.`,
     en: `Of course. Message us on WhatsApp: ${site.support.display}\nWe will review your question and help directly.`,
     support: true,
@@ -130,9 +130,9 @@ export const CHATBOT_QUICK_ANSWERS: ChatQuickAnswer[] = [
   },
   {
     id: "shipping",
-    keywords: ["شحن", "تتبع", "توصيل", "بوسطة", "شيب بلو", "shipping", "ship", "tracking", "track", "delivery", "bosta", "shipblu", "carrier"],
-    ar: "بعد تأكيد الطلب، ينشئ Whano الشحنة مع بوسطة أو ShipBlu، ويتابع حالتها، ويعرض سبب أي تعثر من شركة الشحن نفسها. رقم التتبع يصل للعميل عند تجهيز الشحنة، وليس لحظة التأكيد.",
-    en: "After confirmation, Whano creates the shipment with Bosta or ShipBlu, follows its state, and shows the carrier's own exception reason. The tracking number reaches the customer when the shipment is created, not at confirmation.",
+    keywords: ["شحن", "تتبع", "توصيل", "بوسطة", "شيب بلو", "j&t", "jnt", "shipping", "ship", "tracking", "track", "delivery", "bosta", "shipblu", "carrier"],
+    ar: "بعد تأكيد الطلب، ينشئ Whano الشحنة مع بوسطة، أو ShipBlu، أو J&T Express، ويتابع حالتها، ويعرض سبب أي تعثر من شركة الشحن نفسها. كل متجر يربط شركة شحن واحدة في كل مرة. رقم التتبع يصل للعميل عند تجهيز الشحنة، وليس لحظة التأكيد.",
+    en: "After confirmation, Whano creates the shipment with Bosta, ShipBlu, or J&T Express, follows its state, and shows the carrier's own exception reason. A store connects one carrier at a time. The tracking number reaches the customer when the shipment is created, not at confirmation.",
   },
   {
     id: "install",
@@ -173,7 +173,7 @@ export const CHATBOT_QUICK_ANSWERS: ChatQuickAnswer[] = [
   {
     id: "features",
     keywords: ["مميزات", "مزايا", "بيعمل إيه", "بيعمل ايه", "كيف يعمل", "how it works", "what does whano do", "features", "capabilities"],
-    ar: "Whano يؤتمت رحلة ما بعد الشراء على واتساب: تأكيد وإلغاء، رابط تعديل لمرة واحدة، شحن وتتبع مع بوسطة أو ShipBlu، صفحة طلب، تقييمات، دعم، سلة متروكة، حملات، وفحص مقاس. لوحة التحكم تجمع الطلبات والشحنات والمحادثات والتقارير.",
-    en: "Whano automates the post-purchase journey on WhatsApp: confirmation and cancellation, a one-time edit link, Bosta or ShipBlu shipping and tracking, an order page, ratings, support, abandoned carts, campaigns, and size check. The console brings orders, shipments, chats, and reports together.",
+    ar: "Whano يؤتمت رحلة ما بعد الشراء على واتساب: تأكيد وإلغاء، رابط تعديل لمرة واحدة، شحن وتتبع مع بوسطة، أو ShipBlu، أو J&T Express، صفحة طلب، تقييمات، دعم، سلة متروكة، حملات، وفحص مقاس. لوحة التحكم تجمع الطلبات والشحنات والمحادثات والتقارير.",
+    en: "Whano automates the post-purchase journey on WhatsApp: confirmation and cancellation, a one-time edit link, Bosta, ShipBlu, or J&T Express shipping and tracking, an order page, ratings, support, abandoned carts, campaigns, and size check. The console brings orders, shipments, chats, and reports together.",
   },
 ];

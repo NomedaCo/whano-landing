@@ -9,6 +9,14 @@ import Nav from "../components/Nav.astro";
 // is something a merchant can open the console and use today.
 const UPDATES = [
   {
+    when: { en: "Nov 2, 2026", ar: "2 نوفمبر 2026" },
+    title: { en: "J&T Express is now official", ar: "J&T Express أصبحت رسمية" },
+    body: {
+      en: "J&T Express Egypt is live for every store. Connect it with the store's customer code, password, and pickup profile. Whano creates the shipment after confirmation, follows J&T scans, and surfaces exceptions. A store keeps one carrier connection at a time.",
+      ar: "أصبح J&T Express مصر متاحًا لكل متجر. اربطه بكود العميل وكلمة المرور وبيانات الاستلام الخاصة بالمتجر. ينشئ Whano الشحنة بعد التأكيد، ويتابع تحديثات J&T، ويعرض التعثرات. ويحتفظ المتجر بربط شركة شحن واحدة في كل مرة.",
+    },
+  },
+  {
     when: { en: "Oct 29, 2026", ar: "29 أكتوبر 2026" },
     title: { en: "A quieter app guide", ar: "دليل تطبيق أهدأ" },
     body: {
@@ -126,17 +134,17 @@ const pageSchema = {
   "@type": "WebPage",
   name: "Whano changelog",
   description:
-    "The latest product and website changes: a quieter app guide, English routes, a points calculator, send capacity, campaigns, abandoned carts, size check, review pages, the one-time edit link, ShipBlu, Sheets, and message shapes.",
+    "The latest product and website changes: J&T Express, a quieter app guide, English routes, a points calculator, send capacity, campaigns, abandoned carts, size check, review pages, the one-time edit link, ShipBlu, Sheets, and message shapes.",
   inLanguage: "ar",
-  dateModified: "2026-10-29",
+  dateModified: "2026-11-04",
 };
 ---
 
 <Base
   title="What's new, Whano"
   titleArabic="ما الجديد, Whano"
-  description="The latest product and website changes: a quieter app guide, English routes, a points calculator, send capacity, campaigns, abandoned carts, size check, review pages, the one-time edit link, ShipBlu, Sheets, and message shapes."
-  descriptionArabic="آخر تغييرات المنتج والموقع: دليل تطبيق أهدأ، ومسارات إنجليزية، وحاسبة نقاط، وسعة إرسال أكبر، وحملات وجمهور، والسلة المتروكة، وفحص المقاس، وصفحة التقييم، ورابط تعديل الطلب، وShipBlu، وGoogle Sheets، وأشكال الرسائل."
+  description="The latest product and website changes: J&T Express, a quieter app guide, English routes, a points calculator, send capacity, campaigns, abandoned carts, size check, review pages, the one-time edit link, ShipBlu, Sheets, and message shapes."
+  descriptionArabic="آخر تغييرات المنتج والموقع: J&T Express، ودليل تطبيق أهدأ، ومسارات إنجليزية، وحاسبة نقاط، وسعة إرسال أكبر، وحملات وجمهور، والسلة المتروكة، وفحص المقاس، وصفحة التقييم، ورابط تعديل الطلب، وShipBlu، وGoogle Sheets، وأشكال الرسائل."
   ogImagePath="/og-whats-new.png"
   schema={pageSchema}
 >

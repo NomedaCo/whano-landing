@@ -9,7 +9,7 @@ import { site } from "../data/content";
 const pageSchema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  name: "Whano integrations | Shopify, WhatsApp, Bosta, ShipBlu",
+  name: "Whano integrations | Shopify, WhatsApp, Bosta, ShipBlu, J&T Express",
   description: "The systems Whano connects to, and the boundaries of each integration.",
   inLanguage: "ar",
   about: {
@@ -19,16 +19,17 @@ const pageSchema = {
       { "@type": "Thing", name: "WhatsApp Cloud API" },
       { "@type": "Thing", name: "Bosta" },
       { "@type": "Thing", name: "ShipBlu" },
+      { "@type": "Thing", name: "J&T Express" },
     ],
   },
 };
 ---
 
 <Base
-  title="Integrations | Shopify, WhatsApp, Bosta and ShipBlu | Whano"
-  titleArabic="التكاملات | Shopify وواتساب وبوسطة وShipBlu | Whano"
-  description="Whano connects Shopify orders to the official WhatsApp Cloud API, and creates shipments with Bosta or ShipBlu. See exactly what is connected and what is not."
-  descriptionArabic="يربط Whano طلبات Shopify بواجهة WhatsApp Cloud API الرسمية، وينشئ الشحنات مع بوسطة أو ShipBlu. اعرف بالضبط ما هو متصل وما ليس متصلًا."
+  title="Integrations | Shopify, WhatsApp, Bosta, ShipBlu and J&T Express | Whano"
+  titleArabic="التكاملات | Shopify وواتساب وبوسطة وShipBlu وJ&T Express | Whano"
+  description="Whano connects Shopify orders to the official WhatsApp Cloud API, and creates shipments with Bosta, ShipBlu, or J&T Express. See exactly what is connected and what is not."
+  descriptionArabic="يربط Whano طلبات Shopify بواجهة WhatsApp Cloud API الرسمية، وينشئ الشحنات مع بوسطة، أو ShipBlu، أو J&T Express. اعرف بالضبط ما هو متصل وما ليس متصلًا."
   schema={pageSchema}
 >
   <Nav />
@@ -44,8 +45,8 @@ const pageSchema = {
           <span data-copy="ar" lang="ar">الأدوات التي تستخدمها بالفعل.</span>
         </h1>
         <p class="about-subtitle">
-          <span data-copy="en">Whano connects a Shopify store to the official WhatsApp Cloud API and creates shipments with Bosta or ShipBlu. Nothing else is silently connected.</span>
-          <span data-copy="ar" lang="ar">يربط Whano متجر Shopify بواجهة WhatsApp Cloud API الرسمية، وينشئ الشحنات مع بوسطة أو ShipBlu. ولا يوجد أي اتصال آخر بشكل مخفي.</span>
+          <span data-copy="en">Whano connects a Shopify store to the official WhatsApp Cloud API and creates shipments with Bosta, ShipBlu, or J&T Express. Each store connects one carrier at a time. Nothing else is silently connected.</span>
+          <span data-copy="ar" lang="ar">يربط Whano متجر Shopify بواجهة WhatsApp Cloud API الرسمية، وينشئ الشحنات مع بوسطة، أو ShipBlu، أو J&T Express. وكل متجر يربط شركة شحن واحدة في كل مرة. ولا يوجد أي اتصال آخر بشكل مخفي.</span>
         </p>
       </header>
 
@@ -113,6 +114,22 @@ const pageSchema = {
             <span data-copy="ar" lang="ar">دليل الاستعداد للشحن</span>
           </a>
         </article>
+
+        <article class="integration-card integration-card--wide reveal">
+          <p class="integration-card__label">J&T Express</p>
+          <h2>
+            <span data-copy="en">A third carrier</span>
+            <span data-copy="ar" lang="ar">شركة شحن ثالثة</span>
+          </h2>
+          <p>
+            <span data-copy="en">Connect J&T Express with the store's customer code, password, and pickup profile. Whano creates the shipment after confirmation, follows J&T scans, and surfaces exceptions. A store keeps one carrier connection at a time.</span>
+            <span data-copy="ar" lang="ar">اربط J&T Express بكود العميل وكلمة المرور وبيانات الاستلام الخاصة بالمتجر. ينشئ Whano الشحنة بعد التأكيد، ويتابع تحديثات J&T، ويعرض التعثرات. ويحتفظ المتجر بربط شركة شحن واحدة في كل مرة.</span>
+          </p>
+          <a href="/guides/bosta-vs-shipblu/">
+            <span data-copy="en">How to choose a carrier</span>
+            <span data-copy="ar" lang="ar">كيف تختار شركة الشحن</span>
+          </a>
+        </article>
       </section>
 
       <section class="about-section reveal" aria-labelledby="integration-boundaries">
@@ -126,8 +143,8 @@ const pageSchema = {
             <span data-copy="ar" lang="ar">Aramex وMylerz ليسا تكاملين مباشرين. ومعالجة الدفع تتم عبر Shopify أو صفحة الدفع الحالية للمتجر، وليس عبر Whano. ولا يستبدل Whano واجهة المتجر، ولا ينشئ لوحة تحكم منفصلة لعدة متاجر.</span>
           </p>
           <p>
-            <span data-copy="en">If a carrier or tool is not listed here, treat it as unsupported. Ask support before promising a connection to a customer.</span>
-            <span data-copy="ar" lang="ar">إذا كانت شركة الشحن أو الأداة غير مذكورة هنا، فاعتبرها غير مدعومة. اسأل الدعم قبل أن توعد عميلًا بربطها.</span>
+            <span data-copy="en">If a carrier or tool is not listed here, treat it as unsupported. A store can keep one carrier connection at a time, and switching is blocked while parcels from the old carrier are still moving. Ask support before promising a connection to a customer.</span>
+            <span data-copy="ar" lang="ar">إذا كانت شركة الشحن أو الأداة غير مذكورة هنا، فاعتبرها غير مدعومة. ويمكن للمتجر الاحتفاظ بربط شركة شحن واحدة في كل مرة، ويكون التبديل محظورًا ما دامت شحنات الشركة القديمة في الطريق. اسأل الدعم قبل أن توعد عميلًا بربطها.</span>
           </p>
           <p class="contact-links">
             <a href="/contact/">
@@ -161,6 +178,10 @@ const pageSchema = {
     border: 1.5px solid var(--pl-line);
     border-radius: 22px;
     background: #ffffff;
+  }
+
+  .integration-card--wide {
+    grid-column: 1 / -1;
   }
 
   .integration-card__label {

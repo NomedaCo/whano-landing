@@ -34,8 +34,10 @@ ignored.
 
 ### D3 — Product truth over marketing convenience
 
-- Only **Bosta** and **ShipBlu** are connected carriers. Aramex/Mylerz are
-  “coming soon” in the product and must not be listed as live.
+- The connected carriers are **Bosta**, **ShipBlu**, and **J&T Express**
+  (official since 2026-11-02). Aramex/Mylerz are “coming soon” in the product
+  and must not be listed as live. A store keeps one carrier connection at a
+  time.
 - Merchant chats are **read-only**; the Whano team can take over. The site says
   “support ticket / team handoff”, not “reply in the console yourself”.
 - There is **no merchant multi-store switcher** and **no merchant teammate
@@ -356,3 +358,15 @@ aggregate `/stats` route remains separate for compatibility.
 The consent banner is the gate. Essential-only visitors get no session events
 and no transcript storage. Privacy and DPA copy disclose the optional retention
 and processor role; legal review remains required before relying on the wording.
+
+## 2026-11-04
+
+### D34: J&T Express joins the connected carriers
+
+J&T Express Egypt is now official for every store. The site lists it beside
+Bosta and ShipBlu on the home shipping section, features, FAQ, integrations
+page, app guide, shipping guides, DPA subprocessors, and changelog. The site
+also states the product rule that a store keeps one carrier connection at a
+time; switching is blocked while parcels from the old carrier are moving.
+J&T needs the store's customer code, password, and pickup profile. No beta
+language is used.

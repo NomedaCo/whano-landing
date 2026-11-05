@@ -517,3 +517,16 @@ unchanged. The change is local and not deployed yet.
   dashboard login, session list, session detail, chat transcript, and 14-day
   chat retention setup pass. `astro check` 0 errors; 46 pages build; local
   dashboard returns 200 after login and redirects to login when unauthenticated.
+
+### J&T Express content pass (2026-11-04)
+
+- Pulled the Whano product repository to the J&T official release (official
+  since 2026-11-02) and verified the carrier behavior and the one-carrier rule.
+- Added J&T Express to the connected-carrier list, home shipping deep dive,
+  console shipment sample, features shipping card, shipping FAQ, integrations
+  page, app guide capabilities and shipping answer, shipping guides, DPA
+  processor list, and changelog.
+- Documented the one-carrier-at-a-time rule and J&T's customer code, password,
+  and pickup profile requirements.
+- Verification: `astro check`, 46-page build, integrations page copy/JSON-LD,
+  shipping FAQ, and app-guide quick answer checked.

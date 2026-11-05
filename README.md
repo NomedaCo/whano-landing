@@ -19,7 +19,7 @@ The page is intentionally editorial rather than a conventional SaaS template: a 
 - `/en/` — server-rendered English route with hreflang and its own canonical URL
 - `/features`, `/pricing`, `/faq`, `/about`, `/security`, `/whats-new` — the main product pages
 - `/contact/` — WhatsApp and email support, with no form backend to maintain
-- `/integrations/` — Shopify, WhatsApp Cloud API, Bosta, and ShipBlu, including what is not connected
+- `/integrations/` — Shopify, WhatsApp Cloud API, Bosta, ShipBlu, and J&T Express, including what is not connected
 - `/pricing/#calculator` — a points estimator that recommends a pack from current EGP prices
 - `/guides` (Arabic: شرح عملي): nine practical guides, including COD confirmation, carrier choice, template approval, points per order, and abandoned carts
 - `/login` — 301 to the console at `whano.nomeda.tech/dashboard` (kept only for old links; `noindex` fallback)

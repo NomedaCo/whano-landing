@@ -61,6 +61,7 @@ made.
 | Baileys / QR session | Supported for some stores | Product code has a QR transport; the landing describes the normal Cloud path |
 | Bosta | Live | Shipment creation, tracking, pickup, inspection-on-delivery setting |
 | ShipBlu | Live (production + staging) | Adapter, geography sync, tracking, pickup |
+| J&T Express Egypt | Live, official since 2026-11-02 | Adapter, status push and polling, tracking, exceptions, pickup profile, waybill PDF; one carrier connection per store |
 | Aramex | **Not live** | Product UI says “coming soon”; do not list as connected |
 | Mylerz | **Not live** | Product UI says “coming soon”; do not list as connected |
 | Railway | Live | API/database hosting |
@@ -96,7 +97,7 @@ Verified in `Whano-Admin` routes and `Whano` API services (2026-10-24):
 
 - Order confirmation/cancellation; one-time edit link; cancellation reasons;
   reminder + auto-cancel after a configurable delay.
-- Shipping with Bosta and ShipBlu; pickup request where supported; tracking,
+- Shipping with Bosta, ShipBlu, and J&T Express; one carrier connection per store; pickup request where supported; tracking,
   exceptions, stale shipments, bulk actions, Bosta inspection-on-delivery.
 - Live customer order page; phone-gated address; 30-day links.
 - Delivery rating + reminder; low-rating support/return path; support tickets.
@@ -176,8 +177,8 @@ Verified in the merchant console code:
   later and the store data is deleted (security page and DPA). The Privacy
   Policy also has a 30-day deletion window for other deletion requests; these are
   different paths and must be written unambiguously.
-- Sub-processors named in the DPA: Meta/WhatsApp, Shopify, Bosta, an AI model
-  provider, Resend, Railway. **ShipBlu is supported and must be added.**
+- Sub-processors named in the DPA: Meta/WhatsApp, Shopify, Bosta, ShipBlu,
+  J&T Express, an AI model provider, Resend, Railway, and Cloudflare.
   Cloudflare hosts the public site/console and must be disclosed or explicitly
   covered by the hosting description.
 - No payment card data touches Whano; Shopify handles billing.

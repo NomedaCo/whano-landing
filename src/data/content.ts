@@ -305,8 +305,12 @@ export const site = {
     carriers: [
       { en: "Bosta", ar: "بوسطة" },
       { en: "ShipBlu", ar: "شيب بلو" },
+      { en: "J&T Express", ar: "J&T Express" },
     ],
-    carriersNote: { en: "Connect Bosta or ShipBlu from the console.", ar: "اربط بوسطة أو شيب بلو من لوحة التحكم." },
+    carriersNote: {
+      en: "Each store connects one carrier at a time: Bosta, ShipBlu, or J&T Express.",
+      ar: "كل متجر يربط شركة شحن واحدة في كل مرة: بوسطة، أو ShipBlu، أو J&T Express.",
+    },
     items: [
       {
         title: { en: "The confirmed order becomes a shipment", ar: "الطلب المؤكد يتحول إلى شحنة" },
@@ -429,7 +433,7 @@ export const site = {
         rows: [
           { id: "BST-884213", state: { en: "On the way", ar: "في الطريق" }, carrier: "Bosta" },
           { id: "SBL-221074", state: { en: "Delivered", ar: "تم التوصيل" }, carrier: "ShipBlu" },
-          { id: "BST-884214", state: { en: "Postponed", ar: "تم التأجيل" }, carrier: "Bosta" },
+          { id: "JNT-441208", state: { en: "Postponed", ar: "تم التأجيل" }, carrier: "J&T Express" },
         ],
       },
       {
@@ -661,8 +665,8 @@ export const featureGroups: FeatureGroup[] = [
         featured: true,
         title: { en: "A shipping console, not just a message", ar: "لوحة شحن كاملة، لا رسالة فقط" },
         body: {
-          en: "After the customer confirms, Whano creates the shipment with Bosta or ShipBlu, follows its state, and shows exceptions with the carrier's own reason.",
-          ar: "بعد تأكيد العميل، ينشئ Whano الشحنة مع بوسطة أو شيب بلو، ويتابع حالتها، ويعرض تعثر التوصيل مع السبب الذي تذكره الشركة.",
+          en: "After the customer confirms, Whano creates the shipment with Bosta, ShipBlu, or J&T Express, follows its state, and shows exceptions with the carrier's own reason.",
+          ar: "بعد تأكيد العميل، ينشئ Whano الشحنة مع بوسطة، أو ShipBlu، أو J&T Express، ويتابع حالتها، ويعرض تعثر التوصيل مع السبب الذي تذكره الشركة.",
         },
         detail: { en: "Shipments & carriers", ar: "الشحنات وشركات الشحن" },
       },
@@ -1052,8 +1056,8 @@ export const faqs = [
     question: { en: "Does it work with my shipping company?", ar: "هل يعمل مع شركة الشحن التي أتعامل معها؟" },
     topic: "orders",
     answer: {
-      en: "Whano creates shipments with Bosta and ShipBlu after the customer confirms, follows each shipment's state, and shows delivery exceptions with the reason the carrier gives. If you ship through another company, the tracking update still reaches the customer on WhatsApp.",
-      ar: "ينشئ Whano الشحنات مع بوسطة وشيب بلو بعد تأكيد العميل، ويتابع حالة كل شحنة، ويعرض تعثر التوصيل مع السبب الذي تذكره شركة الشحن. وإذا كنت تشحن عبر شركة أخرى، يظل تحديث التتبع يصل إلى العميل على واتساب.",
+      en: "Whano creates shipments with Bosta, ShipBlu, or J&T Express after the customer confirms, follows each shipment's state, and shows delivery exceptions with the reason the carrier gives. A store connects one carrier at a time. If you ship through another company, the tracking update still reaches the customer on WhatsApp.",
+      ar: "ينشئ Whano الشحنات مع بوسطة، أو ShipBlu، أو J&T Express بعد تأكيد العميل، ويتابع حالة كل شحنة، ويعرض تعثر التوصيل مع السبب الذي تذكره شركة الشحن. وكل متجر يربط شركة شحن واحدة في كل مرة. وإذا كنت تشحن عبر شركة أخرى، يظل تحديث التتبع يصل إلى العميل على واتساب.",
     },
   },
   {

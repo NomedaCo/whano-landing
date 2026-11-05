@@ -12,9 +12,9 @@ Last verified: **2026-10-29**
 | `/pricing/` | `src/pages/pricing.astro` | Points packs in EGP, costs, points calculator | Yes | `og-pricing.png`; JSON-LD Product/Offer in EGP |
 | `/faq/` | `src/pages/faq.astro` | Help center: 17 answers, search, topics | Yes | FAQPage JSON-LD, 17 questions |
 | `/about/` | `src/pages/about.astro` + `src/data/about.ts` | Company/product background | Yes | Nomeda/NomedaCo naming inconsistency |
-| `/whats-new/` | `src/pages/whats-new.astro` | 14 dated product and website changes | Yes | Dates from production commits; newest first |
+| `/whats-new/` | `src/pages/whats-new.astro` | 15 dated product and website changes | Yes | Dates from production commits; newest first |
 | `/contact/` | `src/pages/contact.astro` | WhatsApp and email support | Yes | No form backend |
-| `/integrations/` | `src/pages/integrations.astro` | Shopify, WhatsApp, Bosta, ShipBlu | Yes | Explicitly lists what is not connected |
+| `/integrations/` | `src/pages/integrations.astro` | Shopify, WhatsApp, Bosta, ShipBlu, J&T Express | Yes | Explicitly lists what is not connected |
 | `/guides/` | `src/pages/guides/index.astro` | Guide index, Arabic name شرح عملي | Yes | Nine guides |
 | `/guides/whatsapp-order-follow-up/` | `src/pages/guides/[slug].astro` | Practical follow-up guide | Yes | |
 | `/guides/reduce-wismo/` | same | WISMO reduction guide | Yes | |

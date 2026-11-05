@@ -354,6 +354,10 @@ export const dpaSections: LegalSection[] = [
         ar: "ShipBlu، فقط إذا قمت بربطها, إنشاء الشحنات وتحديد المنطقة وطلب الاستلام والتتبع: اسم المستلم وهاتفه وعنوانه.",
       },
       {
+        en: "J&T Express, only if you connect it, shipment creation, pickup, tracking, and delivery updates: recipient name, phone and address.",
+        ar: "J&T Express، فقط إذا قمت بربطها، إنشاء الشحنات والاستلام والتتبع وتحديثات التوصيل: اسم المستلم وهاتفه وعنوانه.",
+      },
+      {
         en: "AI provider, when transactional translation is needed: message text only. Not used to train third-party models.",
         ar: "مزود ذكاء اصطناعي, عند الحاجة إلى ترجمة الرسائل: نص الرسالة فقط. ولا تُستخدم لتدريب نماذج الأطراف الثالثة.",
       },

@@ -224,8 +224,8 @@ export const guides: Guide[] = [
         heading: { en: "1. Connect the carrier, then check the account", ar: "1. اربط شركة الشحن ثم راجع الحساب" },
         body: [
           {
-            en: "Connect Bosta or ShipBlu from the console. Connection alone is not enough: confirm that the carrier account itself can create deliveries. Bosta, for example, requires an active bundle subscription. If the account rejects a delivery, the order stays confirmed without a tracking number until the account is fixed and the shipment is retried.",
-            ar: "اربط بوسطة أو ShipBlu من لوحة التحكم. الربط وحده لا يكفي: تأكد أن حساب شركة الشحن نفسه يستطيع إنشاء الشحنات. بوسطة مثلًا تحتاج باقة نشطة. وإذا رفض الحساب الشحنة، يبقى الطلب مؤكدًا بلا رقم تتبع حتى يُصلح الحساب وتُعاد محاولة الشحن.",
+            en: "Connect Bosta, ShipBlu, or J&T Express from the console. A store keeps one carrier connection at a time. Connection alone is not enough: confirm that the carrier account itself can create deliveries. Bosta, for example, requires an active bundle subscription; J&T Express uses the store's customer code, password, and pickup profile. If the account rejects a delivery, the order stays confirmed without a tracking number until the account is fixed and the shipment is retried.",
+            ar: "اربط بوسطة، أو ShipBlu، أو J&T Express من لوحة التحكم. ويحتفظ المتجر بربط شركة شحن واحدة في كل مرة. الربط وحده لا يكفي: تأكد أن حساب شركة الشحن نفسه يستطيع إنشاء الشحنات. بوسطة مثلًا تحتاج باقة نشطة، وJ&T Express يستخدم كود العميل وكلمة المرور وبيانات الاستلام الخاصة بالمتجر. وإذا رفض الحساب الشحنة، يبقى الطلب مؤكدًا بلا رقم تتبع حتى يُصلح الحساب وتُعاد محاولة الشحن.",
           },
         ],
       },
@@ -309,26 +309,26 @@ export const guides: Guide[] = [
     slug: "bosta-vs-shipblu",
     eyebrow: { en: "Guide", ar: "شرح" },
     title: {
-      en: "Bosta or ShipBlu: how to choose a shipping integration",
-      ar: "بوسطة أم ShipBlu؟ كيف تختار تكامل الشحن؟",
+      en: "Bosta, ShipBlu, or J&T Express: how to choose a shipping integration",
+      ar: "بوسطة أم ShipBlu أم J&T Express؟ كيف تختار تكامل الشحن؟",
     },
     description: {
-      en: "Both carriers are supported. Here is what Whano does with either one, and what to decide with the carrier directly.",
-      ar: "شركتا الشحن مدعومتان. هذا ما يفعله Whano مع أي منهما، وما تحتاج إلى حسمه مع الشركة مباشرة.",
+      en: "All three carriers are supported. Here is what Whano does with each one, and what to decide with the carrier directly.",
+      ar: "شركات الشحن الثلاث مدعومة. هذا ما يفعله Whano مع كل واحدة، وما تحتاج إلى حسمه مع الشركة مباشرة.",
     },
     intro: {
-      en: "Whano does not rank carriers. It connects to Bosta and ShipBlu, creates the shipment, and follows the state that the carrier returns. The right choice depends on your contract, coverage, and operation.",
-      ar: "لا يرتب Whano شركات الشحن. يتصل ببوسطة وShipBlu، وينشئ الشحنة، ويتابع الحالة التي ترجعها الشركة. والاختيار الصحيح يعتمد على تعاقدك وتغطيتك وتشغيلك.",
+      en: "Whano does not rank carriers. It connects to Bosta, ShipBlu, or J&T Express, creates the shipment, and follows the state that the carrier returns. A store keeps one carrier connection at a time. The right choice depends on your contract, coverage, and operation.",
+      ar: "لا يرتب Whano شركات الشحن. يتصل ببوسطة، أو ShipBlu، أو J&T Express، وينشئ الشحنة، ويتابع الحالة التي ترجعها الشركة. ويحتفظ المتجر بربط شركة شحن واحدة في كل مرة. والاختيار الصحيح يعتمد على تعاقدك وتغطيتك وتشغيلك.",
     },
     readingTime: { en: "4 min read", ar: "4 دقائق قراءة" },
     published: "2026-10-29",
     sections: [
       {
-        heading: { en: "1. What Whano does with either carrier", ar: "1. ما يفعله Whano مع أي شركة" },
+        heading: { en: "1. What Whano does with each carrier", ar: "1. ما يفعله Whano مع كل شركة" },
         body: [
           {
-            en: "After confirmation, Whano creates the shipment with the carrier connected in the console, follows its state, and shows the carrier's own exception reason. Pickup is available where the carrier supports it.",
-            ar: "بعد التأكيد، ينشئ Whano الشحنة مع الشركة المربوطة في لوحة التحكم، ويتابع حالتها، ويعرض سبب التعثر من الشركة نفسها. ويتاح الاستلام حيث تدعمه الشركة.",
+            en: "After confirmation, Whano creates the shipment with the carrier connected in the console, follows its state, and shows the carrier's own exception reason. Pickup is available where the carrier supports it. J&T Express additionally requires the store's customer code, password, and pickup profile.",
+            ar: "بعد التأكيد، ينشئ Whano الشحنة مع الشركة المربوطة في لوحة التحكم، ويتابع حالتها، ويعرض سبب التعثر من الشركة نفسها. ويتاح الاستلام حيث تدعمه الشركة. ويحتاج J&T Express أيضًا إلى كود العميل وكلمة المرور وبيانات الاستلام الخاصة بالمتجر.",
           },
         ],
       },
