@@ -66,7 +66,7 @@ const showPromo = !/^\/(?:privacy|terms|dpa|login|stats|order|cart)(?:\/|$)/.tes
 const organization = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "NomedaCo",
+  name: "Nomeda",
   alternateName: "Nomeda",
   url: "https://nomeda.tech",
   logo: new URL("/icon-512.png", Astro.site).href,
@@ -83,7 +83,7 @@ const website = {
   name: "Whano",
   url: siteRoot.href,
   inLanguage: ["ar", "en"],
-  publisher: { "@type": "Organization", name: "NomedaCo", url: "https://nomeda.tech" },
+  publisher: { "@type": "Organization", name: "Nomeda", url: "https://nomeda.tech" },
 };
 const pageSchemas = (Array.isArray(schema) ? schema : schema ? [schema] : []).map((entry) => ({
   ...entry,
@@ -108,7 +108,7 @@ const pageSchemas = (Array.isArray(schema) ? schema : schema ? [schema] : []).ma
     <meta name="theme-color" content="#f8faf9" />
     <meta name="color-scheme" content="light" />
     <meta name="format-detection" content="telephone=no" />
-    <meta name="author" content="NomedaCo" />
+    <meta name="author" content="Nomeda" />
     <link rel="canonical" href={canonical} />
     <link rel="alternate" hreflang="ar" href={arabicUrl} />
     <link rel="alternate" hreflang="en" href={englishUrl} />

@@ -17,8 +17,7 @@ cancellation, and pre-fulfillment edits, sends shipping/tracking updates, asks
 for a delivery rating and routes unhappy customers to support/returns, and keeps
 a live customer order page.
 
-It is operated by **NomedaCo** (public brand: Nomeda; Shopify developer:
-NOMEDA). The app is live on the Shopify App Store:
+It is operated by **Nomeda** (Shopify developer: NOMEDA). The app is live on the Shopify App Store:
 `https://apps.shopify.com/whano` (launched 2026-09-09).
 
 ## Audience
@@ -171,7 +170,7 @@ Verified in the merchant console code:
 
 - Public contact: `contact@nomeda.tech` (product email sender). Privacy requests:
   `privacy@nomeda.tech`.
-- Legal entity in the Terms/Privacy/DPA: **NomedaCo**; public brand: Nomeda;
+- Legal entity and public brand in the Terms/Privacy/DPA: **Nomeda**;
   Shopify developer: NOMEDA.
 - Uninstalling stops the bot; Shopify sends the shop-redaction webhook 48 hours
   later and the store data is deleted (security page and DPA). The Privacy
@@ -208,8 +207,8 @@ Verified in the merchant console code:
 
 ## Open questions / do not invent
 
-- The exact contracting entity name for invoices (Nomeda vs NomedaCo) should be
-  confirmed by the business; the legal pages use NomedaCo.
+- The exact contracting entity name for invoices should be confirmed by the
+  business; the legal pages use Nomeda.
 - Whether `privacy@nomeda.tech` is a monitored mailbox (the site uses it for
   privacy requests). Keep it only if the team confirms; otherwise use
   `contact@nomeda.tech`.

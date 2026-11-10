@@ -6,6 +6,14 @@ import MobileCta from "../components/MobileCta.astro";
 import Nav from "../components/Nav.astro";
 import { site } from "../data/content";
 
+const worksWith = [
+  { name: "Shopify", src: "/logos/shopify.svg", width: 24, height: 24, icon: true },
+  { name: "WhatsApp", src: "/logos/whatsapp.svg", width: 24, height: 24, icon: true },
+  { name: "Bosta", src: "/logos/bosta.png", width: 112, height: 32 },
+  { name: "ShipBlu", src: "/logos/shipblu.png", width: 1967, height: 446 },
+  { name: "J&T Express", src: "/logos/jnt.svg", width: 500, height: 105 },
+];
+
 const pageSchema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
@@ -49,6 +57,33 @@ const pageSchema = {
           <span data-copy="ar" lang="ar">يربط Whano متجر Shopify بواجهة WhatsApp Cloud API الرسمية، وينشئ الشحنات مع بوسطة، أو ShipBlu، أو J&T Express. وكل متجر يربط شركة شحن واحدة في كل مرة. ولا يوجد أي اتصال آخر بشكل مخفي.</span>
         </p>
       </header>
+
+      <section class="works-with reveal" aria-labelledby="works-with-title">
+        <div class="works-with__head">
+          <h2 class="works-with__title" id="works-with-title">
+            <span data-copy="en">Works with</span>
+            <span data-copy="ar" lang="ar">يعمل مع</span>
+          </h2>
+          <p class="works-with__note">
+            <span data-copy="en">The platforms and carriers Whano connects to today.</span>
+            <span data-copy="ar" lang="ar">المنصات وشركات الشحن التي يتصل بها Whano اليوم.</span>
+          </p>
+        </div>
+        <ul class="works-with__logos">
+          {worksWith.map((item) => (
+            <li class:list={["works-with__item", item.icon && "works-with__item--icon"]}>
+              <img
+                src={item.src}
+                alt={item.name}
+                width={item.width}
+                height={item.height}
+                loading="lazy"
+                decoding="async"
+              />
+            </li>
+          ))}
+        </ul>
+      </section>
 
       <section class="integration-grid" aria-label="Whano integrations">
         <article class="integration-card reveal">
@@ -181,6 +216,71 @@ const pageSchema = {
 </Base>
 
 <style>
+  .works-with {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin: 26px 0 4px;
+    padding: 18px 22px;
+    border: 1.5px solid var(--pl-line);
+    border-radius: 22px;
+    background: #fbf9ff;
+  }
+
+  .works-with__title {
+    margin: 0;
+    color: var(--ink);
+    font-family: var(--font-heading);
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.4;
+  }
+
+  .works-with__note {
+    margin: 4px 0 0;
+    color: var(--ink-muted);
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  .works-with__logos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .works-with__item {
+    display: flex;
+    width: 104px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 12px;
+    border: 1.5px solid var(--pl-line);
+    border-radius: 12px;
+    background: #ffffff;
+  }
+
+  .works-with__item img {
+    display: block;
+    width: auto;
+    max-width: 80px;
+    max-height: 22px;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .works-with__item--icon img {
+    max-width: 22px;
+    max-height: 22px;
+  }
+
   .integration-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -275,6 +375,15 @@ const pageSchema = {
   }
 
   @media (max-width: 760px) {
+    .works-with {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .works-with__logos {
+      justify-content: flex-start;
+    }
+
     .integration-grid {
       grid-template-columns: 1fr;
       margin-top: 20px;

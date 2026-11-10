@@ -12,12 +12,12 @@ export const termsSections: LegalSection[] = [
     heading: { en: "1. Acceptance of these terms", ar: "1. الموافقة على الشروط" },
     paragraphs: [
       {
-        en: "These Terms of Service govern your use of Whano, a WhatsApp automation service for Shopify merchants operated by NomedaCo (\"Whano\", \"we\", \"us\", or \"our\"). By requesting access to or using the service, you agree to these terms.",
-        ar: "تحدد شروط الخدمة هذه قواعد استخدامك لخدمة Whano، وهي خدمة لأتمتة التواصل عبر واتساب لمتاجر Shopify وتديرها NomedaCo (ويُشار إليها بـ\"Whano\" أو \"نحن\"). بطلب الوصول إلى الخدمة أو استخدامها، فأنت توافق على هذه الشروط.",
+        en: "These Terms of Service govern your use of Whano, a WhatsApp automation service for Shopify merchants operated by Nomeda (\"Whano\", \"we\", \"us\", or \"our\"). By requesting access to or using the service, you agree to these terms.",
+        ar: "تحدد شروط الخدمة هذه قواعد استخدامك لخدمة Whano، وهي خدمة لأتمتة التواصل عبر واتساب لمتاجر Shopify وتديرها Nomeda (ويُشار إليها بـ\"Whano\" أو \"نحن\"). بطلب الوصول إلى الخدمة أو استخدامها، فأنت توافق على هذه الشروط.",
       },
       {
-        en: "Because Whano processes your customers' personal data on your behalf, our Data Processing Agreement forms part of these terms and takes effect at the same moment, when you install Whano on your store. You are the data controller and NomedaCo is the processor.",
-        ar: "ولأن Whano يعالج البيانات الشخصية لعملائك نيابةً عنك، فإن اتفاقية معالجة البيانات الخاصة بنا تُعد جزءًا من هذه الشروط وتسري في اللحظة نفسها, عند تثبيت Whano على متجرك. أنت المتحكم في البيانات وNomedaCo هي المعالج.",
+        en: "Because Whano processes your customers' personal data on your behalf, our Data Processing Agreement forms part of these terms and takes effect at the same moment, when you install Whano on your store. You are the data controller and Nomeda is the processor.",
+        ar: "ولأن Whano يعالج البيانات الشخصية لعملائك نيابةً عنك، فإن اتفاقية معالجة البيانات الخاصة بنا تُعد جزءًا من هذه الشروط وتسري في اللحظة نفسها, عند تثبيت Whano على متجرك. أنت المتحكم في البيانات وNomeda هي المعالج.",
       },
     ],
     links: [{ label: { en: "Read the Data Processing Agreement", ar: "اقرأ اتفاقية معالجة البيانات" }, href: "/dpa" }],
@@ -79,8 +79,8 @@ export const termsSections: LegalSection[] = [
     heading: { en: "7. Availability and liability", ar: "7. التوافر والمسؤولية" },
     paragraphs: [
       {
-        en: "The service is provided on an \"as available\" basis. We do not guarantee that every message will be delivered, that every customer question will be understood, or that the service will be uninterrupted. To the extent allowed by law, NomedaCo is not liable for indirect, incidental, special, or consequential losses arising from your use of Whano. Nothing in these terms excludes liability that cannot legally be excluded.",
-        ar: "تُقدّم الخدمة حسب توافرها. ولا نضمن تسليم كل رسالة أو فهم كل استفسار من العملاء أو استمرار الخدمة دون انقطاع. وإلى الحد الذي يسمح به القانون، لا تتحمل NomedaCo مسؤولية الخسائر غير المباشرة أو العرضية أو الخاصة أو التبعية الناتجة عن استخدامك لـ Whano. ولا يستبعد أي حكم في هذه الشروط مسؤولية لا يجوز استبعادها قانونًا.",
+        en: "The service is provided on an \"as available\" basis. We do not guarantee that every message will be delivered, that every customer question will be understood, or that the service will be uninterrupted. To the extent allowed by law, Nomeda is not liable for indirect, incidental, special, or consequential losses arising from your use of Whano. Nothing in these terms excludes liability that cannot legally be excluded.",
+        ar: "تُقدّم الخدمة حسب توافرها. ولا نضمن تسليم كل رسالة أو فهم كل استفسار من العملاء أو استمرار الخدمة دون انقطاع. وإلى الحد الذي يسمح به القانون، لا تتحمل Nomeda مسؤولية الخسائر غير المباشرة أو العرضية أو الخاصة أو التبعية الناتجة عن استخدامك لـ Whano. ولا يستبعد أي حكم في هذه الشروط مسؤولية لا يجوز استبعادها قانونًا.",
       },
     ],
   },
@@ -119,8 +119,8 @@ export const privacySections: LegalSection[] = [
     heading: { en: "1. Overview", ar: "1. نظرة عامة" },
     paragraphs: [
       {
-        en: "This Privacy Policy explains how Whano, operated by NomedaCo, collects and uses information when a Shopify merchant connects a store to the service.",
-        ar: "توضح سياسة الخصوصية هذه كيفية جمع Whano، الذي تديره NomedaCo، للمعلومات واستخدامها عندما يربط تاجر Shopify متجره بالخدمة.",
+        en: "This Privacy Policy explains how Whano, operated by Nomeda, collects and uses information when a Shopify merchant connects a store to the service.",
+        ar: "توضح سياسة الخصوصية هذه كيفية جمع Whano، الذي تديره Nomeda، للمعلومات واستخدامها عندما يربط تاجر Shopify متجره بالخدمة.",
       },
     ],
   },
@@ -249,7 +249,7 @@ export const privacySections: LegalSection[] = [
 ];
 
 /**
- * The data processing agreement between the merchant (controller) and NomedaCo
+ * The data processing agreement between the merchant (controller) and Nomeda
  * (processor).
  *
  * Published rather than kept as an internal document because Shopify's
@@ -263,8 +263,8 @@ export const dpaSections: LegalSection[] = [
     heading: { en: "1. Parties and effect", ar: "1. الأطراف والسريان" },
     paragraphs: [
       {
-        en: "This Data Processing Agreement is between you, the merchant, as the data controller, and NomedaCo as the data processor. It takes effect when you install Whano on your Shopify store and forms part of the Terms of Service. It is the agreement Shopify's protected customer data requirements expect a processor to have in place with each merchant.",
-        ar: "اتفاقية معالجة البيانات هذه مبرمة بينك، التاجر، بصفتك المتحكم في البيانات، وبين NomedaCo بصفتها معالج البيانات. تسري الاتفاقية عند تثبيت Whano على متجر Shopify الخاص بك وتُعد جزءًا من شروط الخدمة، وهي الاتفاقية التي تتطلبها قواعد Shopify لحماية بيانات العملاء بين المعالج وكل تاجر.",
+        en: "This Data Processing Agreement is between you, the merchant, as the data controller, and Nomeda as the data processor. It takes effect when you install Whano on your Shopify store and forms part of the Terms of Service. It is the agreement Shopify's protected customer data requirements expect a processor to have in place with each merchant.",
+        ar: "اتفاقية معالجة البيانات هذه مبرمة بينك، التاجر، بصفتك المتحكم في البيانات، وبين Nomeda بصفتها معالج البيانات. تسري الاتفاقية عند تثبيت Whano على متجر Shopify الخاص بك وتُعد جزءًا من شروط الخدمة، وهي الاتفاقية التي تتطلبها قواعد Shopify لحماية بيانات العملاء بين المعالج وكل تاجر.",
       },
     ],
   },
@@ -272,8 +272,8 @@ export const dpaSections: LegalSection[] = [
     heading: { en: "2. Subject matter and purpose", ar: "2. موضوع المعالجة والغرض منها" },
     paragraphs: [
       {
-        en: "NomedaCo processes personal data of your customers solely to provide Whano: order confirmation and cancellation over WhatsApp, shipping notifications, delivery ratings, order modification, support ticketing, and marketing or cart-recovery messages for customers who opted in. We do not process it for our own purposes, and we do not sell it.",
-        ar: "تعالج NomedaCo البيانات الشخصية لعملائك لغرض تقديم خدمة Whano فقط: تأكيد الطلبات وإلغاؤها عبر واتساب، وإشعارات الشحن، وتقييمات التوصيل، وتعديل الطلبات، وتذاكر الدعم، ورسائل التسويق أو استرجاع السلات للعملاء الذين وافقوا. ولا نعالجها لأغراضنا الخاصة، ولا نبيعها.",
+        en: "Nomeda processes personal data of your customers solely to provide Whano: order confirmation and cancellation over WhatsApp, shipping notifications, delivery ratings, order modification, support ticketing, and marketing or cart-recovery messages for customers who opted in. We do not process it for our own purposes, and we do not sell it.",
+        ar: "تعالج Nomeda البيانات الشخصية لعملائك لغرض تقديم خدمة Whano فقط: تأكيد الطلبات وإلغاؤها عبر واتساب، وإشعارات الشحن، وتقييمات التوصيل، وتعديل الطلبات، وتذاكر الدعم، ورسائل التسويق أو استرجاع السلات للعملاء الذين وافقوا. ولا نعالجها لأغراضنا الخاصة، ولا نبيعها.",
       },
     ],
   },

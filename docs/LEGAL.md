@@ -15,7 +15,7 @@ retention, and merchant responsibility for customer contact consent.
 - Privacy now names marketing consent/opt-out state and the campaign/cart-recovery
   use; retention distinguishes the 48-hour post-uninstall redaction path from a
   separate deletion request (up to 30 days).
-- The legal entity in these documents is NomedaCo; the public brand is Nomeda.
+- The legal entity and public brand are both Nomeda.
 
 These pages are product-facing documents, not a substitute for legal advice.
 Before public launch or a material product change, a qualified lawyer should

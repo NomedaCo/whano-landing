@@ -528,11 +528,11 @@ export const site = {
       { href: "https://apps.shopify.com/whano", label: { en: "App Store", ar: "متجر التطبيقات" }, external: true },
     ],
     language: { en: "العربية", ar: "English" },
-    credit: { en: "A NomedaCo product", ar: "منتج من NomedaCo" },
+    credit: { en: "A Nomeda product", ar: "منتج من Nomeda" },
     backToTop: { en: "Back to top", ar: "العودة إلى الأعلى" },
     contact: { en: "contact@nomeda.tech", ar: "contact@nomeda.tech" },
     contactLabel: { en: "Email", ar: "البريد الإلكتروني" },
-    copyright: { en: "© 2026 Whano, a NomedaCo product.", ar: "© 2026 Whano، منتج من NomedaCo." },
+    copyright: { en: "© 2026 Whano, a Nomeda product.", ar: "© 2026 Whano، منتج من Nomeda." },
     shopifyBadge: { en: "Available on the Shopify App Store", ar: "متوفر على متجر تطبيقات Shopify" },
     legal: {
       label: { en: "Legal", ar: "قانوني" },
