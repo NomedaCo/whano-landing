@@ -303,9 +303,9 @@ export const site = {
     },
     carriersLabel: { en: "Connected carriers", ar: "شركات الشحن المتصلة" },
     carriers: [
-      { en: "Bosta", ar: "بوسطة" },
-      { en: "ShipBlu", ar: "شيب بلو" },
-      { en: "J&T Express", ar: "J&T Express" },
+      { en: "Bosta", ar: "بوسطة", logo: "/logos/bosta.png" },
+      { en: "ShipBlu", ar: "شيب بلو", logo: "/logos/shipblu.svg" },
+      { en: "J&T Express", ar: "J&T Express", logo: "/logos/jnt.svg" },
     ],
     carriersNote: {
       en: "Each store connects one carrier at a time: Bosta, ShipBlu, or J&T Express.",
@@ -521,6 +521,8 @@ export const site = {
     companyLabel: { en: "Company", ar: "الشركة" },
     companyLinks: [
       { href: "/about/", label: { en: "About", ar: "من نحن" } },
+      { href: "/identity/", label: { en: "Identity", ar: "الهوية" } },
+      { href: "/brand/", label: { en: "Brand", ar: "العلامة" } },
       { href: "/contact/", label: { en: "Contact", ar: "تواصل معنا" } },
       { href: "https://whano.nomeda.tech/dashboard", label: { en: "Console", ar: "لوحة التحكم" }, external: true, console: true },
       { href: "https://apps.shopify.com/whano", label: { en: "App Store", ar: "متجر التطبيقات" }, external: true },

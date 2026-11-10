@@ -12,6 +12,8 @@ Last verified: **2026-10-29**
 | `/pricing/` | `src/pages/pricing.astro` | Points packs in EGP, costs, points calculator | Yes | `og-pricing.png`; JSON-LD Product/Offer in EGP |
 | `/faq/` | `src/pages/faq.astro` | Help center: 17 answers, search, topics | Yes | FAQPage JSON-LD, 17 questions |
 | `/about/` | `src/pages/about.astro` + `src/data/about.ts` | Company/product background | Yes | Nomeda/NomedaCo naming inconsistency |
+| `/identity/` | `src/pages/identity.astro` | Brand identity: mark, palette, type, voice | Yes | |
+| `/brand/` | `src/pages/brand.astro` | Brand kit: icon downloads, usage rules, boilerplate | Yes | `public/brand/whano-brand-kit.zip` |
 | `/whats-new/` | `src/pages/whats-new.astro` | 15 dated product and website changes | Yes | Dates from production commits; newest first |
 | `/contact/` | `src/pages/contact.astro` | WhatsApp and email support | Yes | No form backend |
 | `/integrations/` | `src/pages/integrations.astro` | Shopify, WhatsApp, Bosta, ShipBlu, J&T Express | Yes | Explicitly lists what is not connected |
@@ -30,7 +32,7 @@ Last verified: **2026-10-29**
 | `/privacy/` | `src/pages/privacy.astro` + legal data | Privacy Policy | Yes | |
 | `/dpa/` | `src/pages/dpa.astro` + legal data | Data Processing Agreement | Yes | |
 | `/login/` | `src/pages/login.astro` | Console hand-off | Noindex | Worker 301 to `/dashboard`; JS fallback |
-| `/sitemap.xml` | `src/pages/sitemap.xml.ts` | Generated sitemap | N/A | 44 URLs with Arabic/English alternates; excludes utility routes |
+| `/sitemap.xml` | `src/pages/sitemap.xml.ts` | Generated sitemap | N/A | 48 URLs with Arabic/English alternates; excludes utility routes |
 | `/en/*` | `src/pages/en/*` | English equivalents of every indexable route | Yes | Server-rendered wrappers |
 | `/robots.txt` | `public/robots.txt` | Crawl rules | N/A | Disallows order/cart/api/stats/login; Cloudflare prepends managed AI signals |
 | `/stats?key=` | `worker.ts` | Private analytics view | No | Secret key; noindex/no-referrer/no-store |
@@ -111,7 +113,7 @@ Last verified: **2026-10-29**
   `AggregateOffer` (Arabic) on /pricing; `Article` on guides; `WebPage`/
   `AboutPage`/`CollectionPage` elsewhere. No self-serving aggregate rating. The
   offers are EGP-backed and the site has no dollar or cent copy.
-- Sitemap: generated at build, 44 URLs with Arabic/English alternates, per-page lastmod, `/login`/`/stats`
+- Sitemap: generated at build, 48 URLs with Arabic/English alternates, per-page lastmod, `/login`/`/stats`
   omitted.
 - Robots: `Allow /`; disallows `/order/`, `/cart/`, `/api/`, `/stats`,
   `/login`; sitemap reference. Cloudflare prepends managed content-signals and

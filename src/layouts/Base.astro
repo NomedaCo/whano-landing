@@ -174,7 +174,7 @@ const pageSchemas = (Array.isArray(schema) ? schema : schema ? [schema] : []).ma
                 const href = anchor.getAttribute("href");
                 if (!href || /^\/en(?:\/|$)/.test(href)) return;
                 if (/^\/(?:api|order|cart|login|stats)(?:\/|$)/.test(href)) return;
-                if (/\.(?:xml|png|svg|ico|woff2?)(?:$|\?)/i.test(href)) return;
+                if (/\.(?:xml|png|svg|ico|zip|woff2?)(?:$|\?)/i.test(href)) return;
                 anchor.setAttribute("href", `/en${href}`);
               });
             };

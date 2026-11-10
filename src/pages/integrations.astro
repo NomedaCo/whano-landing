@@ -52,7 +52,10 @@ const pageSchema = {
 
       <section class="integration-grid" aria-label="Whano integrations">
         <article class="integration-card reveal">
-          <p class="integration-card__label">Shopify</p>
+          <div class="integration-card__brand">
+            <img class="integration-card__logo integration-card__logo--icon" src="/logos/shopify.svg" alt="" width="24" height="24" loading="lazy" decoding="async" />
+            <p class="integration-card__label">Shopify</p>
+          </div>
           <h2>
             <span data-copy="en">Orders and store data</span>
             <span data-copy="ar" lang="ar">الطلبات وبيانات المتجر</span>
@@ -68,7 +71,10 @@ const pageSchema = {
         </article>
 
         <article class="integration-card reveal">
-          <p class="integration-card__label">WhatsApp</p>
+          <div class="integration-card__brand">
+            <img class="integration-card__logo integration-card__logo--icon" src="/logos/whatsapp.svg" alt="" width="24" height="24" loading="lazy" decoding="async" />
+            <p class="integration-card__label">WhatsApp</p>
+          </div>
           <h2>
             <span data-copy="en">Official Cloud API</span>
             <span data-copy="ar" lang="ar">Cloud API الرسمية</span>
@@ -84,7 +90,10 @@ const pageSchema = {
         </article>
 
         <article class="integration-card reveal">
-          <p class="integration-card__label">Bosta</p>
+          <div class="integration-card__brand">
+            <img class="integration-card__logo" src="/logos/bosta.png" alt="" width="112" height="32" loading="lazy" decoding="async" />
+            <p class="integration-card__label">Bosta</p>
+          </div>
           <h2>
             <span data-copy="en">Shipping and tracking</span>
             <span data-copy="ar" lang="ar">الشحن والتتبع</span>
@@ -100,7 +109,10 @@ const pageSchema = {
         </article>
 
         <article class="integration-card reveal">
-          <p class="integration-card__label">ShipBlu</p>
+          <div class="integration-card__brand">
+            <img class="integration-card__logo" src="/logos/shipblu.svg" alt="" width="164" height="77" loading="lazy" decoding="async" />
+            <p class="integration-card__label">ShipBlu</p>
+          </div>
           <h2>
             <span data-copy="en">A second carrier</span>
             <span data-copy="ar" lang="ar">شركة شحن ثانية</span>
@@ -116,7 +128,10 @@ const pageSchema = {
         </article>
 
         <article class="integration-card integration-card--wide reveal">
-          <p class="integration-card__label">J&T Express</p>
+          <div class="integration-card__brand">
+            <img class="integration-card__logo" src="/logos/jnt.svg" alt="" width="500" height="105" loading="lazy" decoding="async" />
+            <p class="integration-card__label">J&amp;T Express</p>
+          </div>
           <h2>
             <span data-copy="en">A third carrier</span>
             <span data-copy="ar" lang="ar">شركة شحن ثالثة</span>
@@ -182,6 +197,31 @@ const pageSchema = {
 
   .integration-card--wide {
     grid-column: 1 / -1;
+  }
+
+  .integration-card__brand {
+    display: flex;
+    min-height: 34px;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .integration-card__logo {
+    display: block;
+    width: auto;
+    max-width: 150px;
+    height: 30px;
+    object-fit: contain;
+  }
+
+  .integration-card__logo--icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .integration-card--wide .integration-card__logo {
+    height: 26px;
+    max-width: 165px;
   }
 
   .integration-card__label {

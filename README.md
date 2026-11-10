@@ -18,6 +18,8 @@ The page is intentionally editorial rather than a conventional SaaS template: a 
 - `/` — Arabic product landing page (story, how it works, capability teaser, pricing teaser)
 - `/en/` — server-rendered English route with hreflang and its own canonical URL
 - `/features`, `/pricing`, `/faq`, `/about`, `/security`, `/whats-new` — the main product pages
+- `/identity/` — the brand identity: the mark, palette, type, and voice
+- `/brand/` — downloadable brand assets, usage rules, and approved boilerplate
 - `/contact/` — WhatsApp and email support, with no form backend to maintain
 - `/integrations/` — Shopify, WhatsApp Cloud API, Bosta, ShipBlu, and J&T Express, including what is not connected
 - `/pricing/#calculator` — a points estimator that recommends a pack from current EGP prices

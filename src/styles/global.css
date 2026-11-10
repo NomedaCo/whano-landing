@@ -5233,6 +5233,9 @@ html[data-language="ar"] .button-light svg:not(.shopify-btn-icon) {
 }
 
 .carrier-band__list li {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
   padding: 7px 14px;
   background: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.06);
@@ -5241,6 +5244,14 @@ html[data-language="ar"] .button-light svg:not(.shopify-btn-icon) {
   font-family: var(--font-heading);
   font-size: 13.5px;
   font-weight: 600;
+}
+
+.carrier-band__logo {
+  display: block;
+  width: auto;
+  max-width: 82px;
+  height: 19px;
+  object-fit: contain;
 }
 
 .carrier-band__note {

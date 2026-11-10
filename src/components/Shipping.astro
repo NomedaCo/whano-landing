@@ -33,6 +33,7 @@ const { shipping } = site;
       <ul class="carrier-band__list">
         {shipping.carriers.map((carrier) => (
           <li>
+            <img class="carrier-band__logo" src={carrier.logo} alt="" loading="lazy" decoding="async" />
             <span data-copy="en">{carrier.en}</span>
             <span data-copy="ar" lang="ar">{carrier.ar}</span>
           </li>

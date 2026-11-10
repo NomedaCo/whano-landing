@@ -17,6 +17,8 @@ const routes = [
   { path: "/faq/", lastmod: "2026-10-29", changefreq: "monthly", priority: "0.8" },
   { path: "/guides/", lastmod: "2026-10-29", changefreq: "monthly", priority: "0.7" },
   { path: "/about/", lastmod: "2026-10-24", changefreq: "yearly", priority: "0.5" },
+  { path: "/identity/", lastmod: "2026-11-10", changefreq: "yearly", priority: "0.4" },
+  { path: "/brand/", lastmod: "2026-11-10", changefreq: "yearly", priority: "0.4" },
   { path: "/security/", lastmod: "2026-10-29", changefreq: "yearly", priority: "0.5" },
   { path: "/whats-new/", lastmod: "2026-10-29", changefreq: "weekly", priority: "0.6" },
   { path: "/terms/", lastmod: "2026-10-24", changefreq: "yearly", priority: "0.3" },

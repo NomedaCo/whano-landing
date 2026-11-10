@@ -1,0 +1,579 @@
+---
+import Base from "../layouts/Base.astro";
+import Footer from "../components/Footer.astro";
+import Nav from "../components/Nav.astro";
+
+const PRINCIPLES = [
+  {
+    title: { en: "Stay out of the storefront", ar: "يبقى خارج الواجهة" },
+    body: {
+      en: "Whano speaks as the store, not over it. The identity stays quiet so the merchant's brand remains the loudest thing in the message.",
+      ar: "يتحدث Whano باسم المتجر، لا فوقه. تبقى الهوية هادئة لتبقى علامة التاجر هي الأوضح في الرسالة.",
+    },
+  },
+  {
+    title: { en: "Make the next step obvious", ar: "يجعل الخطوة التالية واضحة" },
+    body: {
+      en: "Every screen and every message points to one action: confirm, edit, track, or review. No ornament competes with it.",
+      ar: "كل شاشة وكل رسالة تشير إلى إجراء واحد: التأكيد، أو التعديل، أو التتبع، أو التقييم. لا ينافسها زخرف.",
+    },
+  },
+  {
+    title: { en: "Work in two directions", ar: "يعمل في اتجاهين" },
+    body: {
+      en: "Arabic and English are designed together, not mirrored afterward. Type, spacing, and tone hold in both directions.",
+      ar: "العربية والإنجليزية مصممتان معًا، لا تُعكسان لاحقًا. يحافظ الخط والمسافات والنبرة على اتزانهما في الاتجاهين.",
+    },
+  },
+  {
+    title: { en: "Sound like a person", ar: "يتحدث كإنسان" },
+    body: {
+      en: "Plain sentences, real order details, no chatbot theatre. The voice is helpful, specific, and calm.",
+      ar: "جمل واضحة، وتفاصيل طلب حقيقية، بلا مسرح روبوتات. النبرة مفيدة ومحددة وهادئة.",
+    },
+  },
+];
+
+const PALETTE = [
+  { name: { en: "Deep teal", ar: "أزرق مخضر عميق" }, hex: "#066762", use: { en: "The mark", ar: "العلامة" } },
+  { name: { en: "Sand", ar: "رملي" }, hex: "#CA9F78", use: { en: "The mark accent", ar: "لمسة العلامة" } },
+  { name: { en: "Ink", ar: "حبر" }, hex: "#16122B", use: { en: "Type", ar: "النص" } },
+  { name: { en: "Green", ar: "أخضر" }, hex: "#0B7A4B", use: { en: "Action", ar: "الإجراء" } },
+  { name: { en: "Lilac", ar: "ليلكي" }, hex: "#E0D8FF", use: { en: "Identity surface", ar: "سطح الهوية" } },
+  { name: { en: "Mint", ar: "نعناعي" }, hex: "#CFF5DD", use: { en: "Product surface", ar: "سطح المنتج" } },
+];
+
+const pageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "Whano identity",
+  description: "The thinking behind Whano's identity: the mark, the palette, the type, and the voice that carry the product.",
+  inLanguage: "ar",
+  about: {
+    "@type": "Brand",
+    name: "Whano",
+    logo: new URL("/icon-512.png", Astro.site).href,
+  },
+};
+---
+
+<Base
+  title="Identity | Whano"
+  titleArabic="الهوية | Whano"
+  description="The thinking behind Whano's identity: the mark, the palette, the type, and the voice that carry the product."
+  descriptionArabic="الفكرة خلف هوية Whano: العلامة، والألوان، والخط، والصوت الذي يحمل المنتج."
+  schema={pageSchema}
+>
+  <Nav />
+  <main id="main-content" class="about-page identity-page">
+    <div class="site-frame">
+      <header class="about-header reveal">
+        <p class="eyebrow">
+          <span data-copy="en">Whano / identity</span>
+          <span data-copy="ar" lang="ar">Whano / الهوية</span>
+        </p>
+        <h1 class="about-title">
+          <span data-copy="en">An identity built for the work after checkout.</span>
+          <span data-copy="ar" lang="ar">هوية مبنية للعمل الذي يبدأ بعد الدفع.</span>
+        </h1>
+        <p class="about-subtitle">
+          <span data-copy="en">Whano does not try to look like a storefront. It is the calm system behind it: a conversation, a confirmation, and a next step.</span>
+          <span data-copy="ar" lang="ar">لا يحاول Whano أن يبدو كواجهة متجر. هو النظام الهادئ خلفها: محادثة، وتأكيد، وخطوة تالية.</span>
+        </p>
+      </header>
+
+      <section class="identity-hero reveal" aria-labelledby="identity-mark-title">
+        <div class="identity-hero__mark">
+          <img
+            src="/icon-512.png"
+            width="512"
+            height="512"
+            alt="Whano app icon: a speech bubble with a W and three dots"
+            fetchpriority="high"
+            decoding="async"
+          />
+        </div>
+        <div class="identity-hero__copy">
+          <p class="identity-kicker">
+            <span data-copy="en">The mark</span>
+            <span data-copy="ar" lang="ar">العلامة</span>
+          </p>
+          <h2 class="identity-heading" id="identity-mark-title">
+            <span data-copy="en">A conversation that closes the loop.</span>
+            <span data-copy="ar" lang="ar">محادثة تُكمل الحلقة.</span>
+          </h2>
+          <p>
+            <span data-copy="en">The app icon is a speech bubble drawn as one continuous line. Inside, a W for Whano and three dots for the three moments the product owns: confirm, ship, review.</span>
+            <span data-copy="ar" lang="ar">أيقونة التطبيق فقاعة حوار مرسومة بخط واحد متصل. وتحمل بداخلها حرف W لـ Whano، وثلاث نقاط لثلاث لحظات يملكها المنتج: التأكيد، والشحن، والتقييم.</span>
+          </p>
+          <p>
+            <span data-copy="en">Teal carries the message. Sand marks the small, human part: the follow-up that makes a transaction feel handled.</span>
+            <span data-copy="ar" lang="ar">يحمل الأزرق المخضر الرسالة، ويعلّم الرملي الجزء الإنساني الصغير: المتابعة التي تجعل المعاملة تبدو مُعتنى بها.</span>
+          </p>
+
+          <dl class="identity-facts">
+            <div>
+              <dt><span data-copy="en">Product</span><span data-copy="ar" lang="ar">المنتج</span></dt>
+              <dd>Whano</dd>
+            </div>
+            <div>
+              <dt><span data-copy="en">Company</span><span data-copy="ar" lang="ar">الشركة</span></dt>
+              <dd>NomedaCo</dd>
+            </div>
+            <div>
+              <dt><span data-copy="en">Category</span><span data-copy="ar" lang="ar">الفئة</span></dt>
+              <dd>
+                <span data-copy="en">Post-purchase WhatsApp automation for Shopify</span>
+                <span data-copy="ar" lang="ar">أتمتة واتساب لما بعد الشراء لمتاجر Shopify</span>
+              </dd>
+            </div>
+            <div>
+              <dt><span data-copy="en">Market</span><span data-copy="ar" lang="ar">السوق</span></dt>
+              <dd>
+                <span data-copy="en">Egypt and the MENA region</span>
+                <span data-copy="ar" lang="ar">مصر ومنطقة الشرق الأوسط وشمال أفريقيا</span>
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="identity-section reveal" aria-labelledby="identity-principles-title">
+        <div class="identity-section__head">
+          <h2 class="identity-section__title" id="identity-principles-title">
+            <span data-copy="en">What the identity has to do</span>
+            <span data-copy="ar" lang="ar">ما يجب أن تفعله الهوية</span>
+          </h2>
+          <p class="identity-section__copy">
+            <span data-copy="en">Four rules keep the brand useful instead of decorative. They apply to the site, the console, and every WhatsApp message.</span>
+            <span data-copy="ar" lang="ar">أربع قواعد تُبقي العلامة مفيدة لا زخرفية. تنطبق على الموقع، ولوحة التحكم، وكل رسالة واتساب.</span>
+          </p>
+        </div>
+        <div class="identity-principles">
+          {PRINCIPLES.map((principle, index) => (
+            <article class="identity-principle">
+              <span class="identity-principle__number" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+              <h3 class="identity-principle__title">
+                <span data-copy="en">{principle.title.en}</span>
+                <span data-copy="ar" lang="ar">{principle.title.ar}</span>
+              </h3>
+              <p class="identity-principle__body">
+                <span data-copy="en">{principle.body.en}</span>
+                <span data-copy="ar" lang="ar">{principle.body.ar}</span>
+              </p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="identity-section reveal" aria-labelledby="identity-color-title">
+        <div class="identity-section__head">
+          <h2 class="identity-section__title" id="identity-color-title">
+            <span data-copy="en">Color</span>
+            <span data-copy="ar" lang="ar">الألوان</span>
+          </h2>
+          <p class="identity-section__copy">
+            <span data-copy="en">Six colors, each with a job. Deep teal and sand belong to the mark; the rest support the interface.</span>
+            <span data-copy="ar" lang="ar">ستة ألوان، ولكل منها وظيفة. الأزرق المخضر والرملي للعلامة، والباقي يدعم الواجهة.</span>
+          </p>
+        </div>
+        <div class="identity-swatches">
+          {PALETTE.map((color) => (
+            <article class="identity-swatch">
+              <div class="identity-swatch__color" style={`--swatch: ${color.hex};`} aria-hidden="true"></div>
+              <div class="identity-swatch__meta">
+                <p class="identity-swatch__name">
+                  <span data-copy="en">{color.name.en}</span>
+                  <span data-copy="ar" lang="ar">{color.name.ar}</span>
+                </p>
+                <p class="identity-swatch__hex" dir="ltr">{color.hex}</p>
+                <p class="identity-swatch__use">
+                  <span data-copy="en">{color.use.en}</span>
+                  <span data-copy="ar" lang="ar">{color.use.ar}</span>
+                </p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="identity-section identity-type reveal" aria-labelledby="identity-type-title">
+        <div>
+          <h2 class="identity-section__title" id="identity-type-title">
+            <span data-copy="en">Typography</span>
+            <span data-copy="ar" lang="ar">الخط</span>
+          </h2>
+          <p class="identity-section__copy">
+            <span data-copy="en">Readex Pro carries both Arabic and Latin. It is a variable family, so the same voice runs from a 15px label to a 64px display line.</span>
+            <span data-copy="ar" lang="ar">يحمل Readex Pro العربية واللاتينية معًا. وهو خط متغير، فيبقى الصوت نفسه من تسمية بحجم 15 بكسل إلى عنوان بحجم 64 بكسل.</span>
+          </p>
+        </div>
+        <div class="identity-type__specimen">
+          <div class="identity-type__glyphs" aria-hidden="true">
+            <span>Aa</span>
+            <span lang="ar" dir="rtl">أ</span>
+          </div>
+          <p class="identity-type__line">
+            <span data-copy="en">Confirm. Ship. Follow up.</span>
+            <span data-copy="ar" lang="ar">أكّد. اشحن. تابع.</span>
+          </p>
+          <div>
+            <p class="identity-type__meta">Readex Pro · 700 · Display</p>
+            <p class="identity-type__caption">
+              <span data-copy="en">Post-purchase WhatsApp for Shopify</span>
+              <span data-copy="ar" lang="ar">واتساب ما بعد الشراء لمتاجر Shopify</span>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="identity-next reveal" aria-labelledby="identity-next-title">
+        <div>
+          <p class="identity-kicker">
+            <span data-copy="en">Files</span>
+            <span data-copy="ar" lang="ar">الملفات</span>
+          </p>
+          <h2 class="identity-next__title" id="identity-next-title">
+            <span data-copy="en">Need the assets?</span>
+            <span data-copy="ar" lang="ar">تحتاج الملفات؟</span>
+          </h2>
+          <p class="identity-next__body">
+            <span data-copy="en">The app icon, palette, type rules, and approved copy are on the brand page.</span>
+            <span data-copy="ar" lang="ar">أيقونة التطبيق، والألوان، وقواعد الخط، والنصوص المعتمدة في صفحة العلامة.</span>
+          </p>
+        </div>
+        <a class="section-link" href="/brand/">
+          <span data-copy="en">Open the brand kit</span>
+          <span data-copy="ar" lang="ar">افتح ملف العلامة</span>
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+            <path d="M2.5 7.5h9M8 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </a>
+      </section>
+    </div>
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  .identity-page {
+    --identity-teal: #066762;
+    --identity-sand: #ca9f78;
+  }
+
+  .identity-kicker {
+    margin: 0 0 8px;
+    color: var(--green);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .identity-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: clamp(28px, 5vw, 64px);
+    align-items: center;
+    margin-top: 34px;
+    padding: clamp(22px, 4vw, 46px);
+    border: 1.5px solid var(--pl-line);
+    border-radius: 32px;
+    background:
+      radial-gradient(420px 260px at 100% 0%, rgba(224, 216, 255, 0.55), transparent 70%),
+      radial-gradient(360px 260px at 0% 100%, rgba(255, 233, 168, 0.32), transparent 70%),
+      #ffffff;
+  }
+
+  .identity-hero__mark {
+    display: grid;
+    min-height: 320px;
+    place-items: center;
+    border: 1.5px solid rgba(6, 103, 98, 0.1);
+    border-radius: 26px;
+    background:
+      radial-gradient(circle at 28% 22%, rgba(224, 216, 255, 0.8), transparent 48%),
+      radial-gradient(circle at 82% 82%, rgba(202, 159, 120, 0.2), transparent 50%),
+      #fbf9ff;
+  }
+
+  .identity-hero__mark img {
+    width: min(264px, 66%);
+    height: auto;
+  }
+
+  .identity-heading {
+    margin: 0 0 14px;
+    color: var(--ink);
+    font-family: var(--font-heading);
+    font-size: clamp(1.7rem, 3vw, 2.5rem);
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    line-height: 1.3;
+    text-wrap: balance;
+  }
+
+  .identity-hero__copy > p:not(.identity-kicker) {
+    margin: 0 0 12px;
+    color: var(--ink-soft);
+    font-size: 14.5px;
+    line-height: 1.9;
+  }
+
+  .identity-facts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px 20px;
+    margin: 26px 0 0;
+    padding-top: 22px;
+    border-top: 1.5px solid var(--pl-line);
+  }
+
+  .identity-facts div {
+    min-width: 0;
+  }
+
+  .identity-facts dt {
+    margin: 0 0 4px;
+    color: var(--ink-muted);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .identity-facts dd {
+    margin: 0;
+    color: var(--ink);
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .identity-section {
+    margin-top: 54px;
+  }
+
+  .identity-section__head {
+    max-width: 680px;
+  }
+
+  .identity-section__title {
+    margin: 0 0 10px;
+    color: var(--ink);
+    font-family: var(--font-heading);
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.3;
+    text-wrap: balance;
+  }
+
+  .identity-section__copy {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 15px;
+    line-height: 1.85;
+  }
+
+  .identity-principles {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 24px;
+  }
+
+  .identity-principle {
+    padding: 24px;
+    border: 1.5px solid var(--pl-line);
+    border-radius: 24px;
+    background: #ffffff;
+  }
+
+  .identity-principle:nth-child(2n) {
+    background: #fbf9ff;
+  }
+
+  .identity-principle__number {
+    display: block;
+    margin-bottom: 18px;
+    color: var(--green);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+  }
+
+  .identity-principle__title {
+    margin: 0 0 7px;
+    color: var(--ink);
+    font-family: var(--font-heading);
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.4;
+  }
+
+  .identity-principle__body {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 13.5px;
+    line-height: 1.8;
+  }
+
+  .identity-swatches {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .identity-swatch {
+    overflow: hidden;
+    border: 1.5px solid var(--pl-line);
+    border-radius: 20px;
+    background: #ffffff;
+  }
+
+  .identity-swatch__color {
+    height: 96px;
+    background: var(--swatch);
+  }
+
+  .identity-swatch__meta {
+    padding: 14px 16px 16px;
+  }
+
+  .identity-swatch__name {
+    margin: 0;
+    color: var(--ink);
+    font-family: var(--font-heading);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .identity-swatch__hex {
+    margin: 3px 0 0;
+    color: var(--ink-muted);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+  }
+
+  .identity-swatch__use {
+    margin: 8px 0 0;
+    color: var(--ink-soft);
+    font-size: 12.5px;
+    line-height: 1.5;
+  }
+
+  .identity-type {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: clamp(24px, 4vw, 48px);
+    align-items: stretch;
+  }
+
+  .identity-type__specimen {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 300px;
+    padding: clamp(24px, 4vw, 38px);
+    border-radius: 28px;
+    background: var(--ink);
+    color: #ffffff;
+  }
+
+  .identity-type__glyphs {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+    color: var(--pl-yellow-strong);
+    font-family: var(--font-heading);
+    font-size: clamp(3.5rem, 7vw, 5.2rem);
+    font-weight: 700;
+    line-height: 0.9;
+  }
+
+  .identity-type__line {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: clamp(1.45rem, 2.8vw, 2.1rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.35;
+  }
+
+  .identity-type__meta {
+    margin: 0 0 6px;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .identity-type__caption {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .identity-next {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    margin-top: 54px;
+    padding: 28px 32px;
+    border: 1.5px solid var(--pl-line);
+    border-radius: 28px;
+    background: var(--pl-lilac-soft);
+  }
+
+  .identity-next__title {
+    margin: 0 0 6px;
+    color: var(--ink);
+    font-family: var(--font-heading);
+    font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.3;
+  }
+
+  .identity-next__body {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 13.5px;
+    line-height: 1.75;
+  }
+
+  .identity-next .section-link {
+    flex: 0 0 auto;
+  }
+
+  @media (max-width: 860px) {
+    .identity-hero,
+    .identity-type {
+      grid-template-columns: 1fr;
+    }
+
+    .identity-hero__mark {
+      min-height: 260px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .identity-principles,
+    .identity-swatches,
+    .identity-facts {
+      grid-template-columns: 1fr;
+    }
+
+    .identity-next {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+</style>

@@ -1,0 +1,791 @@
+---
+import Base from "../layouts/Base.astro";
+import Footer from "../components/Footer.astro";
+import Nav from "../components/Nav.astro";
+import { site } from "../data/content";
+
+const PALETTE = [
+  { name: { en: "Deep teal", ar: "أزرق مخضر عميق" }, hex: "#066762", use: { en: "App icon", ar: "أيقونة التطبيق" } },
+  { name: { en: "Sand", ar: "رملي" }, hex: "#CA9F78", use: { en: "Icon accent", ar: "لمسة الأيقونة" } },
+  { name: { en: "Ink", ar: "حبر" }, hex: "#16122B", use: { en: "Type", ar: "النص" } },
+  { name: { en: "Green", ar: "أخضر" }, hex: "#0B7A4B", use: { en: "Actions", ar: "الإجراءات" } },
+  { name: { en: "Lilac", ar: "ليلكي" }, hex: "#E0D8FF", use: { en: "Identity surface", ar: "سطح الهوية" } },
+  { name: { en: "Mint", ar: "نعناعي" }, hex: "#CFF5DD", use: { en: "Product surface", ar: "سطح المنتج" } },
+];
+
+const RULES_DO = [
+  { en: "Use the app icon on white, paper, or deep teal.", ar: "استخدم أيقونة التطبيق على الأبيض، أو الورقي، أو الأزرق المخضر العميق." },
+  { en: "Keep clear space around the icon equal to one dot.", ar: "اترك حول الأيقونة مساحة تساوي عرض نقطة واحدة." },
+  { en: "Write the wordmark in lowercase: whano.", ar: "اكتب الكلمة بحروف صغيرة: whano." },
+  { en: "Link the mark to whano.nomeda.tech when used online.", ar: "اربط العلامة بـ whano.nomeda.tech عند استخدامها على الإنترنت." },
+];
+
+const RULES_DONT = [
+  { en: "Do not recolor the icon or separate the W from the bubble.", ar: "لا تُغيّر ألوان الأيقونة ولا تفصل حرف W عن الفقاعة." },
+  { en: "Do not add shadows, outlines, gradients, or motion.", ar: "لا تُضف ظلالًا أو حدودًا أو تدرجات أو حركة." },
+  { en: "Do not stretch, rotate, or crop the icon.", ar: "لا تمدد الأيقونة أو تدوّرها أو تقصها." },
+  { en: "Do not use it as your own product mark or imply endorsement.", ar: "لا تستخدمها كعلامة منتجك أو بما يوحي باعتماد رسمي." },
+];
+
+const pageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "Whano brand kit",
+  description: "Download the Whano app icon, social card, colors, typography, and approved boilerplate for press and partner use.",
+  inLanguage: "ar",
+  about: {
+    "@type": "Brand",
+    name: "Whano",
+    logo: new URL("/icon-512.png", Astro.site).href,
+  },
+};
+---
+
+<Base
+  title="Brand kit | Whano"
+  titleArabic="ملف العلامة | Whano"
+  description="Download the Whano app icon, social card, colors, typography, and approved boilerplate for press and partner use."
+  descriptionArabic="نزّل أيقونة تطبيق Whano، وصورة المشاركة، والألوان، والخط، والنصوص المعتمدة للصحافة والشركاء."
+  schema={pageSchema}
+>
+  <Nav />
+  <main id="main-content" class="about-page brand-page">
+    <div class="site-frame">
+      <header class="about-header reveal">
+        <p class="eyebrow">
+          <span data-copy="en">Whano / brand</span>
+          <span data-copy="ar" lang="ar">Whano / العلامة</span>
+        </p>
+        <h1 class="about-title">
+          <span data-copy="en">The Whano brand kit.</span>
+          <span data-copy="ar" lang="ar">ملف علامة Whano.</span>
+        </h1>
+        <p class="about-subtitle">
+          <span data-copy="en">The mark, the palette, the type, and the words. Use them as they are, and keep the product the loudest thing on the page.</span>
+          <span data-copy="ar" lang="ar">العلامة، والألوان، والخط، والكلمات. استخدمها كما هي، واجعل المنتج أوضح شيء على الصفحة.</span>
+        </p>
+      </header>
+
+      <section class="brand-asset reveal" aria-labelledby="brand-icon-title">
+        <div class="brand-asset__preview">
+          <img
+            src="/icon-512.png"
+            width="512"
+            height="512"
+            alt="Whano app icon: a speech bubble with a W and three dots"
+            fetchpriority="high"
+            decoding="async"
+          />
+        </div>
+        <div class="brand-asset__copy">
+          <p class="brand-kicker">
+            <span data-copy="en">Primary asset</span>
+            <span data-copy="ar" lang="ar">الأصل الأساسي</span>
+          </p>
+          <h2 id="brand-icon-title">
+            <span data-copy="en">App icon</span>
+            <span data-copy="ar" lang="ar">أيقونة التطبيق</span>
+          </h2>
+          <p class="brand-asset__body">
+            <span data-copy="en">The speech-bubble W is the primary Whano mark. It works at 24px in a browser tab and at 512px on a launch screen.</span>
+            <span data-copy="ar" lang="ar">أيقونة فقاعة الحوار بحرف W هي علامة Whano الأساسية. تعمل بحجم 24 بكسل في تبويب المتصفح، وبحجم 512 بكسل على شاشة البداية.</span>
+          </p>
+
+          <div class="brand-downloads">
+            <a class="brand-download" href="/icon-512.png" download>
+              <span class="brand-download__format">PNG</span>
+              <span class="brand-download__size">512 × 512</span>
+            </a>
+            <a class="brand-download" href="/icon-192.png" download>
+              <span class="brand-download__format">PNG</span>
+              <span class="brand-download__size">192 × 192</span>
+            </a>
+            <a class="brand-download" href="/apple-touch-icon.png" download>
+              <span class="brand-download__format">Apple touch</span>
+              <span class="brand-download__size">180 × 180</span>
+            </a>
+          </div>
+
+          <a class="brand-kit" href="/brand/whano-brand-kit.zip" download>
+            <span data-copy="en">Download the full kit</span>
+            <span data-copy="ar" lang="ar">نزّل الملف كاملًا</span>
+            <span class="brand-kit__format">.zip</span>
+          </a>
+
+          <p class="brand-note">
+            <span data-copy="en">Transparent background. Keep the icon square and in proportion.</span>
+            <span data-copy="ar" lang="ar">خلفية شفافة. أبقِ الأيقونة مربعة وبالنسب نفسها.</span>
+          </p>
+        </div>
+      </section>
+
+      <section class="brand-asset brand-asset--social reveal" aria-labelledby="brand-social-title">
+        <div class="brand-asset__preview brand-asset__preview--social">
+          <img src="/og.png" width="1200" height="630" alt="Whano social card" loading="lazy" decoding="async" />
+        </div>
+        <div class="brand-asset__copy">
+          <p class="brand-kicker">
+            <span data-copy="en">Sharing</span>
+            <span data-copy="ar" lang="ar">المشاركة</span>
+          </p>
+          <h2 id="brand-social-title">
+            <span data-copy="en">Social card</span>
+            <span data-copy="ar" lang="ar">صورة المشاركة</span>
+          </h2>
+          <p class="brand-asset__body">
+            <span data-copy="en">The default link preview for articles, newsletters, and posts. It already carries the wordmark and the product line.</span>
+            <span data-copy="ar" lang="ar">صورة المعاينة الافتراضية للمقالات والنشرات والمنشورات. تحمل الكلمة وسطر المنتج.</span>
+          </p>
+          <div class="brand-downloads">
+            <a class="brand-download" href="/og.png" download>
+              <span class="brand-download__format">PNG</span>
+              <span class="brand-download__size">1200 × 630</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="brand-section reveal" aria-labelledby="brand-color-title">
+        <div class="brand-section__head">
+          <h2 id="brand-color-title">
+            <span data-copy="en">Color</span>
+            <span data-copy="ar" lang="ar">الألوان</span>
+          </h2>
+          <p>
+            <span data-copy="en">The product palette. Use the exact values, and do not put gradients on the mark.</span>
+            <span data-copy="ar" lang="ar">ألوان المنتج. استخدم القيم نفسها، ولا تضع تدرجات على العلامة.</span>
+          </p>
+        </div>
+        <div class="brand-palette">
+          {PALETTE.map((color) => (
+            <article class="brand-color">
+              <div class="brand-color__chip" style={`--swatch: ${color.hex};`} aria-hidden="true"></div>
+              <div class="brand-color__meta">
+                <p class="brand-color__name">
+                  <span data-copy="en">{color.name.en}</span>
+                  <span data-copy="ar" lang="ar">{color.name.ar}</span>
+                </p>
+                <p class="brand-color__hex" dir="ltr">{color.hex}</p>
+                <p class="brand-color__use">
+                  <span data-copy="en">{color.use.en}</span>
+                  <span data-copy="ar" lang="ar">{color.use.ar}</span>
+                </p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="brand-section reveal" aria-labelledby="brand-type-title">
+        <div class="brand-section__head">
+          <h2 id="brand-type-title">
+            <span data-copy="en">Typography</span>
+            <span data-copy="ar" lang="ar">الخط</span>
+          </h2>
+          <p>
+            <span data-copy="en">Readex Pro carries Arabic and Latin in one variable family.</span>
+            <span data-copy="ar" lang="ar">يحمل Readex Pro العربية واللاتينية في خط متغير واحد.</span>
+          </p>
+        </div>
+        <div class="brand-type">
+          <div class="brand-type__sample">
+            <div class="brand-type__glyphs" aria-hidden="true">
+              <span class="brand-type__glyph">Aa</span>
+              <span class="brand-type__glyph brand-type__glyph--ar" lang="ar" dir="rtl">أ</span>
+            </div>
+            <p>Readex Pro</p>
+          </div>
+          <div class="brand-type__copy">
+            <ul>
+              <li>
+                <span data-copy="en">Display: 700, tight tracking.</span>
+                <span data-copy="ar" lang="ar">العناوين: 700، بتقارب حروف ضيق.</span>
+              </li>
+              <li>
+                <span data-copy="en">Body: 400, generous line height.</span>
+                <span data-copy="ar" lang="ar">النص: 400، بارتفاع سطر مريح.</span>
+              </li>
+              <li>
+                <span data-copy="en">Labels: 600, small and quiet.</span>
+                <span data-copy="ar" lang="ar">التسميات: 600، صغيرة وهادئة.</span>
+              </li>
+            </ul>
+            <p class="brand-note">
+              <span data-copy="en">The wordmark is lowercase: whano.</span>
+              <span data-copy="ar" lang="ar">الكلمة تكتب بحروف صغيرة: whano.</span>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="brand-section reveal" aria-labelledby="brand-rules-title">
+        <div class="brand-section__head">
+          <h2 id="brand-rules-title">
+            <span data-copy="en">Using the mark</span>
+            <span data-copy="ar" lang="ar">استخدام العلامة</span>
+          </h2>
+          <p>
+            <span data-copy="en">A few rules keep the mark recognizable wherever it appears.</span>
+            <span data-copy="ar" lang="ar">قواعد قليلة تُبقي العلامة واضحة أينما ظهرت.</span>
+          </p>
+        </div>
+        <div class="brand-rules">
+          <div class="brand-rule brand-rule--do">
+            <h3><span data-copy="en">Do</span><span data-copy="ar" lang="ar">افعل</span></h3>
+            <ul>
+              {RULES_DO.map((rule) => (
+                <li>
+                  <span data-copy="en">{rule.en}</span>
+                  <span data-copy="ar" lang="ar">{rule.ar}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="brand-rule brand-rule--dont">
+            <h3><span data-copy="en">Don't</span><span data-copy="ar" lang="ar">لا تفعل</span></h3>
+            <ul>
+              {RULES_DONT.map((rule) => (
+                <li>
+                  <span data-copy="en">{rule.en}</span>
+                  <span data-copy="ar" lang="ar">{rule.ar}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="brand-section reveal" aria-labelledby="brand-copy-title">
+        <div class="brand-section__head">
+          <h2 id="brand-copy-title">
+            <span data-copy="en">Approved copy</span>
+            <span data-copy="ar" lang="ar">نص معتمد</span>
+          </h2>
+          <p>
+            <span data-copy="en">Use these descriptions when you need to explain Whano in one line or one paragraph.</span>
+            <span data-copy="ar" lang="ar">استخدم هذه الأوصاف عندما تحتاج إلى شرح Whano في سطر أو فقرة.</span>
+          </p>
+        </div>
+        <div class="brand-copy">
+          <article class="brand-copy__item">
+            <p class="brand-copy__label">
+              <span data-copy="en">Short</span>
+              <span data-copy="ar" lang="ar">مختصر</span>
+            </p>
+            <p class="brand-copy__text">
+              <span data-copy="en">Whano automates post-purchase WhatsApp messages for Shopify stores: order confirmation, edits and cancellations, shipping updates, and review requests.</span>
+              <span data-copy="ar" lang="ar">يؤتمت Whano رسائل واتساب ما بعد الشراء لمتاجر Shopify: تأكيد الطلب، والتعديل والإلغاء، وتحديثات الشحن، وطلبات التقييم.</span>
+            </p>
+          </article>
+          <article class="brand-copy__item">
+            <p class="brand-copy__label">
+              <span data-copy="en">Long</span>
+              <span data-copy="ar" lang="ar">كامل</span>
+            </p>
+            <p class="brand-copy__text">
+              <span data-copy="en">Whano is a Shopify app built by NomedaCo in Egypt. It runs the conversation after checkout on the official WhatsApp Cloud API: confirming orders, handling changes, sending shipping updates, and asking for reviews. Messages come from a verified business number, and billing runs through Shopify. No merchant phone or device is connected.</span>
+              <span data-copy="ar" lang="ar">Whano تطبيق Shopify من إنتاج NomedaCo في مصر. يدير المحادثة بعد الدفع عبر WhatsApp Cloud API الرسمية: يؤكد الطلبات، ويتعامل مع التعديلات، ويرسل تحديثات الشحن، ويطلب التقييمات. تصدر الرسائل من رقم تجاري موثق، وتتم الفوترة عبر Shopify. ولا يُربط هاتف التاجر أو جهازه.</span>
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="brand-press reveal" aria-labelledby="brand-press-title">
+        <div class="brand-press__copy">
+          <p class="brand-kicker">
+            <span data-copy="en">Press</span>
+            <span data-copy="ar" lang="ar">الصحافة</span>
+          </p>
+          <h2 id="brand-press-title">
+            <span data-copy="en">Press and permissions</span>
+            <span data-copy="ar" lang="ar">الصحافة والاستخدام</span>
+          </h2>
+          <p>
+            <span data-copy="en">For interviews, product details, or permission to use the icon in a publication, write to us. For product support, use the contact page.</span>
+            <span data-copy="ar" lang="ar">للمقابلات، أو تفاصيل المنتج، أو إذن استخدام الأيقونة في منشور، راسلنا. وللدعم، استخدم صفحة التواصل.</span>
+          </p>
+          <p class="brand-press__legal">
+            <span data-copy="en">Whano and the app icon are brand assets of NomedaCo. Use them to refer to Whano accurately; do not use them as your own brand or in a way that suggests endorsement.</span>
+            <span data-copy="ar" lang="ar">Whano وأيقونة التطبيق من أصول علامة NomedaCo. استخدمهما للإشارة إلى Whano بدقة، ولا تستخدمهما كعلامتك الخاصة أو بما يوحي باعتماد رسمي.</span>
+          </p>
+        </div>
+        <div class="brand-press__links">
+          <a class="brand-press__email" href={`mailto:${site.contactEmail}`} dir="ltr">{site.contactEmail}</a>
+          <a class="section-link" href="/contact/">
+            <span data-copy="en">Contact page</span>
+            <span data-copy="ar" lang="ar">صفحة التواصل</span>
+            <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+              <path d="M2.5 7.5h9M8 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
+          <a class="section-link" href="/identity/">
+            <span data-copy="en">Read the identity</span>
+            <span data-copy="ar" lang="ar">اقرأ عن الهوية</span>
+            <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+              <path d="M2.5 7.5h9M8 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  .brand-kicker {
+    margin: 0 0 8px;
+    color: var(--green);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .brand-asset {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: clamp(28px, 5vw, 64px);
+    align-items: center;
+    margin-top: 34px;
+    padding: clamp(22px, 4vw, 46px);
+    border: 1.5px solid var(--pl-line);
+    border-radius: 32px;
+    background:
+      radial-gradient(420px 260px at 100% 0%, rgba(224, 216, 255, 0.55), transparent 70%),
+      radial-gradient(360px 260px at 0% 100%, rgba(255, 233, 168, 0.32), transparent 70%),
+      #ffffff;
+  }
+
+  .brand-asset--social {
+    margin-top: 16px;
+    background:
+      radial-gradient(420px 260px at 0% 0%, rgba(207, 245, 221, 0.5), transparent 70%),
+      #ffffff;
+  }
+
+  .brand-asset__preview {
+    display: grid;
+    min-height: 320px;
+    place-items: center;
+    border: 1.5px solid rgba(6, 103, 98, 0.1);
+    border-radius: 26px;
+    background:
+      radial-gradient(circle at 28% 22%, rgba(224, 216, 255, 0.8), transparent 48%),
+      radial-gradient(circle at 82% 82%, rgba(202, 159, 120, 0.2), transparent 50%),
+      #fbf9ff;
+  }
+
+  .brand-asset__preview img {
+    width: min(264px, 66%);
+    height: auto;
+  }
+
+  .brand-asset__preview--social {
+    padding: 24px;
+  }
+
+  .brand-asset__preview--social img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 14px 32px rgba(22, 18, 43, 0.12);
+  }
+
+  .brand-asset__copy h2,
+  .brand-section__head h2,
+  .brand-press h2 {
+    margin: 0 0 10px;
+    color: var(--ink);
+    font-family: var(--font-heading);
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.3;
+    text-wrap: balance;
+  }
+
+  .brand-asset__body {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 14.5px;
+    line-height: 1.85;
+  }
+
+  .brand-downloads {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 22px;
+  }
+
+  .brand-download {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 10px 16px;
+    border: 1.5px solid var(--pl-line);
+    border-radius: 12px;
+    background: #ffffff;
+    color: var(--ink);
+    transition: border-color 160ms ease, background 160ms ease, transform 160ms ease;
+  }
+
+  .brand-download:hover {
+    border-color: var(--pl-lilac);
+    background: var(--pl-lilac-soft);
+    transform: translateY(-1px);
+  }
+
+  .brand-download__format {
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .brand-download__size {
+    color: var(--ink-muted);
+    font-size: 10.5px;
+    letter-spacing: 0.05em;
+    line-height: 1.4;
+  }
+
+  .brand-kit {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 16px;
+    padding: 12px 20px;
+    border-radius: 999px;
+    background: var(--green);
+    color: #ffffff;
+    font-size: 13.5px;
+    font-weight: 600;
+    box-shadow: 0 10px 24px rgba(11, 122, 75, 0.16);
+    transition: background 160ms ease, transform 160ms ease;
+  }
+
+  .brand-kit:hover {
+    background: var(--green-dark);
+    transform: translateY(-1px);
+  }
+
+  .brand-kit__format {
+    padding: 2px 7px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.16);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+  }
+
+  .brand-note {
+    margin: 18px 0 0;
+    color: var(--ink-muted);
+    font-size: 12px;
+    line-height: 1.7;
+  }
+
+  .brand-section {
+    margin-top: 54px;
+  }
+
+  .brand-section__head {
+    max-width: 680px;
+  }
+
+  .brand-section__head p {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 15px;
+    line-height: 1.85;
+  }
+
+  .brand-palette {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .brand-color {
+    overflow: hidden;
+    border: 1.5px solid var(--pl-line);
+    border-radius: 20px;
+    background: #ffffff;
+  }
+
+  .brand-color__chip {
+    height: 96px;
+    background: var(--swatch);
+  }
+
+  .brand-color__meta {
+    padding: 14px 16px 16px;
+  }
+
+  .brand-color__name {
+    margin: 0;
+    color: var(--ink);
+    font-family: var(--font-heading);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .brand-color__hex {
+    margin: 3px 0 0;
+    color: var(--ink-muted);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+  }
+
+  .brand-color__use {
+    margin: 8px 0 0;
+    color: var(--ink-soft);
+    font-size: 12.5px;
+    line-height: 1.5;
+  }
+
+  .brand-type {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: clamp(24px, 4vw, 48px);
+    align-items: stretch;
+    margin-top: 24px;
+  }
+
+  .brand-type__sample {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    min-height: 240px;
+    padding: clamp(24px, 4vw, 38px);
+    border-radius: 28px;
+    background: var(--ink);
+    color: #ffffff;
+  }
+
+  .brand-type__glyphs {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+  }
+
+  .brand-type__glyph {
+    color: var(--pl-yellow-strong);
+    font-family: var(--font-heading);
+    font-size: clamp(4rem, 8vw, 6rem);
+    font-weight: 700;
+    letter-spacing: -0.06em;
+    line-height: 0.9;
+  }
+
+  .brand-type__glyph--ar {
+    font-size: clamp(4.6rem, 9vw, 6.8rem);
+    letter-spacing: 0;
+  }
+
+  .brand-type__sample p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .brand-type__copy {
+    padding: clamp(24px, 4vw, 38px);
+    border: 1.5px solid var(--pl-line);
+    border-radius: 28px;
+    background: #fbf9ff;
+  }
+
+  .brand-type__copy ul {
+    display: grid;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .brand-type__copy li {
+    position: relative;
+    padding-inline-start: 18px;
+    color: var(--ink-soft);
+    font-size: 13.5px;
+    line-height: 1.7;
+  }
+
+  .brand-type__copy li::before {
+    position: absolute;
+    inset-inline-start: 0;
+    color: var(--green);
+    content: "+";
+    font-weight: 700;
+  }
+
+  .brand-rules {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 24px;
+  }
+
+  .brand-rule {
+    padding: 24px;
+    border: 1.5px solid var(--pl-line);
+    border-radius: 24px;
+    background: #ffffff;
+  }
+
+  .brand-rule--do {
+    background: #f2fbf6;
+    border-color: rgba(11, 122, 75, 0.16);
+  }
+
+  .brand-rule--dont {
+    background: #fff7f4;
+    border-color: rgba(255, 122, 89, 0.2);
+  }
+
+  .brand-rule h3 {
+    margin: 0 0 14px;
+    color: var(--ink);
+    font-family: var(--font-heading);
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  .brand-rule ul {
+    display: grid;
+    gap: 9px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .brand-rule li {
+    position: relative;
+    padding-inline-start: 20px;
+    color: var(--ink-soft);
+    font-size: 13.5px;
+    line-height: 1.7;
+  }
+
+  .brand-rule li::before {
+    position: absolute;
+    inset-inline-start: 0;
+    font-weight: 700;
+  }
+
+  .brand-rule--do li::before {
+    color: var(--green);
+    content: "+";
+  }
+
+  .brand-rule--dont li::before {
+    color: var(--red);
+    content: "−";
+  }
+
+  .brand-copy {
+    display: grid;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .brand-copy__item {
+    padding: 24px;
+    border: 1.5px solid var(--pl-line);
+    border-radius: 24px;
+    background: #ffffff;
+  }
+
+  .brand-copy__label {
+    margin: 0 0 8px;
+    color: var(--green);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .brand-copy__text {
+    margin: 0;
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.85;
+  }
+
+  .brand-press {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 32px;
+    margin-top: 54px;
+    padding: 32px;
+    border: 1.5px solid var(--pl-line);
+    border-radius: 28px;
+    background: var(--pl-lilac-soft);
+  }
+
+  .brand-press__copy {
+    max-width: 680px;
+  }
+
+  .brand-press__copy > p:not(.brand-kicker):not(.brand-press__legal) {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .brand-press__legal {
+    margin: 14px 0 0;
+    color: var(--ink-muted);
+    font-size: 11.5px;
+    line-height: 1.7;
+  }
+
+  .brand-press__links {
+    display: grid;
+    flex: 0 0 auto;
+    gap: 12px;
+    justify-items: start;
+  }
+
+  .brand-press__email {
+    color: var(--ink);
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .brand-press__email:hover {
+    color: var(--green);
+  }
+
+  @media (max-width: 860px) {
+    .brand-asset,
+    .brand-type {
+      grid-template-columns: 1fr;
+    }
+
+    .brand-asset__preview {
+      min-height: 260px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .brand-palette,
+    .brand-rules {
+      grid-template-columns: 1fr;
+    }
+
+    .brand-press {
+      flex-direction: column;
+    }
+  }
+</style>
