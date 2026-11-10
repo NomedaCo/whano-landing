@@ -577,3 +577,38 @@
     transition: none !important;
   }
 }
+.whano-chat__composer[hidden] { display: none; }
+.whano-chat__resolved {
+  display: grid;
+  gap: 8px;
+  margin: 10px 0 2px;
+  padding: 12px;
+  border: 1px solid #d8e9df;
+  border-radius: 14px;
+  background: #f4fbf7;
+}
+.whano-chat__resolved-title { margin: 0; font-size: 11px; font-weight: 700; color: #145a3b; }
+.whano-chat__resolved-hint { margin: 0; font-size: 10px; line-height: 1.6; color: #5f756b; }
+.whano-chat__rating { display: flex; gap: 6px; }
+.whano-chat__rating button {
+  width: 28px;
+  height: 28px;
+  border: 1px solid #cfe2d7;
+  border-radius: 8px;
+  background: #fff;
+  color: #145a3b;
+  font: 600 11px/1 system-ui, sans-serif;
+  cursor: pointer;
+}
+.whano-chat__rating button:hover { border-color: #0f766e; background: #e8f5ef; }
+.whano-chat__restart {
+  justify-self: start;
+  border: 0;
+  background: transparent;
+  color: #0f766e;
+  padding: 0;
+  font: 600 10px/1.4 system-ui, sans-serif;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

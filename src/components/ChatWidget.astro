@@ -199,6 +199,7 @@ import { site } from "../data/content";
     }
     let history = [];
     let busy = false;
+    let resolved = false;
     let controller = null;
     let closeTimer = null;
     let lastFocus = null;
@@ -218,6 +219,7 @@ import { site } from "../data/content";
       .replace(new RegExp(dash, "g"), ", ")
       .replace(new RegExp(`\\b${usd}\\b`, "gi"), "EGP")
       .replace(new RegExp(`\\${dollar}`, "g"), "EGP ")
+      .replace(/support@nomeda\.tech/gi, "contact@nomeda.tech")
       .replace(/[ \t]+/g, " ")
       .trim();
     const normalise = (value) => value
@@ -456,7 +458,70 @@ import { site } from "../data/content";
       }
       const answer = cleanAnswer(payload?.data?.reply ?? "");
       if (!answer) throw new Error("empty_reply");
-      return answer;
+      return { answer, resolved: Boolean(payload?.data?.resolved) };
+    }
+
+    function clearResolution() {
+      resolved = false;
+      form.hidden = false;
+      messages.querySelector(".whano-chat__resolved")?.remove();
+    }
+
+    function showResolution() {
+      if (resolved) return;
+      resolved = true;
+      form.hidden = true;
+      const box = document.createElement("div");
+      box.className = "whano-chat__resolved";
+      const title = document.createElement("p");
+      title.className = "whano-chat__resolved-title";
+      title.textContent = copy("تم حل المحادثة", "Conversation resolved");
+      const hint = document.createElement("p");
+      hint.className = "whano-chat__resolved-hint";
+      hint.textContent = copy("قيّم تجربتك عشان نساعدك أحسن.", "How was this conversation?");
+      const ratings = document.createElement("div");
+      ratings.className = "whano-chat__rating";
+      for (let value = 1; value <= 5; value += 1) {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.textContent = String(value);
+        button.setAttribute("aria-label", copy(`تقييم ${value} من 5`, `Rate ${value} out of 5`));
+        button.addEventListener("click", () => void sendFeedback(value, box));
+        ratings.append(button);
+      }
+      const restart = document.createElement("button");
+      restart.type = "button";
+      restart.className = "whano-chat__restart";
+      restart.textContent = copy("ابدأ محادثة جديدة", "Start a new chat");
+      restart.addEventListener("click", () => {
+        clearResolution();
+        history = [];
+        saveHistory();
+        renderHistory();
+        input.focus({ preventScroll: true });
+      });
+      box.append(title, hint, ratings, restart);
+      messages.append(box);
+      scrollToBottom();
+    }
+
+    async function sendFeedback(value, box) {
+      const ratings = box.querySelector(".whano-chat__rating");
+      try {
+        const response = await fetch(`${madarEndpoint}/feedback`, {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ visitorId, rating: value }),
+        });
+        if (!response.ok) throw new Error("feedback");
+        ratings?.replaceChildren();
+        const thanks = document.createElement("p");
+        thanks.className = "whano-chat__resolved-hint";
+        thanks.textContent = copy("شكرًا لتقييمك.", "Thanks for your feedback.");
+        box.insertBefore(thanks, box.querySelector(".whano-chat__restart"));
+      } catch {
+        // Feedback is optional; never block the visitor.
+      }
     }
 
     async function submit(text) {
@@ -476,13 +541,14 @@ import { site } from "../data/content";
       controller = new AbortController();
       const typing = typingRow();
       try {
-        const reply = await streamReply();
+        const result = await streamReply();
         typing.remove();
-        messageRow("assistant", reply);
-        trackSession("chat-message", { role: "assistant", content: reply });
-        history.push({ role: "assistant", content: reply });
+        messageRow("assistant", result.answer);
+        trackSession("chat-message", { role: "assistant", content: result.answer });
+        history.push({ role: "assistant", content: result.answer });
         history = history.slice(-20);
         saveHistory();
+        if (result.resolved) showResolution();
       } catch (error) {
         typing.remove();
         if (error instanceof DOMException && error.name === "AbortError") {
@@ -523,6 +589,7 @@ import { site } from "../data/content";
     launcher.addEventListener("click", togglePanel);
     close.addEventListener("click", closePanel);
     reset.addEventListener("click", () => {
+      clearResolution();
       history = [];
       saveHistory();
       renderHistory();
