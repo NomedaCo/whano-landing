@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 48" width="220" height="48" role="img" aria-label="MADAR">
+  <g transform="translate(6 6)">
+    <circle cx="18" cy="18" r="2.6" fill="#14130F"/>
+    <path d="M27.5 8.2A13 13 0 0 1 31 18a13 13 0 0 1-9 12.5" stroke="#14130F" stroke-width="1.7" stroke-linecap="round" opacity=".9" fill="none"/>
+    <path d="M12.5 27.5A13 13 0 0 1 5 18 13 13 0 0 1 14 5.5" stroke="#14130F" stroke-width="1.7" stroke-linecap="round" opacity=".55" fill="none"/>
+    <line x1="18" y1="18" x2="27.5" y2="8.2" stroke="#C23A15" stroke-width="1.1" opacity=".55"/>
+    <circle cx="27.5" cy="8.2" r="2.1" fill="#C23A15"/>
+    <circle cx="22" cy="30.5" r="1.7" fill="#14130F" opacity=".85"/>
+    <circle cx="14" cy="5.5" r="1.7" fill="#14130F" opacity=".85"/>
+  </g>
+  <text x="46" y="32" fill="#14130F" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="600" letter-spacing="6">MADAR</text>
+</svg>

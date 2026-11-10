@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 196 48" width="196" height="48" role="img" aria-label="Nomeda">
+  <svg x="0" y="6" width="36" height="36" viewBox="110 95 185 195" fill="none">
+    <path d="M272 116V246.65C272 265.844 249.138 275.834 235.054 262.794L168 200.712" stroke="#6322EE" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M131 267.5V141.655C131 121.979 154.854 112.198 168.667 126.211L235 193.5" stroke="#6322EE" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  <text x="48" y="32" fill="#14130F" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="600" letter-spacing="4.5">NOMEDA</text>
+</svg>

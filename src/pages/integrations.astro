@@ -6,9 +6,14 @@ import MobileCta from "../components/MobileCta.astro";
 import Nav from "../components/Nav.astro";
 import { site } from "../data/content";
 
+const nomedaProducts = [
+  { name: "Nomeda", src: "/logos/nomeda.svg", width: 196, height: 48, href: "https://nomeda.tech" },
+  { name: "Madar", src: "/logos/madar.svg", width: 220, height: 48, href: "https://madar.nomeda.tech" },
+];
+
 const worksWith = [
-  { name: "Shopify", src: "/logos/shopify.svg", width: 24, height: 24, icon: true },
-  { name: "WhatsApp", src: "/logos/whatsapp.svg", width: 24, height: 24, icon: true },
+  { name: "Shopify", src: "/logos/shopify.svg", width: 24, height: 24, icon: true, label: "Shopify" },
+  { name: "Meta / WhatsApp", src: "/logos/whatsapp.svg", width: 24, height: 24, icon: true, label: "Meta / WhatsApp" },
   { name: "Bosta", src: "/logos/bosta.png", width: 112, height: 32 },
   { name: "ShipBlu", src: "/logos/shipblu.png", width: 1967, height: 446 },
   { name: "J&T Express", src: "/logos/jnt.svg", width: 500, height: 105 },
@@ -17,14 +22,16 @@ const worksWith = [
 const pageSchema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  name: "Whano integrations | Shopify, WhatsApp, Bosta, ShipBlu, J&T Express",
+  name: "Whano integrations | Shopify, Meta WhatsApp, Bosta, ShipBlu, J&T Express",
   description: "The systems Whano connects to, and the boundaries of each integration.",
   inLanguage: "ar",
   about: {
     "@type": "ItemList",
     itemListElement: [
+      { "@type": "Organization", name: "Nomeda", url: "https://nomeda.tech" },
+      { "@type": "SoftwareApplication", name: "Madar", url: "https://madar.nomeda.tech" },
       { "@type": "Thing", name: "Shopify" },
-      { "@type": "Thing", name: "WhatsApp Cloud API" },
+      { "@type": "Thing", name: "Meta WhatsApp Cloud API" },
       { "@type": "Thing", name: "Bosta" },
       { "@type": "Thing", name: "ShipBlu" },
       { "@type": "Thing", name: "J&T Express" },
@@ -34,10 +41,10 @@ const pageSchema = {
 ---
 
 <Base
-  title="Integrations | Shopify, WhatsApp, Bosta, ShipBlu and J&T Express | Whano"
-  titleArabic="التكاملات | Shopify وواتساب وبوسطة وShipBlu وJ&T Express | Whano"
-  description="Whano connects Shopify orders to the official WhatsApp Cloud API, and creates shipments with Bosta, ShipBlu, or J&T Express. See exactly what is connected and what is not."
-  descriptionArabic="يربط Whano طلبات Shopify بواجهة WhatsApp Cloud API الرسمية، وينشئ الشحنات مع بوسطة، أو ShipBlu، أو J&T Express. اعرف بالضبط ما هو متصل وما ليس متصلًا."
+  title="Integrations | Shopify, Meta WhatsApp, Bosta, ShipBlu and J&T Express | Whano"
+  titleArabic="التكاملات | Shopify وMeta WhatsApp وبوسطة وShipBlu وJ&T Express | Whano"
+  description="Whano connects Shopify orders to Meta's WhatsApp Cloud API, and creates shipments with Bosta, ShipBlu, or J&T Express. See exactly what is connected and what is not."
+  descriptionArabic="يربط Whano طلبات Shopify بواجهة WhatsApp Cloud API من Meta، وينشئ الشحنات مع بوسطة، أو ShipBlu، أو J&T Express. اعرف بالضبط ما هو متصل وما ليس متصلًا."
   schema={pageSchema}
 >
   <Nav />
@@ -53,36 +60,71 @@ const pageSchema = {
           <span data-copy="ar" lang="ar">الأدوات التي تستخدمها بالفعل.</span>
         </h1>
         <p class="about-subtitle">
-          <span data-copy="en">Whano connects a Shopify store to the official WhatsApp Cloud API and creates shipments with Bosta, ShipBlu, or J&T Express. Each store connects one carrier at a time. Nothing else is silently connected.</span>
-          <span data-copy="ar" lang="ar">يربط Whano متجر Shopify بواجهة WhatsApp Cloud API الرسمية، وينشئ الشحنات مع بوسطة، أو ShipBlu، أو J&T Express. وكل متجر يربط شركة شحن واحدة في كل مرة. ولا يوجد أي اتصال آخر بشكل مخفي.</span>
+          <span data-copy="en">Whano connects a Shopify store to Meta's WhatsApp Cloud API and creates shipments with Bosta, ShipBlu, or J&T Express. Each store connects one carrier at a time. Nothing else is silently connected.</span>
+          <span data-copy="ar" lang="ar">يربط Whano متجر Shopify بواجهة WhatsApp Cloud API من Meta، وينشئ الشحنات مع بوسطة، أو ShipBlu، أو J&T Express. وكل متجر يربط شركة شحن واحدة في كل مرة. ولا يوجد أي اتصال آخر بشكل مخفي.</span>
         </p>
       </header>
 
       <section class="works-with reveal" aria-labelledby="works-with-title">
         <div class="works-with__head">
+          <p class="eyebrow">
+            <span data-copy="en">Ecosystem</span>
+            <span data-copy="ar" lang="ar">المنظومة</span>
+          </p>
           <h2 class="works-with__title" id="works-with-title">
-            <span data-copy="en">Works with</span>
-            <span data-copy="ar" lang="ar">يعمل مع</span>
+            <span data-copy="en">Built by Nomeda. Connected to your stack.</span>
+            <span data-copy="ar" lang="ar">من إنتاج Nomeda، ومتصل بأدواتك.</span>
           </h2>
           <p class="works-with__note">
-            <span data-copy="en">The platforms and carriers Whano connects to today.</span>
-            <span data-copy="ar" lang="ar">المنصات وشركات الشحن التي يتصل بها Whano اليوم.</span>
+            <span data-copy="en">Whano is a Nomeda product. Its app guide runs on Madar. Shopify, Meta, and the carriers below are the integrations.</span>
+            <span data-copy="ar" lang="ar">Whano منتج من Nomeda، ودليل تطبيقه يعمل على Madar. وShopify وMeta وشركات الشحن أدناه هي التكاملات.</span>
           </p>
         </div>
-        <ul class="works-with__logos">
-          {worksWith.map((item) => (
-            <li class:list={["works-with__item", item.icon && "works-with__item--icon"]}>
-              <img
-                src={item.src}
-                alt={item.name}
-                width={item.width}
-                height={item.height}
-                loading="lazy"
-                decoding="async"
-              />
-            </li>
-          ))}
-        </ul>
+
+        <div class="works-with__row">
+          <p class="works-with__label">
+            <span data-copy="en">Built by Nomeda</span>
+            <span data-copy="ar" lang="ar">من إنتاج Nomeda</span>
+          </p>
+          <ul class="works-with__logos">
+            {nomedaProducts.map((item) => (
+              <li class="works-with__item">
+                <a href={item.href} target="_blank" rel="noopener noreferrer">
+                  <img
+                    src={item.src}
+                    alt={item.name}
+                    width={item.width}
+                    height={item.height}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="works-with__row">
+          <p class="works-with__label">
+            <span data-copy="en">Works with</span>
+            <span data-copy="ar" lang="ar">يعمل مع</span>
+          </p>
+          <ul class="works-with__logos">
+            {worksWith.map((item) => (
+              <li class:list={["works-with__item", item.icon && "works-with__item--icon"]}>
+                <img
+                  src={item.src}
+                  alt={item.name}
+                  width={item.width}
+                  height={item.height}
+                  loading="lazy"
+                  decoding="async"
+                />
+                {item.label && <span class="works-with__label-text">{item.label}</span>}
+              </li>
+            ))}
+          </ul>
+        </div>
       </section>
 
       <section class="integration-grid" aria-label="Whano integrations">
@@ -108,15 +150,15 @@ const pageSchema = {
         <article class="integration-card reveal">
           <div class="integration-card__brand">
             <img class="integration-card__logo integration-card__logo--icon" src="/logos/whatsapp.svg" alt="" width="24" height="24" loading="lazy" decoding="async" />
-            <p class="integration-card__label">WhatsApp</p>
+            <p class="integration-card__label">Meta / WhatsApp</p>
           </div>
           <h2>
             <span data-copy="en">Official Cloud API</span>
             <span data-copy="ar" lang="ar">Cloud API الرسمية</span>
           </h2>
           <p>
-            <span data-copy="en">Messages run on the official WhatsApp Cloud API. Whano provisions the store number inside its WhatsApp Business Account, so the merchant does not need a Meta API account or a device.</span>
-            <span data-copy="ar" lang="ar">تعمل الرسائل عبر WhatsApp Cloud API الرسمية. يوفّر Whano رقم المتجر داخل حساب WhatsApp Business الخاص به، فلا يحتاج التاجر إلى حساب Meta API أو جهاز.</span>
+            <span data-copy="en">Messages run on Meta's official WhatsApp Cloud API. Whano provisions the store number inside its WhatsApp Business Account, so the merchant does not need a Meta API account or a device.</span>
+            <span data-copy="ar" lang="ar">تعمل الرسائل عبر WhatsApp Cloud API الرسمية من Meta. يوفّر Whano رقم المتجر داخل حساب WhatsApp Business الخاص به، فلا يحتاج التاجر إلى حساب Meta API أو جهاز.</span>
           </p>
           <a href="/security/">
             <span data-copy="en">How data is handled</span>
@@ -217,38 +259,63 @@ const pageSchema = {
 
 <style>
   .works-with {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
+    display: grid;
+    gap: 18px;
     margin: 26px 0 4px;
-    padding: 18px 22px;
+    padding: 24px;
     border: 1.5px solid var(--pl-line);
     border-radius: 22px;
     background: #fbf9ff;
+  }
+
+  .works-with__head {
+    display: grid;
+    max-width: 760px;
+    justify-items: start;
+    gap: 10px;
   }
 
   .works-with__title {
     margin: 0;
     color: var(--ink);
     font-family: var(--font-heading);
-    font-size: 18px;
+    font-size: clamp(1.45rem, 2.6vw, 2rem);
     font-weight: 600;
-    letter-spacing: -0.02em;
-    line-height: 1.4;
+    letter-spacing: -0.03em;
+    line-height: 1.3;
+    text-wrap: balance;
   }
 
   .works-with__note {
-    margin: 4px 0 0;
+    margin: 0;
     color: var(--ink-muted);
-    font-size: 12px;
-    line-height: 1.6;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .works-with__row {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding-top: 18px;
+    border-top: 1.5px solid var(--pl-line);
+  }
+
+  .works-with__label {
+    flex: 0 0 140px;
+    margin: 0;
+    color: var(--ink-muted);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    line-height: 1.5;
+    text-transform: uppercase;
   }
 
   .works-with__logos {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-end;
+    justify-content: flex-start;
     gap: 8px;
     margin: 0;
     padding: 0;
@@ -257,20 +324,26 @@ const pageSchema = {
 
   .works-with__item {
     display: flex;
-    width: 104px;
     height: 44px;
     align-items: center;
     justify-content: center;
-    padding: 0 12px;
+    gap: 8px;
+    padding: 0 14px;
     border: 1.5px solid var(--pl-line);
     border-radius: 12px;
     background: #ffffff;
   }
 
+  .works-with__item a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
   .works-with__item img {
     display: block;
     width: auto;
-    max-width: 80px;
+    max-width: 104px;
     max-height: 22px;
     height: auto;
     object-fit: contain;
@@ -279,6 +352,14 @@ const pageSchema = {
   .works-with__item--icon img {
     max-width: 22px;
     max-height: 22px;
+  }
+
+  .works-with__label-text {
+    color: var(--ink);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.4;
+    white-space: nowrap;
   }
 
   .integration-grid {
@@ -376,8 +457,17 @@ const pageSchema = {
 
   @media (max-width: 760px) {
     .works-with {
+      padding: 20px;
+    }
+
+    .works-with__row {
       align-items: flex-start;
       flex-direction: column;
+      gap: 10px;
+    }
+
+    .works-with__label {
+      flex: none;
     }
 
     .works-with__logos {
