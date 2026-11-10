@@ -3,6 +3,7 @@ import Base from "../layouts/Base.astro";
 import Footer from "../components/Footer.astro";
 import MobileCta from "../components/MobileCta.astro";
 import Nav from "../components/Nav.astro";
+import Partners from "../components/Partners.astro";
 import { faqs, featureGroups, orderFlow, site } from "../data/content";
 
 const featuredFeatures = featureGroups[0].items.filter((feature) => feature.featured).slice(0, 6);
@@ -532,6 +533,8 @@ const softwareSchema = {
         </div>
       </div>
     </section>
+
+    <Partners />
   </main>
 
   <MobileCta />

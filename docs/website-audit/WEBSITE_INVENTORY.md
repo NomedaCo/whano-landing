@@ -62,6 +62,7 @@ Last verified: **2026-10-29**
 | Audience | `Audience.astro` | Three store types || Pricing teaser | inline on `index.astro` | EGP points packs, no subscription |
 | FAQ teaser | `FaqTeaser.astro` | Four install-blocking questions, including cart recovery |
 | CTA | `CTA.astro` | Install + log in + reassurance |
+| Partners | `Partners.astro` | Animated ecosystem strip: Nomeda, Madar, Shopify, Meta, Bosta, ShipBlu, J&T |
 | Mobile CTA | `MobileCta.astro` | Sticky install/login bar after 560px |
 | Footer | `Footer.astro` | Nav, contact, rating, legal, social, language |
 
@@ -76,7 +77,7 @@ Last verified: **2026-10-29**
 - Legal: `src/data/legal.ts`
 - Components: `AboutPage`, `Audience`, `ChatThread` (unused), `ConsoleTour`, `CTA`,
   `FAQ`, `FaqTeaser`, `Flow` (used on the home), `Footer`, `Hero`, `LegalPage`,
-  `MobileCta`, `Nav`, `OrderPage`, `Outcomes`, `PhoneMock`, `Pricing`,
+  `MobileCta`, `Nav`, `OrderPage`, `Outcomes`, `Partners`, `PhoneMock`, `Pricing`,
   `PricingTeaser`, `Shipping`, `TrustStrip`. Dead after the density pass:
   `Capabilities`, `Control`, `Features`, `Problem`, `CyclePhone` (deleted).
 - Dead after the density pass (not imported by any page): `ChatThread.astro`,
