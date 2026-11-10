@@ -304,7 +304,7 @@ export const site = {
     carriersLabel: { en: "Connected carriers", ar: "شركات الشحن المتصلة" },
     carriers: [
       { en: "Bosta", ar: "بوسطة", logo: "/logos/bosta.png" },
-      { en: "ShipBlu", ar: "شيب بلو", logo: "/logos/shipblu.svg" },
+      { en: "ShipBlu", ar: "شيب بلو", logo: "/logos/shipblu.png" },
       { en: "J&T Express", ar: "J&T Express", logo: "/logos/jnt.svg" },
     ],
     carriersNote: {
