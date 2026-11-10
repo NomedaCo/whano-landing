@@ -1,258 +1,175 @@
 ---
 const partners = [
-  {
-    name: "Nomeda",
-    src: "/logos/nomeda.svg",
-    width: 196,
-    height: 48,
-    role: { en: "Company", ar: "الشركة" },
-    tone: "#e0d8ff",
-  },
-  {
-    name: "Madar",
-    src: "/logos/madar.svg",
-    width: 220,
-    height: 48,
-    role: { en: "AI app guide", ar: "دليل التطبيق الذكي" },
-    tone: "#ffd9cc",
-  },
-  {
-    name: "Shopify",
-    src: "/logos/shopify.svg",
-    width: 24,
-    height: 24,
-    role: { en: "Store platform", ar: "منصة المتجر" },
-    tone: "#cff5dd",
-    icon: true,
-  },
-  {
-    name: "Meta / WhatsApp",
-    src: "/logos/whatsapp.svg",
-    width: 24,
-    height: 24,
-    role: { en: "Messaging", ar: "المراسلة" },
-    tone: "#e0d8ff",
-    icon: true,
-  },
-  {
-    name: "Bosta",
-    src: "/logos/bosta.png",
-    width: 112,
-    height: 32,
-    role: { en: "Carrier", ar: "شركة شحن" },
-    tone: "#ffe9a8",
-  },
-  {
-    name: "ShipBlu",
-    src: "/logos/shipblu.png",
-    width: 1967,
-    height: 446,
-    role: { en: "Carrier", ar: "شركة شحن" },
-    tone: "#cff5dd",
-  },
-  {
-    name: "J&T Express",
-    src: "/logos/jnt.svg",
-    width: 500,
-    height: 105,
-    role: { en: "Carrier", ar: "شركة شحن" },
-    tone: "#ffd9cc",
-  },
+  { name: "Nomeda", src: "/logos/nomeda.svg", width: 196, height: 48 },
+  { name: "Madar", src: "/logos/madar.svg", width: 220, height: 48 },
+  { name: "Shopify", src: "/logos/shopify.svg", width: 24, height: 24, icon: true, label: "Shopify" },
+  { name: "Meta / WhatsApp", src: "/logos/whatsapp.svg", width: 24, height: 24, icon: true, label: "Meta / WhatsApp" },
+  { name: "Bosta", src: "/logos/bosta.png", width: 112, height: 32 },
+  { name: "ShipBlu", src: "/logos/shipblu.png", width: 1967, height: 446 },
+  { name: "J&T Express", src: "/logos/jnt.svg", width: 500, height: 105 },
 ];
 ---
 
-<section class="play-partners" id="partners" aria-labelledby="partners-title">
+<section class="partners-band" id="partners" aria-labelledby="partners-title">
   <div class="site-frame">
-    <div class="play-partners__panel">
-      <div class="play-partners__head">
+    <div class="partners-band__head">
+      <div class="partners-band__copy">
         <p class="eyebrow">
           <span data-copy="en">Partners</span>
           <span data-copy="ar" lang="ar">الشركاء</span>
         </p>
-        <h2 class="play-partners__title" id="partners-title">
-          <span data-copy="en">The tools behind every order.</span>
-          <span data-copy="ar" lang="ar">الأدوات خلف كل طلب.</span>
+        <h2 class="partners-band__title" id="partners-title">
+          <span data-copy="en">Whano is a Nomeda product. Its app guide runs on Madar.</span>
+          <span data-copy="ar" lang="ar">Whano منتج من Nomeda، ودليل التطبيق يعمل على Madar.</span>
         </h2>
-        <p class="play-partners__copy">
-          <span data-copy="en">Whano is built by Nomeda. Its app guide runs on Madar. Shopify, Meta, and your carrier keep the order moving.</span>
-          <span data-copy="ar" lang="ar">Whano من إنتاج Nomeda. دليل التطبيق يعمل على Madar. ويتولى Shopify وMeta وشركة الشحن إدارة الطلب.</span>
+        <p>
+          <span data-copy="en">Connected to Shopify, Meta's WhatsApp Cloud API, and the carrier you choose.</span>
+          <span data-copy="ar" lang="ar">متصل بـ Shopify، وواجهة WhatsApp Cloud API من Meta، وشركة الشحن التي تختارها.</span>
         </p>
       </div>
-
-      <ul class="play-partners__grid">
-        {partners.map((partner) => (
-          <li class="play-partners__card" style={`--tone: ${partner.tone};`}>
-            <span class:list={["play-partners__logo", partner.icon && "play-partners__logo--icon"]}>
-              <img
-                src={partner.src}
-                alt={partner.name}
-                width={partner.width}
-                height={partner.height}
-                loading="lazy"
-                decoding="async"
-              />
-            </span>
-            <div>
-              <p class="play-partners__name">{partner.name}</p>
-              <p class="play-partners__role">
-                <span data-copy="en">{partner.role.en}</span>
-                <span data-copy="ar" lang="ar">{partner.role.ar}</span>
-              </p>
-            </div>
-          </li>
-        ))}
-      </ul>
+      <a class="section-link" href="/integrations/">
+        <span data-copy="en">All integrations</span>
+        <span data-copy="ar" lang="ar">كل التكاملات</span>
+        <svg width="14" height="14" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+          <path d="M2.5 7.5h9M8 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
     </div>
+
+    <ul class="partners-band__logos">
+      {partners.map((partner) => (
+        <li class:list={["partners-band__item", partner.icon && "partners-band__item--icon"]}>
+          <img
+            src={partner.src}
+            alt={partner.name}
+            width={partner.width}
+            height={partner.height}
+            loading="lazy"
+            decoding="async"
+          />
+          {partner.label && <span class="partners-band__label">{partner.label}</span>}
+        </li>
+      ))}
+    </ul>
   </div>
 </section>
 
 <style>
-  .play-partners {
-    padding-block: 72px 16px;
+  .partners-band {
+    padding-block: 64px 56px;
+    border-top: 1.5px solid var(--pl-line);
     background: #ffffff;
   }
 
-  .play-partners__panel {
-    padding: 38px 42px 42px;
-    border: 1.5px solid var(--pl-line);
-    border-radius: 40px;
-    background:
-      radial-gradient(540px 300px at 88% -10%, rgba(255, 213, 74, 0.26), transparent 70%),
-      radial-gradient(560px 330px at 0% 110%, rgba(224, 216, 255, 0.62), transparent 72%),
-      linear-gradient(135deg, #fffdf5 0%, #fbf9ff 55%, #f2fbf6 100%);
-    box-shadow: 0 26px 60px rgba(22, 18, 43, 0.06);
+  .partners-band__head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 32px;
   }
 
-  .play-partners__head {
-    max-width: 760px;
+  .partners-band__copy {
+    max-width: 660px;
   }
 
-  .play-partners__title {
-    margin: 14px 0 12px;
+  .partners-band__title {
+    margin: 12px 0 6px;
     color: var(--ink);
     font-family: var(--font-heading);
-    font-size: clamp(2rem, 4.5vw, 3.1rem);
-    font-weight: 700;
-    letter-spacing: -0.04em;
-    line-height: 1.2;
+    font-size: clamp(1.15rem, 2.1vw, 1.5rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.5;
     text-wrap: balance;
   }
 
-  .play-partners__copy {
-    max-width: 680px;
+  .partners-band__copy > p:last-child {
     margin: 0;
     color: var(--ink-soft);
-    font-size: 15px;
-    line-height: 1.85;
+    font-size: 14.5px;
+    line-height: 1.8;
   }
 
-  .play-partners__grid {
+  .partners-band__head .section-link {
+    flex: 0 0 auto;
+    padding-bottom: 2px;
+  }
+
+  .partners-band__logos {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: 12px;
-    margin: 30px 0 0;
-    padding: 0;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px 32px;
+    margin: 34px 0 0;
+    padding: 24px 0 0;
+    border-top: 1.5px solid var(--pl-line);
     list-style: none;
   }
 
-  .play-partners__card {
+  .partners-band__item {
     display: flex;
-    flex: 1 1 200px;
-    max-width: 256px;
-    min-height: 168px;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 22px;
-    border: 1.5px solid var(--pl-line);
-    border-top: 4px solid var(--tone);
-    border-radius: 20px;
-    background: rgba(255, 255, 255, 0.86);
-  }
-
-  .play-partners__logo {
-    display: flex;
-    min-height: 42px;
     align-items: center;
+    gap: 8px;
   }
 
-  .play-partners__logo img {
+  .partners-band__item img {
     display: block;
     width: auto;
-    max-width: 124px;
-    max-height: 32px;
+    max-width: 110px;
+    max-height: 24px;
     height: auto;
     object-fit: contain;
   }
 
-  .play-partners__logo--icon img {
-    max-width: 32px;
-    max-height: 32px;
+  .partners-band__item--icon img {
+    max-width: 24px;
+    max-height: 24px;
   }
 
-  .play-partners__name {
-    margin: 14px 0 2px;
-    color: var(--ink);
-    font-family: var(--font-heading);
-    font-size: 15px;
+  .partners-band__label {
+    color: var(--ink-soft);
+    font-size: 12px;
     font-weight: 600;
-    letter-spacing: -0.02em;
     line-height: 1.4;
+    white-space: nowrap;
   }
 
-  .play-partners__role {
-    margin: 0;
-    color: var(--ink-muted);
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.09em;
-    line-height: 1.5;
-    text-transform: uppercase;
-  }
-
-  :global(html[data-language="ar"]) .play-partners__title {
+  :global(html[data-language="ar"]) .partners-band__title {
     letter-spacing: -0.02em;
     line-height: 1.42;
   }
 
   @media (max-width: 900px) {
-    .play-partners {
-      padding-block: 54px 8px;
+    .partners-band {
+      padding-block: 52px 44px;
     }
 
-    .play-partners__panel {
-      padding: 30px 24px 30px;
-      border-radius: 30px;
+    .partners-band__head {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 18px;
     }
 
-    .play-partners__title {
-      font-size: clamp(1.8rem, 7vw, 2.5rem);
-    }
-
-    .play-partners__copy {
-      font-size: 14px;
-    }
-
-    .play-partners__grid {
-      margin-top: 24px;
-    }
-
-    .play-partners__card {
-      flex-basis: 180px;
-      min-height: 150px;
-      padding: 18px;
+    .partners-band__logos {
+      justify-content: flex-start;
+      margin-top: 28px;
     }
   }
 
   @media (max-width: 520px) {
-    .play-partners__card {
-      flex-basis: 100%;
-      max-width: none;
-      min-height: 0;
+    .partners-band__logos {
+      gap: 16px 22px;
     }
 
-    .play-partners__logo {
-      min-height: 34px;
+    .partners-band__item img {
+      max-width: 92px;
+      max-height: 22px;
+    }
+
+    .partners-band__item--icon img {
+      max-width: 22px;
+      max-height: 22px;
     }
   }
 </style>
