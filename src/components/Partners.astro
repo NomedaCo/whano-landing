@@ -1,157 +1,137 @@
 ---
 const partners = [
-  { name: "Nomeda", src: "/logos/nomeda.svg", width: 196, height: 48 },
-  { name: "Madar", src: "/logos/madar.svg", width: 220, height: 48 },
-  { name: "Shopify", src: "/logos/shopify.svg", width: 24, height: 24, icon: true, label: "Shopify" },
-  { name: "Meta / WhatsApp", src: "/logos/whatsapp.svg", width: 24, height: 24, icon: true, label: "Meta / WhatsApp" },
-  { name: "Bosta", src: "/logos/bosta.png", width: 112, height: 32 },
-  { name: "ShipBlu", src: "/logos/shipblu.png", width: 1967, height: 446 },
-  { name: "J&T Express", src: "/logos/jnt.svg", width: 500, height: 105 },
+  {
+    name: "Nomeda",
+    src: "/logos/nomeda.svg",
+    width: 196,
+    height: 48,
+    role: { en: "Company", ar: "الشركة" },
+    tone: "#e0d8ff",
+  },
+  {
+    name: "Madar",
+    src: "/logos/madar.svg",
+    width: 220,
+    height: 48,
+    role: { en: "AI app guide", ar: "دليل التطبيق الذكي" },
+    tone: "#ffd9cc",
+  },
+  {
+    name: "Shopify",
+    src: "/logos/shopify.svg",
+    width: 24,
+    height: 24,
+    role: { en: "Store platform", ar: "منصة المتجر" },
+    tone: "#cff5dd",
+    icon: true,
+  },
+  {
+    name: "Meta / WhatsApp",
+    src: "/logos/whatsapp.svg",
+    width: 24,
+    height: 24,
+    role: { en: "Messaging", ar: "المراسلة" },
+    tone: "#e0d8ff",
+    icon: true,
+  },
+  {
+    name: "Bosta",
+    src: "/logos/bosta.png",
+    width: 112,
+    height: 32,
+    role: { en: "Carrier", ar: "شركة شحن" },
+    tone: "#ffe9a8",
+  },
+  {
+    name: "ShipBlu",
+    src: "/logos/shipblu.png",
+    width: 1967,
+    height: 446,
+    role: { en: "Carrier", ar: "شركة شحن" },
+    tone: "#cff5dd",
+  },
+  {
+    name: "J&T Express",
+    src: "/logos/jnt.svg",
+    width: 500,
+    height: 105,
+    role: { en: "Carrier", ar: "شركة شحن" },
+    tone: "#ffd9cc",
+  },
 ];
 ---
 
 <section class="play-partners" id="partners" aria-labelledby="partners-title">
   <div class="site-frame">
-    <div class="play-partners__panel play-reveal" data-play-reveal>
-      <span class="play-partners__shape play-partners__shape--star" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 1l2.4 7.6L22 11l-7.6 2.4L12 21l-2.4-7.6L2 11l7.6-2.4z" />
-        </svg>
-      </span>
-      <span class="play-partners__shape play-partners__shape--ring" aria-hidden="true"></span>
-      <span class="play-partners__shape play-partners__shape--dot" aria-hidden="true"></span>
-      <span class="play-partners__shape play-partners__shape--blob" aria-hidden="true"></span>
-
+    <div class="play-partners__panel">
       <div class="play-partners__head">
         <p class="eyebrow">
-          <span data-copy="en">Partners &amp; ecosystem</span>
-          <span data-copy="ar" lang="ar">الشركاء والمنظومة</span>
+          <span data-copy="en">Partners</span>
+          <span data-copy="ar" lang="ar">الشركاء</span>
         </p>
         <h2 class="play-partners__title" id="partners-title">
-          <span data-copy="en">Better together, by design.</span>
-          <span data-copy="ar" lang="ar">أفضل معًا، بالتصميم.</span>
+          <span data-copy="en">The tools behind every order.</span>
+          <span data-copy="ar" lang="ar">الأدوات خلف كل طلب.</span>
         </h2>
         <p class="play-partners__copy">
-          <span data-copy="en">Whano is built by Nomeda, its app guide runs on Madar, and the product connects to Shopify, Meta's WhatsApp Cloud API, and the carrier you choose.</span>
-          <span data-copy="ar" lang="ar">Whano من إنتاج Nomeda، ودليل تطبيقه يعمل على Madar، ويتصل المنتج بـ Shopify وواجهة WhatsApp Cloud API من Meta وشركة الشحن التي تختارها.</span>
+          <span data-copy="en">Whano is built by Nomeda. Its app guide runs on Madar. Shopify, Meta, and your carrier keep the order moving.</span>
+          <span data-copy="ar" lang="ar">Whano من إنتاج Nomeda. دليل التطبيق يعمل على Madar. ويتولى Shopify وMeta وشركة الشحن إدارة الطلب.</span>
         </p>
       </div>
 
-      <div class="play-partners__marquee">
-        <div class="play-partners__track" dir="ltr">
-          {[0, 1].map((copyIndex) => (
-            <ul class="play-partners__set" aria-hidden={copyIndex === 1 ? "true" : undefined}>
-              {partners.map((partner) => (
-                <li class:list={["play-partners__item", partner.icon && "play-partners__item--icon"]}>
-                  <img
-                    src={partner.src}
-                    alt={copyIndex === 1 ? "" : partner.name}
-                    width={partner.width}
-                    height={partner.height}
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  {partner.label && <span class="play-partners__label">{partner.label}</span>}
-                </li>
-              ))}
-            </ul>
-          ))}
-        </div>
-      </div>
-
-      <p class="play-partners__note">
-        <span data-copy="en">The platforms, products, and carriers behind the work.</span>
-        <span data-copy="ar" lang="ar">المنصات والمنتجات وشركات الشحن خلف العمل.</span>
-      </p>
+      <ul class="play-partners__grid">
+        {partners.map((partner) => (
+          <li class="play-partners__card" style={`--tone: ${partner.tone};`}>
+            <span class:list={["play-partners__logo", partner.icon && "play-partners__logo--icon"]}>
+              <img
+                src={partner.src}
+                alt={partner.name}
+                width={partner.width}
+                height={partner.height}
+                loading="lazy"
+                decoding="async"
+              />
+            </span>
+            <div>
+              <p class="play-partners__name">{partner.name}</p>
+              <p class="play-partners__role">
+                <span data-copy="en">{partner.role.en}</span>
+                <span data-copy="ar" lang="ar">{partner.role.ar}</span>
+              </p>
+            </div>
+          </li>
+        ))}
+      </ul>
     </div>
   </div>
 </section>
 
 <style>
   .play-partners {
-    position: relative;
-    padding-block: 76px 12px;
+    padding-block: 72px 16px;
     background: #ffffff;
-    overflow: clip;
   }
 
   .play-partners__panel {
-    position: relative;
-    overflow: hidden;
-    padding: 38px 0 30px;
+    padding: 38px 42px 42px;
     border: 1.5px solid var(--pl-line);
     border-radius: 40px;
     background:
-      radial-gradient(540px 300px at 88% -10%, rgba(255, 213, 74, 0.34), transparent 70%),
-      radial-gradient(560px 330px at 0% 110%, rgba(224, 216, 255, 0.72), transparent 72%),
+      radial-gradient(540px 300px at 88% -10%, rgba(255, 213, 74, 0.26), transparent 70%),
+      radial-gradient(560px 330px at 0% 110%, rgba(224, 216, 255, 0.62), transparent 72%),
       linear-gradient(135deg, #fffdf5 0%, #fbf9ff 55%, #f2fbf6 100%);
-    box-shadow: 0 26px 60px rgba(22, 18, 43, 0.07);
-  }
-
-  .play-partners__shape {
-    position: absolute;
-    z-index: 0;
-    pointer-events: none;
-  }
-
-  .play-partners__shape--star {
-    top: 34px;
-    inset-inline-end: 9%;
-    width: 28px;
-    height: 28px;
-    color: var(--pl-yellow-strong);
-    animation: partners-float 5s ease-in-out infinite;
-  }
-
-  .play-partners__shape--star svg {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-
-  .play-partners__shape--ring {
-    top: 64px;
-    inset-inline-end: 18%;
-    width: 16px;
-    height: 16px;
-    border: 3px solid var(--pl-purple);
-    border-radius: 50%;
-    opacity: 0.7;
-    animation: partners-float 6s ease-in-out infinite reverse;
-  }
-
-  .play-partners__shape--dot {
-    bottom: 88px;
-    inset-inline-start: 8%;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: var(--pl-orange);
-    animation: partners-float 4.5s ease-in-out infinite;
-  }
-
-  .play-partners__shape--blob {
-    top: -70px;
-    inset-inline-start: -32px;
-    width: 170px;
-    height: 170px;
-    border-radius: 50%;
-    background: rgba(207, 245, 221, 0.45);
-    filter: blur(5px);
+    box-shadow: 0 26px 60px rgba(22, 18, 43, 0.06);
   }
 
   .play-partners__head {
-    position: relative;
-    z-index: 1;
-    max-width: 780px;
-    padding: 0 42px 30px;
+    max-width: 760px;
   }
 
   .play-partners__title {
     margin: 14px 0 12px;
     color: var(--ink);
     font-family: var(--font-heading);
-    font-size: clamp(2rem, 4.5vw, 3.2rem);
+    font-size: clamp(2rem, 4.5vw, 3.1rem);
     font-weight: 700;
     letter-spacing: -0.04em;
     line-height: 1.2;
@@ -166,82 +146,68 @@ const partners = [
     line-height: 1.85;
   }
 
-  .play-partners__marquee {
-    position: relative;
-    z-index: 1;
-    overflow: hidden;
-    padding-block: 8px 16px;
-    -webkit-mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
-    mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
-  }
-
-  .play-partners__track {
+  .play-partners__grid {
     display: flex;
-    width: max-content;
-    animation: partners-scroll 42s linear infinite;
-  }
-
-  .play-partners__marquee:hover .play-partners__track {
-    animation-play-state: paused;
-  }
-
-  .play-partners__set {
-    display: flex;
-    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 12px;
-    margin: 0;
-    padding: 0 6px;
+    margin: 30px 0 0;
+    padding: 0;
     list-style: none;
   }
 
-  .play-partners__item {
+  .play-partners__card {
     display: flex;
-    height: 76px;
+    flex: 1 1 200px;
+    max-width: 256px;
+    min-height: 168px;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 22px;
+    border: 1.5px solid var(--pl-line);
+    border-top: 4px solid var(--tone);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.86);
+  }
+
+  .play-partners__logo {
+    display: flex;
+    min-height: 42px;
     align-items: center;
-    justify-content: center;
-    gap: 10px;
-    padding: 0 26px;
-    border: 1.5px solid rgba(22, 18, 43, 0.08);
-    border-radius: 22px;
-    background: #ffffff;
-    box-shadow: 0 10px 24px rgba(22, 18, 43, 0.06);
-    transition: transform 180ms ease, box-shadow 180ms ease;
   }
 
-  .play-partners__item:hover {
-    transform: translateY(-3px) rotate(-1deg);
-    box-shadow: 0 16px 30px rgba(22, 18, 43, 0.1);
-  }
-
-  .play-partners__item img {
+  .play-partners__logo img {
     display: block;
     width: auto;
-    max-width: 132px;
+    max-width: 124px;
     max-height: 32px;
     height: auto;
     object-fit: contain;
   }
 
-  .play-partners__item--icon img {
-    max-width: 30px;
-    max-height: 30px;
+  .play-partners__logo--icon img {
+    max-width: 32px;
+    max-height: 32px;
   }
 
-  .play-partners__label {
+  .play-partners__name {
+    margin: 14px 0 2px;
     color: var(--ink);
-    font-size: 13px;
+    font-family: var(--font-heading);
+    font-size: 15px;
     font-weight: 600;
+    letter-spacing: -0.02em;
     line-height: 1.4;
-    white-space: nowrap;
   }
 
-  .play-partners__note {
-    position: relative;
-    z-index: 1;
-    margin: 2px 42px 0;
+  .play-partners__role {
+    margin: 0;
     color: var(--ink-muted);
-    font-size: 12px;
-    line-height: 1.6;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    line-height: 1.5;
+    text-transform: uppercase;
   }
 
   :global(html[data-language="ar"]) .play-partners__title {
@@ -249,37 +215,14 @@ const partners = [
     line-height: 1.42;
   }
 
-  @keyframes partners-scroll {
-    from {
-      transform: translate3d(0, 0, 0);
-    }
-    to {
-      transform: translate3d(-50%, 0, 0);
-    }
-  }
-
-  @keyframes partners-float {
-    0%,
-    100% {
-      transform: translateY(0) rotate(0);
-    }
-    50% {
-      transform: translateY(-10px) rotate(8deg);
-    }
-  }
-
   @media (max-width: 900px) {
     .play-partners {
-      padding-block: 56px 8px;
+      padding-block: 54px 8px;
     }
 
     .play-partners__panel {
-      padding-top: 30px;
+      padding: 30px 24px 30px;
       border-radius: 30px;
-    }
-
-    .play-partners__head {
-      padding: 0 24px 22px;
     }
 
     .play-partners__title {
@@ -290,59 +233,26 @@ const partners = [
       font-size: 14px;
     }
 
-    .play-partners__item {
-      height: 62px;
-      padding: 0 18px;
-      border-radius: 18px;
+    .play-partners__grid {
+      margin-top: 24px;
     }
 
-    .play-partners__item img {
-      max-width: 104px;
-      max-height: 26px;
-    }
-
-    .play-partners__item--icon img {
-      max-width: 26px;
-      max-height: 26px;
-    }
-
-    .play-partners__label {
-      font-size: 12px;
-    }
-
-    .play-partners__note {
-      margin-inline: 24px;
-    }
-
-    .play-partners__shape {
-      display: none;
+    .play-partners__card {
+      flex-basis: 180px;
+      min-height: 150px;
+      padding: 18px;
     }
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .play-partners__track {
-      width: auto;
-      flex-wrap: wrap;
-      animation: none;
+  @media (max-width: 520px) {
+    .play-partners__card {
+      flex-basis: 100%;
+      max-width: none;
+      min-height: 0;
     }
 
-    .play-partners__set {
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .play-partners__set[aria-hidden="true"] {
-      display: none;
-    }
-
-    .play-partners__marquee {
-      -webkit-mask-image: none;
-      mask-image: none;
-    }
-
-    .play-partners__item,
-    .play-partners__shape {
-      animation: none;
+    .play-partners__logo {
+      min-height: 34px;
     }
   }
 </style>
