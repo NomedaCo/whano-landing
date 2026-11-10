@@ -169,8 +169,8 @@ export const privacySections: LegalSection[] = [
         ar: "لإنشاء اقتراحات المنتجات والردود الحوارية عند تفعيل هذه الميزات.",
       },
       {
-        en: "To answer questions in the Whano app guide. The messages you submit there are sent through OpenRouter to its model provider to generate a reply. If you allow analytics, the chat transcript is stored for up to 14 days; otherwise the conversation stays in your browser session and Whano does not store the message text. A hashed IP is kept for at most two hours only to rate-limit requests. Do not send passwords, card numbers, one-time codes, or sensitive order data.",
-        ar: "للإجابة عن الأسئلة في دليل تطبيق Whano. تُرسل الرسائل التي تكتبها هناك عبر OpenRouter إلى مزود النموذج لإنشاء الرد. إذا سمحت بالتحليلات، يُحفظ نص المحادثة لمدة 14 يومًا كحد أقصى؛ وإلا تبقى المحادثة في جلسة متصفحك ولا يحتفظ Whano بنص الرسائل. ويُحفظ عنوان IP مجزأ لمدة ساعتين كحد أقصى لغرض تحديد معدل الطلبات فقط. لا ترسل كلمات مرور أو أرقام بطاقات أو رموزًا لمرة واحدة أو بيانات طلب حساسة.",
+        en: "To answer questions in the Whano app guide. The messages you submit there are sent through MADAR’s AI service and OpenRouter to the model provider to generate a reply. If you allow analytics, the chat transcript is stored for up to 14 days; otherwise the conversation stays in your browser session and Whano does not store the message text. A hashed IP is kept for at most two hours only to rate-limit requests. Do not send passwords, card numbers, one-time codes, or sensitive order data.",
+        ar: "للإجابة عن الأسئلة في دليل تطبيق Whano. تُرسل الرسائل التي تكتبها هناك عبر خدمة MADAR للذكاء الاصطناعي وOpenRouter إلى مزود النموذج لإنشاء الرد. إذا سمحت بالتحليلات، يُحفظ نص المحادثة لمدة 14 يومًا كحد أقصى؛ وإلا تبقى المحادثة في جلسة متصفحك ولا يحتفظ Whano بنص الرسائل. ويُحفظ عنوان IP مجزأ لمدة ساعتين كحد أقصى لغرض تحديد معدل الطلبات فقط. لا ترسل كلمات مرور أو أرقام بطاقات أو رموزًا لمرة واحدة أو بيانات طلب حساسة.",
       },
       {
         en: "To understand and improve the landing page, only if you allow analytics in the consent banner: anonymous session events such as pages visited, active time, scroll depth, clicks, and device type are kept for up to 30 days. No raw IP addresses are stored. If you choose Essential only, no session analytics are collected.",
@@ -186,8 +186,8 @@ export const privacySections: LegalSection[] = [
     heading: { en: "4. When information is shared", ar: "4. متى نشارك المعلومات" },
     paragraphs: [
       {
-        en: "We do not sell your data. We share only what is needed with service providers that help us operate Whano, including Shopify, WhatsApp, hosting and database providers, payment processors, email delivery providers, translation providers, and OpenRouter for the Whano app guide. We may also disclose information when required by law or to protect the service and its users.",
-        ar: "لا نبيع بياناتك. نشارك فقط المعلومات اللازمة مع مقدمي الخدمات الذين يساعدوننا في تشغيل Whano، ومنهم Shopify وواتساب ومقدمو الاستضافة وقواعد البيانات ومعالجو الدفع وخدمات إرسال البريد ومقدمو الترجمة، وOpenRouter لدليل تطبيق Whano. وقد نكشف المعلومات إذا طلب القانون ذلك أو لحماية الخدمة ومستخدميها.",
+        en: "We do not sell your data. We share only what is needed with service providers that help us operate Whano, including Shopify, WhatsApp, hosting and database providers, payment processors, email delivery providers, translation providers, and MADAR and OpenRouter for the Whano app guide. We may also disclose information when required by law or to protect the service and its users.",
+        ar: "لا نبيع بياناتك. نشارك فقط المعلومات اللازمة مع مقدمي الخدمات الذين يساعدوننا في تشغيل Whano، ومنهم Shopify وواتساب ومقدمو الاستضافة وقواعد البيانات ومعالجو الدفع وخدمات إرسال البريد ومقدمو الترجمة، وMADAR وOpenRouter لدليل تطبيق Whano. وقد نكشف المعلومات إذا طلب القانون ذلك أو لحماية الخدمة ومستخدميها.",
       },
     ],
   },
@@ -362,8 +362,8 @@ export const dpaSections: LegalSection[] = [
         ar: "مزود ذكاء اصطناعي, عند الحاجة إلى ترجمة الرسائل: نص الرسالة فقط. ولا تُستخدم لتدريب نماذج الأطراف الثالثة.",
       },
       {
-        en: "OpenRouter and its model provider, for the Whano app guide: the message text you submit. Messages are processed only to generate the reply. Do not send sensitive data.",
-        ar: "OpenRouter ومزود النموذج، لدليل تطبيق Whano: نص الرسالة التي تكتبها. تُعالج الرسائل فقط لإنشاء الرد. لا ترسل بيانات حساسة.",
+        en: "MADAR’s AI service and OpenRouter, for the Whano app guide: the message text you submit. Messages are processed only to generate the reply. Do not send sensitive data.",
+        ar: "خدمة MADAR للذكاء الاصطناعي وOpenRouter، لدليل تطبيق Whano: نص الرسالة التي تكتبها. تُعالج الرسائل فقط لإنشاء الرد. لا ترسل بيانات حساسة.",
       },
       {
         en: "Cloudflare, hosting and consented website analytics: anonymous session events for 30 days, and chat transcripts for 14 days. No raw IP addresses are stored.",
