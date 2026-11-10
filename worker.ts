@@ -70,7 +70,7 @@ function buildCsp(scriptHashes: string[]): string {
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data:",
     "font-src 'self'",
-    "connect-src 'self' https://cloudflareinsights.com https://static.cloudflareinsights.com",
+    "connect-src 'self' https://madar.nomeda.tech https://cloudflareinsights.com https://static.cloudflareinsights.com",
     "object-src 'none'",
     "base-uri 'self'",
     "form-action 'none'",

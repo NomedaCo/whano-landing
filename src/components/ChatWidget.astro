@@ -1,10 +1,13 @@
 ---
 import { site } from "../data/content";
-import { CHATBOT_QUICK_ANSWERS } from "../data/chatbot";
 ---
 
-<div class="whano-chat" data-whano-chat data-support-number={site.support.display}>
-  <script type="application/json" data-chat-quick set:html={JSON.stringify(CHATBOT_QUICK_ANSWERS)}></script>
+<div
+  class="whano-chat"
+  data-whano-chat
+  data-support-number={site.support.display}
+  data-madar-endpoint="https://madar.nomeda.tech/api/public/chat/madar_web_whano_VtjA3KiQTWctG47rBN7Pp1-m"
+>
 
   <button
     class="whano-chat__launcher"
@@ -169,10 +172,23 @@ import { CHATBOT_QUICK_ANSWERS } from "../data/chatbot";
     if (!panel || !launcher || !welcome || !messages || !form || !input || !send || !stop || !close || !reset) return;
 
     const storageKey = "whano-chat-history-v1";
+    const visitorStorageKey = "whano-chat-visitor-v1";
+    const madarEndpoint = root.dataset.madarEndpoint || "";
     const support = root.querySelector("[data-chat-support]") instanceof HTMLAnchorElement
       ? root.querySelector("[data-chat-support]").href
       : "#";
     const supportNumber = root.dataset.supportNumber ?? "";
+    const visitorId = (() => {
+      try {
+        const existing = localStorage.getItem(visitorStorageKey);
+        if (existing) return existing;
+        const created = "web_" + (crypto.randomUUID ? crypto.randomUUID().replace(/-/g, "") : String(Date.now()) + String(Math.random()).slice(2));
+        localStorage.setItem(visitorStorageKey, created);
+        return created;
+      } catch {
+        return "web_" + String(Date.now()) + String(Math.random()).slice(2);
+      }
+    })();
     let quickAnswers = [];
     try {
       const rawQuick = root.querySelector("[data-chat-quick]")?.textContent || "[]";
@@ -421,64 +437,25 @@ import { CHATBOT_QUICK_ANSWERS } from "../data/chatbot";
     };
 
     async function streamReply() {
-      const response = await fetch("/api/chat", {
+      if (!madarEndpoint) throw new Error("chat_not_configured");
+      const latest = [...history].reverse().find((item) => item.role === "user");
+      if (!latest) throw new Error("empty_message");
+      const response = await fetch(madarEndpoint, {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ messages: history.slice(-10) }),
+        body: JSON.stringify({ visitorId, text: latest.content }),
         signal: controller.signal,
       });
+      const payload = await response.json().catch(() => null);
       if (!response.ok) {
         if (response.status === 429) {
           track("chat-rate-limited");
           trackSession("chat-rate-limited");
         }
-        throw new Error(`chat ${response.status}`);
+        throw new Error(payload?.error?.message ? String(payload.error.message) : `chat ${response.status}`);
       }
-      if (!response.body) throw new Error("no stream");
-
-      const reader = response.body.getReader();
-      const decoder = new TextDecoder();
-      let buffer = "";
-      let text = "";
-      let started = false;
-      let bubble = null;
-
-      while (true) {
-        const result = await reader.read();
-        if (result.done) break;
-        buffer += decoder.decode(result.value, { stream: true });
-        let boundary;
-        while ((boundary = buffer.indexOf("\n\n")) !== -1) {
-          const block = buffer.slice(0, boundary);
-          buffer = buffer.slice(boundary + 2);
-          for (const line of block.split("\n")) {
-            const data = line.startsWith("data:") ? line.slice(5).trim() : "";
-            if (!data || data === "[DONE]") continue;
-            let parsed;
-            try {
-              parsed = JSON.parse(data);
-            } catch {
-              continue;
-            }
-            const delta = parsed?.choices?.[0]?.delta?.content;
-            if (typeof delta !== "string" || !delta) continue;
-            text += delta;
-            if (!started) {
-              started = true;
-              const typing = messages.querySelector(".whano-chat__typing");
-              typing?.remove();
-              bubble = messageRow("assistant", "").bubble;
-            }
-            if (bubble) {
-              bubble.textContent = cleanAnswer(text);
-              scrollToBottom();
-            }
-          }
-        }
-      }
-
-      const answer = cleanAnswer(text);
-      if (!answer) throw new Error("empty reply");
+      const answer = cleanAnswer(payload?.data?.reply ?? "");
+      if (!answer) throw new Error("empty_reply");
       return answer;
     }
 
@@ -494,19 +471,6 @@ import { CHATBOT_QUICK_ANSWERS } from "../data/chatbot";
       history = history.slice(-20);
       saveHistory();
 
-      const quick = quickAnswerFor(value);
-      if (quick) {
-        const answer = messageLang(value) === "en" ? quick.en : quick.ar;
-        messageRow("assistant", answer, { quick: true, support: Boolean(quick.support) });
-        trackSession("chat-message", { role: "assistant", content: answer });
-        trackSession("chat-quick", { quick: quick.id });
-        history.push({ role: "assistant", content: answer });
-        history = history.slice(-20);
-        saveHistory();
-        track("chat-quick");
-        return;
-      }
-
       track("chat-send");
       setBusy(true);
       controller = new AbortController();
@@ -514,6 +478,7 @@ import { CHATBOT_QUICK_ANSWERS } from "../data/chatbot";
       try {
         const reply = await streamReply();
         typing.remove();
+        messageRow("assistant", reply);
         trackSession("chat-message", { role: "assistant", content: reply });
         history.push({ role: "assistant", content: reply });
         history = history.slice(-20);
