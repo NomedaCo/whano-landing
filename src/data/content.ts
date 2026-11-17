@@ -24,6 +24,9 @@ export const site = {
     customerName: { en: "Ahmed", ar: "أحمد" },
     supportPhone: "+2001260055031",
   },
+  // Meta pixel "Whano installs" (ad measurement). Loads only after the visitor
+  // allows analytics; empty = off. The same pixel is set on the App Store listing.
+  metaPixelId: "1443719594003067",
   // Every primary CTA is the console's signup, not the App Store listing.
   accessUrl: {
     en: "https://whano.nomeda.tech/dashboard/signup",

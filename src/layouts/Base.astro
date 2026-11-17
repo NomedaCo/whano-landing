@@ -6,6 +6,7 @@ import ChatWidget from "../components/ChatWidget.astro";
 import WhatsAppFloat from "../components/WhatsAppFloat.astro";
 import FreePointsPromo from "../components/FreePointsPromo.astro";
 import AnalyticsConsent from "../components/AnalyticsConsent.astro";
+import { site } from "../data/content";
 
 type SchemaObject = Record<string, unknown>;
 
@@ -201,6 +202,65 @@ const pageSchemas = (Array.isArray(schema) ? schema : schema ? [schema] : []).ma
     <WhatsAppFloat />
     {showPromo && <FreePointsPromo />}
     <AnalyticsConsent />
+    <script is:inline define:vars={{ metaPixelId: site.metaPixelId }}>
+      // Meta pixel, only with analytics consent: PageView, and Lead on an
+      // Install click. The ad's utm_* are carried onto the App Store link so
+      // the listing's own pixel sees the same campaign.
+      (() => {
+        const production = /(^|\.)nomeda\.tech$/i.test(location.hostname);
+        const utm = new URLSearchParams();
+        new URLSearchParams(location.search).forEach((value, key) => {
+          if (/^utm_/.test(key)) utm.set(key, value);
+        });
+        if (utm.toString()) {
+          const tag = () =>
+            document.querySelectorAll("[data-access-link]").forEach((link) => {
+              try {
+                const url = new URL(link.getAttribute("href") || "", location.href);
+                utm.forEach((value, key) => url.searchParams.set(key, value));
+                link.setAttribute("href", url.toString());
+              } catch {
+                // Leave the link as it is.
+              }
+            });
+          tag();
+          window.addEventListener("load", tag);
+          document.addEventListener("click", (event) => {
+            const link = event.target && event.target.closest ? event.target.closest("[data-access-link]") : null;
+            if (link) tag(); // the language switch rewrites the href
+          }, true);
+        }
+        if (!metaPixelId || !production) return;
+        if (navigator.doNotTrack === "1" || navigator.globalPrivacyControl) return;
+        let started = false;
+        const start = () => {
+          if (started) return;
+          started = true;
+          /* Meta's standard loader */
+          !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+          n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+          n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+          t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+          document,'script','https://connect.facebook.net/en_US/fbevents.js');
+          window.fbq("init", metaPixelId);
+          window.fbq("track", "PageView");
+          document.addEventListener("click", (event) => {
+            const link = event.target && event.target.closest ? event.target.closest("[data-access-link]") : null;
+            if (link && window.fbq) window.fbq("track", "Lead", { content_name: "install_click" });
+          });
+        };
+        let choice = null;
+        try {
+          choice = localStorage.getItem("whano-analytics-consent-v1");
+        } catch {
+          // No storage: no pixel.
+        }
+        if (choice === "granted") start();
+        window.addEventListener("whano:consent", (event) => {
+          if (event.detail === "granted") start();
+        });
+      })();
+    </script>
     <script is:inline>
       // First-party, cookieless analytics: one counter per page view and per
       // install/login click. Localhost and privacy signals are ignored.

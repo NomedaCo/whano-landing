@@ -5,8 +5,8 @@ import "../styles/analytics.css";
 <div class="analytics-consent" data-analytics-consent hidden>
   <div class="analytics-consent__copy">
     <p>
-      <span data-copy="en">Help us improve Whano. Allow anonymous session analytics and chat transcripts. Pages, active time, scroll depth, and clicks are kept for 30 days; chat content for 14 days. No passwords or card data.</span>
-      <span data-copy="ar" lang="ar">ساعدنا في تحسين Whano. اسمح بتحليلات مجهولة للجلسة ونصوص المحادثة. تُحفظ الصفحات ومدة الاستخدام والتمرير والنقرات لمدة 30 يومًا، ومحتوى المحادثة لمدة 14 يومًا. لا كلمات مرور أو بيانات بطاقات.</span>
+      <span data-copy="en">Help us improve Whano. Allow anonymous session analytics, chat transcripts, and Meta ad measurement. Pages, active time, scroll depth, and clicks are kept for 30 days; chat content for 14 days. No passwords or card data.</span>
+      <span data-copy="ar" lang="ar">ساعدنا في تحسين Whano. اسمح بتحليلات مجهولة للجلسة ونصوص المحادثة وقياس إعلانات Meta. تُحفظ الصفحات ومدة الاستخدام والتمرير والنقرات لمدة 30 يومًا، ومحتوى المحادثة لمدة 14 يومًا. لا كلمات مرور أو بيانات بطاقات.</span>
       <a href="/privacy/">
         <span data-copy="en">Privacy</span>
         <span data-copy="ar" lang="ar">الخصوصية</span>
@@ -168,6 +168,7 @@ import "../styles/analytics.css";
       writeStore(localStorage, consentKey, value);
       banner.hidden = true;
       if (value === "granted") start();
+      window.dispatchEvent(new CustomEvent("whano:consent", { detail: value }));
     };
 
     if (dnt) {

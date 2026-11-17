@@ -173,8 +173,8 @@ export const privacySections: LegalSection[] = [
         ar: "للإجابة عن الأسئلة في دليل تطبيق Whano. تُرسل الرسائل التي تكتبها هناك عبر خدمة MADAR للذكاء الاصطناعي وOpenRouter إلى مزود النموذج لإنشاء الرد. إذا سمحت بالتحليلات، يُحفظ نص المحادثة لمدة 14 يومًا كحد أقصى؛ وإلا تبقى المحادثة في جلسة متصفحك ولا يحتفظ Whano بنص الرسائل. ويُحفظ عنوان IP مجزأ لمدة ساعتين كحد أقصى لغرض تحديد معدل الطلبات فقط. لا ترسل كلمات مرور أو أرقام بطاقات أو رموزًا لمرة واحدة أو بيانات طلب حساسة.",
       },
       {
-        en: "To understand and improve the landing page, only if you allow analytics in the consent banner: anonymous session events such as pages visited, active time, scroll depth, clicks, and device type are kept for up to 30 days. No raw IP addresses are stored. If you choose Essential only, no session analytics are collected.",
-        ar: "لفهم صفحة الموقع وتحسينها، فقط إذا سمحت بالتحليلات في شريط الموافقة: تُحفظ أحداث جلسة مجهولة مثل الصفحات التي تمت زيارتها، ومدة الاستخدام، وعمق التمرير، والنقرات، ونوع الجهاز لمدة 30 يومًا كحد أقصى. ولا تُحفظ عناوين IP الأصلية. وإذا اخترت الأساسي فقط، لا تُجمع تحليلات الجلسة.",
+        en: "To understand and improve the landing page, only if you allow analytics in the consent banner: anonymous session events such as pages visited, active time, scroll depth, clicks, and device type are kept for up to 30 days. No raw IP addresses are stored. With the same consent, the Meta pixel measures which Whano ads led to a visit or a sign-up click (page views and sign-up clicks, linked to your Meta account by Meta). If you choose Essential only, no session analytics are collected and the Meta pixel is not loaded.",
+        ar: "لفهم صفحة الموقع وتحسينها، فقط إذا سمحت بالتحليلات في شريط الموافقة: تُحفظ أحداث جلسة مجهولة مثل الصفحات التي تمت زيارتها، ومدة الاستخدام، وعمق التمرير، والنقرات، ونوع الجهاز لمدة 30 يومًا كحد أقصى. ولا تُحفظ عناوين IP الأصلية. وبنفس الموافقة، يقيس بكسل Meta أي إعلانات لـ Whano أدت إلى زيارة أو نقرة تسجيل (مشاهدات الصفحات ونقرات التسجيل، وتربطها Meta بحسابك لديها). وإذا اخترت الأساسي فقط، لا تُجمع تحليلات الجلسة ولا يُحمّل بكسل Meta.",
       },
       {
         en: "To provide support, process payments, detect abuse, maintain security, and improve reliability using aggregated or anonymized information where possible.",
@@ -231,8 +231,8 @@ export const privacySections: LegalSection[] = [
     heading: { en: "9. Cookies", ar: "9. ملفات تعريف الارتباط" },
     paragraphs: [
       {
-        en: "The landing page uses browser storage only to remember your language preference. Its analytics is first-party and cookieless: one counter per day, path, and event, with no third-party tracker and no advertising cookie.",
-        ar: "تستخدم صفحة الهبوط تخزين المتصفح فقط لتذكر اختيار اللغة. وتحليلاتها داخلية ومن دون ملفات تعريف ارتباط: عداد واحد لكل يوم ومسار وحدث، بلا أي متتبع خارجي أو ملف تعريف ارتباط إعلاني.",
+        en: "The landing page uses browser storage only to remember your language preference. Its own analytics is first-party and cookieless: one counter per day, path, and event. Only if you allow analytics, the Meta pixel is loaded and Meta may set its advertising cookies (such as _fbp) to measure our ads; choosing Essential only keeps it off.",
+        ar: "تستخدم صفحة الهبوط تخزين المتصفح فقط لتذكر اختيار اللغة. وتحليلاتها الخاصة داخلية ومن دون ملفات تعريف ارتباط: عداد واحد لكل يوم ومسار وحدث. وفقط إذا سمحت بالتحليلات، يُحمّل بكسل Meta وقد تضع Meta ملفات تعريف ارتباط إعلانية (مثل _fbp) لقياس إعلاناتنا؛ واختيار الأساسي فقط يبقيه متوقفًا.",
       },
     ],
   },
@@ -368,6 +368,10 @@ export const dpaSections: LegalSection[] = [
       {
         en: "Cloudflare, hosting and consented website analytics: anonymous session events for 30 days, and chat transcripts for 14 days. No raw IP addresses are stored.",
         ar: "Cloudflare، الاستضافة وتحليلات الموقع المصرّح بها: أحداث جلسة مجهولة لمدة 30 يومًا، ونصوص محادثة لمدة 14 يومًا. ولا تُحفظ عناوين IP الأصلية.",
+      },
+      {
+        en: "Meta Platforms, ad measurement on the landing page, only with analytics consent: page views and sign-up clicks.",
+        ar: "Meta Platforms، لقياس الإعلانات على صفحة الموقع، فقط بموافقتك على التحليلات: مشاهدات الصفحات ونقرات التسجيل.",
       },
       {
         en: "Resend, merchant email notifications: merchant email address only.",
