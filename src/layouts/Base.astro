@@ -3,6 +3,7 @@ import "../styles/global.css";
 import "../styles/playful.css";
 import "../styles/chat.css";
 import ChatWidget from "../components/ChatWidget.astro";
+import WhatsAppFloat from "../components/WhatsAppFloat.astro";
 import FreePointsPromo from "../components/FreePointsPromo.astro";
 import AnalyticsConsent from "../components/AnalyticsConsent.astro";
 
@@ -197,6 +198,7 @@ const pageSchemas = (Array.isArray(schema) ? schema : schema ? [schema] : []).ma
     </a>
     <slot />
     <ChatWidget />
+    <WhatsAppFloat />
     {showPromo && <FreePointsPromo />}
     <AnalyticsConsent />
     <script is:inline>
