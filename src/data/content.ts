@@ -24,9 +24,10 @@ export const site = {
     customerName: { en: "Ahmed", ar: "أحمد" },
     supportPhone: "+2001260055031",
   },
+  // Every primary CTA is the console's signup, not the App Store listing.
   accessUrl: {
-    en: "https://apps.shopify.com/whano",
-    ar: "https://apps.shopify.com/whano",
+    en: "https://whano.nomeda.tech/dashboard/signup",
+    ar: "https://whano.nomeda.tech/dashboard/signup",
   },
   // The console: /dashboard serves the overview when signed in and the login
   // page otherwise, so a single address works for both.
@@ -43,7 +44,7 @@ export const site = {
     ],
     login: { en: "Log in", ar: "تسجيل الدخول" },
     language: { en: "العربية", ar: "English" },
-    cta: { en: "Install on Shopify", ar: "ثبّت على Shopify" },
+    cta: { en: "Start now", ar: "ابدأ الآن" },
     menuOpen: { en: "Open menu", ar: "افتح القائمة" },
     menuClose: { en: "Close menu", ar: "أغلق القائمة" },
     switchToArabic: { en: "Switch to Arabic", ar: "التبديل إلى العربية" },
@@ -57,11 +58,11 @@ export const site = {
       en: "Whano connects your Shopify store to automated WhatsApp messaging. It confirms orders, handles changes, sends delivery updates, and asks for the review, with no number to connect.",
       ar: "يربط Whano متجرك على Shopify بأتمتة رسائل واتساب: يؤكد الطلبات، ويتعامل مع التعديلات، ويرسل تحديثات التوصيل، ويطلب التقييم، من دون ربط أي رقم.",
     },
-    cta: { en: "Install on Shopify", ar: "ثبّت على Shopify" },
+    cta: { en: "Start now", ar: "ابدأ الآن" },
     loginCta: { en: "Log in", ar: "تسجيل الدخول" },
     ctaNote: {
-      en: "Free to install. 100 points included.",
-      ar: "التثبيت مجاني، ومعك 100 نقطة للبدء.",
+      en: "Free to start. 100 points included.",
+      ar: "ابدأ مجانًا، ومعك 100 نقطة للبدء.",
     },
     proofs: [
       { en: "Instant setup with no number hassle", ar: "جاهز فورًا من دون إعداد أرقام" },
@@ -481,13 +482,13 @@ export const site = {
   cta: {
     title: { en: "Keep the next order moving after checkout.", ar: "اجعل الطلب القادم يكمل رحلته حتى النهاية." },
     body: {
-      en: "Install Whano on your Shopify store and start automating post-purchase conversations today.",
-      ar: "ثبّت Whano على متجرك على Shopify وابدأ أتمتة محادثات ما بعد الشراء اليوم.",
+      en: "Start with Whano on your Shopify store and automate post-purchase conversations today.",
+      ar: "ابدأ مع Whano على متجرك على Shopify وأتمت محادثات ما بعد الشراء اليوم.",
     },
-    button: { en: "Install on Shopify", ar: "ثبّت على Shopify" },
+    button: { en: "Start now", ar: "ابدأ الآن" },
     login: { en: "Already using Whano? Log in", ar: "تستخدم Whano بالفعل؟ سجّل الدخول" },
     reassurance: [
-      { en: "Free to install", ar: "التثبيت مجاني" },
+      { en: "Free to start", ar: "ابدأ مجانًا" },
       { en: "100 points included to test it", ar: "100 نقطة مجانية للتجربة" },
       { en: "Confirmation & cancellation always work", ar: "التأكيد والإلغاء يعملان دائمًا" },
       { en: "No monthly subscription", ar: "من دون اشتراك شهري" },

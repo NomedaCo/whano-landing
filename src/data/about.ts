@@ -105,9 +105,9 @@ export const aboutPage: {
   cta: {
     title: { en: "Ready to try Whano?", ar: "هل أنت مستعد لتجربة Whano؟" },
     body: {
-      en: "Install Whano on your Shopify store and start automating post-purchase conversations.",
-      ar: "ثبّت Whano على متجرك على Shopify وابدأ أتمتة محادثات ما بعد الشراء.",
+      en: "Start with Whano on your Shopify store and automate post-purchase conversations.",
+      ar: "ابدأ مع Whano على متجرك على Shopify وأتمت محادثات ما بعد الشراء.",
     },
-    button: { en: "Install on Shopify", ar: "ثبّت على Shopify" },
+    button: { en: "Start now", ar: "ابدأ الآن" },
   },
 };
