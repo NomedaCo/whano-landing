@@ -63,14 +63,17 @@ function buildCsp(scriptHashes: string[]): string {
     "'self'",
     ...scriptHashes.map((hash) => `'${hash}'`),
     "https://static.cloudflareinsights.com",
+    // Meta's pixel loader. It only loads after analytics consent, but the CSP
+    // has to allow it or the browser refuses to run it.
+    "https://connect.facebook.net",
   ].join(" ");
   return [
     "default-src 'self'",
     `script-src ${scriptSources}`,
     "style-src 'self' 'unsafe-inline'",
-    "img-src 'self' data:",
+    "img-src 'self' data: https://www.facebook.com https://connect.facebook.net",
     "font-src 'self'",
-    "connect-src 'self' https://madar.nomeda.tech https://cloudflareinsights.com https://static.cloudflareinsights.com",
+    "connect-src 'self' https://madar.nomeda.tech https://cloudflareinsights.com https://static.cloudflareinsights.com https://www.facebook.com https://connect.facebook.com https://connect.facebook.net",
     "object-src 'none'",
     "base-uri 'self'",
     "form-action 'none'",
