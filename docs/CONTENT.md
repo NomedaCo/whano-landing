@@ -30,11 +30,12 @@ Legal Arabic is formal and precise. It should not use colloquial forms such as `
 
 ## Currency and feature labels
 
-- Plan prices are shown in **EGP only** (499 / 999 / 1,899 / 2,999 EGP). Do not
+- Plan prices are shown in **EGP only** (250 / 999 / 2,000 / 4,000 EGP, with the
+  original anchors 300 / 1,200 / 2,350 / 4,600 crossed out). Do not
   add dollar cents or a second billing currency on the site. Payment runs
   through Shopify or customer support with InstaPay or Vodafone Cash.
 - The FAQ has **17** answers; the help center groups them into three topics.
-- The what's new page carries **14 dated product and website changes** from the production
+- The what's new page carries **15 dated product and website changes** from the production
   commit log.
 - The features page lists **24** capabilities. Optional features (product
   messages, size verification, cart recovery) are labelled “optional when the
