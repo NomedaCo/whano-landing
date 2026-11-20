@@ -5,6 +5,7 @@ import "../styles/chat.css";
 import ChatWidget from "../components/ChatWidget.astro";
 import WhatsAppFloat from "../components/WhatsAppFloat.astro";
 import FreePointsPromo from "../components/FreePointsPromo.astro";
+import PricingUpdateBanner from "../components/PricingUpdateBanner.astro";
 import AnalyticsConsent from "../components/AnalyticsConsent.astro";
 import { site } from "../data/content";
 
@@ -65,6 +66,7 @@ const ogLocale = isEnglish ? "en_US" : "ar_EG";
 const ogAlternateLocale = isEnglish ? "ar_EG" : "en_US";
 const promoPath = Astro.url.pathname.replace(/^\/en(?=\/|$)/, "") || "/";
 const showPromo = !/^\/(?:privacy|terms|dpa|login|stats|order|cart)(?:\/|$)/.test(promoPath);
+const showPricingBanner = promoPath === "/" || promoPath === "/pricing" || promoPath === "/pricing/";
 const organization = {
   "@context": "https://schema.org",
   "@type": "Organization",
@@ -197,6 +199,7 @@ const pageSchemas = (Array.isArray(schema) ? schema : schema ? [schema] : []).ma
       <span data-copy="en">Skip to content</span>
       <span data-copy="ar" lang="ar">تجاوز إلى المحتوى</span>
     </a>
+    {showPricingBanner && <PricingUpdateBanner />}
     <slot />
     <ChatWidget />
     <WhatsAppFloat />

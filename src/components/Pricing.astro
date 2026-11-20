@@ -45,11 +45,30 @@ const standardPlans = plans.filter((p) => !("isEnterprise" in p && p.isEnterpris
 
           {plan.priceEgp !== null && (
             <div class="pricing-card__price">
-              <span class="pricing-card__current">
-                <bdi dir="ltr">{plan.priceEgp.toLocaleString("en-US")}</bdi>
-                <span data-copy="en">EGP</span>
-                <span data-copy="ar" lang="ar">جنيه</span>
-              </span>
+              <div class="pricing-card__price-row">
+                <span class="pricing-card__current">
+                  <bdi dir="ltr">{plan.priceEgp.toLocaleString("en-US")}</bdi>
+                  <span data-copy="en">EGP</span>
+                  <span data-copy="ar" lang="ar">جنيه</span>
+                </span>
+                {plan.priceBeforeEgp !== null && plan.priceBeforeEgp > plan.priceEgp && (
+                  <span class="pricing-card__compare">
+                    <bdi dir="ltr">{plan.priceBeforeEgp.toLocaleString("en-US")}</bdi>
+                    <span data-copy="en">EGP</span>
+                    <span data-copy="ar" lang="ar">جنيه</span>
+                  </span>
+                )}
+              </div>
+              {plan.priceBeforeEgp !== null && plan.priceBeforeEgp > plan.priceEgp && (
+                <span class="pricing-card__save">
+                  <span data-copy="en">
+                    Save {Math.round((1 - plan.priceEgp / plan.priceBeforeEgp) * 100)}%
+                  </span>
+                  <span data-copy="ar" lang="ar">
+                    وفّر {Math.round((1 - plan.priceEgp / plan.priceBeforeEgp) * 100)}%
+                  </span>
+                </span>
+              )}
             </div>
           )}
 

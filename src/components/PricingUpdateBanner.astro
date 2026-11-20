@@ -1,0 +1,65 @@
+---
+/**
+ * One-time pricing announcement for visitors.
+ *
+ * Hidden in the HTML and revealed by the inline script only when this browser
+ * has not dismissed it. The CTA is a normal link so it keeps working without
+ * JavaScript once the server-rendered bar is visible.
+ */
+---
+
+<div class="pricing-update-bar" data-pricing-update hidden>
+  <div class="site-frame pricing-update-bar__inner">
+    <span class="pricing-update-bar__pill">
+      <span data-copy="en">New pricing</span>
+      <span data-copy="ar" lang="ar">أسعار جديدة</span>
+    </span>
+    <p class="pricing-update-bar__copy">
+      <span data-copy="en">
+        Four lower-priced bundles, now from <strong>250 EGP</strong>. Every bundle shows its original price crossed out.
+      </span>
+      <span data-copy="ar" lang="ar">
+        أربع باقات بسعر أقل، تبدأ من <strong>250 جنيه</strong>. وكل باقة تعرض سعرها الأصلي مشطوبًا.
+      </span>
+    </p>
+    <a class="pricing-update-bar__cta" href="/pricing/">
+      <span data-copy="en">See the bundles</span>
+      <span data-copy="ar" lang="ar">اطّلع على الباقات</span>
+    </a>
+    <button
+      class="pricing-update-bar__close"
+      type="button"
+      data-pricing-update-close
+      aria-label="Dismiss pricing update"
+    >
+      ×
+    </button>
+  </div>
+</div>
+
+<script is:inline>
+  (() => {
+    const root = document.querySelector("[data-pricing-update]");
+    if (!root) return;
+    const key = "whano-pricing-update-2026-11";
+    let dismissed = false;
+    try {
+      dismissed = localStorage.getItem(key) === "1";
+    } catch {
+      dismissed = false;
+    }
+    if (dismissed) {
+      root.remove();
+      return;
+    }
+    root.hidden = false;
+    root.querySelector("[data-pricing-update-close]")?.addEventListener("click", () => {
+      try {
+        localStorage.setItem(key, "1");
+      } catch {
+        // Still dismiss for this page view.
+      }
+      root.remove();
+    });
+  })();
+</script>

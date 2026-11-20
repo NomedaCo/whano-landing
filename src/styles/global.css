@@ -2359,6 +2359,108 @@ html[dir="ltr"] .wa-chip-btn__icon {
   font-weight: 700;
 }
 
+/* ── Pricing update bar ─────────────────────────────────────── */
+
+.pricing-update-bar {
+  position: relative;
+  z-index: 40;
+  border-bottom: 1px solid rgba(13, 101, 74, 0.12);
+  background: linear-gradient(90deg, #eefaf2 0%, #f7fcf8 58%, #eefaf2 100%);
+}
+
+.pricing-update-bar[hidden] {
+  display: none;
+}
+
+.pricing-update-bar__inner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 46px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+}
+
+.pricing-update-bar__pill {
+  flex-shrink: 0;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: var(--green-dark);
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+.pricing-update-bar__copy {
+  min-width: 0;
+  flex: 1;
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 12.5px;
+  line-height: 1.55;
+}
+
+.pricing-update-bar__copy strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.pricing-update-bar__cta {
+  flex-shrink: 0;
+  color: var(--green-dark);
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.pricing-update-bar__close {
+  display: grid;
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ink-muted);
+  font-size: 19px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.pricing-update-bar__close:hover {
+  background: rgba(13, 101, 74, 0.08);
+  color: var(--ink);
+}
+
+@media (max-width: 720px) {
+  .pricing-update-bar__inner {
+    flex-wrap: wrap;
+    gap: 6px 10px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+  }
+
+  .pricing-update-bar__copy {
+    flex-basis: calc(100% - 44px);
+    order: 2;
+  }
+
+  .pricing-update-bar__cta {
+    order: 3;
+    margin-inline-start: 0;
+  }
+
+  .pricing-update-bar__close {
+    order: 1;
+    margin-inline-start: auto;
+  }
+}
+
 /* ── Pricing ────────────────────────────────────────────────── */
 
 .pricing-grid {
@@ -2480,8 +2582,15 @@ html[dir="ltr"] .wa-chip-btn__icon {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 2px;
+  gap: 7px;
   margin-top: 18px;
+}
+
+.pricing-card__price-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px;
 }
 
 .pricing-card__current {
@@ -2504,6 +2613,30 @@ html[dir="ltr"] .wa-chip-btn__icon {
   font-size: 12px;
   font-weight: 400;
   line-height: 1.5;
+}
+
+.pricing-card__compare {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  color: var(--ink-muted);
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+}
+
+.pricing-card__save {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(13, 101, 74, 0.09);
+  color: var(--green-dark);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
 }
 
 .pricing-card__points {
